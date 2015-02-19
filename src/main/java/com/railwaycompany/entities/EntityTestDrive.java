@@ -23,53 +23,29 @@ public class EntityTestDrive {
         userDao.create(user);
 
         User user2 = userDao.read(user.getId());
-
         if (user2 != null) {
             System.out.println("user: " + user2.getId() + " " + user2.getName() + " " + user2.getBirthdate());
         } else {
             System.out.println("User not found");
         }
-/*
-        EntityManager entityManager = EntityManagerSingleton.getInstance();
 
-        User user = entityManager.find(User.class, 1);
-        System.out.println("User: " + user.getName() + " " + user.getSurname());
+        user.setName("new name");
+        userDao.update(user);
 
-        Station station = entityManager.find(Station.class, 1);
-        System.out.println("Station: " + station.getId() + " " + station.getName());
-
-        Train train = entityManager.find(Train.class, 1);
-        System.out.println("Train: " + train.getId() + " " + train.getNumber() + " " + train.getSeats());
-
-        Ticket ticket = entityManager.find(Ticket.class, 1);
-        System.out.println("Ticket: " + ticket.getId());
-        Train trainFromTicket = ticket.getTrain();
-        if (trainFromTicket != null) {
-            System.out.println("\t trainFromTicket: " + trainFromTicket.getId() + " " + trainFromTicket.getNumber() +
-                    " " + trainFromTicket.getSeats());
+        user2 = userDao.read(user.getId());
+        if (user2 != null) {
+            System.out.println("user: " + user2.getId() + " " + user2.getName() + " " + user2.getBirthdate());
         } else {
-            System.out.println("\ttrainFromTicket is null");
+            System.out.println("User not found");
         }
 
-        Schedule schedule = entityManager.find(Schedule.class, 1);
-        System.out.println("Schedule: " + schedule.getId() + " " + schedule.getTimeArrival() + " " + schedule
-                .getTimeDeparture());
+        userDao.delete(user);
 
-        Train trainFromSchedule = schedule.getTrain();
-        Station stationFromSchedule = schedule.getStation();
-
-        if (trainFromSchedule != null) {
-            System.out.println("\tTrain: " + trainFromSchedule.getId() + " " + trainFromSchedule.getNumber() + " " +
-                    trainFromSchedule.getSeats());
+        user2 = userDao.read(user.getId());
+        if (user2 != null) {
+            System.out.println("user: " + user2.getId() + " " + user2.getName() + " " + user2.getBirthdate());
         } else {
-            System.out.println("\ttrainFromSchedule is null");
+            System.out.println("User not found");
         }
-
-        if (stationFromSchedule != null) {
-            System.out.println("\tStation: " + stationFromSchedule.getId() + " " + stationFromSchedule.getName());
-        } else {
-            System.out.println("\tstationFromSchedule is null");
-        }
-    */
     }
 }

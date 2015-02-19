@@ -1,13 +1,15 @@
 package com.railwaycompany.entities;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 @Entity
 @Table(name = "user")
-public class User {
+public class User implements Serializable{
 
     @Id
+    @GeneratedValue
     @Column(name = "id_user")
     private int id;
     @Column(name = "login")

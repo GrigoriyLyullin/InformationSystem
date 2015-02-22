@@ -7,6 +7,7 @@ import java.io.Serializable;
 public abstract class HibernateDaoTest<T extends Serializable> {
 
     protected static final String persistenceUnitName = "RailwayInformationSystemTest";
+    protected static final long millisInDay = 86400000L;
     protected Class<T> entityClass;
     protected GenericDAO<T> dao;
 

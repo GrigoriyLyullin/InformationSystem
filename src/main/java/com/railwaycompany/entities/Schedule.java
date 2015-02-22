@@ -1,13 +1,15 @@
 package com.railwaycompany.entities;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 @Entity
 @Table(name = "schedules")
-public class Schedule {
+public class Schedule implements Serializable {
 
     @Id
+    @GeneratedValue
     @Column(name = "id_schedule")
     private int id;
     @Column(name = "time_arrival")

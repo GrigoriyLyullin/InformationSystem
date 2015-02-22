@@ -8,6 +8,7 @@ import java.io.Serializable;
 public class Train implements Serializable {
 
     @Id
+    @GeneratedValue
     @Column(name = "id_train")
     private int id;
     @Column(name = "number")

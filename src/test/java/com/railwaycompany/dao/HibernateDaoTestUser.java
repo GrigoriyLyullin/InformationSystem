@@ -8,7 +8,6 @@ import java.util.Date;
 
 public class HibernateDaoTestUser extends HibernateDaoTest<User> {
 
-    private static final long millisInDay = 86400000L;
     private User testUser;
 
     @Before

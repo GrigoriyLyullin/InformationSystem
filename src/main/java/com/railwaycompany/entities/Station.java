@@ -1,28 +1,19 @@
 package com.railwaycompany.entities;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "station")
-public class Station {
+public class Station implements Serializable {
 
     @Id
+    @GeneratedValue
     @Column(name = "id_station")
     private int id;
 
     @Column(name = "name")
     private String name;
-//
-//    @ManyToOne
-//    private Station station;
-//
-//    public Station getStation() {
-//        return station;
-//    }
-//
-//    public void setStation(Station station) {
-//        this.station = station;
-//    }
 
     public int getId() {
         return id;

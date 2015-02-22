@@ -1,10 +1,11 @@
 package com.railwaycompany.entities;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "train")
-public class Train {
+public class Train implements Serializable {
 
     @Id
     @Column(name = "id_train")
@@ -13,17 +14,6 @@ public class Train {
     private int number;
     @Column(name = "seats")
     private int seats;
-
-//    @ManyToOne
-//    private Train train;
-//
-//    public Train getTrain() {
-//        return train;
-//    }
-//
-//    public void setTrain(Train train) {
-//        this.train = train;
-//    }
 
     public int getId() {
         return id;

@@ -3,13 +3,12 @@ package com.railwaycompany.dao;
 import com.railwaycompany.entities.User;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.Test;
 
 import java.util.Date;
 
 public class HibernateDaoTestUser extends HibernateDaoTest<User> {
 
-    private static final String persistenceUnitName = "RailwayInformationSystemTest";
+    private static final long millisInDay = 86400000L;
     private User testUser;
 
     @Before
@@ -28,7 +27,7 @@ public class HibernateDaoTestUser extends HibernateDaoTest<User> {
     }
 
 
-    @Test
+    @Override
     public void testCreate() throws Exception {
         dao.create(testUser);
         User createdUser = dao.read(testUser.getId());
@@ -37,7 +36,7 @@ public class HibernateDaoTestUser extends HibernateDaoTest<User> {
         dao.delete(testUser);
     }
 
-    @Test
+    @Override
     public void testRead() throws Exception {
         dao.create(testUser);
         int id = testUser.getId();
@@ -48,7 +47,7 @@ public class HibernateDaoTestUser extends HibernateDaoTest<User> {
         Assert.assertNull(readUser);
     }
 
-    @Test
+    @Override
     public void testUpdate() throws Exception {
 
         dao.create(testUser);
@@ -66,7 +65,7 @@ public class HibernateDaoTestUser extends HibernateDaoTest<User> {
         testUser.setName("updated " + name);
         testUser.setSurname("updated " + surname);
         testUser.setEmployee(!employee);
-        Date newDate = new Date(birthdate.getTime() - 86400000L);
+        Date newDate = new Date(birthdate.getTime() - millisInDay);
         testUser.setBirthdate(newDate);
 
         dao.update(testUser);
@@ -83,7 +82,7 @@ public class HibernateDaoTestUser extends HibernateDaoTest<User> {
         dao.delete(testUser);
     }
 
-    @Test
+    @Override
     public void testDelete() throws Exception {
         dao.create(testUser);
         int id = testUser.getId();

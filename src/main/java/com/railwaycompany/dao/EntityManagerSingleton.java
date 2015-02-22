@@ -6,11 +6,21 @@ import javax.persistence.Persistence;
 
 public class EntityManagerSingleton {
 
-    private static EntityManagerFactory factory = Persistence.createEntityManagerFactory("RailwayInformationSystem");
+    private static final String persistenceUnitName = "RailwayInformationSystem";
+    private static EntityManagerFactory factory;
     private static EntityManager entityManager;
 
     public static EntityManager getInstance() {
         if (entityManager == null) {
+            factory = Persistence.createEntityManagerFactory(persistenceUnitName);
+            entityManager = factory.createEntityManager();
+        }
+        return entityManager;
+    }
+
+    public static EntityManager getInstance(String persistenceUnitName) {
+        if (entityManager == null) {
+            factory = Persistence.createEntityManagerFactory(persistenceUnitName);
             entityManager = factory.createEntityManager();
         }
         return entityManager;

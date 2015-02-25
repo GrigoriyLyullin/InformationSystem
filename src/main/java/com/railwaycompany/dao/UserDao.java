@@ -5,7 +5,7 @@ import com.railwaycompany.entities.User;
 /**
  * GenericDao<User> interface for work with User entities.
  */
-interface UserDao extends GenericDAO<User> {
+public interface UserDao extends GenericDAO<User> {
 
     /**
      * Find user by username and password.

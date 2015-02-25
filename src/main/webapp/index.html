@@ -1,109 +1,66 @@
 <html>
 <head>
-	<link rel="stylesheet" type="text/css" href="style/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="style/style.css">
-	<script src="js/index.js"></script>
-	<meta charset="utf-8">
-	<title>Bootstrap Hello World</title>
+    <link rel="stylesheet" type="text/css" href="style/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="style/style.css">
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery-1.11.2.min.js"></script>
+    <script src="js/index.js"></script>
+    <meta charset="utf-8">
+    <title>Bootstrap Hello World</title>
 </head>
 <body>
 
-	<div class="container">
-		
-		<div class="main-header">
-			<h2>Railway Company</h2>
-		</div>
-		
-		<div class="row">
-			<div class="span12">
-				<div class="navbar navbar-inverse">
-					<nav class="navbar-inner">
-						<ul class="nav">
-							<li><a href="#">Search train</a></li>
-							<li><a href="#">Train schedule</a></li>
-							<li><a href="#">Buy Tickets</a></li>
-							<li class="divider-vertical"></li>
-							<li><a href="#">Sign in</a></li>
-							<li><a href="#">Sign up</a></li>
-						</ul>
-					</nav>
-				</div>
-			</div>
-		</div>
-		
-		<div class="row">
-			<div class="span12 img-rounded" id="jumbotron">
-				<div class="hero-unit" id="form-signin">
-					<form class="form-signin" onsubmit="return checkForm(this)">
-						<div id="form-signin-body">
-							<h2 class="form-signin-heading">Sign in</h2>
-							<input id="username" type="text" class="input-block-level" placeholder="Username or Email address">
-							<input id="password" type="password" class="input-block-level" placeholder="Password">
-							<div class="alert alert-error" id="loginAlert">
-								<p>Incorrect username or password.</p>
-							</div>
-							<button class="btn btn-medium btn-primary" type="submit">Sign in</button>
-						</div>
-						<div class="text-center" id="form-preloader">
-							<img src="img/preloader.gif" width="32" height="32">
-						</div>
-						<div class="text-left" id="form-userdata">
-							<p id="name"></p>
-							<p id="surname"></p>
-							<p id="birthdate"></p>
-							<button class="btn btn-medium btn-primary">Sign out</button>
-						</div>
-					</form>
-				</div>
-				
-			</div>
-		</div>
-	
-		<div class="well">	
-			
-			<div class="header">
-				<h2>Search</h2>
-			</div>
+<div class="container">
 
-			<p>Search train will be here</p>
-			
-			<div class="pagination-centered">
-				<form class="form-inline">
-					<div class="input-prepend">
-						<span class="add-on">From</span>
-						<input type="text" class="input-large" placeholder="Arrival station">
-					
-						<span class="add-on">To</span>
-						<input type="text" class="input-large" placeholder="Arrival station">
-						
-						<span class="add-on">When</span>
-						<input type="date" class="input-medium">
-						<input type="time" class="input-small">
-					</div>
-					<button type="submit" class="btn btn-success">Search</button>
-				</form>
-			</div>
+    <div class="main-header">
+        <h2>Railway Company</h2>
+    </div>
 
-			
-		
-			<div class="header">
-				<h2>Train schedule</h2>
-			</div>
-			
-			Train schedule will be here
-			
-			<div class="header">
-				<h2>Buy Tickets</h2>
-			</div>
-			
-			<p>Buy Ticket will be here</p>
-			
-		</div>
-		
-	</div>
+    <div class="row">
+        <div class="span12">
+            <div class="navbar navbar-inverse">
+                <nav class="navbar-inner">
+                    <ul class="nav">
+                        <li><a href="#">Search train</a></li>
+                        <li><a href="/station_schedule">Train schedule</a></li>
+                        <li><a href="#">Buy Tickets</a></li>
+                        <li class="divider-vertical"></li>
+                        <li><a href="#">Sign in</a></li>
+                        <li><a href="#">Sign up</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
 
-		
-    <script src="js/bootstrap.min.js"></script>
-	<script src="js/jquery-1.11.2.min.js"></script>
+    <div class="row">
+        <div class="span12 img-rounded" id="jumbotron">
+            <div class="hero-unit" id="form-signin">
+                <form class="form-signin" onsubmit="return checkForm(this)">
+                    <div id="form-signin-body">
+                        <h2 class="form-signin-heading">Sign in</h2>
+                        <input id="username" type="text" class="input-block-level"
+                               placeholder="Username or Email address">
+                        <input id="password" type="password" class="input-block-level" placeholder="Password">
+
+                        <div class="alert alert-error" id="loginAlert">
+                            <p>Incorrect username or password.</p>
+                        </div>
+                        <button class="btn btn-medium btn-primary" type="submit">Sign in</button>
+                    </div>
+                    <div class="text-center" id="form-preloader">
+                        <img src="img/preloader.gif" width="32" height="32">
+                    </div>
+                    <div class="text-left" id="form-userdata">
+                        <p id="name"></p>
+                        <p id="surname"></p>
+                        <p id="birthdate"></p>
+                        <button class="btn btn-medium btn-primary">Sign out</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>

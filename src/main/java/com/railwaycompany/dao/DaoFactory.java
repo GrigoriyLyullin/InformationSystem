@@ -8,9 +8,16 @@ public interface DaoFactory {
     /**
      * Returns HibernateDao for working with User entities.
      *
-     * @return UserHibernateDao object.
+     * @return UserDao object.
      */
-    UserHibernateDao getUserHibernateDao();
+    UserDao getUserDao();
+
+    /**
+     * Returns HibernateDao for working with Station entities.
+     *
+     * @return StationDao object.
+     */
+    StationDao getStationDao();
 
     /**
      * Closes all object (Streams and e.g.) that should will be closed. Call this before object destroying.

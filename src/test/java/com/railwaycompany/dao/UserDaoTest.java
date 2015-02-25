@@ -6,24 +6,24 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-public class UserHibernateDaoTest {
+public class UserDaoTest {
 
     private DaoFactory daoFactory;
-    private UserHibernateDao userHibernateDao;
+    private UserDao userDao;
 
     @Before
     public void setUp() throws Exception {
         daoFactory = new HibernateDaoFactory("RailwayInformationSystemTest");
-        userHibernateDao = daoFactory.getUserHibernateDao();
+        userDao = daoFactory.getUserDao();
     }
 
     @Test
     public void testFindUser() throws Exception {
-        User user = userHibernateDao.findUser("testLogin", "testPassword");
+        User user = userDao.findUser("testLogin", "testPassword");
         Assert.assertNotNull(user);
         Assert.assertEquals(user.getLogin(), "testLogin");
         Assert.assertEquals(user.getPassword(), "testPassword");
-        user = userHibernateDao.findUser("notExistLogin", "notExistPassword");
+        user = userDao.findUser("notExistLogin", "notExistPassword");
         Assert.assertNull(user);
     }
 

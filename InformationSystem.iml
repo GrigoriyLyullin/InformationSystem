@@ -21,6 +21,7 @@
         <setting name="provider-name" value="" />
         <datasource-mapping>
           <factory-entry name="RailwayInformationSystem" value="455c916c-868b-4d82-9f6e-b8fd65cc4c7a" />
+          <factory-entry name="RailwayInformationSystemTest" />
           <factory-entry name="SchoolPU" value="455c916c-868b-4d82-9f6e-b8fd65cc4c7a" />
         </datasource-mapping>
         <deploymentDescriptor name="persistence.xml" url="file://$MODULE_DIR$/src/main/resources/META-INF/persistence.xml" />

@@ -24,6 +24,9 @@ public class HibernateDaoFactory implements DaoFactory {
      */
     private final EntityManager entityManager;
 
+    private UserDao userDao;
+
+    private StationDao stationDao;
 
     /**
      * HibernateDaoFactory constructor.
@@ -33,6 +36,8 @@ public class HibernateDaoFactory implements DaoFactory {
     public HibernateDaoFactory(String persistenceUnitName) {
         this.entityManagerFactory = Persistence.createEntityManagerFactory(persistenceUnitName);
         this.entityManager = entityManagerFactory.createEntityManager();
+        userDao = new UserHibernateDao(entityManager);
+        stationDao = new StationHibernateDao(entityManager);
     }
 
     /**
@@ -43,8 +48,13 @@ public class HibernateDaoFactory implements DaoFactory {
     }
 
     @Override
-    public UserHibernateDao getUserHibernateDao() {
-        return new UserHibernateDao(entityManager);
+    public UserDao getUserDao() {
+        return userDao;
+    }
+
+    @Override
+    public StationDao getStationDao() {
+        return stationDao;
     }
 
     @Override

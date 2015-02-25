@@ -6,41 +6,29 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-
 public class UserHibernateDaoTest {
 
-    private EntityManagerFactory entityManagerFactory;
-    private EntityManager entityManager;
+    private DaoFactory daoFactory;
     private UserHibernateDao userHibernateDao;
 
     @Before
     public void setUp() throws Exception {
-        entityManagerFactory = Persistence.createEntityManagerFactory("RailwayInformationSystemTest");
-        entityManager = entityManagerFactory.createEntityManager();
-        userHibernateDao = new UserHibernateDao(entityManager);
+        daoFactory = new HibernateDaoFactory("RailwayInformationSystemTest");
+        userHibernateDao = daoFactory.getUserHibernateDao();
     }
 
     @Test
     public void testFindUser() throws Exception {
-
         User user = userHibernateDao.findUser("testLogin", "testPassword");
-
         Assert.assertNotNull(user);
         Assert.assertEquals(user.getLogin(), "testLogin");
         Assert.assertEquals(user.getPassword(), "testPassword");
-
+        user = userHibernateDao.findUser("notExistLogin", "notExistPassword");
+        Assert.assertNull(user);
     }
 
     @After
     public void tearDown() throws Exception {
-        if (entityManager.isOpen()) {
-            entityManager.close();
-        }
-        if (entityManagerFactory.isOpen()) {
-            entityManagerFactory.close();
-        }
+        daoFactory.close();
     }
 }

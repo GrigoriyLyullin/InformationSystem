@@ -6,18 +6,25 @@ package com.railwaycompany.dao;
 public interface DaoFactory {
 
     /**
-     * Returns HibernateDao for working with User entities.
+     * Returns Dao for working with User entities.
      *
      * @return UserDao object.
      */
     UserDao getUserDao();
 
     /**
-     * Returns HibernateDao for working with Station entities.
+     * Returns Dao for working with Station entities.
      *
      * @return StationDao object.
      */
     StationDao getStationDao();
+
+    /**
+     * Returns Dao for working with Schedule entities.
+     *
+     * @return ScheduleDao object.
+     */
+    ScheduleDao getScheduleDao();
 
     /**
      * Closes all object (Streams and e.g.) that should will be closed. Call this before object destroying.

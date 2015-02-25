@@ -3,7 +3,7 @@ package com.railwaycompany.dao;
 import com.railwaycompany.entities.Station;
 
 /**
- * GenericDao<User> interface for work with Station entities.
+ * GenericDao<Station> interface for work with Station entities.
  */
 public interface StationDao {
 

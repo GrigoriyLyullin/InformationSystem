@@ -8,12 +8,12 @@ import com.railwaycompany.entities.User;
 public interface UserDao extends GenericDAO<User> {
 
     /**
-     * Find user by username and password.
+     * Find user by login and password.
      *
-     * @param username - User login
+     * @param login - User login
      * @param password - User password
-     * @return User with this username and password or null if user with this parameters does not exists in data source.
+     * @return User with this login and password or null if user with this parameters does not exists in data source.
      */
-    User findUser(String username, String password);
+    User findUser(String login, String password);
 
 }

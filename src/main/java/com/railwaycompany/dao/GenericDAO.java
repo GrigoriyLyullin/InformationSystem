@@ -2,6 +2,11 @@ package com.railwaycompany.dao;
 
 import java.io.Serializable;
 
+/**
+ * Interface that implements all CRUD operations with DAO objects.
+ *
+ * @param <T> Entity type.
+ */
 public interface GenericDAO<T extends Serializable> {
 
     /**

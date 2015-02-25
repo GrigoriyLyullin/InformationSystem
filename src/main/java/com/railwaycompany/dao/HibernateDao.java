@@ -8,33 +8,35 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * @param <T>
+ * HibernateDao implementation of GenericDao.
+ *
+ * @param <T> Entity type.
  */
 public class HibernateDao<T extends Serializable> implements GenericDAO<T> {
 
     /**
-     *
+     * Logger for HibernateDao class.
      */
     private static Logger log = Logger.getLogger(HibernateDao.class.getName());
+
     /**
-     *
+     * EntityManager, interface used to interact with the persistence context.
      */
-    private EntityManager entityManager;
+    protected EntityManager entityManager;
+
     /**
-     *
+     * Entity class.
      */
     private Class<T> entityClass;
 
     /**
-     * @param entityClass
+     * HibernateDao constructor.
+     *
+     * @param entityClass - entity class
      */
     public HibernateDao(EntityManager entityManager, Class<T> entityClass) {
         this.entityManager = entityManager;
         this.entityClass = entityClass;
-    }
-
-    public HibernateDao(Class<T> entityClass) {
-        this(EntityManagerSingleton.getInstance(), entityClass);
     }
 
     @Override

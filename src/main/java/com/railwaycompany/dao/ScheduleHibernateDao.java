@@ -6,6 +6,7 @@ import com.railwaycompany.entities.Station;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -37,7 +38,15 @@ public class ScheduleHibernateDao extends HibernateDao<Station> implements Sched
 
         List<Schedule> schedules = null;
         try {
-            schedules = (List<Schedule>) query.getResultList();
+            List resultList = query.getResultList();
+            if (resultList != null) {
+                schedules = new ArrayList<>();
+                for (Object o : resultList) {
+                    if (o instanceof Schedule) {
+                        schedules.add((Schedule) o);
+                    }
+                }
+            }
         } catch (NoResultException e) {
             log.log(Level.INFO, "No schedule was found for stationId = \"" + stationId + "\"");
         } catch (ClassCastException e) {

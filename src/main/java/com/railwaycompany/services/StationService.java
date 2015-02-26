@@ -3,6 +3,7 @@ package com.railwaycompany.services;
 import com.railwaycompany.dao.DaoFactory;
 import com.railwaycompany.dao.HibernateDaoFactorySingleton;
 import com.railwaycompany.dao.StationDao;
+import com.railwaycompany.entities.Station;
 
 import java.util.logging.Logger;
 
@@ -20,5 +21,9 @@ public class StationService {
     public StationService () {
         daoFactory = HibernateDaoFactorySingleton.getInstance();
         stationDao = daoFactory.getStationDao();
+    }
+
+    public Station getStation(String name) {
+        return stationDao.findStation(name);
     }
 }

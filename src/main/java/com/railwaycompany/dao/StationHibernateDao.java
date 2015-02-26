@@ -37,7 +37,7 @@ public class StationHibernateDao extends HibernateDao<Station> implements Statio
         try {
             station = (Station) query.getSingleResult();
         } catch (NoResultException e) {
-            log.log(Level.INFO, "No station was found for name: \"" + name);
+            log.log(Level.INFO, "No station was found for name: \"" + name + "\"");
         } catch (ClassCastException e) {
             log.log(Level.WARNING, "Query returns not Station object.", e);
         }

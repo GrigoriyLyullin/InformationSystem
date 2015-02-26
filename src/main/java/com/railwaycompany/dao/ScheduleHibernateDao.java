@@ -49,8 +49,6 @@ public class ScheduleHibernateDao extends HibernateDao<Station> implements Sched
             }
         } catch (NoResultException e) {
             log.log(Level.INFO, "No schedule was found for stationId = \"" + stationId + "\"");
-        } catch (ClassCastException e) {
-            log.log(Level.WARNING, "Query returns not List<Schedule> object.", e);
         }
 
         return schedules;

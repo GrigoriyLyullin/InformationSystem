@@ -7,31 +7,33 @@ import com.railwaycompany.entities.User;
 
 import java.util.logging.Logger;
 
-public class UserService {
+public class AuthenticationService {
 
     /**
      * Logger for UserService class.
      */
-    private static Logger log = Logger.getLogger(UserService.class.getName());
+    private static Logger log = Logger.getLogger(AuthenticationService.class.getName());
 
     private DaoFactory daoFactory;
 
     private UserDao userDao;
 
-    public UserService() {
+    public AuthenticationService() {
         daoFactory = HibernateDaoFactorySingleton.getInstance();
         userDao = daoFactory.getUserDao();
     }
 
-    public String signin(String login, String password) {
+    public AuthenticationData signIn(String login, String password) {
 
         User user = userDao.findUser(login, password);
 
-        String page = null;
+        AuthenticationData data = null;
         if (user != null) {
-            page = "User page for: " + user.getId() + " " + user.getName() + " " + user.getSurname();
+            data = new AuthenticationData();
+            data.setId(user.getId());
+            data.setPermission(user.isEmployee());
         }
 
-        return page;
+        return data;
     }
 }

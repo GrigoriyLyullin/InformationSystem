@@ -1,8 +1,10 @@
 package com.railwaycompany.servlets;
 
-import com.railwaycompany.services.UserService;
+import com.railwaycompany.services.AuthenticationData;
+import com.railwaycompany.services.AuthenticationService;
+import com.railwaycompany.services.ServiceFactory;
+import com.railwaycompany.services.ServiceFactorySingleton;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -19,7 +21,18 @@ public class LoginServlet extends HttpServlet {
     private static Logger log = Logger.getLogger(LoginServlet.class.getName());
 
 
-    private UserService userService = new UserService();
+    private AuthenticationService authenticationService;
+
+    @Override
+    public void init() throws ServletException {
+        ServiceFactory serviceFactory = ServiceFactorySingleton.getInstance();
+        authenticationService = serviceFactory.getAuthenticationService();
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.sendRedirect("/login.html");
+    }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -27,27 +40,25 @@ public class LoginServlet extends HttpServlet {
         String login = req.getHeader("login");
         String password = req.getHeader("password");
 
-        String resultPage = null;
+        log.info("login: " + login + " password: " + password);
 
-        HttpSession session = req.getSession();
+        AuthenticationData data = authenticationService.signIn(login, password);
 
-        log.info("Session isNew: " + session.isNew() + " Id: " + session.getId());
+        if (data == null) {
 
-        try {
-            resultPage = userService.signin(login, password);
-        } catch (Exception e) {
+            log.info("data == null");
 
-        }
-
-        if (resultPage == null) {
-            resultPage = "/error.html";
-
-            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(resultPage);
-            dispatcher.forward(req, resp);
+            resp.sendRedirect("/error.html");
 
         } else {
+
+            HttpSession session = req.getSession();
+            session.setAttribute("AuthenticationData", data);
+
+            // TODO generate page with data
+
             resp.setStatus(HttpServletResponse.SC_OK);
-            resp.getWriter().write(resultPage);
+            resp.getWriter().write(data.toString());
         }
     }
 }

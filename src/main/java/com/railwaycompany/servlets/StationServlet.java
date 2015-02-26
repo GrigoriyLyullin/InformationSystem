@@ -7,11 +7,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class StationScheduleServlet extends HttpServlet {
+public class StationServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/station_schedule.html");
+        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/schedule_by_station.html");
         dispatcher.forward(req, resp);
     }
 

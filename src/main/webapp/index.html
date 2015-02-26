@@ -36,12 +36,14 @@
     <div class="row">
         <div class="span12 img-rounded" id="jumbotron">
             <div class="hero-unit" id="form-signin">
-                <form class="form-signin" onsubmit="return checkForm(this)">
+                <form class="form-signin" onsubmit="return checkForm(this)" action="login">
                     <div id="form-signin-body">
                         <h2 class="form-signin-heading">Sign in</h2>
-                        <input id="username" type="text" class="input-block-level"
+                        <input name="login" id="username" type="text" class="input-block-level"
                                placeholder="Username or Email address">
-                        <input id="password" type="password" class="input-block-level" placeholder="Password">
+                        <input name="password" id="password" type="password" class="input-block-level"
+                               placeholder="Password">
+
                         <div class="alert alert-error" id="loginAlert">
                             <p>Incorrect username or password.</p>
                         </div>

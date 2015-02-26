@@ -8,8 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class AuthenticationFilter implements Filter {
 
@@ -19,6 +18,9 @@ public class AuthenticationFilter implements Filter {
     public void init(FilterConfig filterConfig) throws ServletException {
         allowedForAllUrls = new ArrayList<>();
         allowedForAllUrls.add("index.html");
+        allowedForAllUrls.add("login");
+        allowedForAllUrls.add("logout");
+
     }
 
     @Override
@@ -31,16 +33,15 @@ public class AuthenticationFilter implements Filter {
         String url = httpReq.getServletPath();
 
         if (!allowedForAllUrls.contains(url)) {
-            HttpSession session = httpReq.getSession();
-            if (session != null) {
-                AuthenticationData authenticationData = (AuthenticationData) session.getAttribute("AuthenticationData");
-                if (authenticationData != null) {
-                    chain.doFilter(req, resp);
-                }
-            } else {
-                httpResp.sendRedirect("/login");
-            }
+
+//            HttpSession session = httpReq.getSession(false);
+//            if (session != null) {
+//                chain.doFilter(req, resp);
+//            } else {
+//                httpResp.sendRedirect("/login");
+//            }
         }
+
         chain.doFilter(req, resp);
     }
 

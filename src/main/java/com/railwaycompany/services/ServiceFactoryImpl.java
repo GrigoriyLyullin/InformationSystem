@@ -13,8 +13,8 @@ public class ServiceFactoryImpl implements ServiceFactory {
 
     public ServiceFactoryImpl() {
         this.daoFactory = HibernateDaoFactorySingleton.getInstance();
-        authenticationService = new AuthenticationService();
-        stationService = new StationService();
+        authenticationService = new AuthenticationService(daoFactory);
+        stationService = new StationService(daoFactory);
     }
 
 

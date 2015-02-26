@@ -18,8 +18,8 @@ public class AuthenticationService {
 
     private UserDao userDao;
 
-    public AuthenticationService() {
-        daoFactory = HibernateDaoFactorySingleton.getInstance();
+    public AuthenticationService(DaoFactory daoFactory) {
+        this.daoFactory = daoFactory;
         userDao = daoFactory.getUserDao();
     }
 

@@ -18,8 +18,8 @@ public class StationService {
 
     private StationDao stationDao;
 
-    public StationService () {
-        daoFactory = HibernateDaoFactorySingleton.getInstance();
+    public StationService (DaoFactory daoFactory) {
+        this.daoFactory = daoFactory;
         stationDao = daoFactory.getStationDao();
     }
 

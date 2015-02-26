@@ -1,6 +1,8 @@
 package com.railwaycompany.servlets;
 
 import com.railwaycompany.services.ScheduleService;
+import com.railwaycompany.services.ServiceFactory;
+import com.railwaycompany.services.ServiceFactorySingleton;
 import com.railwaycompany.services.StationService;
 
 import javax.servlet.RequestDispatcher;
@@ -15,9 +17,13 @@ public class ScheduleByStationServlet extends HttpServlet {
 
     private static Logger log = Logger.getLogger(ScheduleByStationServlet.class.getName());
 
-    private StationService stationService = new StationService();
-
     private ScheduleService scheduleService = new ScheduleService();
+
+    @Override
+    public void init() throws ServletException {
+        ServiceFactory serviceFactory = ServiceFactorySingleton.getInstance();
+//        scheduleService  = serviceFactory.getAuthenticationService();
+    }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -42,10 +48,8 @@ public class ScheduleByStationServlet extends HttpServlet {
                 resp.setStatus(HttpServletResponse.SC_OK);
                 resp.getWriter().write("error");
             }
-
         } else {
-            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/error.html");
-            dispatcher.forward(req, resp);
+            resp.sendRedirect("/error.html");
         }
     }
 

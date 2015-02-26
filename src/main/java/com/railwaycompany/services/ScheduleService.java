@@ -16,16 +16,18 @@ public class ScheduleService {
 
     private DaoFactory daoFactory;
 
+    private StationService stationService;
+
     private ScheduleDao scheduleDao;
 
     public ScheduleService() {
         daoFactory = HibernateDaoFactorySingleton.getInstance();
         scheduleDao = daoFactory.getScheduleDao();
+
+        stationService = ServiceFactorySingleton.getInstance().getStationService();
     }
 
     public String getScheduleByStationName(String name) {
-
-        StationService stationService = new StationService();
 
         String result = null;
 

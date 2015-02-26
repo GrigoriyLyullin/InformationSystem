@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class LoginServlet extends HttpServlet {
@@ -25,8 +26,16 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     public void init() throws ServletException {
-        ServiceFactory serviceFactory = ServiceFactorySingleton.getInstance();
-        authenticationService = serviceFactory.getAuthenticationService();
+
+        log.info("start init() ");
+
+        try {
+            ServiceFactory serviceFactory = ServiceFactorySingleton.getInstance();
+            authenticationService = serviceFactory.getAuthenticationService();
+        } catch (Exception e) {
+            log.log(Level.WARNING, "", e);
+        }
+
     }
 
     @Override
@@ -37,27 +46,20 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        String login = req.getHeader("login");
-        String password = req.getHeader("password");
+        String login = req.getParameter("login");
+        String password = req.getParameter("password");
 
         log.info("login: " + login + " password: " + password);
 
         AuthenticationData data = authenticationService.signIn(login, password);
 
         if (data == null) {
-
-            log.info("data == null");
-
-            resp.sendRedirect("/error.html");
-
+            resp.sendRedirect("/login_error.html");
         } else {
 
             HttpSession session = req.getSession();
             session.setAttribute("AuthenticationData", data);
 
-            // TODO generate page with data
-
-            resp.setStatus(HttpServletResponse.SC_OK);
             resp.getWriter().write(data.toString());
         }
     }

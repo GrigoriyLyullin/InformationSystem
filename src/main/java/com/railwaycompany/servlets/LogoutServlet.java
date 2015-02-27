@@ -29,7 +29,7 @@ public class LogoutServlet extends HttpServlet {
         signOut(req, resp);
     }
 
-    private void signOut(HttpServletRequest req, HttpServletResponse resp) {
+    private void signOut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession(false);
         if (session != null) {
             String authId = (String) session.getAttribute(AuthenticationService.AUTH_ID_ATTR);
@@ -39,5 +39,6 @@ public class LogoutServlet extends HttpServlet {
             }
             session.invalidate();
         }
+        getServletContext().getRequestDispatcher("/").forward(req, resp);
     }
 }

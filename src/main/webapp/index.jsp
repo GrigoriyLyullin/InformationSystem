@@ -3,7 +3,7 @@
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="style/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="style/style.css">
+    <link rel="stylesheet" type="text/css" href="style/index.css">
     <script src="js/bootstrap.min.js"></script>
     <script src="js/jquery-1.11.2.min.js"></script>
     <script src="js/index.js"></script>
@@ -43,22 +43,15 @@
     <div class="row">
         <div class="span12 img-rounded" id="jumbotron">
             <c:if test="${empty sessionScope.authorizationId}">
-                <div class="hero-unit" id="form-signin">
-                    <form class="form-signin" onsubmit="return checkForm(this)" action="login" method="post">
-                        <div id="form-signin-body">
-                            <h2 class="form-signin-heading">Sign in</h2>
-                            <input name="login" id="login" type="text" class="input-block-level"
-                                   placeholder="Username or Email address">
-                            <input name="password" id="password" type="password" class="input-block-level"
-                                   placeholder="Password">
-
-                            <div class="alert alert-error" id="loginAlert">
-                                <p>Incorrect username or password.</p>
-                            </div>
-                            <button class="btn btn-medium btn-primary" type="submit">Sign in</button>
-                        </div>
-                    </form>
-                </div>
+                <c:choose>
+                    <c:when test="${sessionScope.signUpError}">
+                        <jsp:include page="/login_error.jsp" flush="true"/>
+                        <c:set var="signUpError" scope="session" value="false"/>
+                    </c:when>
+                    <c:when test="${sessionScope.signUp}">
+                        <jsp:include page="/login.jsp" flush="true"/>
+                    </c:when>
+                </c:choose>
             </c:if>
         </div>
     </div>

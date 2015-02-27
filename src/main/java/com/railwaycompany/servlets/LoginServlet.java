@@ -33,12 +33,11 @@ public class LoginServlet extends HttpServlet {
         HttpSession session = req.getSession();
         String authId = (String) session.getAttribute(AuthenticationService.AUTH_ID_ATTR);
         if (authId != null) {
-            if (authenticationService.isAuthorized(session.getId(), authId)) {
-                getServletContext().getRequestDispatcher("/").forward(req, resp);
-            }
+            session.setAttribute("signUp", false);
         } else {
-            getServletContext().getRequestDispatcher("/login.html").forward(req, resp);
+            session.setAttribute("signUp", true);
         }
+        getServletContext().getRequestDispatcher("/").forward(req, resp);
     }
 
     @Override
@@ -54,8 +53,10 @@ public class LoginServlet extends HttpServlet {
         String authId = authenticationService.signIn(sessionId, login, password);
         if (authId == null) {
             log.log(Level.INFO, "User try to sign in with login: \"" + login + "\" and password: \"" + password + "\"");
-            resp.sendRedirect("/login_error.html");
+            session.setAttribute("signUpError", true);
         } else {
+            session.setAttribute("signUpError", false);
+
             String userName = authenticationService.getUserName(sessionId, authId);
             String userSurname = authenticationService.getUserSurname(sessionId, authId);
 
@@ -63,7 +64,7 @@ public class LoginServlet extends HttpServlet {
             session.setAttribute(AuthenticationService.USER_NAME_ATTR, userName);
             session.setAttribute(AuthenticationService.USER_SURNAME_ATTR, userSurname);
 
-            getServletContext().getRequestDispatcher("/").forward(req, resp);
         }
+        getServletContext().getRequestDispatcher("/").forward(req, resp);
     }
 }

@@ -59,7 +59,7 @@
 
     <error-page>
         <error-code>404</error-code>
-        <location>/404_error.html</location>
+        <location>/404_error.jsp</location>
     </error-page>
 
 </web-app>

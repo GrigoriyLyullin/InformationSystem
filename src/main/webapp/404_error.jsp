@@ -1,3 +1,5 @@
+<%@ page isELIgnored="false" contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="style/bootstrap.min.css">
@@ -13,22 +15,7 @@
         <h2>Railway Company</h2>
     </div>
 
-    <div class="row">
-        <div class="span12">
-            <div class="navbar navbar-inverse">
-                <nav class="navbar-inner">
-                    <ul class="nav">
-                        <li><a href="#">Search train</a></li>
-                        <li><a href="/station_schedule">Train schedule</a></li>
-                        <li><a href="#">Buy Tickets</a></li>
-                        <li class="divider-vertical"></li>
-                        <li><a href="#">Sign in</a></li>
-                        <li><a href="#">Sign up</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-    </div>
+    <jsp:include page="/navbar.jsp" flush="true"/>
 
     <div class="row">
         <div class="span12 img-rounded" id="jumbotron">

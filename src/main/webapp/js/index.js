@@ -46,8 +46,7 @@ function checkSearchTrainForm() {
     var dateTo = $('#dateTo').val();
     var timeTo = $('#timeTo').val();
 
-    if (stationFromName === "" || stationToName === "" || dateFrom === "" || dateTo === ""
-        || timeFrom === "" || timeTo === "") {
+    if (stationFromName === "" || stationToName === "" || dateFrom === "" || dateTo === "") {
         searchTrainAlert.show();
         return false;
     }

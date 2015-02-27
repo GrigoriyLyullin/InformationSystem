@@ -11,10 +11,13 @@ public class ServiceFactoryImpl implements ServiceFactory {
 
     private StationService stationService;
 
+    private ScheduleService scheduleService;
+
     public ServiceFactoryImpl() {
         this.daoFactory = HibernateDaoFactorySingleton.getInstance();
         authenticationService = new AuthenticationService(daoFactory);
         stationService = new StationService(daoFactory);
+        scheduleService = new ScheduleService(daoFactory, stationService);
     }
 
 
@@ -26,6 +29,11 @@ public class ServiceFactoryImpl implements ServiceFactory {
     @Override
     public StationService getStationService() {
         return stationService;
+    }
+
+    @Override
+    public ScheduleService getScheduleService() {
+        return scheduleService;
     }
 
     @Override

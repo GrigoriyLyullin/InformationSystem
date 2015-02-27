@@ -11,7 +11,7 @@ public class StationServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/schedule_by_station.html");
+        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/schedule_by_station.jsp");
         dispatcher.forward(req, resp);
     }
 

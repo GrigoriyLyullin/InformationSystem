@@ -1,4 +1,4 @@
-function checkForm() {
+function checkSignInForm() {
 
     var loginAlert = $('#loginAlert');
     loginAlert.hide();
@@ -13,4 +13,23 @@ function checkForm() {
     } else {
         return true;
     }
+}
+
+function checkScheduleByStationForm() {
+
+    var scheduleAlert = $('#scheduleAlert');
+    var stationNotFoundAlert = $('#stationNotFoundAlert');
+    scheduleAlert.hide();
+    stationNotFoundAlert.hide();
+
+    var stationName = $('#Station-Name').val();
+    //var date = $('#date').val();
+    //var time = $('#time').val();
+
+    if (stationName === "") { // || date === "" || time === "") {
+        scheduleAlert.show();
+
+        return false;
+    }
+    return true;
 }

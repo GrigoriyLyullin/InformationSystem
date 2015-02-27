@@ -6,6 +6,7 @@ public interface ServiceFactory {
 
     StationService getStationService();
 
-    void close();
+    ScheduleService getScheduleService();
 
+    void close();
 }

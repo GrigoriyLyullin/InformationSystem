@@ -18,27 +18,7 @@
         <h2>Railway Company</h2>
     </div>
 
-    <div class="row">
-        <div class="span12">
-            <div class="navbar navbar-inverse">
-                <nav class="navbar-inner">
-                    <ul class="nav">
-                        <li><a href="#">Search train</a></li>
-                        <li><a href="/station_schedule">Train schedule</a></li>
-                        <li><a href="#">Buy Tickets</a></li>
-                        <li class="divider-vertical"></li>
-                        <c:if test="${empty sessionScope.authorizationId}">
-                            <li><a href="/login">Sign in</a></li>
-                        </c:if>
-                        <c:if test="${not empty sessionScope.authorizationId}">
-                            <li><a href="#">${sessionScope.userName} ${sessionScope.userSurname}</a></li>
-                            <li><a href="/logout">Sign out</a></li>
-                        </c:if>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-    </div>
+    <jsp:include page="/navbar.jsp" flush="true"/>
 
     <div class="row">
         <div class="span12 img-rounded" id="jumbotron">

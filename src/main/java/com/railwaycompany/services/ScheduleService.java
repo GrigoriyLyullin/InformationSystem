@@ -1,60 +1,55 @@
 package com.railwaycompany.services;
 
 import com.railwaycompany.dao.DaoFactory;
-import com.railwaycompany.dao.HibernateDaoFactorySingleton;
 import com.railwaycompany.dao.ScheduleDao;
 import com.railwaycompany.entities.Schedule;
 import com.railwaycompany.entities.Station;
 import com.railwaycompany.entities.Train;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
 public class ScheduleService {
 
-    private static Logger log = Logger.getLogger(AuthenticationService.class.getName());
+    public static final String STATION_NAME_ATTR = "Station-Name";
 
-    private DaoFactory daoFactory;
+    private static Logger log = Logger.getLogger(AuthenticationService.class.getName());
 
     private StationService stationService;
 
     private ScheduleDao scheduleDao;
 
-    public ScheduleService() {
-        daoFactory = HibernateDaoFactorySingleton.getInstance();
+    public ScheduleService(DaoFactory daoFactory, StationService stationService) {
         scheduleDao = daoFactory.getScheduleDao();
-
-        stationService = ServiceFactorySingleton.getInstance().getStationService();
+        this.stationService = stationService;
     }
 
-    public String getScheduleByStationName(String name) {
+    public List<ScheduleByStation> getScheduleByStationName(String name) {
 
-        String result = null;
-
+        List<ScheduleByStation> scheduleByStationList = null;
         Station station = stationService.getStation(name);
+
         if (station != null) {
-
+            scheduleByStationList = new ArrayList<>();
             List<Schedule> schedulesByStationId = scheduleDao.getSchedulesByStationId(station.getId());
-
-            StringBuilder builder = new StringBuilder();
             if (!schedulesByStationId.isEmpty()) {
+
+                ScheduleByStation scheduleByStation;
+
                 for (Schedule s : schedulesByStationId) {
+
                     Train train = s.getTrain();
-                    builder.append("Train: ").append(train.getNumber()).append(" TimeArrival: ").append(s
-                            .getTimeArrival()).append(" TimeDeparture: ").append(s.getTimeDeparture());
+
+                    scheduleByStation = new ScheduleByStation();
+                    scheduleByStation.setTrainNumber(train.getNumber());
+                    scheduleByStation.setTimeArrival(s.getTimeArrival());
+                    scheduleByStation.setTimeDeparture(s.getTimeDeparture());
+
+                    scheduleByStationList.add(scheduleByStation);
                 }
-                result = builder.toString();
-            } else {
-                result = "Empty!";
             }
         }
-
-        if (result == null) {
-            result = "Fatal error";
-        }
-
-        log.info("Result: " + result);
-
-        return result;
+        return scheduleByStationList;
     }
 }

@@ -1,7 +1,7 @@
 <%@ page isELIgnored="false" contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <div class="hero-unit" id="form-signin">
-    <form class="form-signin" onsubmit="return checkForm(this)" method="post" action="login">
+    <form class="form-signin" onsubmit="return checkSignInForm(this)" method="post" action="login">
         <div id="form-signin-body">
             <h2 class="form-signin-heading">Sign in</h2>
 

@@ -36,7 +36,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ScheduleByStationServlet</servlet-name>
-        <url-pattern>/station_schedule</url-pattern>
+        <url-pattern>/schedule_by_station</url-pattern>
     </servlet-mapping>
 
     <listener>

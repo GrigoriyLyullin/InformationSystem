@@ -1,21 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0a97a00a-bfdc-41f8-aef4-6bd013891077" name="Default" comment="">
-      <change type="DELETED" beforePath="C:\Users\Grigoriy\IdeaProjects\InformationSystem\src\main\webapp\style\login.css" afterPath="" />
-      <change type="MOVED" beforePath="C:\Users\Grigoriy\IdeaProjects\InformationSystem\src\main\webapp\login.html" afterPath="$PROJECT_DIR$/src/main/webapp/login.jsp" />
-      <change type="MOVED" beforePath="C:\Users\Grigoriy\IdeaProjects\InformationSystem\src\main\webapp\login_error.html" afterPath="$PROJECT_DIR$/src/main/webapp/login_error.jsp" />
-      <change type="MOVED" beforePath="C:\Users\Grigoriy\IdeaProjects\InformationSystem\src\main\webapp\style\style.css" afterPath="$PROJECT_DIR$/src/main/webapp/style/index.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/railwaycompany/servlets/LoginServlet.java" afterPath="$PROJECT_DIR$/src/main/java/com/railwaycompany/servlets/LoginServlet.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/railwaycompany/servlets/LogoutServlet.java" afterPath="$PROJECT_DIR$/src/main/java/com/railwaycompany/servlets/LogoutServlet.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/js/index.js" afterPath="$PROJECT_DIR$/src/main/webapp/js/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/schedule_by_station.html" afterPath="$PROJECT_DIR$/src/main/webapp/schedule_by_station.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/search_train.html" afterPath="$PROJECT_DIR$/src/main/webapp/search_train.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/unexpected_error.html" afterPath="$PROJECT_DIR$/src/main/webapp/unexpected_error.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="0a97a00a-bfdc-41f8-aef4-6bd013891077" name="Default" comment="" />
     <ignored path=".idea/dataSources.local.xml" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -1161,7 +1147,7 @@
       <workItem from="1424545740100" duration="36695000" />
       <workItem from="1424761711291" duration="36832000" />
       <workItem from="1425014477416" duration="5444000" />
-      <workItem from="1425029429120" duration="15391000" />
+      <workItem from="1425029429120" duration="15438000" />
     </task>
     <task id="LOCAL-00001" summary="GenericDao has added">
       <created>1424344776704</created>
@@ -1253,11 +1239,17 @@
       <option name="project" value="LOCAL" />
       <updated>1425039659020</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Log out logic has been implemented.">
+      <created>1425047538523</created>
+      <option name="number" value="00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1425047538523</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="110846000" />
+    <option name="totallyTimeSpent" value="110893000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -1377,7 +1369,8 @@
     <MESSAGE value="Start implementing user authorization." />
     <MESSAGE value="AuthenticationService implementation and test." />
     <MESSAGE value="AuthenticationService user name and surname returns to main page implementation." />
-    <option name="LAST_COMMIT_MESSAGE" value="AuthenticationService user name and surname returns to main page implementation." />
+    <MESSAGE value="Log out logic has been implemented." />
+    <option name="LAST_COMMIT_MESSAGE" value="Log out logic has been implemented." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

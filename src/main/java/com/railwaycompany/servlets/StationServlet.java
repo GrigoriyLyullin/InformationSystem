@@ -26,7 +26,7 @@ public class StationServlet extends HttpServlet {
             resp.getWriter().write("stationName " + stationName);
 
         } else {
-            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/unexpected_error.html");
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/404_error.html");
             dispatcher.forward(req, resp);
         }
     }

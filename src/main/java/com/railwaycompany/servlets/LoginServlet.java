@@ -46,7 +46,7 @@ public class LoginServlet extends HttpServlet {
         String login = req.getParameter("login");
         String password = req.getParameter("password");
 
-        log.log(Level.FINEST, "User sign in with login: \"" + login + "\" and password: \"" + password + "\"");
+        log.log(Level.INFO, "User sign in with login: \"" + login + "\" and password: \"" + password + "\"");
 
         HttpSession session = req.getSession();
         String sessionId = session.getId();
@@ -54,6 +54,7 @@ public class LoginServlet extends HttpServlet {
         if (authId == null) {
             log.log(Level.INFO, "User try to sign in with login: \"" + login + "\" and password: \"" + password + "\"");
             session.setAttribute("signUpError", true);
+            resp.sendRedirect("/");
         } else {
             session.setAttribute("signUpError", false);
 
@@ -64,7 +65,14 @@ public class LoginServlet extends HttpServlet {
             session.setAttribute(AuthenticationService.USER_NAME_ATTR, userName);
             session.setAttribute(AuthenticationService.USER_SURNAME_ATTR, userSurname);
 
+            String signUpUrl = (String) session.getAttribute("signUpUrl");
+            if (signUpUrl != null) {
+                if (!signUpUrl.equals("/login")) {
+                    resp.sendRedirect(signUpUrl);
+                }
+            } else {
+                resp.sendRedirect("/");
+            }
         }
-        getServletContext().getRequestDispatcher("/").forward(req, resp);
     }
 }

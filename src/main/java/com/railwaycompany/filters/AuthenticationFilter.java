@@ -38,13 +38,14 @@ public class AuthenticationFilter implements Filter {
         String authId = (String) session.getAttribute(AuthenticationService.AUTH_ID_ATTR);
         if (authId != null) {
             if (authenticationService.isAuthorized(sessionId, authId)) {
-                log.log(Level.FINEST, "User with session id " + sessionId + " is authorized. Authentication id " +
+                log.log(Level.INFO, "User with session id " + sessionId + " is authorized. Authentication id " +
                         authId);
                 chain.doFilter(req, resp);
             }
         } else {
-            log.log(Level.FINEST, "User with session id " + sessionId + " is not authorized.");
-            httpRequest.getRequestDispatcher("/login").forward(httpRequest, httpResponse);
+            log.log(Level.INFO, "User with session id " + sessionId + " is not authorized.");
+            session.setAttribute("signUpUrl", httpRequest.getRequestURI());
+            httpResponse.sendRedirect("/login");
         }
     }
 

@@ -49,7 +49,7 @@ public class ScheduleByStationServlet extends HttpServlet {
                 resp.getWriter().write("error");
             }
         } else {
-            resp.sendRedirect("/unexpected_error.html");
+            resp.sendRedirect("/404_error.html");
         }
     }
 

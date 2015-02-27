@@ -2,9 +2,9 @@ package com.railwaycompany.dao;
 
 public class HibernateDaoFactorySingleton {
 
-    private static HibernateDaoFactory hibernateDaoFactory = new HibernateDaoFactory();
+    private static DaoFactory hibernateDaoFactory = new HibernateDaoFactory();
 
-    public static HibernateDaoFactory getInstance() {
+    public static DaoFactory getInstance() {
         return hibernateDaoFactory;
     }
 

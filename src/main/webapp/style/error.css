@@ -1,0 +1,12 @@
+#error {
+    margin-left: 600px;
+    margin-right: 20px;
+    margin-top: 70px;
+    padding: 10px 40px 20px;
+}
+
+#jumbotron {
+    height: 400px;
+    background-size: 940px 400px;
+    background: url('../img/dead_end.jpg') no-repeat;
+}

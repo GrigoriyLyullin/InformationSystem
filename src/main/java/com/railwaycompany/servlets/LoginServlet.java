@@ -1,6 +1,5 @@
 package com.railwaycompany.servlets;
 
-import com.railwaycompany.services.AuthenticationData;
 import com.railwaycompany.services.AuthenticationService;
 import com.railwaycompany.services.ServiceFactory;
 import com.railwaycompany.services.ServiceFactorySingleton;
@@ -51,16 +50,15 @@ public class LoginServlet extends HttpServlet {
 
         log.info("login: " + login + " password: " + password);
 
-        AuthenticationData data = authenticationService.signIn(login, password);
+        HttpSession session = req.getSession();
+        String authId = authenticationService.signIn(session.getId(), login, password);
 
-        if (data == null) {
+        if (authId == null) {
             resp.sendRedirect("/login_error.html");
         } else {
+            session.setAttribute(AuthenticationService.AUTH_ID_ATTR, authId);
 
-            HttpSession session = req.getSession();
-            session.setAttribute("AuthenticationData", data);
-
-            resp.getWriter().write(data.toString());
+            resp.getWriter().write("authId: " + authId);
         }
     }
 }

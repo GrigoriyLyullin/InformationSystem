@@ -1,70 +1,44 @@
 body {
-	background: #333333;
+    background: #333333;
 }
 
 .main-header {
-	color: #CCCCCC;
+    color: #CCCCCC;
 }
 
 #jumbotron {
-	height: 400px;
-	background: url('../img/train.jpg');
-	background-size: 940px 400px;
-    background-repeat:no-repeat;
-    display: compact;
+    height: 400px;
+    background-size: 940px 400px;
+    background: url('../img/train.jpg') no-repeat;
 }
 
 #form-signin {
-	
-	padding-top: 10px;
-	padding-bottom: 5px;
-	padding-left: 40px;
-	padding-right: 40px;
-	
-	margin-left: 600px;
-	margin-right: 20px;
-	margin-top: 70px;
-	
+    padding: 10px 40px 5px;
+    margin-left: 600px;
+    margin-right: 20px;
+    margin-top: 70px;
+
 }
 
 #form-signin .form-signin-heading {
-	font-size: 16px;
-}
-
-#form-preloader img {
-	padding-top: 20px;
+    font-size: 16px;
 }
 
 #loginAlert {
-	padding: 0px;
-	padding-bottom: 0px;
-	padding-left: 10px;
-	margin-bottom: 10px;
-	font-size: 12px;
-	display:none;
+    padding: 0 0 0 10px;
+    margin-bottom: 10px;
+    font-size: 12px;
+    display: none;
 }
 
-#form-preloader {
-	display:none;
-}
-
-#form-userdata {
-	display:none;
-}
-
-.hero-unit{
+.hero-unit {
     background-color: rgba(255, 255, 255, 0.6);
 }
 
-#about {
-	margin-top: 25px;
-	color: #CCCCCC;
-}
-
 .well {
-	margin-top: 20px;
+    margin-top: 20px;
 }
 
 .well .input-prepend input {
-	height: 30px;
+    height: 30px;
 }

@@ -16,30 +16,29 @@ import java.util.logging.Logger;
 public class LoginServlet extends HttpServlet {
 
     /**
-     * Logger for UserHibernateDao class.
+     * Logger for LoginServlet class.
      */
     private static Logger log = Logger.getLogger(LoginServlet.class.getName());
-
 
     private AuthenticationService authenticationService;
 
     @Override
     public void init() throws ServletException {
-
-        log.info("start init() ");
-
-        try {
-            ServiceFactory serviceFactory = ServiceFactorySingleton.getInstance();
-            authenticationService = serviceFactory.getAuthenticationService();
-        } catch (Exception e) {
-            log.log(Level.WARNING, "", e);
-        }
-
+        ServiceFactory serviceFactory = ServiceFactorySingleton.getInstance();
+        authenticationService = serviceFactory.getAuthenticationService();
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.sendRedirect("/login.html");
+        HttpSession session = req.getSession();
+        String authId = (String) session.getAttribute(AuthenticationService.AUTH_ID_ATTR);
+        if (authId != null) {
+            if (authenticationService.isAuthorized(session.getId(), authId)) {
+                getServletContext().getRequestDispatcher("/").forward(req, resp);
+            }
+        } else {
+            getServletContext().getRequestDispatcher("/login.html").forward(req, resp);
+        }
     }
 
     @Override
@@ -48,17 +47,23 @@ public class LoginServlet extends HttpServlet {
         String login = req.getParameter("login");
         String password = req.getParameter("password");
 
-        log.info("login: " + login + " password: " + password);
+        log.log(Level.FINEST, "User sign in with login: \"" + login + "\" and password: \"" + password + "\"");
 
         HttpSession session = req.getSession();
-        String authId = authenticationService.signIn(session.getId(), login, password);
-
+        String sessionId = session.getId();
+        String authId = authenticationService.signIn(sessionId, login, password);
         if (authId == null) {
+            log.log(Level.INFO, "User try to sign in with login: \"" + login + "\" and password: \"" + password + "\"");
             resp.sendRedirect("/login_error.html");
         } else {
-            session.setAttribute(AuthenticationService.AUTH_ID_ATTR, authId);
+            String userName = authenticationService.getUserName(sessionId, authId);
+            String userSurname = authenticationService.getUserSurname(sessionId, authId);
 
-            resp.getWriter().write("authId: " + authId);
+            session.setAttribute(AuthenticationService.AUTH_ID_ATTR, authId);
+            session.setAttribute(AuthenticationService.USER_NAME_ATTR, userName);
+            session.setAttribute(AuthenticationService.USER_SURNAME_ATTR, userSurname);
+
+            getServletContext().getRequestDispatcher("/").forward(req, resp);
         }
     }
 }

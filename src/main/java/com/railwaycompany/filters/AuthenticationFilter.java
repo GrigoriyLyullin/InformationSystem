@@ -1,46 +1,51 @@
 package com.railwaycompany.filters;
 
+import com.railwaycompany.services.AuthenticationService;
+import com.railwaycompany.services.ServiceFactorySingleton;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class AuthenticationFilter implements Filter {
 
-    private List<String> allowedForAllUrls;
+    /**
+     * Logger for AuthenticationFilter class.
+     */
+    private static Logger log = Logger.getLogger(AuthenticationFilter.class.getName());
+
+    private AuthenticationService authenticationService;
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-        allowedForAllUrls = new ArrayList<>();
-        allowedForAllUrls.add("index.html");
-        allowedForAllUrls.add("login");
-        allowedForAllUrls.add("logout");
-
+        authenticationService = ServiceFactorySingleton.getInstance().getAuthenticationService();
     }
 
     @Override
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws IOException,
             ServletException {
 
-        HttpServletRequest httpReq = (HttpServletRequest) req;
-        HttpServletResponse httpResp = (HttpServletResponse) resp;
+        HttpServletRequest httpRequest = (HttpServletRequest) req;
+        HttpServletResponse httpResponse = (HttpServletResponse) resp;
 
-        String url = httpReq.getServletPath();
+        HttpSession session = httpRequest.getSession();
+        String sessionId = session.getId();
 
-        if (!allowedForAllUrls.contains(url)) {
-
-//            HttpSession session = httpReq.getSession(false);
-//            if (session != null) {
-//                chain.doFilter(req, resp);
-//            } else {
-//                httpResp.sendRedirect("/login");
-//            }
+        String authId = (String) session.getAttribute(AuthenticationService.AUTH_ID_ATTR);
+        if (authId != null) {
+            if (authenticationService.isAuthorized(sessionId, authId)) {
+                log.log(Level.FINEST, "User with session id " + sessionId + " is authorized. Authentication id " +
+                        authId);
+                chain.doFilter(req, resp);
+            }
+        } else {
+            log.log(Level.FINEST, "User with session id " + sessionId + " is not authorized.");
+            httpRequest.getRequestDispatcher("/login").forward(httpRequest, httpResponse);
         }
-
-        chain.doFilter(req, resp);
     }
 
     @Override

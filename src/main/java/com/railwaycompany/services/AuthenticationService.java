@@ -19,7 +19,9 @@ public class AuthenticationService {
     /**
      * Attribute name for authentication id.
      */
-    public static final String AUTH_ID_ATTR = "authorization-id";
+    public static final String AUTH_ID_ATTR = "authorizationId";
+    public static final String USER_NAME_ATTR = "userName";
+    public static final String USER_SURNAME_ATTR = "userSurname";
 
     /**
      * Hash algorithm name.
@@ -41,6 +43,8 @@ public class AuthenticationService {
      */
     private Map<String, String> sessionToAuthenticationId;
 
+    private Map<String, User> sessionIdToUserEntity;
+
     /**
      * AuthenticationService constructor.
      *
@@ -49,6 +53,7 @@ public class AuthenticationService {
     public AuthenticationService(DaoFactory daoFactory) {
         userDao = daoFactory.getUserDao();
         sessionToAuthenticationId = new HashMap<>();
+        sessionIdToUserEntity = new HashMap<>();
     }
 
     /**
@@ -68,12 +73,48 @@ public class AuthenticationService {
     }
 
     /**
+     * Finds user's name by session and authentication.
+     *
+     * @param sessionId        - user's session id
+     * @param authenticationId - user's authentication id
+     * @return User's name if user with this credentials has been authenticated or null otherwise.
+     */
+    public String getUserName(String sessionId, String authenticationId) {
+        String name = null;
+        if (isAuthorized(sessionId, authenticationId)) {
+            User user = sessionIdToUserEntity.get(sessionId);
+            if (user != null) {
+                name = user.getName();
+            }
+        }
+        return name;
+    }
+
+    /**
+     * Finds user's surname by session and authentication.
+     *
+     * @param sessionId        - user's session id
+     * @param authenticationId - user's authentication id
+     * @return User's surname if user with this credentials has been authenticated or null otherwise.
+     */
+    public String getUserSurname(String sessionId, String authenticationId) {
+        String surname = null;
+        if (isAuthorized(sessionId, authenticationId)) {
+            User user = sessionIdToUserEntity.get(sessionId);
+            if (user != null) {
+                surname = user.getSurname();
+            }
+        }
+        return surname;
+    }
+
+    /**
      * Performs user's sign in from the system.
      *
      * @param sessionId - user's session id
      * @param login     - user's login
      * @param password  - user's password
-     * @return
+     * @return Authentication id
      */
     public String signIn(String sessionId, String login, String password) {
 
@@ -83,6 +124,7 @@ public class AuthenticationService {
             if (user.getLogin().equals(login) && user.getPassword().equals(password)) {
                 authenticationId = generateAuthenticationId(login, password);
                 sessionToAuthenticationId.put(sessionId, authenticationId);
+                sessionIdToUserEntity.put(sessionId, user);
             }
         }
         return authenticationId;
@@ -127,9 +169,9 @@ public class AuthenticationService {
             MessageDigest md5 = MessageDigest.getInstance(HASH_ALG);
             md5.update(inputStr.getBytes());
             byte inputStrData[] = md5.digest();
-            StringBuffer sb = new StringBuffer();
-            for (int i = 0; i < inputStrData.length; i++) {
-                sb.append(Integer.toString((inputStrData[i] & 0xff) + 0x100, 16).substring(1));
+            StringBuilder sb = new StringBuilder();
+            for (byte b : inputStrData) {
+                sb.append(Integer.toString((b & 0xff) + 0x100, 16).substring(1));
             }
             generateHash = sb.toString();
         } catch (NoSuchAlgorithmException e) {

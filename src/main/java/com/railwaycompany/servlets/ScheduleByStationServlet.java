@@ -8,6 +8,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 import java.util.logging.Logger;
@@ -25,6 +26,10 @@ public class ScheduleByStationServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        HttpSession session = req.getSession();
+        session.setAttribute("stationName", null);
+        session.setAttribute("scheduleList", null);
+        session.setAttribute("stationNotFound", false);
         resp.sendRedirect("/schedule_by_station.jsp");
     }
 
@@ -35,12 +40,15 @@ public class ScheduleByStationServlet extends HttpServlet {
         log.info(ScheduleService.STATION_NAME_ATTR + " : " + stationName);
 
         if (isValidStationName(stationName)) {
-            req.getSession().setAttribute("stationName", stationName);
+            HttpSession session = req.getSession();
+            session.setAttribute("stationName", stationName);
             List<ScheduleByStation> scheduleOfTrainsByStation = scheduleService.getScheduleByStationName(stationName);
             if (scheduleOfTrainsByStation != null) {
-                req.getSession().setAttribute("scheduleList", scheduleOfTrainsByStation);
+                session.setAttribute("scheduleList", scheduleOfTrainsByStation);
+                session.setAttribute("stationNotFound", false);
             } else {
-                req.getSession().setAttribute("stationNotFound", true);
+                session.setAttribute("scheduleList", null);
+                session.setAttribute("stationNotFound", true);
             }
         }
         getServletContext().getRequestDispatcher("/schedule_by_station.jsp").forward(req, resp);

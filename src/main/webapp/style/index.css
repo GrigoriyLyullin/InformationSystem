@@ -38,6 +38,10 @@ body {
     display: none;
 }
 
+#searchTrainAlert {
+    display: none;
+}
+
 #stationNotFoundAlert {
     width: 30%;
 }
@@ -51,7 +55,7 @@ body {
 }
 
 thead {
-    color: #CCCCCC;
+    color: #FFFFFF;
     background: #666666;
 }
 

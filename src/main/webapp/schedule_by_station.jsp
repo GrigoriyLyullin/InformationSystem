@@ -23,7 +23,7 @@
     <div class="well">
 
         <div class="header">
-            <h2>Search</h2>
+            <h2>Schedule by station</h2>
         </div>
 
         <p>Search schedule by station</p>

@@ -33,3 +33,23 @@ function checkScheduleByStationForm() {
     }
     return true;
 }
+
+function checkSearchTrainForm() {
+
+    var searchTrainAlert = $('#searchTrainAlert');
+    searchTrainAlert.hide();
+
+    var stationFromName = $('#Station-From-Name').val();
+    var stationToName = $('#Station-To-Name').val();
+    var dateFrom = $('#dateFrom').val();
+    var timeFrom = $('#timeFrom').val();
+    var dateTo = $('#dateTo').val();
+    var timeTo = $('#timeTo').val();
+
+    if (stationFromName === "" || stationToName === "" || dateFrom === "" || dateTo === ""
+        || timeFrom === "" || timeTo === "") {
+        searchTrainAlert.show();
+        return false;
+    }
+    return true;
+}

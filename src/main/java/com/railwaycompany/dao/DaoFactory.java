@@ -34,6 +34,13 @@ public interface DaoFactory {
     TrainDao getTrainDao();
 
     /**
+     * Returns Dao for working with Ticket entities.
+     *
+     * @return TicketDao object.
+     */
+    TicketDao getTicketDao();
+
+    /**
      * Closes all object (Streams and e.g.) that should will be closed. Call this before object destroying.
      */
     void close();

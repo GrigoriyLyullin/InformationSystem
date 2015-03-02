@@ -52,3 +52,7 @@ function checkSearchTrainForm() {
     }
     return true;
 }
+
+function checkBuyTicketForm() {
+    return true;
+}

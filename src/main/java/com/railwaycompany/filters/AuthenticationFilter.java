@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -20,9 +22,18 @@ public class AuthenticationFilter implements Filter {
 
     private AuthenticationService authenticationService;
 
+    private List<String> privatePagesList;
+
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
         authenticationService = ServiceFactorySingleton.getInstance().getAuthenticationService();
+        String privatePagesStr = filterConfig.getInitParameter("Private pages");
+        String[] privatePages = privatePagesStr.split(";");
+
+        privatePagesList = new ArrayList<>();
+        for (String page : privatePages) {
+            privatePagesList.add(page);
+        }
     }
 
     @Override
@@ -30,22 +41,29 @@ public class AuthenticationFilter implements Filter {
             ServletException {
 
         HttpServletRequest httpRequest = (HttpServletRequest) req;
-        HttpServletResponse httpResponse = (HttpServletResponse) resp;
 
-        HttpSession session = httpRequest.getSession();
-        String sessionId = session.getId();
+        log.info("httpRequest.getRequestURI(): " + httpRequest.getRequestURI());
 
-        String authId = (String) session.getAttribute(AuthenticationService.AUTH_ID_ATTR);
-        if (authId != null) {
-            if (authenticationService.isAuthorized(sessionId, authId)) {
-                log.log(Level.INFO, "User with session id " + sessionId + " is authorized. Authentication id " +
-                        authId);
-                chain.doFilter(req, resp);
+        if (privatePagesList.contains(httpRequest.getRequestURI())) {
+
+            HttpServletResponse httpResponse = (HttpServletResponse) resp;
+            HttpSession session = httpRequest.getSession();
+            String sessionId = session.getId();
+
+            String authId = (String) session.getAttribute(AuthenticationService.AUTH_ID_ATTR);
+            if (authId != null) {
+                if (authenticationService.isAuthorized(sessionId, authId)) {
+                    log.log(Level.INFO, "User with session id " + sessionId + " is authorized. Authentication id " +
+                            authId);
+                    chain.doFilter(req, resp);
+                }
+            } else {
+                log.log(Level.INFO, "User with session id " + sessionId + " is not authorized.");
+                session.setAttribute("signUpUrl", httpRequest.getRequestURI());
+                httpResponse.sendRedirect("/login");
             }
         } else {
-            log.log(Level.INFO, "User with session id " + sessionId + " is not authorized.");
-            session.setAttribute("signUpUrl", httpRequest.getRequestURI());
-            httpResponse.sendRedirect("/login");
+            chain.doFilter(req, resp);
         }
     }
 

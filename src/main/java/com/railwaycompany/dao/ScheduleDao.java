@@ -15,4 +15,6 @@ public interface ScheduleDao {
     List<Schedule> getSchedules(int stationId, Date departureDate);
 
     List<Schedule> getSchedules(Date arrivalDate, int stationId);
+
+    List<Schedule> getSchedules(int stationId, int trainId);
 }

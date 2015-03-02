@@ -7,6 +7,7 @@
                 <ul class="nav pull-left">
                     <li><a href="search_train">Search train</a></li>
                     <li><a href="schedule_by_station">Schedule by station</a></li>
+                    <li><a href="buy_ticket">Buy ticket</a></li>
                     <li class="divider-vertical"></li>
                 </ul>
                 <ul class="nav pull-right">

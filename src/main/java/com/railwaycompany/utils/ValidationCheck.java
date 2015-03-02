@@ -10,10 +10,15 @@ public class ValidationCheck {
 
     private static final String STATION_NAME_PATTERN_STR = "^[a-zA-Zа-яА-Я]+[- ]*[a-zA-Zа-яА-Я]+$";
 
+    private static final String TRAIN_NUMBER_PATTERN_STR = "^[0-9]+$";
+
     private static Pattern datePattern = Pattern.compile(DATE_PATTERN_STR);
 
     private static Pattern stationNamePattern = Pattern.compile(STATION_NAME_PATTERN_STR);
+
     private static Pattern timePattern = Pattern.compile(TIME_PATTERN_STR);
+
+    private static Pattern trainNumberPattern = Pattern.compile(TRAIN_NUMBER_PATTERN_STR);
 
     public static boolean isValidDateStr(String date) {
         return date != null && !date.isEmpty() && datePattern.matcher(date).matches();
@@ -25,5 +30,9 @@ public class ValidationCheck {
 
     public static boolean isValidTimeStr(String time) {
         return time != null && !time.isEmpty() && timePattern.matcher(time).matches();
+    }
+
+    public static boolean isValidTrainNumber(String trainNumber) {
+        return trainNumber != null && !trainNumber.isEmpty() && trainNumberPattern.matcher(trainNumber).matches();
     }
 }

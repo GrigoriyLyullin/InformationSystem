@@ -20,6 +20,7 @@ public class AuthenticationService {
      * Attribute name for authentication id.
      */
     public static final String AUTH_ID_ATTR = "authorizationId";
+    public static final String USER_ID_ATTR = "userId";
     public static final String USER_NAME_ATTR = "userName";
     public static final String USER_SURNAME_ATTR = "userSurname";
 
@@ -70,6 +71,17 @@ public class AuthenticationService {
             }
         }
         return false;
+    }
+
+    public Integer getUserId(String sessionId, String authenticationId) {
+        Integer id = null;
+        if (isAuthorized(sessionId, authenticationId)) {
+            User user = sessionIdToUserEntity.get(sessionId);
+            if (user != null) {
+                id = user.getId();
+            }
+        }
+        return id;
     }
 
     /**

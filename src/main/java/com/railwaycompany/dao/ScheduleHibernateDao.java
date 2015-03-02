@@ -19,12 +19,14 @@ public class ScheduleHibernateDao extends HibernateDao<Station> implements Sched
      */
     private static Logger log = Logger.getLogger(ScheduleHibernateDao.class.getName());
     private static final String SCHEDULES_WITH_STATION_ID = "SELECT s FROM Schedule s WHERE s.station.id = :stationId";
-
     private static final String SCHEDULES_STATION_DEPARTURE = "SELECT s FROM Schedule s WHERE s" + ".station" +
             ".id = :stationId AND s.timeDeparture >= :departureDate";
 
     private static final String SCHEDULES_STATION_ARRIVAL = "SELECT s FROM Schedule s WHERE s" + ".station" +
             ".id = :stationId AND s.timeArrival <= :arrivalDate";
+
+    private static final String SCHEDULES_WITH_STATION_AND_TRAIN_ID = "SELECT s FROM Schedule s WHERE s.station.id = " +
+            "" + ":stationId AND s.train.id = :trainId";
 
     /**
      * HibernateDao constructor.
@@ -94,6 +96,28 @@ public class ScheduleHibernateDao extends HibernateDao<Station> implements Sched
         } catch (NoResultException e) {
             log.log(Level.INFO, "No schedule was found for stationId: \"" + stationId + "\", arrival date: \"" +
                     arrivalDate + "\"");
+        }
+        return schedules;
+    }
+
+    @Override
+    public List<Schedule> getSchedules(int stationId, int trainId) {
+
+        Query query = entityManager.createQuery(SCHEDULES_WITH_STATION_AND_TRAIN_ID);
+
+        query.setParameter("stationId", stationId);
+        query.setParameter("trainId", trainId);
+
+        List<Schedule> schedules = null;
+        try {
+            List resultList = query.getResultList();
+            schedules = new ArrayList<>();
+            for (Object s : resultList) {
+                schedules.add((Schedule) s);
+            }
+        } catch (NoResultException e) {
+            log.log(Level.INFO, "No schedule was found for stationId: \"" + stationId + "\", trainId: \"" +
+                    trainId + "\"");
         }
         return schedules;
     }

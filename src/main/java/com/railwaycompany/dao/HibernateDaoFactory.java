@@ -32,18 +32,21 @@ public class HibernateDaoFactory implements DaoFactory {
 
     private TrainDao trainDao;
 
+    private TicketDao ticketDao;
+
     /**
      * HibernateDaoFactory constructor.
      *
      * @param persistenceUnitName - persistence unit name from persistence.xml.
      */
     public HibernateDaoFactory(String persistenceUnitName) {
-        this.entityManagerFactory = Persistence.createEntityManagerFactory(persistenceUnitName);
-        this.entityManager = entityManagerFactory.createEntityManager();
+        entityManagerFactory = Persistence.createEntityManagerFactory(persistenceUnitName);
+        entityManager = entityManagerFactory.createEntityManager();
         userDao = new UserHibernateDao(entityManager);
         stationDao = new StationHibernateDao(entityManager);
         scheduleDao = new ScheduleHibernateDao(entityManager);
         trainDao = new TrainHibernateDao(entityManager);
+        ticketDao = new TicketHibernateDao(entityManager);
     }
 
     /**
@@ -71,6 +74,11 @@ public class HibernateDaoFactory implements DaoFactory {
     @Override
     public TrainDao getTrainDao() {
         return trainDao;
+    }
+
+    @Override
+    public TicketDao getTicketDao() {
+        return ticketDao;
     }
 
     @Override

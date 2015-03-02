@@ -8,5 +8,7 @@ public interface ServiceFactory {
 
     ScheduleService getScheduleService();
 
+    TrainService getTrainService();
+
     void close();
 }

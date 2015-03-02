@@ -58,10 +58,12 @@ public class LoginServlet extends HttpServlet {
         } else {
             session.setAttribute("signUpError", false);
 
+            Integer userId = authenticationService.getUserId(sessionId, authId);
             String userName = authenticationService.getUserName(sessionId, authId);
             String userSurname = authenticationService.getUserSurname(sessionId, authId);
 
             session.setAttribute(AuthenticationService.AUTH_ID_ATTR, authId);
+            session.setAttribute(AuthenticationService.USER_ID_ATTR, userId);
             session.setAttribute(AuthenticationService.USER_NAME_ATTR, userName);
             session.setAttribute(AuthenticationService.USER_SURNAME_ATTR, userSurname);
 

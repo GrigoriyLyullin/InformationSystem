@@ -8,6 +8,8 @@ import java.util.logging.Logger;
 
 public class DateHelper {
 
+    public static long MILLIS_IN_TEN_MINUTES = 600_000;
+
     /**
      * Logger for DateHelper class.
      */
@@ -34,5 +36,13 @@ public class DateHelper {
             log.log(Level.WARNING, "Cannot parse datetime string \"" + datetimeStr + "\"", e);
         }
         return datetime;
+    }
+
+    public static boolean isEnoughTime(Date date, Long time) {
+        if (date != null && time != null) {
+            long timeLeft = date.getTime() - new Date().getTime();
+            return timeLeft >= time;
+        }
+        return false;
     }
 }

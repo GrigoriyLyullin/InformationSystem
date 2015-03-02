@@ -2,14 +2,18 @@ package com.railwaycompany.dao;
 
 import com.railwaycompany.entities.Schedule;
 import com.railwaycompany.entities.Station;
+import com.railwaycompany.utils.DateHelper;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Date;
 import java.util.List;
 
 public class ScheduleDaoTest {
+
+    private static final int STATION_FROM_ID = 1;
 
     private DaoFactory daoFactory;
     private ScheduleDao scheduleDao;
@@ -27,18 +31,42 @@ public class ScheduleDaoTest {
 
     @Test
     public void testGetSchedulesByStationId() throws Exception {
-        int stationId = 1;
-        List<Schedule> schedulesByStationId = scheduleDao.getSchedulesByStationId(stationId);
-        Assert.assertNotNull(schedulesByStationId);
-        Assert.assertTrue(!schedulesByStationId.isEmpty());
-        for (Schedule s : schedulesByStationId) {
+        List<Schedule> schedules = scheduleDao.getSchedules(STATION_FROM_ID);
+        Assert.assertNotNull(schedules);
+        Assert.assertTrue(!schedules.isEmpty());
+        for (Schedule s : schedules) {
             Assert.assertNotNull(s.getTrain());
             Station currStation = s.getStation();
             Assert.assertNotNull(currStation);
-            Assert.assertEquals(currStation.getId(), stationId);
+            Assert.assertEquals(currStation.getId(), STATION_FROM_ID);
         }
         int notExistStationId = Integer.MAX_VALUE;
-        schedulesByStationId = scheduleDao.getSchedulesByStationId(notExistStationId);
-        Assert.assertTrue(schedulesByStationId.isEmpty());
+        schedules = scheduleDao.getSchedules(notExistStationId);
+        Assert.assertTrue(schedules.isEmpty());
+    }
+
+    @Test
+    public void testGetSchedulesByStationIdAndDepartureDate() throws Exception {
+        Date departureDate = DateHelper.convertDate("2015-02-02");
+        List<Schedule> schedules = scheduleDao.getSchedules(STATION_FROM_ID, departureDate);
+        Assert.assertNotNull(schedules);
+        Assert.assertTrue(!schedules.isEmpty());
+        Assert.assertTrue(schedules.size() >= 2);
+
+        departureDate = DateHelper.convertDatetime("2015-02-02 12:00");
+        schedules = scheduleDao.getSchedules(STATION_FROM_ID, departureDate);
+        Assert.assertTrue(schedules.size() >= 1);
+    }
+
+    @Test
+    public void testGetSchedulesByStationIdAndArrivalDate() throws Exception {
+        Date arrivalDate = DateHelper.convertDate("2015-02-02");
+        List<Schedule> schedules = scheduleDao.getSchedules(arrivalDate, STATION_FROM_ID);
+        Assert.assertNotNull(schedules);
+        Assert.assertTrue(schedules.isEmpty());
+
+        arrivalDate = DateHelper.convertDatetime("2015-02-02 11:00");
+        schedules = scheduleDao.getSchedules(STATION_FROM_ID, arrivalDate);
+        Assert.assertTrue(schedules.size() >= 1);
     }
 }

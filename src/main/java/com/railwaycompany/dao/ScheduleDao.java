@@ -2,6 +2,7 @@ package com.railwaycompany.dao;
 
 import com.railwaycompany.entities.Schedule;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -9,5 +10,9 @@ import java.util.List;
  */
 public interface ScheduleDao {
 
-    List<Schedule> getSchedulesByStationId(int stationId);
+    List<Schedule> getSchedules(int stationId);
+
+    List<Schedule> getSchedules(int stationId, Date departureDate);
+
+    List<Schedule> getSchedules(Date arrivalDate, int stationId);
 }

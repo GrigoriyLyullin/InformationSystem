@@ -17,7 +17,7 @@ public class ServiceFactoryImpl implements ServiceFactory {
         this.daoFactory = HibernateDaoFactorySingleton.getInstance();
         authenticationService = new AuthenticationService(daoFactory);
         stationService = new StationService(daoFactory);
-        scheduleService = new ScheduleService(daoFactory, stationService);
+        scheduleService = new ScheduleService(daoFactory);
     }
 
 

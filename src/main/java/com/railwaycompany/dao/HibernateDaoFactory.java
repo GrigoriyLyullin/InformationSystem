@@ -30,6 +30,8 @@ public class HibernateDaoFactory implements DaoFactory {
 
     private ScheduleDao scheduleDao;
 
+    private TrainDao trainDao;
+
     /**
      * HibernateDaoFactory constructor.
      *
@@ -41,6 +43,7 @@ public class HibernateDaoFactory implements DaoFactory {
         userDao = new UserHibernateDao(entityManager);
         stationDao = new StationHibernateDao(entityManager);
         scheduleDao = new ScheduleHibernateDao(entityManager);
+        trainDao = new TrainHibernateDao(entityManager);
     }
 
     /**
@@ -63,6 +66,11 @@ public class HibernateDaoFactory implements DaoFactory {
     @Override
     public ScheduleDao getScheduleDao() {
         return scheduleDao;
+    }
+
+    @Override
+    public TrainDao getTrainDao() {
+        return trainDao;
     }
 
     @Override

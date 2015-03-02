@@ -26,7 +26,7 @@
             <h2>Search train</h2>
         </div>
 
-        <p>Search train from point A to B</p>
+        <p>Enter the route and the date of the travel to choose the train: </p>
 
         <div>
             <form class="form-horizontal" onsubmit="return checkSearchTrainForm(this)" method="post"
@@ -41,10 +41,12 @@
                     <br>
                     <br>
                     <span class="add-on">Date from</span>
-                    <input id="dateFrom" name="dateFrom" type="date" class="input-medium" title="Date">
+                    <input id="dateFrom" name="dateFrom" type="date" class="input-medium" title="Date"
+                           value="<c:out value="${sessionScope.dateFrom}"/>">
                     <input id="timeFrom" name="timeFrom" type="time" class="input-small" title="Time">
                     <span class="add-on">Date to</span>
-                    <input id="dateTo" name="dateTo" type="date" class="input-medium" title="Date">
+                    <input id="dateTo" name="dateTo" type="date" class="input-medium" title="Date"
+                           value="<c:out value="${sessionScope.dateTo}"/>">
                     <input id="timeTo" name="timeTo" type="time" class="input-small" title="Time">
                 </div>
                 <br>
@@ -55,7 +57,49 @@
         <div class="alert alert-error" id="searchTrainAlert">
             <p>Incorrect input data. Try again.</p>
         </div>
+        <c:choose>
+            <c:when test="${not empty sessionScope.trainList}">
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th>Train number</th>
+                        <th>${sessionScope.stationFromName} departure time</th>
+                        <th>${sessionScope.stationToName} arrival time</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <c:forEach items="${sessionScope.trainList}" var="train">
+                        <tr>
+                            <td>${train.trainNumber}</td>
+                            <td>${train.timeArrival}</td>
+                            <td>${train.timeDeparture}</td>
+                        </tr>
+                    </c:forEach>
+                    </tbody>
+                </table>
+                <c:set value="empty" scope="session" var="scheduleList"/>
+            </c:when>
+            <c:when test="${empty sessionScope.trainList}">
+                <c:choose>
 
+                    <c:when test="${sessionScope.trainSearchingError}">
+                        <div class="alert alert-error" id="trainSearchingErrorAlert">
+                            <p>Error! Invalid input data.</p>
+                        </div>
+                        <c:set value="false" scope="session" var="trainSearchingError"/>
+                    </c:when>
+
+                    <c:when test="${sessionScope.trainNotFound}">
+                        <div class="alert alert-error" id="trainNotFoundAlert">
+                            <p>Train from station "${sessionScope.stationFromName}" to "${sessionScope.stationToName}"
+                                was not found.</p>
+                        </div>
+                        <c:set value="false" scope="session" var="trainNotFound"/>
+                    </c:when>
+
+                </c:choose>
+            </c:when>
+        </c:choose>
     </div>
 </div>
 </body>

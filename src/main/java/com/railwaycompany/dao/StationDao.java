@@ -5,7 +5,7 @@ import com.railwaycompany.entities.Station;
 /**
  * GenericDao<Station> interface for work with Station entities.
  */
-public interface StationDao {
+public interface StationDao extends GenericDAO<Station> {
 
     /**
      * Finds Station by station name.

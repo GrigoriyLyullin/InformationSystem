@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class ScheduleByStation {
 
+    private int trainId;
     private long trainNumber;
     private Date timeArrival;
     private Date timeDeparture;
@@ -33,5 +34,13 @@ public class ScheduleByStation {
 
     public void setTimeDeparture(Date timeDeparture) {
         this.timeDeparture = timeDeparture;
+    }
+
+    public void setTrainId(int trainId) {
+        this.trainId = trainId;
+    }
+
+    public int getTrainId() {
+        return trainId;
     }
 }

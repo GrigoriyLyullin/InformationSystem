@@ -27,6 +27,13 @@ public interface DaoFactory {
     ScheduleDao getScheduleDao();
 
     /**
+     * Returns Dao for working with Train entities.
+     *
+     * @return TrainDao object.
+     */
+    TrainDao getTrainDao();
+
+    /**
      * Closes all object (Streams and e.g.) that should will be closed. Call this before object destroying.
      */
     void close();

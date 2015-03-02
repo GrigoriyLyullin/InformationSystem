@@ -3,6 +3,7 @@ package com.railwaycompany.servlets;
 import com.railwaycompany.services.ScheduleByStation;
 import com.railwaycompany.services.ScheduleService;
 import com.railwaycompany.services.ServiceFactorySingleton;
+import com.railwaycompany.utils.ValidationCheck;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -39,7 +40,7 @@ public class ScheduleByStationServlet extends HttpServlet {
         String stationName = req.getParameter(ScheduleService.STATION_NAME_ATTR);
         log.info(ScheduleService.STATION_NAME_ATTR + " : " + stationName);
 
-        if (isValidStationName(stationName)) {
+        if (ValidationCheck.isValidStationName(stationName)) {
             HttpSession session = req.getSession();
             session.setAttribute("stationName", stationName);
             List<ScheduleByStation> scheduleOfTrainsByStation = scheduleService.getScheduleByStationName(stationName);
@@ -52,9 +53,5 @@ public class ScheduleByStationServlet extends HttpServlet {
             }
         }
         getServletContext().getRequestDispatcher("/schedule_by_station.jsp").forward(req, resp);
-    }
-
-    private boolean isValidStationName(String name) {
-        return name != null && !name.isEmpty();
     }
 }

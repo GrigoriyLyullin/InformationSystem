@@ -20,7 +20,7 @@ public class StationHibernateDao extends HibernateDao<Station> implements Statio
     /**
      * HibernateDao constructor.
      *
-     * @param entityManager
+     * @param entityManager - entity manager
      */
     public StationHibernateDao(EntityManager entityManager) {
         super(entityManager, Station.class);

@@ -81,4 +81,36 @@ public class ScheduleService {
 
         return scheduleByStationList;
     }
+
+    public List<ScheduleByStation> getSchedule(String stationFromName, String stationToName, Date dateFrom) {
+
+        ServiceFactory serviceFactory = ServiceFactorySingleton.getInstance();
+
+        StationService stationService = serviceFactory.getStationService();
+
+        Station stationFrom = stationService.getStation(stationFromName);
+        Station stationTo = stationService.getStation(stationToName);
+
+        List<Schedule> schedulesFrom = scheduleDao.getSchedules(stationFrom.getId(), dateFrom);
+        List<Schedule> schedulesTo = scheduleDao.getSchedules(stationTo.getId(), dateFrom);
+
+        List<ScheduleByStation> scheduleByStationList = new ArrayList<>();
+
+        for (Schedule sFrom : schedulesFrom) {
+            Train trainFrom = sFrom.getTrain();
+            for (Schedule sTo : schedulesTo) {
+                Train trainTo = sTo.getTrain();
+                if (trainFrom.equals(trainTo)) {
+                    ScheduleByStation scheduleByStation = new ScheduleByStation();
+                    scheduleByStation.setTrainId(trainFrom.getId());
+                    scheduleByStation.setTrainNumber(trainFrom.getNumber());
+                    scheduleByStation.setTimeDeparture(sTo.getTimeDeparture());
+                    scheduleByStation.setTimeArrival(sFrom.getTimeArrival());
+                    scheduleByStationList.add(scheduleByStation);
+                }
+            }
+        }
+
+        return scheduleByStationList;
+    }
 }

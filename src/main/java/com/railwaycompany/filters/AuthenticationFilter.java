@@ -18,7 +18,7 @@ public class AuthenticationFilter implements Filter {
     /**
      * Logger for AuthenticationFilter class.
      */
-    private static Logger log = Logger.getLogger(AuthenticationFilter.class.getName());
+    private Logger log = Logger.getLogger(AuthenticationFilter.class.getName());
 
     private AuthenticationService authenticationService;
 

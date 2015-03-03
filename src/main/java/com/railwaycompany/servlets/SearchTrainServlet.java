@@ -37,7 +37,6 @@ public class SearchTrainServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-
         String stationFromName = req.getParameter("Station-From-Name");
         String stationToName = req.getParameter("Station-To-Name");
         String dateFromStr = req.getParameter("dateFrom");
@@ -56,8 +55,8 @@ public class SearchTrainServlet extends HttpServlet {
         session.setAttribute("dateFrom", dateFromStr);
         session.setAttribute("dateTo", dateToStr);
 
-        session.setAttribute("trainNotFound", true);
-        session.setAttribute("trainList", null);
+//        session.setAttribute("trainNotFound", true);
+//        session.setAttribute("trainList", null);
 
         boolean validStationFromName = ValidationCheck.isValidStationName(stationFromName);
         boolean validStationToName = ValidationCheck.isValidStationName(stationToName);
@@ -66,30 +65,29 @@ public class SearchTrainServlet extends HttpServlet {
         boolean validTimeFromStr = ValidationCheck.isValidTimeStr(timeFromStr);
         boolean validTimeToStr = ValidationCheck.isValidTimeStr(timeToStr);
 
-        if (validStationFromName && validStationToName) {
-            if (!stationFromName.equals(stationToName)) {
-
-                if (validDateFromStr && validDateToStr) {
-                    Date dateFrom;
-                    Date dateTo;
-                    if (validTimeFromStr && validTimeToStr) {
-                        dateFrom = DateHelper.convertDatetime(dateFromStr + " " + timeFromStr);
-                        dateTo = DateHelper.convertDatetime(dateToStr + " " + timeToStr);
-                    } else {
-                        dateFrom = DateHelper.convertDate(dateFromStr);
-                        dateTo = DateHelper.convertDate(dateToStr);
-                    }
-                    List<ScheduleByStation> scheduleList;
-                    if (dateFrom != null && dateTo != null) {
-                        scheduleList = scheduleService.getSchedule(stationFromName, stationToName, dateFrom, dateTo);
-
-                        session.setAttribute("trainSearchingError", false);
-                        session.setAttribute("trainNotFound", false);
-                        session.setAttribute("trainList", scheduleList);
-                    }
+        //Simple train search
+        if (validStationFromName && validStationToName && validDateFromStr) {
+            List<ScheduleByStation> scheduleList;
+            Date dateFrom = DateHelper.convertDate(dateFromStr);
+            if (validDateToStr) {
+                Date dateTo = DateHelper.convertDate(dateToStr);
+                if (validTimeFromStr) {
+                    dateFrom = DateHelper.convertDatetime(dateFromStr + " " + timeFromStr);
                 }
+                if (validTimeToStr) {
+                    dateTo = DateHelper.convertDatetime(dateToStr + " " + timeToStr);
+                }
+                scheduleList = scheduleService.getSchedule(stationFromName, stationToName, dateFrom, dateTo);
             } else {
-                session.setAttribute("trainSearchingError", true);
+                scheduleList = scheduleService.getSchedule(stationFromName, stationToName, dateFrom);
+            }
+
+            session.setAttribute("trainSearchingError", false);
+
+            if (scheduleList != null) {
+                session.setAttribute("trainList", scheduleList);
+            } else {
+                session.setAttribute("trainNotFoundError", true);
             }
         }
         getServletContext().getRequestDispatcher("/search_train.jsp").forward(req, resp);

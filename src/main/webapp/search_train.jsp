@@ -40,6 +40,7 @@
         <div class="alert alert-error" id="searchTrainAlert">
             <p>Incorrect input data. Try again.</p>
         </div>
+
         <c:choose>
             <c:when test="${not empty sessionScope.trainList}">
                 <table class="table table-bordered">
@@ -89,7 +90,7 @@
                         <c:set value="false" scope="session" var="trainSearchingError"/>
                     </c:when>
 
-                    <c:when test="${sessionScope.trainNotFound}">
+                    <c:when test="${sessionScope.trainNotFoundError}">
                         <div class="alert alert-error" id="trainNotFoundAlert">
                             <p>Train from station "${sessionScope.stationFromName}" to "${sessionScope.stationToName}"
                                 was not found.</p>

@@ -30,14 +30,22 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        HttpSession session = req.getSession();
-        String authId = (String) session.getAttribute(AuthenticationService.AUTH_ID_ATTR);
-        if (authId != null) {
-            session.setAttribute("signUp", false);
+        String requestURI = req.getRequestURI();
+
+        if (requestURI.equals("/")) {
+
+            HttpSession session = req.getSession();
+            String authId = (String) session.getAttribute(AuthenticationService.AUTH_ID_ATTR);
+            if (authId != null) {
+                session.setAttribute("signUp", false);
+            } else {
+                session.setAttribute("signUp", true);
+            }
+            getServletContext().getRequestDispatcher("/").forward(req, resp);
+
         } else {
-            session.setAttribute("signUp", true);
+            getServletContext().getRequestDispatcher("/login_page.jsp").forward(req, resp);
         }
-        getServletContext().getRequestDispatcher("/").forward(req, resp);
     }
 
     @Override

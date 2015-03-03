@@ -28,30 +28,28 @@
 
         <p>Enter the route and the date of the travel to choose the train: </p>
 
-        <div>
-            <form class="form-horizontal" onsubmit="return checkSearchTrainForm(this)" method="post"
+        <div id="inputFromSearchTrain">
+            <form class="form-inline" onsubmit="return checkSearchTrainForm(this)" method="post"
                   action="search_train">
-                <div class="input-prepend" id="schedule_by_station">
+                <div class="input-prepend">
                     <span class="add-on">From</span>
-                    <input id="Station-From-Name" name="Station-From-Name" type="text" class="input-xlarge"
+                    <input id="Station-From-Name" name="Station-From-Name" type="text" class="input-medium"
                            placeholder="Station name" value="<c:out value="${sessionScope.stationFromName}"/>">
                     <span class="add-on">To</span>
-                    <input id="Station-To-Name" name="Station-To-Name" type="text" class="input-xlarge"
+                    <input id="Station-To-Name" name="Station-To-Name" type="text" class="input-medium"
                            placeholder="Station name" value="<c:out value="${sessionScope.stationToName}"/>">
-                    <br>
-                    <br>
                     <span class="add-on">Date from</span>
                     <input id="dateFrom" name="dateFrom" type="date" class="input-medium" title="Date"
                            value="<c:out value="${sessionScope.dateFrom}"/>">
-                    <input id="timeFrom" name="timeFrom" type="time" class="input-small" title="Time">
+                    <%--<input id="timeFrom" name="timeFrom" type="time" class="input-small" title="Time">--%>
                     <span class="add-on">Date to</span>
                     <input id="dateTo" name="dateTo" type="date" class="input-medium" title="Date"
                            value="<c:out value="${sessionScope.dateTo}"/>">
-                    <input id="timeTo" name="timeTo" type="time" class="input-small" title="Time">
+                    <%--<input id="timeTo" name="timeTo" type="time" class="input-small" title="Time">--%>
+                    <button type="submit" class="btn btn-success">
+                        <i class="icon-white icon-search"></i>
+                    </button>
                 </div>
-                <br>
-                <br>
-                <button type="submit" class="btn btn-success">Search</button>
             </form>
         </div>
         <div class="alert alert-error" id="searchTrainAlert">
@@ -65,6 +63,7 @@
                         <th>Train number</th>
                         <th>${sessionScope.stationFromName} departure time</th>
                         <th>${sessionScope.stationToName} arrival time</th>
+                        <th>Buy ticket</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -73,6 +72,22 @@
                             <td>${train.trainNumber}</td>
                             <td>${train.timeArrival}</td>
                             <td>${train.timeDeparture}</td>
+                            <td>
+                                <c:choose>
+                                    <c:when test="${empty sessionScope.userId}">
+                                        <form action="/login" method="get">
+                                            <button class="btn disabled btn-block">Buy</button>
+                                        </form>
+                                    </c:when>
+                                    <c:when test="${not empty sessionScope.userId}">
+                                        <form>
+                                            <input type="hidden" name="trainNumber" value="${train.trainNumber}">
+                                            <input type="hidden" name="timeDeparture" value="${train.timeDeparture}">
+                                            <button type="submit" class="btn btn-success btn-block">Buy</button>
+                                        </form>
+                                    </c:when>
+                                </c:choose>
+                            </td>
                         </tr>
                     </c:forEach>
                     </tbody>

@@ -56,13 +56,35 @@ body {
 }
 
 #inputFromSearchTrain input {
-    margin-right: 5px;
     height: 30px;
 }
 
+#Station-From-Name {
+    margin-right: 5px;
+}
+
+#Station-To-Name {
+    margin-right: 5px;
+}
+
+#timeFrom {
+    margin-right: 7px;
+}
+
+#inputFromSearchTrain .input-prepend {
+    margin-top: 10px;
+}
+
 #inputFromSearchTrain button {
+    margin-top: 10px;
     margin-left: 5px;
     height: 30px;
+}
+
+#extendedFormButton {
+    margin-top: 10px;
+    margin-left: 5px;
+    height: 20px;
 }
 
 thead {

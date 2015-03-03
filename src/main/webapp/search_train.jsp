@@ -28,30 +28,15 @@
 
         <p>Enter the route and the date of the travel to choose the train: </p>
 
-        <div id="inputFromSearchTrain">
-            <form class="form-inline" onsubmit="return checkSearchTrainForm(this)" method="post"
-                  action="search_train">
-                <div class="input-prepend">
-                    <span class="add-on">From</span>
-                    <input id="Station-From-Name" name="Station-From-Name" type="text" class="input-medium"
-                           placeholder="Station name" value="<c:out value="${sessionScope.stationFromName}"/>">
-                    <span class="add-on">To</span>
-                    <input id="Station-To-Name" name="Station-To-Name" type="text" class="input-medium"
-                           placeholder="Station name" value="<c:out value="${sessionScope.stationToName}"/>">
-                    <span class="add-on">Date from</span>
-                    <input id="dateFrom" name="dateFrom" type="date" class="input-medium" title="Date"
-                           value="<c:out value="${sessionScope.dateFrom}"/>">
-                    <%--<input id="timeFrom" name="timeFrom" type="time" class="input-small" title="Time">--%>
-                    <span class="add-on">Date to</span>
-                    <input id="dateTo" name="dateTo" type="date" class="input-medium" title="Date"
-                           value="<c:out value="${sessionScope.dateTo}"/>">
-                    <%--<input id="timeTo" name="timeTo" type="time" class="input-small" title="Time">--%>
-                    <button type="submit" class="btn btn-success">
-                        <i class="icon-white icon-search"></i>
-                    </button>
-                </div>
-            </form>
-        </div>
+        <c:choose>
+            <c:when test="${empty sessionScope.extendedForm || sessionScope.extendedForm == false}">
+                <jsp:include page="/search_train_simple_form.jsp" flush="true"/>
+            </c:when>
+            <c:when test="${sessionScope.extendedForm == true}">
+                <jsp:include page="/search_train_extended_form.jsp" flush="true"/>
+            </c:when>
+        </c:choose>
+
         <div class="alert alert-error" id="searchTrainAlert">
             <p>Incorrect input data. Try again.</p>
         </div>

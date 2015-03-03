@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0a97a00a-bfdc-41f8-aef4-6bd013891077" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/img/glyphicons-halflings-white.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/img/glyphicons-halflings.png" />
-      <change type="DELETED" beforePath="C:\Users\Grigoriy\IdeaProjects\InformationSystem\.idea\libraries\Maven__junit_junit_3_8_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Grigoriy\IdeaProjects\InformationSystem\.idea\libraries\Maven__org_hibernate_hibernate_entitymanager_4_3_5_Final.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Grigoriy\IdeaProjects\InformationSystem\.idea\libraries\Maven__org_json_json_20140107.xml" afterPath="" />
+    <list default="true" id="0a97a00a-bfdc-41f8-aef4-6bd013891077" name="Default" comment="Add extended search train form">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/search_train_extended_form.jsp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/search_train_simple_form.jsp" />
+      <change type="DELETED" beforePath="C:\Users\Григорий\IdeaProjects\InformationSystem\src\main\webapp\schedule_by_station.jsp" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/railwaycompany/servlets/SearchTrainServlet.java" afterPath="$PROJECT_DIR$/src/main/java/com/railwaycompany/servlets/SearchTrainServlet.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/style/index.css" afterPath="$PROJECT_DIR$/src/main/webapp/style/index.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/search_train.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/search_train.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -71,41 +71,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="BuyTicketServlet.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/railwaycompany/servlets/BuyTicketServlet.java">
+      <file leaf-file-name="search_train_simple_form.jsp" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/search_train_simple_form.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="407" max-vertical-offset="1156">
-              <caret line="56" column="70" selection-start-line="56" selection-start-column="70" selection-end-line="56" selection-end-column="70" />
+            <state vertical-scroll-proportion="0.11371238" vertical-offset="0" max-vertical-offset="629">
+              <caret line="4" column="18" selection-start-line="4" selection-start-column="18" selection-end-line="4" selection-end-column="18" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="search_train.jsp" pinned="false" current-in-tab="true">
+      <file leaf-file-name="search_train.jsp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/search_train.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.43589744" vertical-offset="391" max-vertical-offset="2142">
-              <caret line="38" column="102" selection-start-line="38" selection-start-column="102" selection-end-line="38" selection-end-column="102" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/style/index.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="628" max-vertical-offset="1326">
-              <caret line="62" column="28" selection-start-line="62" selection-start-column="22" selection-end-line="62" selection-end-column="28" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TrainService.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/railwaycompany/services/TrainService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="515" max-vertical-offset="1139">
-              <caret line="60" column="36" selection-start-line="60" selection-start-column="27" selection-end-line="60" selection-end-column="36" />
+            <state vertical-scroll-proportion="-3.5384614" vertical-offset="962" max-vertical-offset="1887">
+              <caret line="62" column="54" selection-start-line="62" selection-start-column="54" selection-end-line="62" selection-end-column="54" />
               <folding />
             </state>
           </provider>
@@ -126,9 +106,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/webapp/login.html" />
-        <option value="$PROJECT_DIR$/src/main/webapp/style/style.css" />
-        <option value="$PROJECT_DIR$/src/main/webapp/style/login.css" />
         <option value="$PROJECT_DIR$/src/main/webapp/login_error.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/index.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/com/railwaycompany/services/StationService.java" />
@@ -143,7 +120,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/railwaycompany/services/ScheduleByStation.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/railwaycompany/services/TrainData.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/railwaycompany/dao/ScheduleHibernateDaoTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/railwaycompany/servlets/SearchTrainServlet.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/railwaycompany/dao/StationHibernateDao.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/railwaycompany/dao/ScheduleDaoTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/railwaycompany/services/ScheduleService.java" />
@@ -175,8 +151,12 @@
         <option value="$PROJECT_DIR$/src/main/webapp/navbar.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/railwaycompany/filters/AuthenticationFilter.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/style/index.css" />
+        <option value="$PROJECT_DIR$/src/main/webapp/search_train_form.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/search_train.jsp" />
+        <option value="$PROJECT_DIR$/src/main/java/com/railwaycompany/servlets/SearchTrainServlet.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/style/index.css" />
+        <option value="$PROJECT_DIR$/src/main/webapp/search_train_simple_form.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/search_train_extended_form.jsp" />
       </list>
     </option>
   </component>
@@ -238,8 +218,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -269,82 +247,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="test" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="railwaycompany" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="utils" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="InformationSystem" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="InformationSystem" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="test" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="railwaycompany" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="services" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="InformationSystem" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="InformationSystem" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="test" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="railwaycompany" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dao" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -419,58 +321,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="style" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="InformationSystem" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="InformationSystem" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="webapp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="InformationSystem" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="InformationSystem" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="webapp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="img" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -704,6 +554,8 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1155,7 +1007,8 @@
     </configuration>
     <configuration default="false" name="TomcatLocal" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 8.0.18" ALTERNATIVE_JRE_ENABLED="false" ALTERNATIVE_JRE_PATH="">
       <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080/index.jsp" />
-      <option name="UPDATING_POLICY" value="restart-server" />
+      <option name="SHOW_DIALOG_ON_UPDATE" value="false" />
+      <option name="UPDATING_POLICY" value="redeploy-artifacts" />
       <deployment>
         <artifact name="InformationSystem:war">
           <settings>
@@ -1231,12 +1084,12 @@
       </method>
     </configuration>
     <list size="6">
-      <item index="0" class="java.lang.String" itemvalue="Tomcat Server.TomcatLocal" />
-      <item index="1" class="java.lang.String" itemvalue="JUnit.ScheduleDaoTest" />
-      <item index="2" class="java.lang.String" itemvalue="JUnit.ScheduleDaoTest.testGetSchedulesByStationIdAndArrivalDate" />
-      <item index="3" class="java.lang.String" itemvalue="JUnit.ScheduleDaoTest.testGetScheduleByStationsIdAndDates" />
-      <item index="4" class="java.lang.String" itemvalue="JUnit.ValidationCheckTest.testIsValidTrainNumber" />
-      <item index="5" class="java.lang.String" itemvalue="JUnit.DateHelperTest.testIsEnoughTime" />
+      <item index="0" class="java.lang.String" itemvalue="JUnit.ScheduleDaoTest" />
+      <item index="1" class="java.lang.String" itemvalue="JUnit.ScheduleDaoTest.testGetSchedulesByStationIdAndArrivalDate" />
+      <item index="2" class="java.lang.String" itemvalue="JUnit.ScheduleDaoTest.testGetScheduleByStationsIdAndDates" />
+      <item index="3" class="java.lang.String" itemvalue="JUnit.ValidationCheckTest.testIsValidTrainNumber" />
+      <item index="4" class="java.lang.String" itemvalue="JUnit.DateHelperTest.testIsEnoughTime" />
+      <item index="5" class="java.lang.String" itemvalue="Tomcat Server.TomcatLocal" />
     </list>
     <recent_temporary>
       <list size="5">
@@ -1270,6 +1123,7 @@
       <workItem from="1425211834259" duration="37415000" />
       <workItem from="1425301297277" duration="4095000" />
       <workItem from="1425360069550" duration="6889000" />
+      <workItem from="1425380629901" duration="5929000" />
     </task>
     <task id="LOCAL-00001" summary="GenericDao has added">
       <created>1424344776704</created>
@@ -1419,7 +1273,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="178976000" />
+    <option name="totallyTimeSpent" value="184905000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -1459,7 +1313,7 @@
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.6683006" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.74509805" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32843137" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.53104573" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5306749" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32843137" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
@@ -1469,12 +1323,12 @@
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.27987897" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32822084" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32822084" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -1516,11 +1370,12 @@
     <MESSAGE value="ValidationCheck (for form inputs) and DateHelper(for date convertion from string) has been added." />
     <MESSAGE value="Search trains from station A to B logic implementation." />
     <MESSAGE value="Buy tickets logic start implementation." />
-    <option name="LAST_COMMIT_MESSAGE" value="Buy tickets logic start implementation." />
+    <MESSAGE value="Add extended search train form" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add extended search train form" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="12" />
+      <option name="time" value="13" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1529,6 +1384,14 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/railwaycompany/services/TrainService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="515" max-vertical-offset="1139">
+          <caret line="60" column="36" selection-start-line="60" selection-start-column="27" selection-end-line="60" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/railwaycompany/dao/UserDao.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.20376712" vertical-offset="0" max-vertical-offset="584">
@@ -1561,22 +1424,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/schedule_by_station.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.3100358" vertical-offset="578" max-vertical-offset="1479">
-          <caret line="77" column="19" selection-start-line="47" selection-start-column="8" selection-end-line="77" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_31/src.zip!/java/util/List.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3321918" vertical-offset="1285" max-vertical-offset="12155">
-          <caret line="110" column="17" selection-start-line="110" selection-start-column="17" selection-end-line="110" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/railwaycompany/servlets/MainServletContextListener.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.4168126" vertical-offset="0" max-vertical-offset="571">
@@ -1598,13 +1445,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="248" max-vertical-offset="867">
           <caret line="42" column="28" selection-start-line="42" selection-start-column="28" selection-end-line="42" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/railwaycompany/servlets/SearchTrainServlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1479">
-          <caret line="92" column="89" selection-start-line="92" selection-start-column="89" selection-end-line="92" selection-end-column="89" />
         </state>
       </provider>
     </entry>
@@ -1786,14 +1626,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_31/src.zip!/java/util/logging/Logger.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33333334" vertical-offset="2903" max-vertical-offset="35785">
-          <caret line="217" column="13" selection-start-line="217" selection-start-column="13" selection-end-line="217" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/navbar.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.11371238" vertical-offset="0" max-vertical-offset="598">
@@ -1865,7 +1697,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="102" max-vertical-offset="867">
           <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1873,7 +1704,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.100961536" vertical-offset="39" max-vertical-offset="663">
           <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1889,9 +1719,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.46314102" vertical-offset="0" max-vertical-offset="624">
           <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-          <folding>
-            <element signature="e#360#361#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1899,7 +1726,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-1.2772436" vertical-offset="950" max-vertical-offset="1802">
           <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1943,9 +1769,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/railwaycompany/services/TrainService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5648" vertical-offset="514" max-vertical-offset="1139">
+          <caret line="60" column="36" selection-start-line="60" selection-start-column="27" selection-end-line="60" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/railwaycompany/servlets/BuyTicketServlet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="407" max-vertical-offset="1156">
+        <state vertical-scroll-proportion="0.5456" vertical-offset="407" max-vertical-offset="1156">
           <caret line="56" column="70" selection-start-line="56" selection-start-column="70" selection-end-line="56" selection-end-column="70" />
           <folding />
         </state>
@@ -1953,24 +1787,40 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/style/index.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="628" max-vertical-offset="1326">
-          <caret line="62" column="28" selection-start-line="62" selection-start-column="22" selection-end-line="62" selection-end-column="28" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="957" max-vertical-offset="1700">
+          <caret line="83" column="1" selection-start-line="83" selection-start-column="1" selection-end-line="83" selection-end-column="19" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/railwaycompany/services/TrainService.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/railwaycompany/servlets/SearchTrainServlet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="515" max-vertical-offset="1139">
-          <caret line="60" column="36" selection-start-line="60" selection-start-column="27" selection-end-line="60" selection-end-column="36" />
+        <state vertical-scroll-proportion="0.4903846" vertical-offset="0" max-vertical-offset="1513">
+          <caret line="32" column="66" selection-start-line="32" selection-start-column="66" selection-end-line="32" selection-end-column="66" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/search_train_extended_form.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.77257526" vertical-offset="82" max-vertical-offset="799">
+          <caret line="32" column="34" selection-start-line="32" selection-start-column="34" selection-end-line="32" selection-end-column="34" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/search_train.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.43589744" vertical-offset="391" max-vertical-offset="2142">
-          <caret line="38" column="102" selection-start-line="38" selection-start-column="102" selection-end-line="38" selection-end-column="102" />
+        <state vertical-scroll-proportion="-3.5384614" vertical-offset="962" max-vertical-offset="1887">
+          <caret line="62" column="54" selection-start-line="62" selection-start-column="54" selection-end-line="62" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/search_train_simple_form.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.11371238" vertical-offset="0" max-vertical-offset="629">
+          <caret line="4" column="18" selection-start-line="4" selection-start-column="18" selection-end-line="4" selection-end-column="18" />
           <folding />
         </state>
       </provider>

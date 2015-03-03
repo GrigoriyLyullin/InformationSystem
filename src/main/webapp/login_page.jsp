@@ -19,7 +19,6 @@
     </div>
 
     <jsp:include page="/navbar.jsp" flush="true"/>
-
     <div class="well">
         <jsp:include page="/login.jsp" flush="true"/>
     </div>

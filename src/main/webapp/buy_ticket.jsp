@@ -4,6 +4,7 @@
 <head>
     <link rel="stylesheet" type="text/css" href="style/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="style/index.css">
+    <link rel="stylesheet" type="text/css" href="style/buy_ticket.css">
     <script src="js/bootstrap.min.js"></script>
     <script src="js/jquery-1.11.2.min.js"></script>
     <script src="js/index.js"></script>
@@ -11,30 +12,33 @@
     <title>Railway Company</title>
 </head>
 <body>
-
 <div class="container">
-
-    <div class="main-header">
-        <h2>Railway Company</h2>
+    <h1>Railway Company</h1>
+    <jsp:include page="/navbar.jsp"/>
+    <div class="row">
+        <div class="span12 img-rounded" id="jumbotron"></div>
     </div>
-
-    <jsp:include page="/navbar.jsp" flush="true"/>
-
     <div class="well">
-
-        <div class="header">
-            <h2>Buy ticket</h2>
-        </div>
-
-        <div>
-            <form class="form-horizontal" onsubmit="return checkBuyTicketForm(this)" method="post"
-                  action="buy_ticket">
-                <div class="input-prepend" id="schedule_by_station">
-                    <span class="add-on">Train number</span>
-                    <input id="Train-Number" name="Train-Number" type="text" class="input-xlarge"
+        <h2>Buy ticket</h2>
+        <p>
+            If you do not know all the necessary information for the purchase of a ticket you can use <a
+                href="${pageContext.request.contextPath}/#search_train">search</a> or <a href="${pageContext.request.contextPath}/#schedule_by_station">train schedule by station</a>.
+        </p>
+        <div id="inputFromSearchTrain">
+            <form class="form-inline" onsubmit="return checkBuyTicketForm(this)" method="post"
+                  action="${pageContext.request.contextPath}buy_ticket">
+                <div class="input-prepend">
+                    <span class="add-on">Train</span>
+                    <input id="Train-Number" name="Train-Number" type="text" class="input-medium"
                            placeholder="Train number" value="<c:out value="${sessionScope.trainNumber}"/>">
                     <span class="add-on">From</span>
-                    <input id="Station-From-Name" name="Station-From-Name" type="text" class="input-xlarge"
+                    <input id="Station-From-Name" name="Station-From-Name" type="text" class="input-medium"
+                           placeholder="Station name" value="<c:out value="${sessionScope.stationFromName}"/>">
+                    <span class="add-on">Departure date</span>
+                    <input id="date_from" name="date_from" type="date" class="input-medium"
+                           placeholder="Station name" value="<c:out value="${sessionScope.stationFromName}"/>">
+                    <span class="add-on">Time</span>
+                    <input id="time_from" name="date_from" type="time" class="input-small"
                            placeholder="Station name" value="<c:out value="${sessionScope.stationFromName}"/>">
                 </div>
                 <button type="submit" class="btn btn-success">Buy</button>
@@ -44,8 +48,7 @@
             <p>Incorrect input data. Try again.</p>
         </div>
     </div>
-
-
+    <jsp:include page="/footer.jsp"/>
 </div>
 </body>
 </html>

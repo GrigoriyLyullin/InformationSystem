@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -31,9 +32,7 @@ public class AuthenticationFilter implements Filter {
         String[] privatePages = privatePagesStr.split(";");
 
         privatePagesList = new ArrayList<>();
-        for (String page : privatePages) {
-            privatePagesList.add(page);
-        }
+        Collections.addAll(privatePagesList, privatePages);
     }
 
     @Override
@@ -42,9 +41,10 @@ public class AuthenticationFilter implements Filter {
 
         HttpServletRequest httpRequest = (HttpServletRequest) req;
 
-        log.info("httpRequest.getRequestURI(): " + httpRequest.getRequestURI());
+        String requestURI = httpRequest.getRequestURI();
+        log.info("httpRequest.getRequestURI(): " + requestURI);
 
-        if (privatePagesList.contains(httpRequest.getRequestURI())) {
+        if (privatePagesList.contains(requestURI)) {
 
             HttpServletResponse httpResponse = (HttpServletResponse) resp;
             HttpSession session = httpRequest.getSession();
@@ -53,14 +53,29 @@ public class AuthenticationFilter implements Filter {
             String authId = (String) session.getAttribute(AuthenticationService.AUTH_ID_ATTR);
             if (authId != null) {
                 if (authenticationService.isAuthorized(sessionId, authId)) {
+
                     log.log(Level.INFO, "User with session id " + sessionId + " is authorized. Authentication id " +
-                            authId);
+                            authId + " requestURI:" + requestURI);
+
+
                     chain.doFilter(req, resp);
                 }
             } else {
-                log.log(Level.INFO, "User with session id " + sessionId + " is not authorized.");
-                session.setAttribute("signUpUrl", httpRequest.getRequestURI());
-                httpResponse.sendRedirect("/login");
+
+                log.log(Level.INFO, "User with session id " + sessionId + " is not authorized requestURI: " + requestURI);
+
+                session.setAttribute("signInUrl", requestURI);
+
+                switch (requestURI) {
+                    case "/buy_ticket":
+                        session.setAttribute("signInMessage", "buy ticket");
+                        break;
+                    case "/buy_ticket.jsp":
+                        session.setAttribute("signInMessage", "buy ticket");
+                        break;
+                }
+
+                httpResponse.sendRedirect("/");
             }
         } else {
             chain.doFilter(req, resp);

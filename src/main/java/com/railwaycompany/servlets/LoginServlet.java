@@ -30,22 +30,8 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String requestURI = req.getRequestURI();
-
-        if (requestURI.equals("/")) {
-
-            HttpSession session = req.getSession();
-            String authId = (String) session.getAttribute(AuthenticationService.AUTH_ID_ATTR);
-            if (authId != null) {
-                session.setAttribute("signUp", false);
-            } else {
-                session.setAttribute("signUp", true);
-            }
-            getServletContext().getRequestDispatcher("/").forward(req, resp);
-
-        } else {
-            getServletContext().getRequestDispatcher("/login_page.jsp").forward(req, resp);
-        }
+        req.getSession().setAttribute("signInMessage", req.getParameter("signInMessage"));
+        resp.sendRedirect("/");
     }
 
     @Override
@@ -57,14 +43,24 @@ public class LoginServlet extends HttpServlet {
         log.log(Level.INFO, "User sign in with login: \"" + login + "\" and password: \"" + password + "\"");
 
         HttpSession session = req.getSession();
+
+        session.setAttribute("signInMessage", null);
+
         String sessionId = session.getId();
         String authId = authenticationService.signIn(sessionId, login, password);
         if (authId == null) {
             log.log(Level.INFO, "User try to sign in with login: \"" + login + "\" and password: \"" + password + "\"");
-            session.setAttribute("signUpError", true);
+
+            session.setAttribute("signInError", true);
+            session.setAttribute("signIn", true);
+
+
             resp.sendRedirect("/");
+
         } else {
-            session.setAttribute("signUpError", false);
+
+            session.setAttribute("signInError", false);
+            session.setAttribute("signIn", false);
 
             Integer userId = authenticationService.getUserId(sessionId, authId);
             String userName = authenticationService.getUserName(sessionId, authId);
@@ -75,9 +71,9 @@ public class LoginServlet extends HttpServlet {
             session.setAttribute(AuthenticationService.USER_NAME_ATTR, userName);
             session.setAttribute(AuthenticationService.USER_SURNAME_ATTR, userSurname);
 
-            String signUpUrl = (String) session.getAttribute("signUpUrl");
+            String signUpUrl = (String) session.getAttribute("signInUrl");
             if (signUpUrl != null) {
-                if (!signUpUrl.equals("/login")) {
+                if (!signUpUrl.equals("/")) {
                     resp.sendRedirect(signUpUrl);
                 }
             } else {

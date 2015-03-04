@@ -1,0 +1,5 @@
+#jumbotron {
+    height: 200px;
+    background-size: 940px 200px;
+    background: url('../img/ticket.jpg') no-repeat;
+}

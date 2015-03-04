@@ -27,11 +27,8 @@ public class ScheduleByStationServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        HttpSession session = req.getSession();
-        session.setAttribute("stationName", null);
-        session.setAttribute("scheduleList", null);
-        session.setAttribute("stationNotFound", false);
-        resp.sendRedirect("/schedule_by_station.jsp");
+        req.getSession().setAttribute("extendedForm", Boolean.valueOf(req.getParameter("extendedForm")));
+        resp.sendRedirect("/#schedule_by_station");
     }
 
     @Override
@@ -45,13 +42,13 @@ public class ScheduleByStationServlet extends HttpServlet {
             session.setAttribute("stationName", stationName);
             List<ScheduleByStation> scheduleOfTrainsByStation = scheduleService.getScheduleByStationName(stationName);
             if (scheduleOfTrainsByStation != null) {
-                session.setAttribute("scheduleList", scheduleOfTrainsByStation);
+                session.setAttribute("trainList", scheduleOfTrainsByStation);
                 session.setAttribute("stationNotFound", false);
             } else {
-                session.setAttribute("scheduleList", null);
+                session.setAttribute("trainList", null);
                 session.setAttribute("stationNotFound", true);
             }
         }
-        getServletContext().getRequestDispatcher("/schedule_by_station.jsp").forward(req, resp);
+        resp.sendRedirect("/#schedule_by_station");
     }
 }

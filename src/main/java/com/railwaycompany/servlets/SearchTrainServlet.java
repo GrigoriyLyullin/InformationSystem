@@ -29,9 +29,8 @@ public class SearchTrainServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Boolean extendedForm = Boolean.valueOf(req.getParameter("extendedForm"));
-        req.getSession().setAttribute("extendedForm", extendedForm);
-        getServletContext().getRequestDispatcher("/search_train.jsp").forward(req, resp);
+        req.getSession().setAttribute("extendedForm", Boolean.valueOf(req.getParameter("extendedForm")));
+        resp.sendRedirect("/#search_train");
     }
 
     @Override
@@ -90,6 +89,6 @@ public class SearchTrainServlet extends HttpServlet {
                 session.setAttribute("trainNotFoundError", true);
             }
         }
-        getServletContext().getRequestDispatcher("/search_train.jsp").forward(req, resp);
+        resp.sendRedirect("/#search_train");
     }
 }

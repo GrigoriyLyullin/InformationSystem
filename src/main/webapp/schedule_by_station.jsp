@@ -3,23 +3,10 @@
 <div class="well">
 
     <div class="header">
-        <h2>Search train</h2>
+        <h2>Schedule by station</h2>
     </div>
 
-    <p>Enter the route and the date of the travel to choose the train: </p>
-
-    <c:choose>
-        <c:when test="${empty sessionScope.extendedForm || sessionScope.extendedForm == false}">
-            <jsp:include page="/search_train_simple_form.jsp" flush="true"/>
-        </c:when>
-        <c:when test="${sessionScope.extendedForm == true}">
-            <jsp:include page="/search_train_extended_form.jsp" flush="true"/>
-        </c:when>
-    </c:choose>
-
-    <div class="alert alert-error" id="searchTrainAlert">
-        <p>Incorrect input data. Try again.</p>
-    </div>
+    <jsp:include page="/schedule_by_station_simple_form.jsp"/>
 
     <c:choose>
         <c:when test="${not empty sessionScope.trainList}">
@@ -27,8 +14,8 @@
                 <thead>
                 <tr>
                     <th>Train number</th>
-                    <th>${sessionScope.stationFromName} departure time</th>
-                    <th>${sessionScope.stationToName} arrival time</th>
+                    <th>Arrival time</th>
+                    <th>Departure time</th>
                     <th>Buy ticket</th>
                 </tr>
                 </thead>
@@ -60,22 +47,12 @@
             </table>
         </c:when>
         <c:when test="${empty sessionScope.trainList}">
-            <c:choose>
-
-                <c:when test="${sessionScope.trainSearchingError}">
-                    <div class="alert alert-error" id="trainSearchingErrorAlert">
-                        <p>Error! Invalid input data.</p>
-                    </div>
-                </c:when>
-
-                <c:when test="${sessionScope.trainNotFoundError}">
-                    <div class="alert alert-error" id="trainNotFoundAlert">
-                        <p>Train from station "${sessionScope.stationFromName}" to "${sessionScope.stationToName}"
-                            was not found.</p>
-                    </div>
-                </c:when>
-
-            </c:choose>
+            <c:if test="${sessionScope.stationNotFound}">
+                <div class="alert alert-error">
+                    <p>Station "${sessionScope.stationName}" was not found.</p>
+                </div>
+            </c:if>
         </c:when>
     </c:choose>
+
 </div>

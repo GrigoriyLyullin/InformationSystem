@@ -4,7 +4,7 @@ import com.railwaycompany.serviceBeans.ScheduleByStation;
 import com.railwaycompany.services.ScheduleService;
 import com.railwaycompany.services.ServiceFactorySingleton;
 import com.railwaycompany.utils.DateHelper;
-import com.railwaycompany.utils.ValidationCheck;
+import com.railwaycompany.utils.ValidationHelper;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -57,12 +57,12 @@ public class SearchTrainServlet extends HttpServlet {
 //        session.setAttribute("trainNotFound", true);
 //        session.setAttribute("trainList", null);
 
-        boolean validStationFromName = ValidationCheck.isValidStationName(stationFromName);
-        boolean validStationToName = ValidationCheck.isValidStationName(stationToName);
-        boolean validDateFromStr = ValidationCheck.isValidDateStr(dateFromStr);
-        boolean validDateToStr = ValidationCheck.isValidDateStr(dateToStr);
-        boolean validTimeFromStr = ValidationCheck.isValidTimeStr(timeFromStr);
-        boolean validTimeToStr = ValidationCheck.isValidTimeStr(timeToStr);
+        boolean validStationFromName = ValidationHelper.isValidStationName(stationFromName);
+        boolean validStationToName = ValidationHelper.isValidStationName(stationToName);
+        boolean validDateFromStr = ValidationHelper.isValidDateStr(dateFromStr);
+        boolean validDateToStr = ValidationHelper.isValidDateStr(dateToStr);
+        boolean validTimeFromStr = ValidationHelper.isValidTimeStr(timeFromStr);
+        boolean validTimeToStr = ValidationHelper.isValidTimeStr(timeToStr);
 
         //Simple train search
         if (validStationFromName && validStationToName && validDateFromStr) {

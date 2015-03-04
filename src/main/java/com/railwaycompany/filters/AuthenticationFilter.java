@@ -14,68 +14,69 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import static com.railwaycompany.services.AuthenticationService.*;
+
 public class AuthenticationFilter implements Filter {
 
     /**
      * Logger for AuthenticationFilter class.
      */
-    private Logger log = Logger.getLogger(AuthenticationFilter.class.getName());
+    private static final Logger LOG = Logger.getLogger(AuthenticationFilter.class.getName());
 
+    /**
+     * Private pages initial parameter in FilterConfig.
+     */
+    private static final String PAGES_INIT_PARAM = "Private pages";
+
+    /**
+     * Private pages splitter.
+     */
+    private static final String PAGES_INIT_PARAM_SPLITTER = ";";
+
+    /**
+     * AuthenticationService using for users authentication on server.
+     */
     private AuthenticationService authenticationService;
 
+    /**
+     * List contains private pages URI.
+     */
     private List<String> privatePagesList;
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-        authenticationService = ServiceFactorySingleton.getInstance().getAuthenticationService();
-        String privatePagesStr = filterConfig.getInitParameter("Private pages");
-        String[] privatePages = privatePagesStr.split(";");
-
         privatePagesList = new ArrayList<>();
-        Collections.addAll(privatePagesList, privatePages);
+        authenticationService = ServiceFactorySingleton.getInstance().getAuthenticationService();
+        String initParameter = filterConfig.getInitParameter(PAGES_INIT_PARAM);
+        if (initParameter != null) {
+            Collections.addAll(privatePagesList, initParameter.split(PAGES_INIT_PARAM_SPLITTER));
+        }
     }
 
     @Override
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws IOException,
             ServletException {
-
         HttpServletRequest httpRequest = (HttpServletRequest) req;
-
         String requestURI = httpRequest.getRequestURI();
-        log.info("httpRequest.getRequestURI(): " + requestURI);
 
         if (privatePagesList.contains(requestURI)) {
-
             HttpServletResponse httpResponse = (HttpServletResponse) resp;
             HttpSession session = httpRequest.getSession();
             String sessionId = session.getId();
 
-            String authId = (String) session.getAttribute(AuthenticationService.AUTH_ID_ATTR);
-            if (authId != null) {
-                if (authenticationService.isAuthorized(sessionId, authId)) {
-
-                    log.log(Level.INFO, "User with session id " + sessionId + " is authorized. Authentication id " +
-                            authId + " requestURI:" + requestURI);
-
-
-                    chain.doFilter(req, resp);
-                }
+            String authId = (String) session.getAttribute(AUTH_ID_ATTR);
+            if (authId != null && authenticationService.isAuthorized(sessionId, authId)) {
+                LOG.log(Level.INFO, "User with session id " + sessionId + ", authentication id: " +
+                        authId + "is authorized. Request URI:" + requestURI);
+                chain.doFilter(req, resp);
             } else {
+                LOG.log(Level.INFO, "User with session id: " + sessionId + " is not authorized. Request URI: "
+                        + requestURI);
 
-                log.log(Level.INFO, "User with session id " + sessionId + " is not authorized requestURI: " + requestURI);
+                session.setAttribute(SIGN_IN_URL_ATTR, requestURI);
+                session.setAttribute(SIGN_IN_MSG_ATTR, getSignInMessage(requestURI));
 
-                session.setAttribute("signInUrl", requestURI);
-
-                switch (requestURI) {
-                    case "/buy_ticket":
-                        session.setAttribute("signInMessage", "buy ticket");
-                        break;
-                    case "/buy_ticket.jsp":
-                        session.setAttribute("signInMessage", "buy ticket");
-                        break;
-                }
-
-                httpResponse.sendRedirect("/");
+                httpResponse.sendRedirect(ROOT_LOCATION);
             }
         } else {
             chain.doFilter(req, resp);
@@ -85,5 +86,19 @@ public class AuthenticationFilter implements Filter {
     @Override
     public void destroy() {
 
+    }
+
+    /**
+     * Returns message depends on request URI.
+     *
+     * @param requestURI - request URI string
+     * @return Message string or null, if specified message was not found
+     */
+    private String getSignInMessage(String requestURI) {
+        String message = null;
+        if (requestURI.contains("buy_ticket")) {
+            message = "buy ticket";
+        }
+        return message;
     }
 }

@@ -3,7 +3,7 @@ package com.railwaycompany.servlets;
 import com.railwaycompany.services.ServiceFactorySingleton;
 import com.railwaycompany.services.TrainService;
 import com.railwaycompany.utils.DateHelper;
-import com.railwaycompany.utils.ValidationCheck;
+import com.railwaycompany.utils.ValidationHelper;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -44,7 +44,7 @@ public class BuyTicketServlet extends HttpServlet {
 
         log.info("User id: " + userId + " trainNumberStr: " + trainNumberStr + " stationFromName: " + stationFromName);
 
-        if (userId != null && ValidationCheck.isValidTrainNumber(trainNumberStr) && ValidationCheck
+        if (userId != null && ValidationHelper.isValidTrainNumber(trainNumberStr) && ValidationHelper
                 .isValidStationName(stationFromName)) {
             Integer trainNumber = Integer.valueOf(trainNumberStr);
             Integer trainId = trainService.getTrainId(trainNumber);

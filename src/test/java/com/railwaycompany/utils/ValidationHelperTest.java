@@ -2,15 +2,14 @@ package com.railwaycompany.utils;
 
 import org.junit.Test;
 
-import static com.railwaycompany.utils.ValidationCheck.*;
+import static com.railwaycompany.utils.ValidationHelper.*;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-public class ValidationCheckTest {
+public class ValidationHelperTest {
 
     @Test
     public void testIsValidDateStr() throws Exception {
-        // Invalid date strings
         assertFalse(isValidDateStr(null));
         assertFalse(isValidDateStr(""));
         assertFalse(isValidDateStr(" "));
@@ -22,20 +21,17 @@ public class ValidationCheckTest {
         assertFalse(isValidDateStr("2015-02-32"));
         assertFalse(isValidDateStr("2015-13-01"));
 
-        // Valid date strings
         assertTrue(isValidDateStr("2015-03-01"));
         assertTrue(isValidDateStr("2014-02-28"));
     }
 
     @Test
     public void testIsValidStationName() throws Exception {
-        // Invalid station name strings
         assertFalse(isValidStationName(null));
         assertFalse(isValidStationName(""));
         assertFalse(isValidStationName(" "));
         assertFalse(isValidStationName("     "));
 
-        // Valid station name strings
         assertTrue(isValidStationName("Kazan"));
         assertTrue(isValidStationName("Kazan-Pass"));
         assertTrue(isValidStationName("Kazan - Pass"));
@@ -47,7 +43,6 @@ public class ValidationCheckTest {
 
     @Test
     public void testIsValidTimeStr() throws Exception {
-        // Invalid time strings
         assertFalse(isValidTimeStr(null));
         assertFalse(isValidTimeStr(""));
         assertFalse(isValidTimeStr(" "));
@@ -55,7 +50,6 @@ public class ValidationCheckTest {
         assertFalse(isValidTimeStr("24:00"));
         assertFalse(isValidTimeStr("10:60"));
 
-        // Valid time strings
         assertTrue(isValidTimeStr("00:00"));
         assertTrue(isValidTimeStr("23:59"));
         assertTrue(isValidTimeStr("11:11"));
@@ -68,5 +62,28 @@ public class ValidationCheckTest {
 
         assertTrue(isValidTrainNumber("0"));
         assertTrue(isValidTrainNumber("123456789"));
+    }
+
+
+    @Test
+    public void testIsValidLogin() throws Exception {
+        assertFalse(isValidLogin(null));
+        assertFalse(isValidLogin(""));
+        assertFalse(isValidLogin("     "));
+
+        assertTrue(isValidLogin("Login123"));
+        assertTrue(isValidLogin("123456"));
+        assertTrue(isValidLogin("login"));
+    }
+
+    @Test
+    public void testIsValidPassword() throws Exception {
+        assertFalse(isValidPassword(null));
+        assertFalse(isValidPassword(""));
+        assertFalse(isValidPassword("      "));
+
+        assertTrue(isValidPassword("Password123"));
+        assertTrue(isValidPassword("123456"));
+        assertTrue(isValidPassword("password"));
     }
 }

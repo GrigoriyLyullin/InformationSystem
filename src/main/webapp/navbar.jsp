@@ -13,12 +13,14 @@
                 </ul>
                 <ul class="nav pull-right">
                     <li class="divider-vertical"></li>
-                    <c:if test="${empty sessionScope.authorizationId}">
+                    <c:if test="${empty sessionScope.authenticationId}">
                         <li><a href="${pageContext.request.contextPath}login">Sign in</a></li>
                         <li><a href="${pageContext.request.contextPath}register">Sign up</a></li>
                     </c:if>
-                    <c:if test="${not empty sessionScope.authorizationId}">
-                        <li class="pull-right"><a href="#">${sessionScope.userName} ${sessionScope.userSurname}</a></li>
+                    <c:if test="${not empty sessionScope.authenticationId}">
+                        <li class="pull-right">
+                            <a href="#">${sessionScope.userData.name} ${sessionScope.userData.surname}</a>
+                        </li>
                         <li class="pull-right"><a href="${pageContext.request.contextPath}logout">Sign out</a></li>
                     </c:if>
                 </ul>

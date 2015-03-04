@@ -2,33 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0a97a00a-bfdc-41f8-aef4-6bd013891077" name="Default" comment="">
-      <change type="DELETED" beforePath="C:\Users\Grigoriy\IdeaProjects\InformationSystem\src\main\java\com\railwaycompany\dao\GenericDAO.java" afterPath="" />
-      <change type="MOVED" beforePath="C:\Users\Grigoriy\IdeaProjects\InformationSystem\src\main\java\com\railwaycompany\dao\DaoFactory.java" afterPath="$PROJECT_DIR$/src/main/java/com/railwaycompany/dao/abstractDao/DaoFactory.java" />
-      <change type="MOVED" beforePath="C:\Users\Grigoriy\IdeaProjects\InformationSystem\src\main\java\com\railwaycompany\dao\GenericDAO.java" afterPath="$PROJECT_DIR$/src/main/java/com/railwaycompany/dao/abstractDao/GenericDAO.java" />
-      <change type="MOVED" beforePath="C:\Users\Grigoriy\IdeaProjects\InformationSystem\src\main\java\com\railwaycompany\dao\HibernateDao.java" afterPath="$PROJECT_DIR$/src/main/java/com/railwaycompany/dao/hibernateDao/HibernateDao.java" />
-      <change type="MOVED" beforePath="C:\Users\Grigoriy\IdeaProjects\InformationSystem\src\main\java\com\railwaycompany\dao\HibernateDaoFactory.java" afterPath="$PROJECT_DIR$/src/main/java/com/railwaycompany/dao/hibernateDao/HibernateDaoFactory.java" />
-      <change type="MOVED" beforePath="C:\Users\Grigoriy\IdeaProjects\InformationSystem\src\main\java\com\railwaycompany\dao\HibernateDaoFactorySingleton.java" afterPath="$PROJECT_DIR$/src/main/java/com/railwaycompany/dao/hibernateDao/HibernateDaoFactorySingleton.java" />
-      <change type="MOVED" beforePath="C:\Users\Grigoriy\IdeaProjects\InformationSystem\src\main\java\com\railwaycompany\dao\ScheduleDao.java" afterPath="$PROJECT_DIR$/src/main/java/com/railwaycompany/dao/abstractDao/ScheduleDao.java" />
-      <change type="MOVED" beforePath="C:\Users\Grigoriy\IdeaProjects\InformationSystem\src\main\java\com\railwaycompany\dao\ScheduleHibernateDao.java" afterPath="$PROJECT_DIR$/src/main/java/com/railwaycompany/dao/hibernateDao/ScheduleHibernateDao.java" />
-      <change type="MOVED" beforePath="C:\Users\Grigoriy\IdeaProjects\InformationSystem\src\main\java\com\railwaycompany\dao\StationDao.java" afterPath="$PROJECT_DIR$/src/main/java/com/railwaycompany/dao/abstractDao/StationDao.java" />
-      <change type="MOVED" beforePath="C:\Users\Grigoriy\IdeaProjects\InformationSystem\src\main\java\com\railwaycompany\dao\StationHibernateDao.java" afterPath="$PROJECT_DIR$/src/main/java/com/railwaycompany/dao/hibernateDao/StationHibernateDao.java" />
-      <change type="MOVED" beforePath="C:\Users\Grigoriy\IdeaProjects\InformationSystem\src\main\java\com\railwaycompany\dao\TicketDao.java" afterPath="$PROJECT_DIR$/src/main/java/com/railwaycompany/dao/abstractDao/TicketDao.java" />
-      <change type="MOVED" beforePath="C:\Users\Grigoriy\IdeaProjects\InformationSystem\src\main\java\com\railwaycompany\dao\TicketHibernateDao.java" afterPath="$PROJECT_DIR$/src/main/java/com/railwaycompany/dao/hibernateDao/TicketHibernateDao.java" />
-      <change type="MOVED" beforePath="C:\Users\Grigoriy\IdeaProjects\InformationSystem\src\main\java\com\railwaycompany\dao\TrainDao.java" afterPath="$PROJECT_DIR$/src/main/java/com/railwaycompany/dao/abstractDao/TrainDao.java" />
-      <change type="MOVED" beforePath="C:\Users\Grigoriy\IdeaProjects\InformationSystem\src\main\java\com\railwaycompany\dao\TrainHibernateDao.java" afterPath="$PROJECT_DIR$/src/main/java/com/railwaycompany/dao/hibernateDao/TrainHibernateDao.java" />
-      <change type="MOVED" beforePath="C:\Users\Grigoriy\IdeaProjects\InformationSystem\src\main\java\com\railwaycompany\dao\UserDao.java" afterPath="$PROJECT_DIR$/src/main/java/com/railwaycompany/dao/abstractDao/UserDao.java" />
-      <change type="MOVED" beforePath="C:\Users\Grigoriy\IdeaProjects\InformationSystem\src\main\java\com\railwaycompany\dao\UserHibernateDao.java" afterPath="$PROJECT_DIR$/src/main/java/com/railwaycompany/dao/hibernateDao/UserHibernateDao.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/railwaycompany/utils/HashHelper.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/railwaycompany/serviceBeans/UserData.java" />
+      <change type="MOVED" beforePath="C:\Users\Grigoriy\IdeaProjects\InformationSystem\src\main\java\com\railwaycompany\services\ScheduleByStation.java" afterPath="$PROJECT_DIR$/src/main/java/com/railwaycompany/serviceBeans/ScheduleByStation.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/railwaycompany/services/AuthenticationService.java" afterPath="$PROJECT_DIR$/src/main/java/com/railwaycompany/services/AuthenticationService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/railwaycompany/dao/HibernateDaoFactorySingletonTest.java" afterPath="$PROJECT_DIR$/src/test/java/com/railwaycompany/dao/HibernateDaoFactorySingletonTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/railwaycompany/services/AuthenticationServiceTest.java" afterPath="$PROJECT_DIR$/src/test/java/com/railwaycompany/services/AuthenticationServiceTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/railwaycompany/servlets/LoginServlet.java" afterPath="$PROJECT_DIR$/src/main/java/com/railwaycompany/servlets/LoginServlet.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/railwaycompany/servlets/ScheduleByStationServlet.java" afterPath="$PROJECT_DIR$/src/main/java/com/railwaycompany/servlets/ScheduleByStationServlet.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/railwaycompany/dao/ScheduleDaoTest.java" afterPath="$PROJECT_DIR$/src/test/java/com/railwaycompany/dao/ScheduleDaoTest.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/railwaycompany/services/ScheduleService.java" afterPath="$PROJECT_DIR$/src/main/java/com/railwaycompany/services/ScheduleService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/railwaycompany/services/ServiceFactoryImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/railwaycompany/services/ServiceFactoryImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/railwaycompany/dao/StationDaoTest.java" afterPath="$PROJECT_DIR$/src/test/java/com/railwaycompany/dao/StationDaoTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/railwaycompany/services/StationService.java" afterPath="$PROJECT_DIR$/src/main/java/com/railwaycompany/services/StationService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/railwaycompany/services/TrainService.java" afterPath="$PROJECT_DIR$/src/main/java/com/railwaycompany/services/TrainService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/railwaycompany/dao/UserDaoTest.java" afterPath="$PROJECT_DIR$/src/test/java/com/railwaycompany/dao/UserDaoTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/schedule_by_station.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/schedule_by_station.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/railwaycompany/servlets/SearchTrainServlet.java" afterPath="$PROJECT_DIR$/src/main/java/com/railwaycompany/servlets/SearchTrainServlet.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/login.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/login.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/navbar.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/navbar.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path=".idea/dataSources.local.xml" />
@@ -91,91 +76,56 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="error.jsp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/error.jsp">
+      <file leaf-file-name="LoginServlet.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/railwaycompany/servlets/LoginServlet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-14.384615" vertical-offset="0" max-vertical-offset="578">
-              <caret line="22" column="17" selection-start-line="22" selection-start-column="17" selection-end-line="22" selection-end-column="17" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="561" max-vertical-offset="1275">
+              <caret line="68" column="61" selection-start-line="68" selection-start-column="61" selection-end-line="68" selection-end-column="61" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DaoFactory.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/railwaycompany/dao/abstractDao/DaoFactory.java">
+      <file leaf-file-name="ScheduleByStation.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/railwaycompany/serviceBeans/ScheduleByStation.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="901">
-              <caret line="38" column="21" selection-start-line="38" selection-start-column="21" selection-end-line="38" selection-end-column="21" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="17" max-vertical-offset="646">
+              <caret line="4" column="30" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="30" />
+              <folding>
+                <element signature="e#459#460#0" expanded="true" />
+                <element signature="e#493#494#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AuthenticationService.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/railwaycompany/services/AuthenticationService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.5176282" vertical-offset="0" max-vertical-offset="2176">
+              <caret line="19" column="63" selection-start-line="19" selection-start-column="47" selection-end-line="19" selection-end-column="63" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HibernateDaoFactorySingletonTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/com/railwaycompany/dao/HibernateDaoFactorySingletonTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="425">
+              <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GenericDAO.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/railwaycompany/dao/abstractDao/GenericDAO.java">
+      <file leaf-file-name="index.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/index.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.05448718" vertical-offset="119" max-vertical-offset="782">
-              <caret line="9" column="27" selection-start-line="9" selection-start-column="27" selection-end-line="9" selection-end-column="27" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="StationService.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/railwaycompany/services/StationService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="391">
-              <caret line="12" column="7" selection-start-line="12" selection-start-column="7" selection-end-line="12" selection-end-column="7" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="schedule_by_station.jsp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/schedule_by_station.jsp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.7090907" vertical-offset="502" max-vertical-offset="1071">
-              <caret line="48" column="55" selection-start-line="48" selection-start-column="55" selection-end-line="48" selection-end-column="55" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="buy_ticket.jsp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/buy_ticket.jsp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.0384614" vertical-offset="397" max-vertical-offset="1020">
-              <caret line="28" column="60" selection-start-line="28" selection-start-column="60" selection-end-line="28" selection-end-column="60" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AuthenticationFilter.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/railwaycompany/filters/AuthenticationFilter.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="282" max-vertical-offset="1411">
-              <caret line="34" column="8" selection-start-line="34" selection-start-column="8" selection-end-line="34" selection-end-column="8" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="schedule_by_station_simple_form.jsp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/schedule_by_station_simple_form.jsp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.0384614" vertical-offset="91" max-vertical-offset="391">
-              <caret line="10" column="51" selection-start-line="10" selection-start-column="51" selection-end-line="10" selection-end-column="51" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="navbar.jsp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/navbar.jsp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-6.5" vertical-offset="188" max-vertical-offset="561">
-              <caret line="21" column="90" selection-start-line="21" selection-start-column="90" selection-end-line="21" selection-end-column="90" />
+            <state vertical-scroll-proportion="-12.423077" vertical-offset="0" max-vertical-offset="1020">
+              <caret line="19" column="41" selection-start-line="19" selection-start-column="41" selection-end-line="19" selection-end-column="41" />
               <folding />
             </state>
           </provider>
@@ -184,8 +134,52 @@
       <file leaf-file-name="login.jsp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/login.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-1.9615384" vertical-offset="0" max-vertical-offset="561">
-              <caret line="3" column="127" selection-start-line="3" selection-start-column="127" selection-end-line="3" selection-end-column="127" />
+            <state vertical-scroll-proportion="-16.346153" vertical-offset="0" max-vertical-offset="612">
+              <caret line="25" column="25" selection-start-line="25" selection-start-column="25" selection-end-line="25" selection-end-column="25" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="navbar.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/navbar.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-12.423077" vertical-offset="0" max-vertical-offset="595">
+              <caret line="19" column="73" selection-start-line="19" selection-start-column="57" selection-end-line="19" selection-end-column="73" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ScheduleDaoTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/com/railwaycompany/dao/ScheduleDaoTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1156">
+              <caret line="25" column="77" selection-start-line="25" selection-start-column="7" selection-end-line="25" selection-end-column="77" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HashHelper.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/railwaycompany/utils/HashHelper.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="532" max-vertical-offset="1156">
+              <caret line="33" column="50" selection-start-line="33" selection-start-column="50" selection-end-line="33" selection-end-column="50" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1527#1528#0" expanded="true" />
+                <element signature="e#1592#1593#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LogoutServlet.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/railwaycompany/servlets/LogoutServlet.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="714">
+              <caret line="42" column="5" selection-start-line="42" selection-start-column="5" selection-end-line="42" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -206,12 +200,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/railwaycompany/dao/GenericDAO.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/private/secret.jsp" />
-        <option value="$PROJECT_DIR$/src/main/java/com/railwaycompany/utils/ValidationCheck.java" />
-        <option value="$PROJECT_DIR$/src/test/java/com/railwaycompany/utils/ValidationCheckTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/railwaycompany/services/ServiceFactory.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/railwaycompany/services/ServiceFactoryImpl.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/railwaycompany/utils/DateHelperTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/railwaycompany/dao/TrainDao.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/railwaycompany/dao/TrainHibernateDao.java" />
@@ -224,7 +212,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/railwaycompany/dao/ScheduleHibernateDao.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/private/404_error.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/private/buy_ticket.jsp" />
-        <option value="$PROJECT_DIR$/src/main/java/com/railwaycompany/services/AuthenticationService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/railwaycompany/utils/DateHelper.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/railwaycompany/servlets/BuyTicketServlet.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/search_train_form.jsp" />
@@ -233,22 +220,18 @@
         <option value="$PROJECT_DIR$/src/main/webapp/login_page.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/schedule_by_station_form.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/about_us.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/index.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/style/index.css" />
         <option value="$PROJECT_DIR$/src/main/webapp/js/index.js" />
         <option value="$PROJECT_DIR$/src/main/java/com/railwaycompany/servlets/SearchTrainServlet.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/railwaycompany/services/ScheduleService.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/railwaycompany/servlets/LoginServlet.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/style/error.css" />
         <option value="$PROJECT_DIR$/src/main/webapp/404_error.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/style/buy_ticket.css" />
         <option value="$PROJECT_DIR$/src/main/webapp/error.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/footer.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/com/railwaycompany/filters/AuthenticationFilter.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/login.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/schedule_by_station_simple_form.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/navbar.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/buy_ticket.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/search_train.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/schedule_by_station.jsp" />
@@ -257,6 +240,17 @@
         <option value="$PROJECT_DIR$/src/main/java/com/railwaycompany/dao/abstractDao/DaoFactory.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/railwaycompany/dao/abstractDao/GenericDao.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/railwaycompany/dao/abstractDao/GenericDAO.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/railwaycompany/serviceBeans/ScheduleByStation.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/railwaycompany/serviceBeans/UserBean.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/railwaycompany/serviceBeans/UserDataBean.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/railwaycompany/serviceBeans/UserData.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/railwaycompany/servlets/LoginServlet.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/railwaycompany/utils/HashHelper.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/railwaycompany/services/AuthenticationServiceTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/railwaycompany/services/AuthenticationService.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/index.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/navbar.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/login.jsp" />
       </list>
     </option>
   </component>
@@ -396,6 +390,36 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="railwaycompany" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="InformationSystem" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="InformationSystem" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="railwaycompany" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="services" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -663,6 +687,36 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="serviceBeans" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="InformationSystem" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="InformationSystem" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="railwaycompany" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="filters" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -791,6 +845,7 @@
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.includeInheritedMembers" value="false" />
     <property name="restartRequiresConfirmation" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../SecurityChecker" />
+    <property name="SearchEverywhereHistoryKey" value="authId&#9;PSI&#9;JAVA://sun.security.x509.AuthorityKeyIdentifierExtension" />
   </component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
@@ -822,34 +877,6 @@
     </key>
   </component>
   <component name="RunManager" selected="Tomcat Server.TomcatLocal">
-    <configuration default="false" name="ScheduleDaoTest.testGetSchedulesByStationIdAndArrivalDate" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="com.railwaycompany.dao.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <module name="InformationSystem" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="com.railwaycompany.dao" />
-      <option name="MAIN_CLASS_NAME" value="com.railwaycompany.dao.ScheduleDaoTest" />
-      <option name="METHOD_NAME" value="testGetSchedulesByStationIdAndArrivalDate" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <envs />
-      <patterns />
-      <RunnerSettings RunnerId="Run" />
-      <ConfigurationWrapper RunnerId="Run" />
-      <method />
-    </configuration>
     <configuration default="false" name="ScheduleDaoTest.testGetScheduleByStationsIdAndDates" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -948,6 +975,34 @@
       <option name="MAIN_CLASS_NAME" />
       <option name="METHOD_NAME" />
       <option name="TEST_OBJECT" value="package" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
+    <configuration default="false" name="AuthenticationServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="com.railwaycompany.services.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="InformationSystem" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="com.railwaycompany.services" />
+      <option name="MAIN_CLASS_NAME" value="com.railwaycompany.services.AuthenticationServiceTest" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
@@ -1301,19 +1356,19 @@
     </configuration>
     <list size="6">
       <item index="0" class="java.lang.String" itemvalue="Tomcat Server.TomcatLocal" />
-      <item index="1" class="java.lang.String" itemvalue="JUnit.ScheduleDaoTest.testGetSchedulesByStationIdAndArrivalDate" />
-      <item index="2" class="java.lang.String" itemvalue="JUnit.ScheduleDaoTest.testGetScheduleByStationsIdAndDates" />
-      <item index="3" class="java.lang.String" itemvalue="JUnit.ValidationCheckTest.testIsValidTrainNumber" />
-      <item index="4" class="java.lang.String" itemvalue="JUnit.DateHelperTest.testIsEnoughTime" />
-      <item index="5" class="java.lang.String" itemvalue="JUnit.com.railwaycompany in InformationSystem" />
+      <item index="1" class="java.lang.String" itemvalue="JUnit.ScheduleDaoTest.testGetScheduleByStationsIdAndDates" />
+      <item index="2" class="java.lang.String" itemvalue="JUnit.ValidationCheckTest.testIsValidTrainNumber" />
+      <item index="3" class="java.lang.String" itemvalue="JUnit.DateHelperTest.testIsEnoughTime" />
+      <item index="4" class="java.lang.String" itemvalue="JUnit.com.railwaycompany in InformationSystem" />
+      <item index="5" class="java.lang.String" itemvalue="JUnit.AuthenticationServiceTest" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="JUnit.com.railwaycompany in InformationSystem" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.DateHelperTest.testIsEnoughTime" />
-        <item index="2" class="java.lang.String" itemvalue="JUnit.ValidationCheckTest.testIsValidTrainNumber" />
-        <item index="3" class="java.lang.String" itemvalue="JUnit.ScheduleDaoTest.testGetScheduleByStationsIdAndDates" />
-        <item index="4" class="java.lang.String" itemvalue="JUnit.ScheduleDaoTest.testGetSchedulesByStationIdAndArrivalDate" />
+        <item index="0" class="java.lang.String" itemvalue="JUnit.AuthenticationServiceTest" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.com.railwaycompany in InformationSystem" />
+        <item index="2" class="java.lang.String" itemvalue="JUnit.DateHelperTest.testIsEnoughTime" />
+        <item index="3" class="java.lang.String" itemvalue="JUnit.ValidationCheckTest.testIsValidTrainNumber" />
+        <item index="4" class="java.lang.String" itemvalue="JUnit.ScheduleDaoTest.testGetScheduleByStationsIdAndDates" />
       </list>
     </recent_temporary>
   </component>
@@ -1343,7 +1398,7 @@
       <workItem from="1425398896033" duration="224000" />
       <workItem from="1425399345993" duration="10153000" />
       <workItem from="1425452143659" duration="5549000" />
-      <workItem from="1425457717399" duration="12579000" />
+      <workItem from="1425457717399" duration="17627000" />
     </task>
     <task id="LOCAL-00001" summary="GenericDao has added">
       <created>1424344776704</created>
@@ -1513,11 +1568,17 @@
       <option name="project" value="LOCAL" />
       <updated>1425471989699</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="Dao package refactoring">
+      <created>1425475751032</created>
+      <option name="number" value="00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1425475751032</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="217435000" />
+    <option name="totallyTimeSpent" value="222483000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -1619,7 +1680,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="14" />
+      <option name="time" value="15" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1628,48 +1689,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/railwaycompany/utils/ValidationCheckTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.5719178" vertical-offset="0" max-vertical-offset="1241">
-          <caret line="58" column="44" selection-start-line="58" selection-start-column="44" selection-end-line="58" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/railwaycompany/utils/ValidationCheck.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7089041" vertical-offset="164" max-vertical-offset="748">
-          <caret line="34" column="26" selection-start-line="34" selection-start-column="26" selection-end-line="34" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/railwaycompany/services/ServiceFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.29109588" vertical-offset="0" max-vertical-offset="584">
-          <caret line="10" column="35" selection-start-line="10" selection-start-column="35" selection-end-line="10" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/railwaycompany/services/ServiceFactoryImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.65068495" vertical-offset="232" max-vertical-offset="816">
-          <caret line="43" column="27" selection-start-line="43" selection-start-column="27" selection-end-line="43" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/railwaycompany/dao/abstractDao/TrainDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.11643836" vertical-offset="0" max-vertical-offset="584">
-          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="6" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/railwaycompany/dao/hibernateDao/HibernateDaoFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.32534248" vertical-offset="887" max-vertical-offset="1479">
-          <caret line="43" column="8" selection-start-line="43" selection-start-column="8" selection-end-line="43" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/railwaycompany/dao/hibernateDao/TrainHibernateDao.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="765">
@@ -1858,25 +1877,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/railwaycompany/services/ScheduleService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1904">
-          <caret line="14" column="60" selection-start-line="14" selection-start-column="60" selection-end-line="14" selection-end-column="60" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/railwaycompany/services/ScheduleByStation.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="17" max-vertical-offset="646">
-          <caret line="23" column="16" selection-start-line="23" selection-start-column="16" selection-end-line="23" selection-end-column="16" />
-          <folding>
-            <element signature="e#455#456#0" expanded="false" />
-            <element signature="e#489#490#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/railwaycompany/servlets/SearchTrainServlet.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="754" max-vertical-offset="1462">
@@ -1893,42 +1893,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/index.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7675585" vertical-offset="0" max-vertical-offset="1020">
-          <caret line="27" column="24" selection-start-line="27" selection-start-column="24" selection-end-line="27" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="555" max-vertical-offset="1547">
           <caret line="56" column="53" selection-start-line="56" selection-start-column="53" selection-end-line="56" selection-end-column="53" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/railwaycompany/services/AuthenticationService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3230">
-          <caret line="21" column="43" selection-start-line="21" selection-start-column="31" selection-end-line="21" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/railwaycompany/servlets/LogoutServlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="714">
-          <caret line="42" column="5" selection-start-line="42" selection-start-column="5" selection-end-line="42" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/railwaycompany/servlets/LoginServlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="719" max-vertical-offset="1343">
-          <caret line="73" column="68" selection-start-line="73" selection-start-column="68" selection-end-line="73" selection-end-column="68" />
           <folding />
         </state>
       </provider>
@@ -1965,58 +1933,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/railwaycompany/filters/AuthenticationFilter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="282" max-vertical-offset="1411">
-          <caret line="34" column="8" selection-start-line="34" selection-start-column="8" selection-end-line="34" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/login.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.9615384" vertical-offset="0" max-vertical-offset="561">
-          <caret line="3" column="127" selection-start-line="3" selection-start-column="127" selection-end-line="3" selection-end-column="127" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/schedule_by_station_simple_form.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.0384614" vertical-offset="91" max-vertical-offset="391">
-          <caret line="10" column="51" selection-start-line="10" selection-start-column="51" selection-end-line="10" selection-end-column="51" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/navbar.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.5" vertical-offset="188" max-vertical-offset="561">
-          <caret line="21" column="90" selection-start-line="21" selection-start-column="90" selection-end-line="21" selection-end-column="90" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/buy_ticket.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.0384614" vertical-offset="397" max-vertical-offset="1020">
-          <caret line="28" column="60" selection-start-line="28" selection-start-column="60" selection-end-line="28" selection-end-column="60" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/search_train.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-3.2307692" vertical-offset="732" max-vertical-offset="1462">
           <caret line="48" column="84" selection-start-line="48" selection-start-column="84" selection-end-line="48" selection-end-column="84" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/schedule_by_station.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.7090907" vertical-offset="502" max-vertical-offset="1071">
-          <caret line="48" column="55" selection-start-line="48" selection-start-column="55" selection-end-line="48" selection-end-column="55" />
           <folding />
         </state>
       </provider>
@@ -2031,24 +1951,48 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/error.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-14.384615" vertical-offset="0" max-vertical-offset="578">
+        <state vertical-scroll-proportion="0.62541807" vertical-offset="0" max-vertical-offset="598">
           <caret line="22" column="17" selection-start-line="22" selection-start-column="17" selection-end-line="22" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/railwaycompany/dao/abstractDao/DaoFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="901">
-          <caret line="38" column="21" selection-start-line="38" selection-start-column="21" selection-end-line="38" selection-end-column="21" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/railwaycompany/services/StationService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="391">
+        <state vertical-scroll-proportion="0.21794872" vertical-offset="0" max-vertical-offset="624">
           <caret line="12" column="7" selection-start-line="12" selection-start-column="7" selection-end-line="12" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/schedule_by_station.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5735786" vertical-offset="473" max-vertical-offset="1071">
+          <caret line="48" column="55" selection-start-line="48" selection-start-column="55" selection-end-line="48" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/buy_ticket.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.13504274" vertical-offset="397" max-vertical-offset="1020">
+          <caret line="28" column="60" selection-start-line="28" selection-start-column="60" selection-end-line="28" selection-end-column="60" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/railwaycompany/filters/AuthenticationFilter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.1474359" vertical-offset="282" max-vertical-offset="1411">
+          <caret line="34" column="8" selection-start-line="34" selection-start-column="8" selection-end-line="34" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/schedule_by_station_simple_form.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.2905983" vertical-offset="0" max-vertical-offset="585">
+          <caret line="10" column="51" selection-start-line="10" selection-start-column="51" selection-end-line="10" selection-end-column="51" />
           <folding />
         </state>
       </provider>
@@ -2058,6 +2002,138 @@
         <state vertical-scroll-proportion="0.05448718" vertical-offset="119" max-vertical-offset="782">
           <caret line="9" column="27" selection-start-line="9" selection-start-column="27" selection-end-line="9" selection-end-column="27" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/railwaycompany/serviceBeans/UserData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.46314102" vertical-offset="0" max-vertical-offset="624">
+          <caret line="25" column="15" selection-start-line="25" selection-start-column="15" selection-end-line="25" selection-end-column="15" />
+          <folding>
+            <element signature="e#414#415#0" expanded="true" />
+            <element signature="e#444#445#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/railwaycompany/utils/HashHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="532" max-vertical-offset="1156">
+          <caret line="33" column="50" selection-start-line="33" selection-start-column="50" selection-end-line="33" selection-end-column="50" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1527#1528#0" expanded="true" />
+            <element signature="e#1592#1593#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_31/jre/lib/rt.jar!/sun/security/x509/AuthorityKeyIdentifierExtension.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.17028381" vertical-offset="0" max-vertical-offset="3604">
+          <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/railwaycompany/dao/ScheduleDaoTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1156">
+          <caret line="25" column="77" selection-start-line="25" selection-start-column="7" selection-end-line="25" selection-end-column="77" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/railwaycompany/dao/abstractDao/DaoFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.13621795" vertical-offset="0" max-vertical-offset="901">
+          <caret line="5" column="17" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/railwaycompany/services/AuthenticationServiceTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.38141027" vertical-offset="0" max-vertical-offset="1224">
+          <caret line="18" column="15" selection-start-line="18" selection-start-column="15" selection-end-line="18" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/railwaycompany/services/ScheduleService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.02724359" vertical-offset="68" max-vertical-offset="1904">
+          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/railwaycompany/serviceBeans/ScheduleByStation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="17" max-vertical-offset="646">
+          <caret line="4" column="30" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="30" />
+          <folding>
+            <element signature="e#459#460#0" expanded="true" />
+            <element signature="e#493#494#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/railwaycompany/servlets/LogoutServlet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="714">
+          <caret line="42" column="5" selection-start-line="42" selection-start-column="5" selection-end-line="42" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/railwaycompany/servlets/LoginServlet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="561" max-vertical-offset="1275">
+          <caret line="68" column="61" selection-start-line="68" selection-start-column="61" selection-end-line="68" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/railwaycompany/dao/HibernateDaoFactorySingletonTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="425">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/navbar.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-12.423077" vertical-offset="0" max-vertical-offset="595">
+          <caret line="19" column="73" selection-start-line="19" selection-start-column="57" selection-end-line="19" selection-end-column="73" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/index.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-12.423077" vertical-offset="0" max-vertical-offset="1020">
+          <caret line="19" column="41" selection-start-line="19" selection-start-column="41" selection-end-line="19" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/login.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-16.346153" vertical-offset="0" max-vertical-offset="612">
+          <caret line="25" column="25" selection-start-line="25" selection-start-column="25" selection-end-line="25" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/railwaycompany/services/AuthenticationService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5176282" vertical-offset="0" max-vertical-offset="2176">
+          <caret line="19" column="63" selection-start-line="19" selection-start-column="47" selection-end-line="19" selection-end-column="63" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

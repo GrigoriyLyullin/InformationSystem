@@ -1,4 +1,4 @@
-package com.railwaycompany.services;
+package com.railwaycompany.serviceBeans;
 
 import java.util.Date;
 

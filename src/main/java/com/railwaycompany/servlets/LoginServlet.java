@@ -1,5 +1,6 @@
 package com.railwaycompany.servlets;
 
+import com.railwaycompany.serviceBeans.UserData;
 import com.railwaycompany.services.AuthenticationService;
 import com.railwaycompany.services.ServiceFactory;
 import com.railwaycompany.services.ServiceFactorySingleton;
@@ -47,8 +48,8 @@ public class LoginServlet extends HttpServlet {
         session.setAttribute("signInMessage", null);
 
         String sessionId = session.getId();
-        String authId = authenticationService.signIn(sessionId, login, password);
-        if (authId == null) {
+        String authenticationId = authenticationService.signIn(sessionId, login, password);
+        if (authenticationId == null) {
             log.log(Level.INFO, "User try to sign in with login: \"" + login + "\" and password: \"" + password + "\"");
 
             session.setAttribute("signInError", true);
@@ -62,14 +63,10 @@ public class LoginServlet extends HttpServlet {
             session.setAttribute("signInError", false);
             session.setAttribute("signIn", false);
 
-            Integer userId = authenticationService.getUserId(sessionId, authId);
-            String userName = authenticationService.getUserName(sessionId, authId);
-            String userSurname = authenticationService.getUserSurname(sessionId, authId);
+            UserData userData = authenticationService.getUserData(sessionId, authenticationId);
 
-            session.setAttribute(AuthenticationService.AUTH_ID_ATTR, authId);
-            session.setAttribute(AuthenticationService.USER_ID_ATTR, userId);
-            session.setAttribute(AuthenticationService.USER_NAME_ATTR, userName);
-            session.setAttribute(AuthenticationService.USER_SURNAME_ATTR, userSurname);
+            session.setAttribute(AuthenticationService.AUTH_ID_ATTR, authenticationId);
+            session.setAttribute(AuthenticationService.USER_DATA_ATTR, userData);
 
             String signUpUrl = (String) session.getAttribute("signInUrl");
             if (signUpUrl != null) {

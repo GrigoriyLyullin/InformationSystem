@@ -1,6 +1,6 @@
 package com.railwaycompany.servlets;
 
-import com.railwaycompany.services.ScheduleByStation;
+import com.railwaycompany.serviceBeans.ScheduleByStation;
 import com.railwaycompany.services.ScheduleService;
 import com.railwaycompany.services.ServiceFactorySingleton;
 import com.railwaycompany.utils.ValidationCheck;

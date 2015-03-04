@@ -16,7 +16,7 @@
     <jsp:include page="/navbar.jsp"/>
     <div class="row">
         <div class="span12 img-rounded" id="jumbotron">
-            <c:if test="${empty sessionScope.authorizationId}">
+            <c:if test="${empty sessionScope.authenticationId}">
                 <jsp:include page="/login.jsp"/>
             </c:if>
         </div>

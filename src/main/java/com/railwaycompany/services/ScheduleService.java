@@ -5,6 +5,7 @@ import com.railwaycompany.dao.abstractDao.ScheduleDao;
 import com.railwaycompany.entities.Schedule;
 import com.railwaycompany.entities.Station;
 import com.railwaycompany.entities.Train;
+import com.railwaycompany.serviceBeans.ScheduleByStation;
 
 import java.util.ArrayList;
 import java.util.Date;

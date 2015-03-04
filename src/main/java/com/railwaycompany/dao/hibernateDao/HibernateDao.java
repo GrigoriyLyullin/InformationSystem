@@ -1,4 +1,6 @@
-package com.railwaycompany.dao;
+package com.railwaycompany.dao.hibernateDao;
+
+import com.railwaycompany.dao.abstractDao.GenericDAO;
 
 import javax.persistence.EntityExistsException;
 import javax.persistence.EntityManager;
@@ -8,7 +10,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * HibernateDao implementation of GenericDao.
+ * HibernateDao implementation of GenericDAO.
  *
  * @param <T> Entity type.
  */

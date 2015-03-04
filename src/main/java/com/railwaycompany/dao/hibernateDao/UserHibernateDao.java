@@ -1,5 +1,6 @@
-package com.railwaycompany.dao;
+package com.railwaycompany.dao.hibernateDao;
 
+import com.railwaycompany.dao.abstractDao.UserDao;
 import com.railwaycompany.entities.User;
 
 import javax.persistence.EntityManager;

@@ -1,7 +1,7 @@
 package com.railwaycompany.services;
 
-import com.railwaycompany.dao.DaoFactory;
-import com.railwaycompany.dao.UserDao;
+import com.railwaycompany.dao.abstractDao.DaoFactory;
+import com.railwaycompany.dao.abstractDao.UserDao;
 import com.railwaycompany.entities.User;
 
 import java.security.MessageDigest;
@@ -35,7 +35,7 @@ public class AuthenticationService {
     private static Logger log = Logger.getLogger(AuthenticationService.class.getName());
 
     /**
-     * GenericDao<User> implementation for work with User entities.
+     * GenericDAO<User> implementation for work with User entities.
      */
     private UserDao userDao;
 

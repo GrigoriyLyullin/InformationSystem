@@ -1,5 +1,7 @@
 package com.railwaycompany.dao;
 
+import com.railwaycompany.dao.abstractDao.DaoFactory;
+import com.railwaycompany.dao.hibernateDao.HibernateDaoFactorySingleton;
 import org.junit.Assert;
 import org.junit.Test;
 

@@ -1,4 +1,4 @@
-package com.railwaycompany.dao;
+package com.railwaycompany.dao.abstractDao;
 
 import java.io.Serializable;
 

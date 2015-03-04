@@ -1,9 +1,9 @@
-package com.railwaycompany.dao;
+package com.railwaycompany.dao.abstractDao;
 
 import com.railwaycompany.entities.Ticket;
 
 /**
- * GenericDao<Ticket> interface for work with Ticket entities.
+ * GenericDAO<Ticket> interface for work with Ticket entities.
  */
 public interface TicketDao extends GenericDAO<Ticket> {
 

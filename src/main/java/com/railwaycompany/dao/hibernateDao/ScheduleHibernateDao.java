@@ -1,5 +1,6 @@
-package com.railwaycompany.dao;
+package com.railwaycompany.dao.hibernateDao;
 
+import com.railwaycompany.dao.abstractDao.ScheduleDao;
 import com.railwaycompany.entities.Schedule;
 import com.railwaycompany.entities.Station;
 

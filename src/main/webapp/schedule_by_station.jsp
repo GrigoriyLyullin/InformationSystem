@@ -9,7 +9,7 @@
     <jsp:include page="/schedule_by_station_simple_form.jsp"/>
 
     <c:choose>
-        <c:when test="${not empty sessionScope.trainList}">
+        <c:when test="${not empty sessionScope.scheduleList}">
             <table class="table table-bordered">
                 <thead>
                 <tr>
@@ -20,7 +20,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach items="${sessionScope.trainList}" var="train">
+                <c:forEach items="${sessionScope.scheduleList}" var="train">
                     <tr>
                         <td>${train.trainNumber}</td>
                         <td>${train.timeArrival}</td>
@@ -46,7 +46,7 @@
                 </tbody>
             </table>
         </c:when>
-        <c:when test="${empty sessionScope.trainList}">
+        <c:when test="${empty sessionScope.scheduleList}">
             <c:if test="${sessionScope.stationNotFound}">
                 <div class="alert alert-error">
                     <p>Station "${sessionScope.stationName}" was not found.</p>

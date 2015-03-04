@@ -1,7 +1,7 @@
 package com.railwaycompany.services;
 
-import com.railwaycompany.dao.DaoFactory;
-import com.railwaycompany.dao.HibernateDaoFactorySingleton;
+import com.railwaycompany.dao.abstractDao.DaoFactory;
+import com.railwaycompany.dao.hibernateDao.HibernateDaoFactorySingleton;
 
 public class ServiceFactoryImpl implements ServiceFactory {
 

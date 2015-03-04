@@ -1,33 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0a97a00a-bfdc-41f8-aef4-6bd013891077" name="Default" comment="UI has been changed">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/img/ticket.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/style/buy_ticket.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/footer.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/schedule_by_station.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/schedule_by_station_simple_form.jsp" />
-      <change type="DELETED" beforePath="C:\Users\Grigoriy\IdeaProjects\InformationSystem\src\main\webapp\img\entry.jpg" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Grigoriy\IdeaProjects\InformationSystem\src\main\webapp\login_error.jsp" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Grigoriy\IdeaProjects\InformationSystem\src\main\webapp\login_page.jsp" afterPath="" />
-      <change type="MOVED" beforePath="C:\Users\Grigoriy\IdeaProjects\InformationSystem\src\main\webapp\404_error.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/error.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/img/dead_end.jpg" afterPath="$PROJECT_DIR$/src/main/webapp/img/dead_end.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/img/train.jpg" afterPath="$PROJECT_DIR$/src/main/webapp/img/train.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/railwaycompany/filters/AuthenticationFilter.java" afterPath="$PROJECT_DIR$/src/main/java/com/railwaycompany/filters/AuthenticationFilter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/InformationSystem.iml" afterPath="$PROJECT_DIR$/InformationSystem.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/railwaycompany/servlets/LoginServlet.java" afterPath="$PROJECT_DIR$/src/main/java/com/railwaycompany/servlets/LoginServlet.java" />
+    <list default="true" id="0a97a00a-bfdc-41f8-aef4-6bd013891077" name="Default" comment="">
+      <change type="DELETED" beforePath="C:\Users\Grigoriy\IdeaProjects\InformationSystem\src\main\java\com\railwaycompany\dao\GenericDAO.java" afterPath="" />
+      <change type="MOVED" beforePath="C:\Users\Grigoriy\IdeaProjects\InformationSystem\src\main\java\com\railwaycompany\dao\DaoFactory.java" afterPath="$PROJECT_DIR$/src/main/java/com/railwaycompany/dao/abstractDao/DaoFactory.java" />
+      <change type="MOVED" beforePath="C:\Users\Grigoriy\IdeaProjects\InformationSystem\src\main\java\com\railwaycompany\dao\GenericDAO.java" afterPath="$PROJECT_DIR$/src/main/java/com/railwaycompany/dao/abstractDao/GenericDAO.java" />
+      <change type="MOVED" beforePath="C:\Users\Grigoriy\IdeaProjects\InformationSystem\src\main\java\com\railwaycompany\dao\HibernateDao.java" afterPath="$PROJECT_DIR$/src/main/java/com/railwaycompany/dao/hibernateDao/HibernateDao.java" />
+      <change type="MOVED" beforePath="C:\Users\Grigoriy\IdeaProjects\InformationSystem\src\main\java\com\railwaycompany\dao\HibernateDaoFactory.java" afterPath="$PROJECT_DIR$/src/main/java/com/railwaycompany/dao/hibernateDao/HibernateDaoFactory.java" />
+      <change type="MOVED" beforePath="C:\Users\Grigoriy\IdeaProjects\InformationSystem\src\main\java\com\railwaycompany\dao\HibernateDaoFactorySingleton.java" afterPath="$PROJECT_DIR$/src/main/java/com/railwaycompany/dao/hibernateDao/HibernateDaoFactorySingleton.java" />
+      <change type="MOVED" beforePath="C:\Users\Grigoriy\IdeaProjects\InformationSystem\src\main\java\com\railwaycompany\dao\ScheduleDao.java" afterPath="$PROJECT_DIR$/src/main/java/com/railwaycompany/dao/abstractDao/ScheduleDao.java" />
+      <change type="MOVED" beforePath="C:\Users\Grigoriy\IdeaProjects\InformationSystem\src\main\java\com\railwaycompany\dao\ScheduleHibernateDao.java" afterPath="$PROJECT_DIR$/src/main/java/com/railwaycompany/dao/hibernateDao/ScheduleHibernateDao.java" />
+      <change type="MOVED" beforePath="C:\Users\Grigoriy\IdeaProjects\InformationSystem\src\main\java\com\railwaycompany\dao\StationDao.java" afterPath="$PROJECT_DIR$/src/main/java/com/railwaycompany/dao/abstractDao/StationDao.java" />
+      <change type="MOVED" beforePath="C:\Users\Grigoriy\IdeaProjects\InformationSystem\src\main\java\com\railwaycompany\dao\StationHibernateDao.java" afterPath="$PROJECT_DIR$/src/main/java/com/railwaycompany/dao/hibernateDao/StationHibernateDao.java" />
+      <change type="MOVED" beforePath="C:\Users\Grigoriy\IdeaProjects\InformationSystem\src\main\java\com\railwaycompany\dao\TicketDao.java" afterPath="$PROJECT_DIR$/src/main/java/com/railwaycompany/dao/abstractDao/TicketDao.java" />
+      <change type="MOVED" beforePath="C:\Users\Grigoriy\IdeaProjects\InformationSystem\src\main\java\com\railwaycompany\dao\TicketHibernateDao.java" afterPath="$PROJECT_DIR$/src/main/java/com/railwaycompany/dao/hibernateDao/TicketHibernateDao.java" />
+      <change type="MOVED" beforePath="C:\Users\Grigoriy\IdeaProjects\InformationSystem\src\main\java\com\railwaycompany\dao\TrainDao.java" afterPath="$PROJECT_DIR$/src/main/java/com/railwaycompany/dao/abstractDao/TrainDao.java" />
+      <change type="MOVED" beforePath="C:\Users\Grigoriy\IdeaProjects\InformationSystem\src\main\java\com\railwaycompany\dao\TrainHibernateDao.java" afterPath="$PROJECT_DIR$/src/main/java/com/railwaycompany/dao/hibernateDao/TrainHibernateDao.java" />
+      <change type="MOVED" beforePath="C:\Users\Grigoriy\IdeaProjects\InformationSystem\src\main\java\com\railwaycompany\dao\UserDao.java" afterPath="$PROJECT_DIR$/src/main/java/com/railwaycompany/dao/abstractDao/UserDao.java" />
+      <change type="MOVED" beforePath="C:\Users\Grigoriy\IdeaProjects\InformationSystem\src\main\java\com\railwaycompany\dao\UserHibernateDao.java" afterPath="$PROJECT_DIR$/src/main/java/com/railwaycompany/dao/hibernateDao/UserHibernateDao.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/railwaycompany/services/AuthenticationService.java" afterPath="$PROJECT_DIR$/src/main/java/com/railwaycompany/services/AuthenticationService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/railwaycompany/dao/HibernateDaoFactorySingletonTest.java" afterPath="$PROJECT_DIR$/src/test/java/com/railwaycompany/dao/HibernateDaoFactorySingletonTest.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/railwaycompany/servlets/ScheduleByStationServlet.java" afterPath="$PROJECT_DIR$/src/main/java/com/railwaycompany/servlets/ScheduleByStationServlet.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/railwaycompany/servlets/SearchTrainServlet.java" afterPath="$PROJECT_DIR$/src/main/java/com/railwaycompany/servlets/SearchTrainServlet.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/buy_ticket.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/buy_ticket.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/style/error.css" afterPath="$PROJECT_DIR$/src/main/webapp/style/error.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/style/index.css" afterPath="$PROJECT_DIR$/src/main/webapp/style/index.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/js/index.js" afterPath="$PROJECT_DIR$/src/main/webapp/js/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/login.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/login.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/navbar.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/navbar.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/search_train.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/search_train.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/railwaycompany/dao/ScheduleDaoTest.java" afterPath="$PROJECT_DIR$/src/test/java/com/railwaycompany/dao/ScheduleDaoTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/railwaycompany/services/ScheduleService.java" afterPath="$PROJECT_DIR$/src/main/java/com/railwaycompany/services/ScheduleService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/railwaycompany/services/ServiceFactoryImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/railwaycompany/services/ServiceFactoryImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/railwaycompany/dao/StationDaoTest.java" afterPath="$PROJECT_DIR$/src/test/java/com/railwaycompany/dao/StationDaoTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/railwaycompany/services/StationService.java" afterPath="$PROJECT_DIR$/src/main/java/com/railwaycompany/services/StationService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/railwaycompany/services/TrainService.java" afterPath="$PROJECT_DIR$/src/main/java/com/railwaycompany/services/TrainService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/railwaycompany/dao/UserDaoTest.java" afterPath="$PROJECT_DIR$/src/test/java/com/railwaycompany/dao/UserDaoTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/schedule_by_station.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/schedule_by_station.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path=".idea/dataSources.local.xml" />
@@ -93,28 +94,38 @@
       <file leaf-file-name="error.jsp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/error.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.2307692" vertical-offset="290" max-vertical-offset="578">
+            <state vertical-scroll-proportion="-14.384615" vertical-offset="0" max-vertical-offset="578">
               <caret line="22" column="17" selection-start-line="22" selection-start-column="17" selection-end-line="22" selection-end-column="17" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="search_train.jsp" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/search_train.jsp">
+      <file leaf-file-name="DaoFactory.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/railwaycompany/dao/abstractDao/DaoFactory.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.14046822" vertical-offset="732" max-vertical-offset="1462">
-              <caret line="48" column="84" selection-start-line="48" selection-start-column="84" selection-end-line="48" selection-end-column="84" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="901">
+              <caret line="38" column="21" selection-start-line="38" selection-start-column="21" selection-end-line="38" selection-end-column="21" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="footer.jsp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/footer.jsp">
+      <file leaf-file-name="GenericDAO.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/railwaycompany/dao/abstractDao/GenericDAO.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.2307692" vertical-offset="86" max-vertical-offset="340">
-              <caret line="10" column="25" selection-start-line="10" selection-start-column="25" selection-end-line="10" selection-end-column="25" />
+            <state vertical-scroll-proportion="0.05448718" vertical-offset="119" max-vertical-offset="782">
+              <caret line="9" column="27" selection-start-line="9" selection-start-column="27" selection-end-line="9" selection-end-column="27" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="StationService.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/railwaycompany/services/StationService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="391">
+              <caret line="12" column="7" selection-start-line="12" selection-start-column="7" selection-end-line="12" selection-end-column="7" />
               <folding />
             </state>
           </provider>
@@ -123,8 +134,8 @@
       <file leaf-file-name="schedule_by_station.jsp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/schedule_by_station.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.2307692" vertical-offset="511" max-vertical-offset="1071">
-              <caret line="35" column="84" selection-start-line="35" selection-start-column="84" selection-end-line="35" selection-end-column="84" />
+            <state vertical-scroll-proportion="-5.7090907" vertical-offset="502" max-vertical-offset="1071">
+              <caret line="48" column="55" selection-start-line="48" selection-start-column="55" selection-end-line="48" selection-end-column="55" />
               <folding />
             </state>
           </provider>
@@ -170,16 +181,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="buy_ticket.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/style/buy_ticket.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="170">
-              <caret line="1" column="13" selection-start-line="1" selection-start-column="13" selection-end-line="1" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="login.jsp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/login.jsp">
           <provider selected="true" editor-type-id="text-editor">
@@ -205,10 +206,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/test/java/com/railwaycompany/dao/ScheduleHibernateDaoTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/railwaycompany/dao/StationHibernateDao.java" />
-        <option value="$PROJECT_DIR$/src/test/java/com/railwaycompany/dao/ScheduleDaoTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/railwaycompany/dao/GenericDao.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/railwaycompany/dao/GenericDAO.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/private/secret.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/com/railwaycompany/utils/ValidationCheck.java" />
@@ -241,7 +238,6 @@
         <option value="$PROJECT_DIR$/src/main/webapp/js/index.js" />
         <option value="$PROJECT_DIR$/src/main/java/com/railwaycompany/servlets/SearchTrainServlet.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/railwaycompany/services/ScheduleService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/railwaycompany/servlets/ScheduleByStationServlet.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/railwaycompany/servlets/LoginServlet.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/style/error.css" />
@@ -253,9 +249,14 @@
         <option value="$PROJECT_DIR$/src/main/webapp/login.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/schedule_by_station_simple_form.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/navbar.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/schedule_by_station.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/buy_ticket.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/search_train.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/schedule_by_station.jsp" />
+        <option value="$PROJECT_DIR$/src/main/java/com/railwaycompany/servlets/ScheduleByStationServlet.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/railwaycompany/abstractDao/DaoFactory.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/railwaycompany/dao/abstractDao/DaoFactory.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/railwaycompany/dao/abstractDao/GenericDao.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/railwaycompany/dao/abstractDao/GenericDAO.java" />
       </list>
     </option>
   </component>
@@ -725,6 +726,44 @@
               <option name="myItemId" value="dao" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hibernateDao" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="InformationSystem" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="InformationSystem" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="railwaycompany" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dao" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="abstractDao" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
@@ -772,6 +811,9 @@
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Grigoriy\IdeaProjects\InformationSystem\src\main\webapp\img" />
       <recent name="C:\Users\Grigoriy\IdeaProjects\InformationSystem\src\main\webapp" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.railwaycompany.dao" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
       <recent name="com.railwaycompany.utils" />
@@ -1301,7 +1343,7 @@
       <workItem from="1425398896033" duration="224000" />
       <workItem from="1425399345993" duration="10153000" />
       <workItem from="1425452143659" duration="5549000" />
-      <workItem from="1425457717399" duration="11378000" />
+      <workItem from="1425457717399" duration="12579000" />
     </task>
     <task id="LOCAL-00001" summary="GenericDao has added">
       <created>1424344776704</created>
@@ -1465,11 +1507,17 @@
       <option name="project" value="LOCAL" />
       <updated>1425390627479</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="UI has been changed">
+      <created>1425471989699</created>
+      <option name="number" value="00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1425471989699</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="216234000" />
+    <option name="totallyTimeSpent" value="217435000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -1519,12 +1567,12 @@
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.27987897" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5506135" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32668713" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -1542,7 +1590,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="Tests for HibernateDao&lt;Train&gt; has been added." />
     <MESSAGE value="Tests for HibernateDao for Ticket, Station, Schedule has been added." />
     <MESSAGE value="FrontServlet implementation. Index and error pages has been added." />
     <MESSAGE value="All useless classes has been removed. Starting over from DAO." />
@@ -1567,7 +1614,8 @@
     <MESSAGE value="Search train logic continue implementation" />
     <MESSAGE value="Battery low. Just commit" />
     <MESSAGE value="UI has been changed" />
-    <option name="LAST_COMMIT_MESSAGE" value="UI has been changed" />
+    <MESSAGE value="Dao package refactoring" />
+    <option name="LAST_COMMIT_MESSAGE" value="Dao package refactoring" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1608,35 +1656,28 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/railwaycompany/dao/TrainDao.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/railwaycompany/dao/abstractDao/TrainDao.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.11643836" vertical-offset="0" max-vertical-offset="584">
           <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="6" selection-end-column="3" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/railwaycompany/dao/DaoFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7089041" vertical-offset="232" max-vertical-offset="901">
-          <caret line="38" column="21" selection-start-line="38" selection-start-column="21" selection-end-line="38" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/railwaycompany/dao/HibernateDaoFactory.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/railwaycompany/dao/hibernateDao/HibernateDaoFactory.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.32534248" vertical-offset="887" max-vertical-offset="1479">
           <caret line="43" column="8" selection-start-line="43" selection-start-column="8" selection-end-line="43" selection-end-column="8" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/railwaycompany/dao/TrainHibernateDao.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/railwaycompany/dao/hibernateDao/TrainHibernateDao.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="765">
           <caret line="10" column="42" selection-start-line="10" selection-start-column="42" selection-end-line="10" selection-end-column="42" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/railwaycompany/dao/TicketDao.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/railwaycompany/dao/abstractDao/TicketDao.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="544">
           <caret line="24" column="16" selection-start-line="24" selection-start-column="16" selection-end-line="24" selection-end-column="16" />
@@ -1657,17 +1698,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/railwaycompany/dao/TicketHibernateDao.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/railwaycompany/dao/hibernateDao/TicketHibernateDao.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.5236427" vertical-offset="568" max-vertical-offset="1139">
           <caret line="53" column="36" selection-start-line="53" selection-start-column="31" selection-end-line="53" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/railwaycompany/dao/GenericDAO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="119" max-vertical-offset="782">
-          <caret line="9" column="27" selection-start-line="9" selection-start-column="27" selection-end-line="9" selection-end-column="27" />
         </state>
       </provider>
     </entry>
@@ -1744,21 +1778,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/railwaycompany/dao/HibernateDao.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/railwaycompany/dao/hibernateDao/HibernateDao.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-1.2772436" vertical-offset="950" max-vertical-offset="1802">
           <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/railwaycompany/dao/StationDao.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/railwaycompany/dao/abstractDao/StationDao.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.13621795" vertical-offset="0" max-vertical-offset="624">
           <caret line="5" column="64" selection-start-line="5" selection-start-column="3" selection-end-line="5" selection-end-column="64" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/railwaycompany/dao/StationHibernateDao.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/railwaycompany/dao/hibernateDao/StationHibernateDao.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="765">
           <caret line="12" column="100" selection-start-line="12" selection-start-column="100" selection-end-line="12" selection-end-column="100" />
@@ -1773,24 +1807,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/railwaycompany/dao/ScheduleHibernateDao.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/railwaycompany/dao/hibernateDao/ScheduleHibernateDao.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33333334" vertical-offset="999" max-vertical-offset="2006">
           <caret line="83" column="26" selection-start-line="83" selection-start-column="26" selection-end-line="83" selection-end-column="26" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/railwaycompany/dao/ScheduleDao.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/railwaycompany/dao/abstractDao/ScheduleDao.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.35416666" vertical-offset="0" max-vertical-offset="624">
           <caret line="16" column="29" selection-start-line="16" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/railwaycompany/services/StationService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="425">
-          <caret line="23" column="5" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
         </state>
       </provider>
     </entry>
@@ -1862,14 +1889,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="515" max-vertical-offset="1139">
           <caret line="60" column="36" selection-start-line="60" selection-start-column="27" selection-end-line="60" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/railwaycompany/servlets/ScheduleByStationServlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="175" max-vertical-offset="816">
-          <caret line="48" column="53" selection-start-line="48" selection-start-column="53" selection-end-line="48" selection-end-column="53" />
           <folding />
         </state>
       </provider>
@@ -1946,14 +1965,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/error.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.2307692" vertical-offset="290" max-vertical-offset="578">
-          <caret line="22" column="17" selection-start-line="22" selection-start-column="17" selection-end-line="22" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/railwaycompany/filters/AuthenticationFilter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="282" max-vertical-offset="1411">
@@ -1986,14 +1997,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/schedule_by_station.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.2307692" vertical-offset="511" max-vertical-offset="1071">
-          <caret line="35" column="84" selection-start-line="35" selection-start-column="84" selection-end-line="35" selection-end-column="84" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/buy_ticket.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-3.0384614" vertical-offset="397" max-vertical-offset="1020">
@@ -2004,8 +2007,56 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/search_train.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.14046822" vertical-offset="732" max-vertical-offset="1462">
+        <state vertical-scroll-proportion="-3.2307692" vertical-offset="732" max-vertical-offset="1462">
           <caret line="48" column="84" selection-start-line="48" selection-start-column="84" selection-end-line="48" selection-end-column="84" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/schedule_by_station.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.7090907" vertical-offset="502" max-vertical-offset="1071">
+          <caret line="48" column="55" selection-start-line="48" selection-start-column="55" selection-end-line="48" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/railwaycompany/servlets/ScheduleByStationServlet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.59134614" vertical-offset="175" max-vertical-offset="816">
+          <caret line="44" column="50" selection-start-line="44" selection-start-column="50" selection-end-line="44" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/error.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-14.384615" vertical-offset="0" max-vertical-offset="578">
+          <caret line="22" column="17" selection-start-line="22" selection-start-column="17" selection-end-line="22" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/railwaycompany/dao/abstractDao/DaoFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="901">
+          <caret line="38" column="21" selection-start-line="38" selection-start-column="21" selection-end-line="38" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/railwaycompany/services/StationService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="391">
+          <caret line="12" column="7" selection-start-line="12" selection-start-column="7" selection-end-line="12" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/railwaycompany/dao/abstractDao/GenericDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.05448718" vertical-offset="119" max-vertical-offset="782">
+          <caret line="9" column="27" selection-start-line="9" selection-start-column="27" selection-end-line="9" selection-end-column="27" />
           <folding />
         </state>
       </provider>

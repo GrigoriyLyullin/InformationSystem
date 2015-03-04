@@ -42,10 +42,10 @@ public class ScheduleByStationServlet extends HttpServlet {
             session.setAttribute("stationName", stationName);
             List<ScheduleByStation> scheduleOfTrainsByStation = scheduleService.getScheduleByStationName(stationName);
             if (scheduleOfTrainsByStation != null) {
-                session.setAttribute("trainList", scheduleOfTrainsByStation);
+                session.setAttribute("scheduleList", scheduleOfTrainsByStation);
                 session.setAttribute("stationNotFound", false);
             } else {
-                session.setAttribute("trainList", null);
+                session.setAttribute("scheduleList", null);
                 session.setAttribute("stationNotFound", true);
             }
         }

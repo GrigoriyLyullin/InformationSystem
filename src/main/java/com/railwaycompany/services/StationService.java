@@ -1,7 +1,7 @@
 package com.railwaycompany.services;
 
-import com.railwaycompany.dao.DaoFactory;
-import com.railwaycompany.dao.StationDao;
+import com.railwaycompany.dao.abstractDao.DaoFactory;
+import com.railwaycompany.dao.abstractDao.StationDao;
 import com.railwaycompany.entities.Station;
 
 import java.util.logging.Logger;

@@ -1,6 +1,9 @@
 package com.railwaycompany.dao;
 
+import com.railwaycompany.dao.abstractDao.DaoFactory;
+import com.railwaycompany.dao.abstractDao.UserDao;
 import com.railwaycompany.entities.User;
+import com.railwaycompany.dao.hibernateDao.HibernateDaoFactory;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;

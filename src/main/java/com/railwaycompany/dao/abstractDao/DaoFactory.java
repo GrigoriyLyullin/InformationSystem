@@ -1,4 +1,4 @@
-package com.railwaycompany.dao;
+package com.railwaycompany.dao.abstractDao;
 
 /**
  * DaoFactory interface. Creates Factory objects for work with the database.

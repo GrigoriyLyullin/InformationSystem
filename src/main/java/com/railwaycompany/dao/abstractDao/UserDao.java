@@ -1,9 +1,9 @@
-package com.railwaycompany.dao;
+package com.railwaycompany.dao.abstractDao;
 
 import com.railwaycompany.entities.User;
 
 /**
- * GenericDao<User> interface for work with User entities.
+ * GenericDAO<User> interface for work with User entities.
  */
 public interface UserDao extends GenericDAO<User> {
 

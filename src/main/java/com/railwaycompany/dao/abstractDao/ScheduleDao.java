@@ -1,4 +1,4 @@
-package com.railwaycompany.dao;
+package com.railwaycompany.dao.abstractDao;
 
 import com.railwaycompany.entities.Schedule;
 
@@ -6,7 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * GenericDao<Schedule> interface for work with Schedule entities.
+ * GenericDAO<Schedule> interface for work with Schedule entities.
  */
 public interface ScheduleDao {
 

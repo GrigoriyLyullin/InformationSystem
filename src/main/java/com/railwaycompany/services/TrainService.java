@@ -1,6 +1,6 @@
 package com.railwaycompany.services;
 
-import com.railwaycompany.dao.*;
+import com.railwaycompany.dao.abstractDao.*;
 import com.railwaycompany.entities.Schedule;
 import com.railwaycompany.entities.Station;
 import com.railwaycompany.entities.Train;

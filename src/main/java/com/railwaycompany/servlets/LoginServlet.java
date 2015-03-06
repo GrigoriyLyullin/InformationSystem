@@ -1,9 +1,10 @@
 package com.railwaycompany.servlets;
 
 import com.railwaycompany.serviceBeans.UserData;
-import com.railwaycompany.services.AuthenticationService;
-import com.railwaycompany.services.ServiceFactory;
-import com.railwaycompany.services.ServiceFactorySingleton;
+import com.railwaycompany.services.abstractServices.AuthenticationService;
+import com.railwaycompany.services.abstractServices.ServiceFactory;
+import com.railwaycompany.services.abstractServices.UserService;
+import com.railwaycompany.services.servicesImpl.ServiceFactorySingleton;
 import com.railwaycompany.utils.ValidationHelper;
 
 import javax.servlet.ServletException;
@@ -15,7 +16,7 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import static com.railwaycompany.services.AuthenticationService.*;
+import static com.railwaycompany.services.servicesImpl.AuthenticationServiceImpl.*;
 
 public class LoginServlet extends HttpServlet {
 
@@ -29,10 +30,13 @@ public class LoginServlet extends HttpServlet {
      */
     private AuthenticationService authenticationService;
 
+    private UserService userService;
+
     @Override
     public void init() throws ServletException {
         ServiceFactory serviceFactory = ServiceFactorySingleton.getInstance();
         authenticationService = serviceFactory.getAuthenticationService();
+        userService = serviceFactory.getUserService();
     }
 
     @Override
@@ -61,7 +65,7 @@ public class LoginServlet extends HttpServlet {
 
             if (authenticationId != null) {
                 signIn = false;
-                UserData userData = authenticationService.getUserData(sessionId, authenticationId);
+                UserData userData = userService.getUserData(authenticationService.getUserId(sessionId, authenticationId));
                 session.setAttribute(AUTH_ID_ATTR, authenticationId);
                 session.setAttribute(USER_DATA_ATTR, userData);
                 signUpUrl = (String) session.getAttribute(SIGN_IN_URL_ATTR);

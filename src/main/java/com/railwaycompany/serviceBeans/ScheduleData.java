@@ -2,14 +2,14 @@ package com.railwaycompany.serviceBeans;
 
 import java.util.Date;
 
-public class ScheduleByStation {
+public class ScheduleData {
 
     private int trainId;
     private long trainNumber;
     private Date timeArrival;
     private Date timeDeparture;
 
-    public ScheduleByStation() {
+    public ScheduleData() {
     }
 
     public long getTrainNumber() {

@@ -1,4 +1,4 @@
-package com.railwaycompany.services;
+package com.railwaycompany.services.abstractServices;
 
 public interface ServiceFactory {
 
@@ -9,6 +9,10 @@ public interface ServiceFactory {
     ScheduleService getScheduleService();
 
     TrainService getTrainService();
+
+    UserService getUserService();
+
+    TicketService getTicketService();
 
     void close();
 }

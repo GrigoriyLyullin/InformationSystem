@@ -2,22 +2,23 @@ package com.railwaycompany.services;
 
 import com.railwaycompany.dao.abstractDao.DaoFactory;
 import com.railwaycompany.dao.hibernateDao.HibernateDaoFactory;
+import com.railwaycompany.services.servicesImpl.AuthenticationServiceImpl;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-public class AuthenticationServiceTest {
+public class AuthenticationServiceImplTest {
 
     private static final String SESSION_ID = "testSessionId";
     private static final String LOGIN = "testLogin";
     private static final String PASSWORD = "testPassword";
 
-    private AuthenticationService authenticationService;
+    private AuthenticationServiceImpl authenticationService;
 
     @Before
     public void setUp() throws Exception {
         DaoFactory daoFactory = new HibernateDaoFactory("RailwayInformationSystemTest");
-        authenticationService = new AuthenticationService(daoFactory);
+        authenticationService = new AuthenticationServiceImpl(daoFactory);
     }
 
     @Test
@@ -52,20 +53,10 @@ public class AuthenticationServiceTest {
     }
 
     @Test
-    public void testGetUserName() throws Exception {
+    public void testGetUserId() throws Exception {
         String authId = authenticationService.signIn(SESSION_ID, LOGIN, PASSWORD);
-        Assert.assertNotNull(authenticationService.getUserData(SESSION_ID, authId));
+        Assert.assertNotNull(authenticationService.getUserId(SESSION_ID, authId));
         String fakeAuthId = new StringBuffer(authId).reverse().toString();
-        Assert.assertNull(authenticationService.getUserData(SESSION_ID, fakeAuthId));
-        Assert.assertEquals(authenticationService.getUserData(SESSION_ID, authId).getName(), "testName");
-    }
-
-    @Test
-    public void testGetUserSurname() throws Exception {
-        String authId = authenticationService.signIn(SESSION_ID, LOGIN, PASSWORD);
-        Assert.assertNotNull(authenticationService.getUserData(SESSION_ID, authId));
-        String fakeAuthId = new StringBuffer(authId).reverse().toString();
-        Assert.assertNull(authenticationService.getUserData(SESSION_ID, fakeAuthId));
-        Assert.assertEquals(authenticationService.getUserData(SESSION_ID, authId).getSurname(), "testSurname");
+        Assert.assertNull(authenticationService.getUserId(SESSION_ID, fakeAuthId));
     }
 }

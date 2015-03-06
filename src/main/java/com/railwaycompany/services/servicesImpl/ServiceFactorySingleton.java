@@ -1,4 +1,6 @@
-package com.railwaycompany.services;
+package com.railwaycompany.services.servicesImpl;
+
+import com.railwaycompany.services.abstractServices.ServiceFactory;
 
 public class ServiceFactorySingleton {
 

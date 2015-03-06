@@ -1,8 +1,8 @@
 package com.railwaycompany.servlets;
 
-import com.railwaycompany.serviceBeans.ScheduleByStation;
-import com.railwaycompany.services.ScheduleService;
-import com.railwaycompany.services.ServiceFactorySingleton;
+import com.railwaycompany.serviceBeans.ScheduleData;
+import com.railwaycompany.services.abstractServices.ScheduleService;
+import com.railwaycompany.services.servicesImpl.ServiceFactorySingleton;
 import com.railwaycompany.utils.DateHelper;
 import com.railwaycompany.utils.ValidationHelper;
 
@@ -66,7 +66,7 @@ public class SearchTrainServlet extends HttpServlet {
 
         //Simple train search
         if (validStationFromName && validStationToName && validDateFromStr) {
-            List<ScheduleByStation> scheduleList;
+            List<ScheduleData> scheduleList;
             Date dateFrom = DateHelper.convertDate(dateFromStr);
             if (validDateToStr) {
                 Date dateTo = DateHelper.convertDate(dateToStr);

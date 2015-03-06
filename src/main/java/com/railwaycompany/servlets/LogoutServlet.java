@@ -1,7 +1,8 @@
 package com.railwaycompany.servlets;
 
-import com.railwaycompany.services.AuthenticationService;
-import com.railwaycompany.services.ServiceFactorySingleton;
+import com.railwaycompany.services.abstractServices.AuthenticationService;
+import com.railwaycompany.services.servicesImpl.AuthenticationServiceImpl;
+import com.railwaycompany.services.servicesImpl.ServiceFactorySingleton;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -9,9 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-
-import static com.railwaycompany.services.AuthenticationService.AUTH_ID_ATTR;
-import static com.railwaycompany.services.AuthenticationService.ROOT_LOCATION;
 
 public class LogoutServlet extends HttpServlet {
 
@@ -45,13 +43,13 @@ public class LogoutServlet extends HttpServlet {
     private void signOut(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         HttpSession session = req.getSession(false);
         if (session != null) {
-            String authId = (String) session.getAttribute(AUTH_ID_ATTR);
+            String authId = (String) session.getAttribute(AuthenticationServiceImpl.AUTH_ID_ATTR);
             if (authId != null && !authId.isEmpty()) {
                 String sessionId = session.getId();
                 authenticationService.signOut(sessionId);
             }
             session.invalidate();
         }
-        resp.sendRedirect(ROOT_LOCATION);
+        resp.sendRedirect(AuthenticationServiceImpl.ROOT_LOCATION);
     }
 }

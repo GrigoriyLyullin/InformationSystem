@@ -1,7 +1,8 @@
 package com.railwaycompany.servlets;
 
-import com.railwaycompany.services.ServiceFactorySingleton;
-import com.railwaycompany.services.TrainService;
+import com.railwaycompany.services.abstractServices.TicketService;
+import com.railwaycompany.services.abstractServices.TrainService;
+import com.railwaycompany.services.servicesImpl.ServiceFactorySingleton;
 import com.railwaycompany.utils.DateHelper;
 import com.railwaycompany.utils.ValidationHelper;
 
@@ -22,10 +23,12 @@ public class BuyTicketServlet extends HttpServlet {
     private static Logger log = Logger.getLogger(BuyTicketServlet.class.getName());
 
     private TrainService trainService;
+    private TicketService ticketService;
 
     @Override
     public void init() throws ServletException {
         trainService = ServiceFactorySingleton.getInstance().getTrainService();
+        ticketService = ServiceFactorySingleton.getInstance().getTicketService();
     }
 
     @Override
@@ -58,7 +61,7 @@ public class BuyTicketServlet extends HttpServlet {
                         log.info("departureDate: " + departureDate);
                         if (DateHelper.isEnoughTime(departureDate, DateHelper.MILLIS_IN_TEN_MINUTES)) {
                             log.info("buying ticket...");
-                            trainService.buyTicket(userId, trainId);
+                            ticketService.buyTicket(userId, trainId);
                         } else {
                             log.info("Train " + trainId + " is already off");
                         }

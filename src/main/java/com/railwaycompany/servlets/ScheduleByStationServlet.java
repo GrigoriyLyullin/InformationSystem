@@ -1,8 +1,9 @@
 package com.railwaycompany.servlets;
 
-import com.railwaycompany.serviceBeans.ScheduleByStation;
-import com.railwaycompany.services.ScheduleService;
-import com.railwaycompany.services.ServiceFactorySingleton;
+import com.railwaycompany.serviceBeans.ScheduleData;
+import com.railwaycompany.services.abstractServices.ScheduleService;
+import com.railwaycompany.services.servicesImpl.ScheduleServiceImpl;
+import com.railwaycompany.services.servicesImpl.ServiceFactorySingleton;
 import com.railwaycompany.utils.ValidationHelper;
 
 import javax.servlet.ServletException;
@@ -34,13 +35,13 @@ public class ScheduleByStationServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        String stationName = req.getParameter(ScheduleService.STATION_NAME_ATTR);
-        log.info(ScheduleService.STATION_NAME_ATTR + " : " + stationName);
+        String stationName = req.getParameter(ScheduleServiceImpl.STATION_NAME_ATTR);
+        log.info(ScheduleServiceImpl.STATION_NAME_ATTR + " : " + stationName);
 
         if (ValidationHelper.isValidStationName(stationName)) {
             HttpSession session = req.getSession();
             session.setAttribute("stationName", stationName);
-            List<ScheduleByStation> scheduleOfTrainsByStation = scheduleService.getScheduleByStationName(stationName);
+            List<ScheduleData> scheduleOfTrainsByStation = scheduleService.getSchedule(stationName);
             if (scheduleOfTrainsByStation != null) {
                 session.setAttribute("scheduleList", scheduleOfTrainsByStation);
                 session.setAttribute("stationNotFound", false);

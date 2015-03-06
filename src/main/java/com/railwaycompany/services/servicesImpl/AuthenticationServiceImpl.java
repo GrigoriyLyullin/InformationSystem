@@ -1,9 +1,9 @@
-package com.railwaycompany.services;
+package com.railwaycompany.services.servicesImpl;
 
 import com.railwaycompany.dao.abstractDao.DaoFactory;
 import com.railwaycompany.dao.abstractDao.UserDao;
 import com.railwaycompany.entities.User;
-import com.railwaycompany.serviceBeans.UserData;
+import com.railwaycompany.services.abstractServices.AuthenticationService;
 import com.railwaycompany.utils.HashHelper;
 
 import java.util.HashMap;
@@ -14,12 +14,12 @@ import java.util.logging.Logger;
 /**
  * The service implements users authentication on server.
  */
-public class AuthenticationService {
+public class AuthenticationServiceImpl implements AuthenticationService {
 
     /**
      * Logger for LoginServlet class.
      */
-    private static final Logger LOG = Logger.getLogger(AuthenticationService.class.getName());
+    private static final Logger LOG = Logger.getLogger(AuthenticationServiceImpl.class.getName());
 
     public static final String ROOT_LOCATION = "/";
 
@@ -79,23 +79,17 @@ public class AuthenticationService {
     private final Map<String, Integer> sessionIdToUserId;
 
     /**
-     * AuthenticationService constructor.
+     * AuthenticationServiceImpl constructor.
      *
      * @param daoFactory - For creating Dao objects for work with the database.
      */
-    public AuthenticationService(DaoFactory daoFactory) {
+    public AuthenticationServiceImpl(DaoFactory daoFactory) {
         userDao = daoFactory.getUserDao();
         sessionToAuthenticationId = new HashMap<>();
         sessionIdToUserId = new HashMap<>();
     }
 
-    /**
-     * Checks that user has been authorized.
-     *
-     * @param sessionId        - user's session id
-     * @param authenticationId - user's authentication id
-     * @return True if user with this credentials has been authorized, otherwise - False.
-     */
+    @Override
     public boolean isAuthorized(String sessionId, String authenticationId) {
         if (sessionToAuthenticationId.containsKey(sessionId)) {
             if (sessionToAuthenticationId.get(sessionId).equals(authenticationId)) {
@@ -105,36 +99,7 @@ public class AuthenticationService {
         return false;
     }
 
-    /**
-     * Returns user data object.
-     *
-     * @param sessionId        - user's session id
-     * @param authenticationId - user's authentication id
-     * @return user data object.
-     */
-    public UserData getUserData(String sessionId, String authenticationId) {
-        UserData userData = null;
-        if (isAuthorized(sessionId, authenticationId)) {
-            Integer userId = sessionIdToUserId.get(sessionId);
-            User user = userDao.read(userId);
-            if (user != null) {
-                userData = new UserData();
-                userData.setId(user.getId());
-                userData.setName(user.getName());
-                userData.setSurname(user.getSurname());
-            }
-        }
-        return userData;
-    }
-
-    /**
-     * Performs user's sign in from the system.
-     *
-     * @param sessionId - user's session id
-     * @param login     - user's login
-     * @param password  - user's password
-     * @return Authentication id or null if user with this login and password was not found
-     */
+    @Override
     public String signIn(String sessionId, String login, String password) {
         String authenticationId = null;
         User user = userDao.findUser(login, password);
@@ -150,11 +115,18 @@ public class AuthenticationService {
         return authenticationId;
     }
 
-    /**
-     * Performs user's sign out from the system.
-     *
-     * @param sessionId - user's session id
-     */
+    @Override
+    public Integer getUserId(String sessionId, String authenticationId) {
+        Integer userId = null;
+        if (isAuthorized(sessionId, authenticationId)) {
+            if (sessionIdToUserId.containsKey(sessionId)) {
+                userId = sessionIdToUserId.get(sessionId);
+            }
+        }
+        return userId;
+    }
+
+    @Override
     public void signOut(String sessionId) {
         if (sessionToAuthenticationId.containsKey(sessionId)) {
             sessionToAuthenticationId.remove(sessionId);

@@ -1,7 +1,7 @@
 package com.railwaycompany.servlets;
 
-import com.railwaycompany.services.ServiceFactory;
-import com.railwaycompany.services.ServiceFactorySingleton;
+import com.railwaycompany.services.abstractServices.ServiceFactory;
+import com.railwaycompany.services.servicesImpl.ServiceFactorySingleton;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;

@@ -1,7 +1,7 @@
 package com.railwaycompany.filters;
 
-import com.railwaycompany.services.AuthenticationService;
-import com.railwaycompany.services.ServiceFactorySingleton;
+import com.railwaycompany.services.servicesImpl.ServiceFactorySingleton;
+import com.railwaycompany.services.abstractServices.AuthenticationService;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import static com.railwaycompany.services.AuthenticationService.*;
+import static com.railwaycompany.services.servicesImpl.AuthenticationServiceImpl.*;
 
 public class AuthenticationFilter implements Filter {
 

@@ -2,8 +2,7 @@ package com.railwaycompany.utils;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.Date;
-import java.util.Random;
+import java.security.SecureRandom;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -19,11 +18,20 @@ public class HashHelper {
      */
     private static final Logger LOG = Logger.getLogger(HashHelper.class.getName());
 
-    private static final String CHARACTERS = "abcdefghijklmnopqrstuvwxyz0123456789";
+    /**
+     * Characters for random string generation.
+     */
+    private static final String RAND_STR_CHARACTERS = "abcdefghijklmnopqrstuvwxyz0123456789";
 
-    private static final int LENGTH = 32;
+    /**
+     * Random string length.
+     */
+    private static final int RAND_STR_LENGTH = 32;
 
-    private static Random random = new Random(new Date().getTime());
+    /**
+     * SecureRandom for random string generation.
+     */
+    private static final SecureRandom RANDOM = new SecureRandom();
 
     /**
      * Generates hash string.
@@ -49,13 +57,13 @@ public class HashHelper {
     }
 
     public static String generateRandomHash() {
-        return generateHash(generateRandomString(LENGTH));
+        return generateHash(generateRandomString(RAND_STR_LENGTH));
     }
 
     private static String generateRandomString(int length) {
         char[] text = new char[length];
         for (int i = 0; i < length; i++) {
-            text[i] = CHARACTERS.charAt(random.nextInt(CHARACTERS.length()));
+            text[i] = RAND_STR_CHARACTERS.charAt(RANDOM.nextInt(RAND_STR_CHARACTERS.length()));
         }
         return new String(text);
     }

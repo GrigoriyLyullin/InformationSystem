@@ -1,11 +1,11 @@
-package com.railwaycompany.services;
+package com.railwaycompany.services.servicesImpl;
 
-import com.railwaycompany.dao.abstractDao.DaoFactory;
-import com.railwaycompany.dao.hibernateDao.HibernateDaoFactory;
-import com.railwaycompany.services.servicesImpl.AuthenticationServiceImpl;
+import com.railwaycompany.dao.abstractDao.UserDao;
+import com.railwaycompany.services.abstractServices.AuthenticationService;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mockito;
 
 public class AuthenticationServiceImplTest {
 
@@ -13,12 +13,12 @@ public class AuthenticationServiceImplTest {
     private static final String LOGIN = "testLogin";
     private static final String PASSWORD = "testPassword";
 
-    private AuthenticationServiceImpl authenticationService;
+    private AuthenticationService authenticationService;
 
     @Before
     public void setUp() throws Exception {
-        DaoFactory daoFactory = new HibernateDaoFactory("RailwayInformationSystemTest");
-        authenticationService = new AuthenticationServiceImpl(daoFactory);
+        UserDao userDao = Mockito.mock(UserDao.class);
+        authenticationService = new AuthenticationServiceImpl(userDao);
     }
 
     @Test

@@ -1,7 +1,10 @@
 package com.railwaycompany.servlets;
 
+import com.railwaycompany.entities.Station;
 import com.railwaycompany.serviceBeans.ScheduleData;
 import com.railwaycompany.services.abstractServices.ScheduleService;
+import com.railwaycompany.services.abstractServices.ServiceFactory;
+import com.railwaycompany.services.abstractServices.StationService;
 import com.railwaycompany.services.servicesImpl.ServiceFactorySingleton;
 import com.railwaycompany.utils.DateHelper;
 import com.railwaycompany.utils.ValidationHelper;
@@ -21,10 +24,13 @@ public class SearchTrainServlet extends HttpServlet {
     private static Logger log = Logger.getLogger(SearchTrainServlet.class.getName());
 
     private ScheduleService scheduleService;
+    private StationService stationService;
 
     @Override
     public void init() throws ServletException {
-        scheduleService = ServiceFactorySingleton.getInstance().getScheduleService();
+        ServiceFactory serviceFactory = ServiceFactorySingleton.getInstance();
+        scheduleService = serviceFactory.getScheduleService();
+        stationService = serviceFactory.getStationService();
     }
 
     @Override
@@ -76,9 +82,13 @@ public class SearchTrainServlet extends HttpServlet {
                 if (validTimeToStr) {
                     dateTo = DateHelper.convertDatetime(dateToStr + " " + timeToStr);
                 }
-                scheduleList = scheduleService.getSchedule(stationFromName, stationToName, dateFrom, dateTo);
+                Station stationFrom = stationService.getStation(stationFromName);
+                Station stationTo = stationService.getStation(stationToName);
+                scheduleList = scheduleService.getSchedule(stationFrom, stationTo, dateFrom, dateTo);
             } else {
-                scheduleList = scheduleService.getSchedule(stationFromName, stationToName, dateFrom);
+                Station stationFrom = stationService.getStation(stationFromName);
+                Station stationTo = stationService.getStation(stationToName);
+                scheduleList = scheduleService.getSchedule(stationFrom, stationTo, dateFrom);
             }
 
             session.setAttribute("trainSearchingError", false);

@@ -1,6 +1,9 @@
 package com.railwaycompany.services.servicesImpl;
 
-import com.railwaycompany.dao.abstractDao.*;
+import com.railwaycompany.dao.abstractDao.ScheduleDao;
+import com.railwaycompany.dao.abstractDao.StationDao;
+import com.railwaycompany.dao.abstractDao.TicketDao;
+import com.railwaycompany.dao.abstractDao.TrainDao;
 import com.railwaycompany.entities.Schedule;
 import com.railwaycompany.entities.Station;
 import com.railwaycompany.entities.Train;
@@ -22,11 +25,11 @@ public class TrainServiceImpl implements TrainService {
     private StationDao stationDao;
     private ScheduleDao scheduleDao;
 
-    public TrainServiceImpl(DaoFactory daoFactory) {
-        trainDao = daoFactory.getTrainDao();
-        ticketDao = daoFactory.getTicketDao();
-        stationDao = daoFactory.getStationDao();
-        scheduleDao = daoFactory.getScheduleDao();
+    public TrainServiceImpl(TrainDao trainDao, TicketDao ticketDao, StationDao stationDao, ScheduleDao scheduleDao) {
+        this.trainDao = trainDao;
+        this.ticketDao = ticketDao;
+        this.stationDao = stationDao;
+        this.scheduleDao = scheduleDao;
     }
 
     @Override

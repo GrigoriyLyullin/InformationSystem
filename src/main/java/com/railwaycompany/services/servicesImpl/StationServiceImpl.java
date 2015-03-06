@@ -1,6 +1,5 @@
 package com.railwaycompany.services.servicesImpl;
 
-import com.railwaycompany.dao.abstractDao.DaoFactory;
 import com.railwaycompany.dao.abstractDao.StationDao;
 import com.railwaycompany.entities.Station;
 import com.railwaycompany.services.abstractServices.StationService;
@@ -16,8 +15,8 @@ public class StationServiceImpl implements StationService {
 
     private StationDao stationDao;
 
-    public StationServiceImpl(DaoFactory daoFactory) {
-        stationDao = daoFactory.getStationDao();
+    public StationServiceImpl(StationDao stationDao) {
+        this.stationDao = stationDao;
     }
 
     @Override

@@ -3,7 +3,7 @@
 <div id="inputFromSearchTrain">
 
     <form class="form-inline" onsubmit="return checkSearchTrainForm(this)" method="post"
-          action="search_train">
+          action="${pageContext.request.contextPath}search_train">
 
         <div class="input-prepend">
 
@@ -30,7 +30,8 @@
 
         </div>
 
-        <a id="extendedFormButton" href="/search_train?extendedForm=false" class="btn btn-primary">
+        <a id="extendedFormButton" href="${pageContext.request.contextPath}search_train?extendedForm=false"
+           class="btn btn-primary">
             <i class="icon-white icon-minus"></i>
         </a>
 

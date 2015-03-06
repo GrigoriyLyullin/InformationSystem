@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <div id="inputFromSearchTrain">
     <form class="form-inline" onsubmit="return checkSearchTrainForm(this)" method="post"
-          action="search_train">
+          action="${pageContext.request.contextPath}search_train">
 
         <div class="input-prepend">
 
@@ -20,8 +20,9 @@
         </div>
 
 
-        <a href="/search_train?extendedForm=true" class="btn btn-primary" id="extendedFormButton">
-                <i class="icon-white icon-plus"></i>
+        <a href="${pageContext.request.contextPath}search_train?extendedForm=true" class="btn btn-primary"
+           id="extendedFormButton">
+            <i class="icon-white icon-plus"></i>
         </a>
 
         <button type="submit" class="btn btn-success">

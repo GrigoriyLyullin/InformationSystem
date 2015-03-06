@@ -1,6 +1,6 @@
 package com.railwaycompany.services.servicesImpl;
 
-import com.railwaycompany.dao.abstractDao.DaoFactory;
+import com.railwaycompany.dao.abstractDao.*;
 import com.railwaycompany.dao.hibernateDao.HibernateDaoFactorySingleton;
 import com.railwaycompany.services.abstractServices.*;
 
@@ -22,12 +22,19 @@ public class ServiceFactoryImpl implements ServiceFactory {
 
     public ServiceFactoryImpl() {
         this.daoFactory = HibernateDaoFactorySingleton.getInstance();
-        authenticationService = new AuthenticationServiceImpl(daoFactory);
-        stationService = new StationServiceImpl(daoFactory);
-        scheduleService = new ScheduleServiceImpl(daoFactory);
-        trainService = new TrainServiceImpl(daoFactory);
-        userService = new UserServiceImpl(daoFactory);
-        ticketService = new TicketServiceImpl(daoFactory);
+
+        UserDao userDao = daoFactory.getUserDao();
+        StationDao stationDao = daoFactory.getStationDao();
+        ScheduleDao scheduleDao = daoFactory.getScheduleDao();
+        TrainDao trainDao = daoFactory.getTrainDao();
+        TicketDao ticketDao = daoFactory.getTicketDao();
+
+        authenticationService = new AuthenticationServiceImpl(userDao);
+        stationService = new StationServiceImpl(stationDao);
+        scheduleService = new ScheduleServiceImpl(scheduleDao);
+        trainService = new TrainServiceImpl(trainDao, ticketDao, stationDao, scheduleDao);
+        userService = new UserServiceImpl(userDao);
+        ticketService = new TicketServiceImpl(ticketDao);
     }
 
 

@@ -90,9 +90,11 @@ public class ScheduleHibernateDao extends HibernateDao<Station> implements Sched
         List<Schedule> schedules = null;
         try {
             List resultList = query.getResultList();
-            schedules = new ArrayList<>();
-            for (Object s : resultList) {
-                schedules.add((Schedule) s);
+            if (!resultList.isEmpty()) {
+                schedules = new ArrayList<>();
+                for (Object s : resultList) {
+                    schedules.add((Schedule) s);
+                }
             }
         } catch (NoResultException e) {
             log.log(Level.INFO, "No schedule was found for stationId: \"" + stationId + "\", arrival date: \"" +

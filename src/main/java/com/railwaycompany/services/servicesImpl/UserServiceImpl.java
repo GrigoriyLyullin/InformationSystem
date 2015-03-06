@@ -1,6 +1,5 @@
 package com.railwaycompany.services.servicesImpl;
 
-import com.railwaycompany.dao.abstractDao.DaoFactory;
 import com.railwaycompany.dao.abstractDao.UserDao;
 import com.railwaycompany.entities.User;
 import com.railwaycompany.serviceBeans.UserData;
@@ -10,8 +9,8 @@ public class UserServiceImpl implements UserService {
 
     private UserDao userDao;
 
-    public UserServiceImpl(DaoFactory daoFactory) {
-        this.userDao = daoFactory.getUserDao();
+    public UserServiceImpl(UserDao userDao) {
+        this.userDao = userDao;
     }
 
     @Override

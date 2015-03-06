@@ -1,6 +1,5 @@
 package com.railwaycompany.services.servicesImpl;
 
-import com.railwaycompany.dao.abstractDao.DaoFactory;
 import com.railwaycompany.dao.abstractDao.UserDao;
 import com.railwaycompany.entities.User;
 import com.railwaycompany.services.abstractServices.AuthenticationService;
@@ -80,11 +79,9 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
     /**
      * AuthenticationServiceImpl constructor.
-     *
-     * @param daoFactory - For creating Dao objects for work with the database.
      */
-    public AuthenticationServiceImpl(DaoFactory daoFactory) {
-        userDao = daoFactory.getUserDao();
+    public AuthenticationServiceImpl(UserDao userDao) {
+        this.userDao = userDao;
         sessionToAuthenticationId = new HashMap<>();
         sessionIdToUserId = new HashMap<>();
     }

@@ -1,14 +1,11 @@
 package com.railwaycompany.services.servicesImpl;
 
-import com.railwaycompany.dao.abstractDao.DaoFactory;
 import com.railwaycompany.dao.abstractDao.ScheduleDao;
 import com.railwaycompany.entities.Schedule;
 import com.railwaycompany.entities.Station;
 import com.railwaycompany.entities.Train;
 import com.railwaycompany.serviceBeans.ScheduleData;
 import com.railwaycompany.services.abstractServices.ScheduleService;
-import com.railwaycompany.services.abstractServices.ServiceFactory;
-import com.railwaycompany.services.abstractServices.StationService;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -20,34 +17,29 @@ public class ScheduleServiceImpl implements ScheduleService {
 
     private ScheduleDao scheduleDao;
 
-    public ScheduleServiceImpl(DaoFactory daoFactory) {
-        scheduleDao = daoFactory.getScheduleDao();
+    public ScheduleServiceImpl(ScheduleDao scheduleDao) {
+        this.scheduleDao = scheduleDao;
     }
 
     @Override
-    public List<ScheduleData> getSchedule(String name) {
+    public List<ScheduleData> getSchedule(Station station) {
 
         List<ScheduleData> scheduleDataList = null;
-        Station station = ServiceFactorySingleton.getInstance().getStationService().getStation(name);
 
         if (station != null) {
-            scheduleDataList = new ArrayList<>();
             List<Schedule> schedulesByStationId = scheduleDao.getSchedules(station.getId());
-            if (!schedulesByStationId.isEmpty()) {
-
-                ScheduleData scheduleData;
-
-                for (Schedule s : schedulesByStationId) {
-
-                    Train train = s.getTrain();
-
-                    scheduleData = new ScheduleData();
-                    scheduleData.setTrainId(train.getId());
-                    scheduleData.setTrainNumber(train.getNumber());
-                    scheduleData.setTimeArrival(s.getTimeArrival());
-                    scheduleData.setTimeDeparture(s.getTimeDeparture());
-
-                    scheduleDataList.add(scheduleData);
+            if (schedulesByStationId != null) {
+                scheduleDataList = new ArrayList<>();
+                if (!schedulesByStationId.isEmpty()) {
+                    for (Schedule s : schedulesByStationId) {
+                        Train train = s.getTrain();
+                        ScheduleData scheduleData = new ScheduleData();
+                        scheduleData.setTrainId(train.getId());
+                        scheduleData.setTrainNumber(train.getNumber());
+                        scheduleData.setTimeArrival(s.getTimeArrival());
+                        scheduleData.setTimeDeparture(s.getTimeDeparture());
+                        scheduleDataList.add(scheduleData);
+                    }
                 }
             }
         }
@@ -55,69 +47,63 @@ public class ScheduleServiceImpl implements ScheduleService {
     }
 
     @Override
-    public List<ScheduleData> getSchedule(String stationFromName, String stationToName, Date dateFrom, Date
+    public List<ScheduleData> getSchedule(Station stationFrom, Station stationTo, Date dateFrom, Date
             dateTo) {
-
-        ServiceFactory serviceFactory = ServiceFactorySingleton.getInstance();
-
-        StationService stationService = serviceFactory.getStationService();
-
-        Station stationFrom = stationService.getStation(stationFromName);
-        Station stationTo = stationService.getStation(stationToName);
 
         List<Schedule> schedulesFrom = scheduleDao.getSchedules(stationFrom.getId(), dateFrom);
         List<Schedule> schedulesTo = scheduleDao.getSchedules(dateTo, stationTo.getId());
 
-        List<ScheduleData> scheduleDataList = new ArrayList<>();
+        List<ScheduleData> scheduleDataList = null;
 
-        for (Schedule sFrom : schedulesFrom) {
-            Train trainFrom = sFrom.getTrain();
-            for (Schedule sTo : schedulesTo) {
-                Train trainTo = sTo.getTrain();
-                if (trainFrom.equals(trainTo)) {
-                    ScheduleData scheduleData = new ScheduleData();
-                    scheduleData.setTrainId(trainFrom.getId());
-                    scheduleData.setTrainNumber(trainFrom.getNumber());
-                    scheduleData.setTimeDeparture(sFrom.getTimeDeparture());
-                    scheduleData.setTimeArrival(sTo.getTimeArrival());
-                    scheduleDataList.add(scheduleData);
+        if (schedulesFrom != null && schedulesTo != null && dateFrom != null && dateTo != null && !schedulesFrom
+                .isEmpty() && !schedulesTo.isEmpty()) {
+            scheduleDataList = new ArrayList<>();
+            for (Schedule sFrom : schedulesFrom) {
+                Train trainFrom = sFrom.getTrain();
+                for (Schedule sTo : schedulesTo) {
+                    Train trainTo = sTo.getTrain();
+                    if (trainFrom.equals(trainTo)) {
+                        ScheduleData scheduleData = new ScheduleData();
+                        scheduleData.setTrainId(trainFrom.getId());
+                        scheduleData.setTrainNumber(trainFrom.getNumber());
+                        scheduleData.setTimeDeparture(sFrom.getTimeDeparture());
+                        scheduleData.setTimeArrival(sTo.getTimeArrival());
+                        scheduleDataList.add(scheduleData);
+                    }
                 }
             }
         }
-
         return scheduleDataList;
     }
 
     @Override
-    public List<ScheduleData> getSchedule(String stationFromName, String stationToName, Date dateFrom) {
-
-        ServiceFactory serviceFactory = ServiceFactorySingleton.getInstance();
-
-        StationService stationService = serviceFactory.getStationService();
-
-        Station stationFrom = stationService.getStation(stationFromName);
-        Station stationTo = stationService.getStation(stationToName);
+    public List<ScheduleData> getSchedule(Station stationFrom, Station stationTo, Date dateFrom) {
 
         List<Schedule> schedulesFrom = scheduleDao.getSchedules(stationFrom.getId(), dateFrom);
         List<Schedule> schedulesTo = scheduleDao.getSchedules(stationTo.getId(), dateFrom);
 
-        List<ScheduleData> scheduleDataList = new ArrayList<>();
+        List<ScheduleData> scheduleDataList = null;
 
-        for (Schedule sFrom : schedulesFrom) {
-            Train trainFrom = sFrom.getTrain();
-            for (Schedule sTo : schedulesTo) {
-                Train trainTo = sTo.getTrain();
-                if (trainFrom.equals(trainTo)) {
-                    ScheduleData scheduleData = new ScheduleData();
-                    scheduleData.setTrainId(trainFrom.getId());
-                    scheduleData.setTrainNumber(trainFrom.getNumber());
-                    scheduleData.setTimeDeparture(sTo.getTimeDeparture());
-                    scheduleData.setTimeArrival(sFrom.getTimeArrival());
-                    scheduleDataList.add(scheduleData);
+        if (schedulesFrom != null && schedulesTo != null && dateFrom != null && !schedulesFrom.isEmpty() &&
+                !schedulesTo.isEmpty()) {
+
+            scheduleDataList = new ArrayList<>();
+
+            for (Schedule sFrom : schedulesFrom) {
+                Train trainFrom = sFrom.getTrain();
+                for (Schedule sTo : schedulesTo) {
+                    Train trainTo = sTo.getTrain();
+                    if (trainFrom.equals(trainTo)) {
+                        ScheduleData scheduleData = new ScheduleData();
+                        scheduleData.setTrainId(trainFrom.getId());
+                        scheduleData.setTrainNumber(trainFrom.getNumber());
+                        scheduleData.setTimeDeparture(sFrom.getTimeDeparture());
+                        scheduleData.setTimeArrival(sTo.getTimeArrival());
+                        scheduleDataList.add(scheduleData);
+                    }
                 }
             }
         }
-
         return scheduleDataList;
     }
 }

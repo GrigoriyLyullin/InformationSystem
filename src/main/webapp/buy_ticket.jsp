@@ -35,11 +35,9 @@
                     <input id="Station-From-Name" name="Station-From-Name" type="text" class="input-medium"
                            placeholder="Station name" value="<c:out value="${sessionScope.stationFromName}"/>">
                     <span class="add-on">Departure date</span>
-                    <input id="date_from" name="date_from" type="date" class="input-medium"
-                           placeholder="Station name" value="<c:out value="${sessionScope.stationFromName}"/>">
+                    <input id="date_from" name="date_from" type="date" class="input-medium">
                     <span class="add-on">Time</span>
-                    <input id="time_from" name="date_from" type="time" class="input-small"
-                           placeholder="Station name" value="<c:out value="${sessionScope.stationFromName}"/>">
+                    <input id="time_from" name="date_from" type="time" class="input-small">
                 </div>
                 <button type="submit" class="btn btn-success">Buy</button>
             </form>

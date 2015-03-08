@@ -6,8 +6,8 @@ import com.railwaycompany.persistence.dao.interfaces.UserDao;
 import com.railwaycompany.persistence.entities.User;
 import com.railwaycompany.utils.HashHelper;
 
-import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -16,53 +16,43 @@ import java.util.logging.Logger;
  */
 public class AuthenticationServiceImpl implements AuthenticationService {
 
-    /**
-     * Logger for LoginServlet class.
-     */
-    private static final Logger LOG = Logger.getLogger(AuthenticationServiceImpl.class.getName());
-
     public static final String ROOT_LOCATION = "/";
-
     /**
      * Parameter name for login.
      */
     public static final String LOGIN_PARAM = "login";
-
     /**
      * Parameter name for password.
      */
     public static final String PASSWORD_PARAM = "password";
-
     /**
      * Attribute name for authentication id.
      */
     public static final String AUTH_ID_ATTR = "authenticationId";
-
     /**
      * Attribute name for user data.
      */
     public static final String USER_DATA_ATTR = "userData";
-
     /**
      * Attribute name for sign in error.
      */
     public static final String SIGN_IN_ERROR_ATTR = "signInError";
-
     /**
      * Attribute name for sign in.
      */
     public static final String SIGN_IN_ATTR = "signIn";
-
     /**
      * Attribute name for sign in url.
      */
     public static final String SIGN_IN_URL_ATTR = "signInUrl";
-
     /**
      * Attribute name for sign in message.
      */
     public static final String SIGN_IN_MSG_ATTR = "signInMessage";
-
+    /**
+     * Logger for LoginServlet class.
+     */
+    private static final Logger LOG = Logger.getLogger(AuthenticationServiceImpl.class.getName());
     /**
      * GenericDAO<User> implementation for work with User entities.
      */
@@ -78,13 +68,16 @@ public class AuthenticationServiceImpl implements AuthenticationService {
      */
     private final Map<String, Integer> sessionIdToUserId;
 
+    private final Map<String, Boolean> sessionIdToIsEmployee;
+
     /**
      * AuthenticationServiceImpl constructor.
      */
     public AuthenticationServiceImpl(DaoContext daoContext) {
         userDao = (UserDao) daoContext.get(UserDao.class);
-        sessionToAuthenticationId = new HashMap<>();
-        sessionIdToUserId = new HashMap<>();
+        sessionToAuthenticationId = new ConcurrentHashMap<>();
+        sessionIdToUserId = new ConcurrentHashMap<>();
+        sessionIdToIsEmployee = new ConcurrentHashMap<>();
     }
 
     @Override
@@ -107,6 +100,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
                 authenticationId = HashHelper.generateRandomHash();
                 sessionToAuthenticationId.put(sessionId, authenticationId);
                 sessionIdToUserId.put(sessionId, user.getId());
+                sessionIdToIsEmployee.put(sessionId, user.isEmployee());
             }
         } else {
             LOG.log(Level.INFO, "User with login:\"" + login + "\" and password: \"" + password + "\" was not found");
@@ -131,5 +125,16 @@ public class AuthenticationServiceImpl implements AuthenticationService {
             sessionToAuthenticationId.remove(sessionId);
             sessionIdToUserId.remove(sessionId);
         }
+    }
+
+    @Override
+    public boolean isEmployee(String sessionId, String authenticationId) {
+        boolean isEmployee = false;
+        if (isAuthorized(sessionId, authenticationId)) {
+            if (sessionIdToIsEmployee.containsKey(sessionId)) {
+                isEmployee = sessionIdToIsEmployee.get(sessionId);
+            }
+        }
+        return isEmployee;
     }
 }

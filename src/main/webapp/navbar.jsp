@@ -18,8 +18,13 @@
                         <li><a href="${pageContext.request.contextPath}register">Sign up</a></li>
                     </c:if>
                     <c:if test="${not empty sessionScope.authenticationId}">
+                        <c:if test="${sessionScope.userData.employee}">
+                            <li class="pull-right">
+                                <a href="${pageContext.request.contextPath}add_station">Add station</a>
+                            </li>
+                        </c:if>
                         <li class="pull-right">
-                            <a href="#">${sessionScope.userData.login}</a>
+                            <a href="">${sessionScope.userData.login}</a>
                         </li>
                         <li class="pull-right"><a href="${pageContext.request.contextPath}logout">Sign out</a></li>
                     </c:if>

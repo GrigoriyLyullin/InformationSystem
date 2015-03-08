@@ -41,4 +41,13 @@ public interface AuthenticationService {
      * @param sessionId - user's session id
      */
     void signOut(String sessionId) throws IOException;
+
+    /**
+     * Checks that this user is employee.
+     *
+     * @param sessionId        - user's session id
+     * @param authenticationId - user's authentication id
+     * @return True if this user is employee, False - otherwise
+     */
+    boolean isEmployee(String sessionId, String authenticationId);
 }

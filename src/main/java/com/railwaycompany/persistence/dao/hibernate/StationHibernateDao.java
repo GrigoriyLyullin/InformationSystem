@@ -6,12 +6,16 @@ import com.railwaycompany.persistence.entities.Station;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class StationHibernateDao extends HibernateDao<Station> implements StationDao {
 
     private static final String FIND_STATION_BY_NAME = "SELECT s FROM Station s WHERE s.name = :name";
+
+    private static final String SELECT_ALL_STATIONS = "SELECT s FROM Station s";
 
     /**
      * Logger for StationHibernateDao class.
@@ -44,5 +48,32 @@ public class StationHibernateDao extends HibernateDao<Station> implements Statio
             log.log(Level.WARNING, message, e);
         }
         return station;
+    }
+
+    @Override
+    public List<Station> getAll() {
+
+        Query query = entityManager.createQuery(SELECT_ALL_STATIONS);
+
+        List<Station> stationList = null;
+        try {
+            List resultList = query.getResultList();
+            if (!resultList.isEmpty()) {
+                stationList = new ArrayList<>();
+                for (Object o : resultList) {
+                    if (o instanceof Station) {
+                        stationList.add((Station) o);
+                    }
+                }
+            }
+
+        } catch (NoResultException e) {
+            String message = "No stations was found";
+            log.log(Level.INFO, message);
+        } catch (ClassCastException e) {
+            String message = "Query returns not Station object.";
+            log.log(Level.WARNING, message, e);
+        }
+        return stationList;
     }
 }

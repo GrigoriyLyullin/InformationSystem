@@ -45,6 +45,15 @@
         <url-pattern>/buy_ticket</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>AddStationServlet</servlet-name>
+        <servlet-class>com.railwaycompany.presentation.servlets.AddStationServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AddStationServlet</servlet-name>
+        <url-pattern>/add_station</url-pattern>
+    </servlet-mapping>
+
     <listener>
         <listener-class>com.railwaycompany.presentation.servlets.MainServletContextListener</listener-class>
     </listener>
@@ -65,6 +74,10 @@
         <init-param>
             <param-name>Private pages</param-name>
             <param-value>/buy_ticket;/buy_ticket.jsp;</param-value>
+        </init-param>
+        <init-param>
+            <param-name>Employee pages</param-name>
+            <param-value>/add_station;/add_station.jsp</param-value>
         </init-param>
     </filter>
 

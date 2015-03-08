@@ -14,13 +14,12 @@ import java.util.logging.Logger;
  */
 public class UserHibernateDao extends HibernateDao<User> implements UserDao {
 
+    private static final String FIND_USER = "SELECT u FROM User u WHERE u.login = :login AND" + " u" +
+            ".password = :password";
     /**
      * Logger for UserHibernateDao class.
      */
     private static Logger log = Logger.getLogger(UserHibernateDao.class.getName());
-
-    private static final String FIND_USER = "SELECT u FROM User u WHERE u.login = :login AND" + " u" +
-            ".password = :password";
 
     /**
      * UserHibernateDao constructor.
@@ -43,9 +42,7 @@ public class UserHibernateDao extends HibernateDao<User> implements UserDao {
         try {
             user = (User) queryFindUserStr.getSingleResult();
         } catch (NoResultException e) {
-            log.log(Level.INFO, "No user was found for login: \"" + login + "\" and password: \"" + password + "\"");
-        } catch (ClassCastException e) {
-            log.log(Level.WARNING, "Query returns not User object.", e);
+            log.log(Level.INFO, "User was not found");
         }
         return user;
     }

@@ -39,7 +39,7 @@ public class HashHelper {
      * @param input - input string
      * @return Hash string
      */
-    public static String generateHash(String input) {
+    public static String hash(String input) {
         String generateHash = null;
         try {
             MessageDigest md5 = MessageDigest.getInstance(HASH_ALG);
@@ -57,7 +57,7 @@ public class HashHelper {
     }
 
     public static String generateRandomHash() {
-        return generateHash(generateRandomString(RAND_STR_LENGTH));
+        return hash(generateRandomString(RAND_STR_LENGTH));
     }
 
     private static String generateRandomString(int length) {

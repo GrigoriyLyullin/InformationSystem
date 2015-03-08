@@ -100,9 +100,10 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     @Override
     public String signIn(String sessionId, String login, String password) {
         String authenticationId = null;
-        User user = userDao.findUser(login, password);
+        String passwordHash = HashHelper.hash(password);
+        User user = userDao.findUser(login, passwordHash);
         if (user != null) {
-            if (user.getLogin().equals(login) && user.getPassword().equals(password)) {
+            if (user.getLogin().equals(login) && user.getPassword().equals(passwordHash)) {
                 authenticationId = HashHelper.generateRandomHash();
                 sessionToAuthenticationId.put(sessionId, authenticationId);
                 sessionIdToUserId.put(sessionId, user.getId());

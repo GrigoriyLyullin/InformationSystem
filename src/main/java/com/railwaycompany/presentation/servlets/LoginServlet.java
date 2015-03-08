@@ -1,10 +1,10 @@
 package com.railwaycompany.presentation.servlets;
 
 import com.railwaycompany.business.dto.UserData;
+import com.railwaycompany.business.services.implementation.ServiceFactorySingleton;
 import com.railwaycompany.business.services.interfaces.AuthenticationService;
 import com.railwaycompany.business.services.interfaces.ServiceFactory;
 import com.railwaycompany.business.services.interfaces.UserService;
-import com.railwaycompany.business.services.implementation.ServiceFactorySingleton;
 import com.railwaycompany.utils.ValidationHelper;
 
 import javax.servlet.ServletException;
@@ -69,6 +69,9 @@ public class LoginServlet extends HttpServlet {
                 session.setAttribute(AUTH_ID_ATTR, authenticationId);
                 session.setAttribute(USER_DATA_ATTR, userData);
                 signUpUrl = (String) session.getAttribute(SIGN_IN_URL_ATTR);
+                LOG.log(Level.INFO, "User successfully sign in");
+            } else {
+                LOG.log(Level.WARNING, "User cannot sign in");
             }
         } else {
             LOG.log(Level.INFO, "User try to sign in with invalid login: " + login + " and password: " + password);

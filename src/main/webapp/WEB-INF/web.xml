@@ -72,6 +72,15 @@
         <url-pattern>/add_train</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>ViewAllTrainsServlet</servlet-name>
+        <servlet-class>com.railwaycompany.presentation.servlets.ViewAllTrainsServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ViewAllTrainsServlet</servlet-name>
+        <url-pattern>/view_all_trains</url-pattern>
+    </servlet-mapping>
+
     <listener>
         <listener-class>com.railwaycompany.presentation.servlets.MainServletContextListener</listener-class>
     </listener>
@@ -95,7 +104,9 @@
         </init-param>
         <init-param>
             <param-name>Employee pages</param-name>
-            <param-value>/add_station;/add_station.jsp;/add_train;/add_train.jsp</param-value>
+            <param-value>
+                /add_station;/add_station.jsp;/add_train;/add_train.jsp;/view_all_trains;/view_all_trains.jsp
+            </param-value>
         </init-param>
     </filter>
 

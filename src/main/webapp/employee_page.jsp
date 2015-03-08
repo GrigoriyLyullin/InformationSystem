@@ -16,6 +16,8 @@
     <jsp:include page="/navbar.jsp"/>
     <jsp:include page="/add_station.jsp"/>
     <jsp:include page="/add_train.jsp"/>
+    <a href="#view_trains"></a>
+    <jsp:include page="/view_trains.jsp"/>
     <jsp:include page="/footer.jsp"/>
 </div>
 </body>

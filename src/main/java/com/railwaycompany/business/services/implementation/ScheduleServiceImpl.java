@@ -28,7 +28,7 @@ public class ScheduleServiceImpl implements ScheduleService {
         List<ScheduleData> scheduleDataList = null;
 
         if (station != null) {
-            List<Schedule> schedulesByStationId = scheduleDao.getSchedules(station.getId());
+            List<Schedule> schedulesByStationId = scheduleDao.getSchedulesByStationId(station.getId());
             if (schedulesByStationId != null) {
                 scheduleDataList = new ArrayList<>();
                 if (!schedulesByStationId.isEmpty()) {

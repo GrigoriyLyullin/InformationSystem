@@ -80,9 +80,9 @@ public class ScheduleServiceImplTest {
 
         ScheduleDao scheduleDaoMock = mock(ScheduleDao.class);
 
-        when(scheduleDaoMock.getSchedules(STATION_FROM_ID)).thenReturn(scheduleStationFromList);
-        when(scheduleDaoMock.getSchedules(STATION_TO_ID)).thenReturn(scheduleStationToList);
-        when(scheduleDaoMock.getSchedules(STATION_NOT_EXIST_ID)).thenReturn(null);
+        when(scheduleDaoMock.getSchedulesByStationId(STATION_FROM_ID)).thenReturn(scheduleStationFromList);
+        when(scheduleDaoMock.getSchedulesByStationId(STATION_TO_ID)).thenReturn(scheduleStationToList);
+        when(scheduleDaoMock.getSchedulesByStationId(STATION_NOT_EXIST_ID)).thenReturn(null);
         when(scheduleDaoMock.getSchedules(STATION_FROM_ID, dateDepartureStationFrom)).thenReturn(scheduleStationFromList);
         when(scheduleDaoMock.getSchedules(STATION_NOT_EXIST_ID, dateDepartureStationFrom)).thenReturn(null);
         when(scheduleDaoMock.getSchedules(STATION_TO_ID, TRAIN_ID)).thenReturn(scheduleStationToList);

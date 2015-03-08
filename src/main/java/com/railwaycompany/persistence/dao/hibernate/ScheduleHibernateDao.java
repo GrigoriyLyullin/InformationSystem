@@ -17,17 +17,22 @@ import java.util.logging.Logger;
 public class ScheduleHibernateDao extends HibernateDao<Schedule> implements ScheduleDao {
 
     private static final String SCHEDULES_WITH_STATION_ID = "SELECT s FROM Schedule s WHERE s.station.id = :stationId";
+
+    private static final String SCHEDULES_WITH_TRAIN_ID = "SELECT s FROM Schedule s WHERE s.train.id = :trainId";
+
     private static final String SCHEDULES_STATION_DEPARTURE = "SELECT s FROM Schedule s WHERE s" + ".station" +
             ".id = :stationId AND s.timeDeparture >= :departureDate";
+
     private static final String SCHEDULES_STATION_ARRIVAL = "SELECT s FROM Schedule s WHERE s" + ".station" +
             ".id = :stationId AND s.timeArrival <= :arrivalDate";
+
     private static final String SCHEDULES_WITH_STATION_AND_TRAIN_ID = "SELECT s FROM Schedule s WHERE s.station.id = " +
             "" + ":stationId AND s.train.id = :trainId";
 
     private static final String SCHEDULES_WITH_STATION_AND_DATES = "SELECT s FROM Schedule s WHERE" +
             " s.station.id = :stationId AND s.timeDeparture >= :departureDateFrom AND s.timeDeparture <= :departureDateTo";
 
-    private static final String SCHEDULES_BY_TRAIN_ID = "SELECT s.timeDeparture FROM Schedule s WHERE" +
+    private static final String DEPARTURE_TIME_BY_STATION_AND_TRAIN_ID = "SELECT s.timeDeparture FROM Schedule s WHERE" +
             " s.train.id = :trainId AND s.station.id = :stationId";
 
     /**
@@ -45,7 +50,7 @@ public class ScheduleHibernateDao extends HibernateDao<Schedule> implements Sche
     }
 
     @Override
-    public List<Schedule> getSchedules(int stationId) {
+    public List<Schedule> getSchedulesByStationId(int stationId) {
 
         Query query = entityManager.createQuery(SCHEDULES_WITH_STATION_ID);
 
@@ -132,6 +137,26 @@ public class ScheduleHibernateDao extends HibernateDao<Schedule> implements Sche
     }
 
     @Override
+    public List<Schedule> getSchedulesByTrainId(int trainId) {
+
+        Query query = entityManager.createQuery(SCHEDULES_WITH_TRAIN_ID);
+        query.setParameter("trainId", trainId);
+
+        List<Schedule> scheduleList = null;
+        List resultList = query.getResultList();
+        if (resultList != null && !resultList.isEmpty()) {
+            scheduleList = new ArrayList<>();
+            for (Object o : resultList) {
+                if (o instanceof Schedule) {
+                    scheduleList.add((Schedule) o);
+                }
+            }
+        }
+
+        return scheduleList;
+    }
+
+    @Override
     public Integer getTrainId(int trainNumber, int stationId, Date departureDate) {
         Integer trainId = null;
         Date departureDateTo = new Date(departureDate.getTime() + DateHelper.MILLIS_IN_DAY);
@@ -171,7 +196,7 @@ public class ScheduleHibernateDao extends HibernateDao<Schedule> implements Sche
     @Override
     public Date getDepartureDate(int trainId, int stationId) {
 
-        Query query = entityManager.createQuery(SCHEDULES_BY_TRAIN_ID);
+        Query query = entityManager.createQuery(DEPARTURE_TIME_BY_STATION_AND_TRAIN_ID);
         query.setParameter("trainId", trainId);
         query.setParameter("stationId", stationId);
 

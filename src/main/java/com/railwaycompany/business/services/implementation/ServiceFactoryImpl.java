@@ -1,8 +1,9 @@
 package com.railwaycompany.business.services.implementation;
 
-import com.railwaycompany.persistence.dao.interfaces.*;
-import com.railwaycompany.persistence.dao.hibernate.HibernateDaoFactorySingleton;
 import com.railwaycompany.business.services.interfaces.*;
+import com.railwaycompany.persistence.dao.hibernate.HibernateDaoContext;
+import com.railwaycompany.persistence.dao.hibernate.HibernateDaoFactorySingleton;
+import com.railwaycompany.persistence.dao.interfaces.*;
 
 public class ServiceFactoryImpl implements ServiceFactory {
 
@@ -28,13 +29,22 @@ public class ServiceFactoryImpl implements ServiceFactory {
         ScheduleDao scheduleDao = daoFactory.getScheduleDao();
         TrainDao trainDao = daoFactory.getTrainDao();
         TicketDao ticketDao = daoFactory.getTicketDao();
+        PassengerDao passengerDao = daoFactory.getPassengerDao();
 
-        authenticationService = new AuthenticationServiceImpl(userDao);
-        stationService = new StationServiceImpl(stationDao);
-        scheduleService = new ScheduleServiceImpl(scheduleDao);
-        trainService = new TrainServiceImpl(trainDao, ticketDao, stationDao, scheduleDao);
-        userService = new UserServiceImpl(userDao);
-        ticketService = new TicketServiceImpl(ticketDao, trainDao, userDao);
+        DaoContext daoContext = new HibernateDaoContext();
+        daoContext.put(UserDao.class, userDao);
+        daoContext.put(StationDao.class, stationDao);
+        daoContext.put(ScheduleDao.class, scheduleDao);
+        daoContext.put(TrainDao.class, trainDao);
+        daoContext.put(TicketDao.class, ticketDao);
+        daoContext.put(PassengerDao.class, passengerDao);
+
+        authenticationService = new AuthenticationServiceImpl(daoContext);
+        stationService = new StationServiceImpl(daoContext);
+        scheduleService = new ScheduleServiceImpl(daoContext);
+        trainService = new TrainServiceImpl(daoContext);
+        userService = new UserServiceImpl(daoContext);
+        ticketService = new TicketServiceImpl(daoContext);
     }
 
 

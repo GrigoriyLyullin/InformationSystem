@@ -13,14 +13,14 @@ public interface TicketDao extends GenericDAO<Ticket> {
      * @param trainId - train id
      * @return number of tickets that has been sold
      */
-    int count(int trainId);
+    int countOfTickets(int trainId);
 
     /**
-     * Checks that user has been registered on the train.
+     * Checks that passenger has been registered on the train.
      *
-     * @param trainId - train id
-     * @param userId - user id
-     * @return True if user has been registered on the train, otherwise - False
+     * @param trainId     - train id
+     * @param passengerId - user id
+     * @return True if passenger has been registered on the train, otherwise - False
      */
-    boolean isRegistered(int trainId, int userId);
+    boolean hasBeenRegistered(int trainId, int passengerId);
 }

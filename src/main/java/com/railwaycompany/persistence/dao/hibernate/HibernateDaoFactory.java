@@ -26,15 +26,17 @@ public class HibernateDaoFactory implements DaoFactory {
      */
     private final EntityManager entityManager;
 
-    private UserDao userDao;
+    private final UserDao userDao;
 
-    private StationDao stationDao;
+    private final StationDao stationDao;
 
-    private ScheduleDao scheduleDao;
+    private final ScheduleDao scheduleDao;
 
-    private TrainDao trainDao;
+    private final TrainDao trainDao;
 
-    private TicketDao ticketDao;
+    private final TicketDao ticketDao;
+
+    private final PassengerDao passengerDao;
 
     /**
      * HibernateDaoFactory constructor.
@@ -49,6 +51,7 @@ public class HibernateDaoFactory implements DaoFactory {
         scheduleDao = new ScheduleHibernateDao(entityManager);
         trainDao = new TrainHibernateDao(entityManager);
         ticketDao = new TicketHibernateDao(entityManager);
+        passengerDao = new PassengerHibernateDao(entityManager);
     }
 
     /**
@@ -56,6 +59,11 @@ public class HibernateDaoFactory implements DaoFactory {
      */
     public HibernateDaoFactory() {
         this(PERSISTENCE_UNIT_NAME);
+    }
+
+    @Override
+    public EntityManager getEntityManager() {
+        return entityManager;
     }
 
     @Override
@@ -81,6 +89,11 @@ public class HibernateDaoFactory implements DaoFactory {
     @Override
     public TicketDao getTicketDao() {
         return ticketDao;
+    }
+
+    @Override
+    public PassengerDao getPassengerDao() {
+        return passengerDao;
     }
 
     @Override

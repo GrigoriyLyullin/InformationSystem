@@ -1,11 +1,13 @@
 package com.railwaycompany.business.services.implementation;
 
+import com.railwaycompany.business.dto.ScheduleData;
+import com.railwaycompany.business.services.interfaces.ScheduleService;
+import com.railwaycompany.persistence.dao.hibernate.HibernateDaoContext;
+import com.railwaycompany.persistence.dao.interfaces.DaoContext;
 import com.railwaycompany.persistence.dao.interfaces.ScheduleDao;
 import com.railwaycompany.persistence.entities.Schedule;
 import com.railwaycompany.persistence.entities.Station;
 import com.railwaycompany.persistence.entities.Train;
-import com.railwaycompany.business.dto.ScheduleData;
-import com.railwaycompany.business.services.interfaces.ScheduleService;
 import com.railwaycompany.utils.DateHelper;
 import org.junit.Before;
 import org.junit.Test;
@@ -88,7 +90,10 @@ public class ScheduleServiceImplTest {
         when(scheduleDaoMock.getSchedules(STATION_TO_ID, dateDepartureStationFrom)).thenReturn(scheduleStationToList);
         when(scheduleDaoMock.getSchedules(dateArrivalStationTo, STATION_TO_ID)).thenReturn(scheduleStationToList);
 
-        scheduleService = new ScheduleServiceImpl(scheduleDaoMock);
+        DaoContext context = new HibernateDaoContext();
+        context.put(ScheduleDao.class, scheduleDaoMock);
+
+        scheduleService = new ScheduleServiceImpl(context);
     }
 
 

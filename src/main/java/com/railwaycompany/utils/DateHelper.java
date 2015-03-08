@@ -8,7 +8,10 @@ import java.util.logging.Logger;
 
 public class DateHelper {
 
-    public static long MILLIS_IN_TEN_MINUTES = 600_000;
+    public static long MILLIS_IN_DAY = 86_400_000;
+
+    public static long MILLIS_IN_10_MINUTES = 600_000;
+    public static long MILLIS_IN_1_MINUTE = 60_000;
 
     /**
      * Logger for DateHelper class.
@@ -44,5 +47,9 @@ public class DateHelper {
             return timeLeft >= time;
         }
         return false;
+    }
+
+    public static boolean hasMoreThanTenMinutes(Date date) {
+        return isEnoughTime(date, MILLIS_IN_10_MINUTES);
     }
 }

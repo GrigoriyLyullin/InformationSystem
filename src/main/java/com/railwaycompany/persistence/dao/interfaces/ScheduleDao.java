@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * GenericDAO<Schedule> interface for work with Schedule entities.
  */
-public interface ScheduleDao {
+public interface ScheduleDao extends GenericDAO<Schedule> {
 
     List<Schedule> getSchedules(int stationId);
 
@@ -17,4 +17,13 @@ public interface ScheduleDao {
     List<Schedule> getSchedules(Date arrivalDate, int stationId);
 
     List<Schedule> getSchedules(int stationId, int trainId);
+
+
+
+    Date getDepartureDate(int trainId, int stationId);
+
+
+    Integer getTrainId(int trainNumber, int stationId, Date departureDate);
+
+    List<Schedule> getSchedules(int stationId, Date departureDateFrom, Date departureDateTo);
 }

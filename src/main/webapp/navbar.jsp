@@ -19,7 +19,7 @@
                     </c:if>
                     <c:if test="${not empty sessionScope.authenticationId}">
                         <li class="pull-right">
-                            <a href="#">${sessionScope.userData.name} ${sessionScope.userData.surname}</a>
+                            <a href="#">${sessionScope.userData.login}</a>
                         </li>
                         <li class="pull-right"><a href="${pageContext.request.contextPath}logout">Sign out</a></li>
                     </c:if>

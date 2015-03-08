@@ -28,8 +28,7 @@ public class StationHibernateDao extends HibernateDao<Station> implements Statio
     }
 
     @Override
-    public Station findStation(String name) {
-
+    public Station getStation(String name) {
 
         Query query = entityManager.createQuery(FIND_STATION_BY_NAME);
         query.setParameter("name", name);
@@ -38,11 +37,12 @@ public class StationHibernateDao extends HibernateDao<Station> implements Statio
         try {
             station = (Station) query.getSingleResult();
         } catch (NoResultException e) {
-            log.log(Level.INFO, "No station was found for name: \"" + name + "\"");
+            String message = "No station was found for name: \"" + name + "\"";
+            log.log(Level.INFO, message);
         } catch (ClassCastException e) {
-            log.log(Level.WARNING, "Query returns not Station object.", e);
+            String message = "Query returns not Station object.";
+            log.log(Level.WARNING, message, e);
         }
-
         return station;
     }
 }

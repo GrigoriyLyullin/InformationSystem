@@ -18,7 +18,7 @@ public class Ticket implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "passenger_id")
-    private User user;
+    private Passenger passenger;
 
     public int getId() {
         return id;
@@ -36,11 +36,11 @@ public class Ticket implements Serializable {
         this.train = train;
     }
 
-    public User getUser() {
-        return user;
+    public Passenger getPassenger() {
+        return passenger;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setPassenger(Passenger passenger) {
+        this.passenger = passenger;
     }
 }

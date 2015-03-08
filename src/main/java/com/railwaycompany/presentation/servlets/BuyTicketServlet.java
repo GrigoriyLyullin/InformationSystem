@@ -1,11 +1,14 @@
 package com.railwaycompany.presentation.servlets;
 
+import com.railwaycompany.business.dto.PassengerData;
 import com.railwaycompany.business.dto.UserData;
-import com.railwaycompany.business.services.interfaces.TicketService;
-import com.railwaycompany.business.services.interfaces.TrainService;
+import com.railwaycompany.business.services.exceptions.AlreadyRegisteredException;
+import com.railwaycompany.business.services.exceptions.HasNoEmptySeatsException;
+import com.railwaycompany.business.services.exceptions.InvalidInputDataException;
+import com.railwaycompany.business.services.exceptions.SalesStopException;
 import com.railwaycompany.business.services.implementation.ServiceFactorySingleton;
+import com.railwaycompany.business.services.interfaces.TicketService;
 import com.railwaycompany.utils.DateHelper;
-import com.railwaycompany.utils.ValidationHelper;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -14,7 +17,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.Date;
+import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import static com.railwaycompany.utils.ValidationHelper.*;
 
 public class BuyTicketServlet extends HttpServlet {
 
@@ -23,12 +29,11 @@ public class BuyTicketServlet extends HttpServlet {
      */
     private static Logger log = Logger.getLogger(BuyTicketServlet.class.getName());
 
-    private TrainService trainService;
     private TicketService ticketService;
 
     @Override
     public void init() throws ServletException {
-        trainService = ServiceFactorySingleton.getInstance().getTrainService();
+//        trainService = ServiceFactorySingleton.getInstance().getTrainService();
         ticketService = ServiceFactorySingleton.getInstance().getTicketService();
     }
 
@@ -40,45 +45,57 @@ public class BuyTicketServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+        log.info("start buying ticket...");
+
         HttpSession session = req.getSession();
-
         UserData userData = (UserData) session.getAttribute("userData");
-        String trainNumberStr = req.getParameter("Train-Number");
-        String stationFromName = req.getParameter("Station-From-Name");
 
+        int userId = userData.getId();
 
-        if (userData != null && ValidationHelper.isValidTrainNumber(trainNumberStr) && ValidationHelper
-                .isValidStationName(stationFromName)) {
+        String trainNumberParam = req.getParameter("trainNumber");
+        String departureDateParam = req.getParameter("departureDate");
+        String stationNameParam = req.getParameter("stationName");
 
-            log.info("User id: " + userData.getId() + " trainNumberStr: " + trainNumberStr + " stationFromName: " +
-                    stationFromName);
+        String passengerNameParam = req.getParameter("passengerName");
+        String passengerSurnameParam = req.getParameter("passengerSurname");
+        String passengerBirthdateParam = req.getParameter("passengerBirthdate");
 
-            Integer trainNumber = Integer.valueOf(trainNumberStr);
-            Integer trainId = trainService.getTrainId(trainNumber);
+        log.info("trainNumberParam: " + trainNumberParam + " departureDateParam: " + departureDateParam + " " +
+                "stationNameParam: " + stationNameParam);
+        log.info("passengerNameParam: " + passengerNameParam + " passengerSurnameParam: " + passengerSurnameParam + "" +
+                " passengerBirthdateParam: " + passengerBirthdateParam);
 
-            if (trainId != null) {
-                if (trainService.hasEmptySeats(trainId)) {
-                    log.info("Has Empty Seats");
-                    if (!trainService.isRegistered(trainId, userData.getId())) {
-                        log.info("User: " + userData.getId() + " is not registered on " + " train: " + trainId);
-                        Date departureDate = trainService.getDepartureDate(stationFromName, trainId);
-                        log.info("departureDate: " + departureDate);
-                        if (DateHelper.isEnoughTime(departureDate, DateHelper.MILLIS_IN_TEN_MINUTES)) {
-                            log.info("buying ticket...");
-                            boolean buyTicket = ticketService.buyTicket(userData.getId(), trainId);
-                            if (buyTicket) {
-                                log.info("User: " + userData.getId() + " bought ticket on " + " train: " + trainId);
-                            }
-                        } else {
-                            log.info("Train " + trainId + " is already off");
-                        }
-                    }
-                }
+        boolean checkInput = checkInput(trainNumberParam, departureDateParam, stationNameParam);
+        boolean checkPassengerInput = checkPassengerInput(passengerNameParam, passengerSurnameParam,
+                passengerBirthdateParam);
+
+        if (checkInput && checkPassengerInput) {
+
+            int trainNumber = Integer.valueOf(trainNumberParam);
+            Date departureDate = DateHelper.convertDate(departureDateParam);
+            PassengerData passengerData = new PassengerData();
+            passengerData.setName(passengerNameParam);
+            passengerData.setSurname(passengerSurnameParam);
+            passengerData.setBirthdate(DateHelper.convertDate(passengerBirthdateParam));
+            try {
+                ticketService.buyTicket(userId, trainNumber, departureDate, stationNameParam, passengerData);
+            } catch (HasNoEmptySeatsException | AlreadyRegisteredException | SalesStopException | InvalidInputDataException e) {
+                log.log(Level.WARNING, "", e);
             }
-
-
         }
 
-        getServletContext().getRequestDispatcher("/buy_ticket.jsp").forward(req, resp);
+        log.info("stop buying ticket");
+    }
+
+    private boolean checkPassengerInput(String passengerNameParam, String passengerSurnameParam,
+                                        String passengerBirthdateParam) {
+        return isValidPassengerNameOrSurname(passengerNameParam) && isValidPassengerNameOrSurname
+                (passengerSurnameParam) && isValidDateStr(passengerBirthdateParam);
+
+    }
+
+    private boolean checkInput(String trainNumberParam, String departureDateParam, String stationNameParam) {
+        return isValidTrainNumber(trainNumberParam) && isValidDateStr(departureDateParam) && isValidStationName
+                (stationNameParam);
     }
 }

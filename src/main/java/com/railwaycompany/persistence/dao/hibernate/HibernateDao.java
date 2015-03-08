@@ -2,11 +2,9 @@ package com.railwaycompany.persistence.dao.hibernate;
 
 import com.railwaycompany.persistence.dao.interfaces.GenericDAO;
 
-import javax.persistence.EntityExistsException;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import java.io.Serializable;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -48,10 +46,6 @@ public class HibernateDao<T extends Serializable> implements GenericDAO<T> {
             transaction.begin();
             entityManager.persist(entity);
             transaction.commit();
-        } catch (EntityExistsException e) {
-            log.log(Level.WARNING, "The entity already exists", e);
-        } catch (IllegalArgumentException e) {
-            log.log(Level.WARNING, "The instance is not an entity", e);
         } finally {
             if (transaction.isActive()) {
                 transaction.rollback();
@@ -61,14 +55,7 @@ public class HibernateDao<T extends Serializable> implements GenericDAO<T> {
 
     @Override
     public T read(int key) {
-        T instance = null;
-        try {
-            instance = entityManager.find(entityClass, key);
-        } catch (IllegalArgumentException e) {
-            log.log(Level.WARNING, "The first argument does not an entity entityClass or the second argument is not a" +
-                    " " + "valid entityClass for that entity’s primary key or is null", e);
-        }
-        return instance;
+        return entityManager.find(entityClass, key);
     }
 
     @Override
@@ -79,8 +66,6 @@ public class HibernateDao<T extends Serializable> implements GenericDAO<T> {
             transaction.begin();
             correspondingEntity = entityManager.merge(entity);
             transaction.commit();
-        } catch (IllegalArgumentException e) {
-            log.log(Level.WARNING, "Instance is not an entity or is a removed entity", e);
         } finally {
             if (transaction.isActive()) {
                 transaction.rollback();
@@ -96,8 +81,6 @@ public class HibernateDao<T extends Serializable> implements GenericDAO<T> {
             transaction.begin();
             entityManager.remove(entity);
             transaction.commit();
-        } catch (IllegalArgumentException e) {
-            log.log(Level.WARNING, "Instance is not an entity or is a detached entity", e);
         } finally {
             if (transaction.isActive()) {
                 transaction.rollback();

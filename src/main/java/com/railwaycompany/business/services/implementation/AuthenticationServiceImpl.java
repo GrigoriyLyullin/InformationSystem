@@ -1,8 +1,9 @@
 package com.railwaycompany.business.services.implementation;
 
+import com.railwaycompany.business.services.interfaces.AuthenticationService;
+import com.railwaycompany.persistence.dao.interfaces.DaoContext;
 import com.railwaycompany.persistence.dao.interfaces.UserDao;
 import com.railwaycompany.persistence.entities.User;
-import com.railwaycompany.business.services.interfaces.AuthenticationService;
 import com.railwaycompany.utils.HashHelper;
 
 import java.util.HashMap;
@@ -80,8 +81,8 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     /**
      * AuthenticationServiceImpl constructor.
      */
-    public AuthenticationServiceImpl(UserDao userDao) {
-        this.userDao = userDao;
+    public AuthenticationServiceImpl(DaoContext daoContext) {
+        userDao = (UserDao) daoContext.get(UserDao.class);
         sessionToAuthenticationId = new HashMap<>();
         sessionIdToUserId = new HashMap<>();
     }

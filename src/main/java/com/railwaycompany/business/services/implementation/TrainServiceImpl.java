@@ -1,13 +1,10 @@
 package com.railwaycompany.business.services.implementation;
 
-import com.railwaycompany.persistence.dao.interfaces.ScheduleDao;
-import com.railwaycompany.persistence.dao.interfaces.StationDao;
-import com.railwaycompany.persistence.dao.interfaces.TicketDao;
-import com.railwaycompany.persistence.dao.interfaces.TrainDao;
+import com.railwaycompany.business.services.interfaces.TrainService;
+import com.railwaycompany.persistence.dao.interfaces.*;
 import com.railwaycompany.persistence.entities.Schedule;
 import com.railwaycompany.persistence.entities.Station;
 import com.railwaycompany.persistence.entities.Train;
-import com.railwaycompany.business.services.interfaces.TrainService;
 
 import java.util.Date;
 import java.util.List;
@@ -25,11 +22,11 @@ public class TrainServiceImpl implements TrainService {
     private StationDao stationDao;
     private ScheduleDao scheduleDao;
 
-    public TrainServiceImpl(TrainDao trainDao, TicketDao ticketDao, StationDao stationDao, ScheduleDao scheduleDao) {
-        this.trainDao = trainDao;
-        this.ticketDao = ticketDao;
-        this.stationDao = stationDao;
-        this.scheduleDao = scheduleDao;
+    public TrainServiceImpl(DaoContext daoContext) {
+        trainDao = (TrainDao) daoContext.get(TrainDao.class);
+        ticketDao = (TicketDao) daoContext.get(TicketDao.class);
+        stationDao = (StationDao) daoContext.get(StationDao.class);
+        scheduleDao = (ScheduleDao) daoContext.get(ScheduleDao.class);
     }
 
     @Override
@@ -37,7 +34,7 @@ public class TrainServiceImpl implements TrainService {
         Train train = trainDao.read(trainId);
         if (train != null) {
             int seats = train.getSeats();
-            int count = ticketDao.count(trainId);
+            int count = ticketDao.countOfTickets(trainId);
             if (count < seats) {
                 return true;
             }
@@ -56,14 +53,9 @@ public class TrainServiceImpl implements TrainService {
     }
 
     @Override
-    public boolean isRegistered(int trainId, int userId) {
-        return ticketDao.isRegistered(trainId, userId);
-    }
-
-    @Override
     public Date getDepartureDate(String stationFromName, int trainId) {
         Date timeDeparture = null;
-        Station station = stationDao.findStation(stationFromName);
+        Station station = stationDao.getStation(stationFromName);
         if (station != null) {
             int stationId = station.getId();
             List<Schedule> schedules = scheduleDao.getSchedules(stationId, trainId);

@@ -1,11 +1,12 @@
 package com.railwaycompany.business.services.implementation;
 
+import com.railwaycompany.business.dto.ScheduleData;
+import com.railwaycompany.business.services.interfaces.ScheduleService;
+import com.railwaycompany.persistence.dao.interfaces.DaoContext;
 import com.railwaycompany.persistence.dao.interfaces.ScheduleDao;
 import com.railwaycompany.persistence.entities.Schedule;
 import com.railwaycompany.persistence.entities.Station;
 import com.railwaycompany.persistence.entities.Train;
-import com.railwaycompany.business.dto.ScheduleData;
-import com.railwaycompany.business.services.interfaces.ScheduleService;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -17,8 +18,8 @@ public class ScheduleServiceImpl implements ScheduleService {
 
     private ScheduleDao scheduleDao;
 
-    public ScheduleServiceImpl(ScheduleDao scheduleDao) {
-        this.scheduleDao = scheduleDao;
+    public ScheduleServiceImpl(DaoContext daoContext) {
+        scheduleDao = (ScheduleDao) daoContext.get(ScheduleDao.class);
     }
 
     @Override

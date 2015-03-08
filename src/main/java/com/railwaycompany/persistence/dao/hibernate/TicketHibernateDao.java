@@ -13,8 +13,10 @@ public class TicketHibernateDao extends HibernateDao<Ticket> implements TicketDa
 
     private static final String TICKET_COUNT_BY_TRAIN_ID = "SELECT t FROM Ticket t WHERE t.train.id = :trainId";
 
-    private static final String TICKET_BY_TRAIN_AND_USER_ID = "SELECT t FROM Ticket t WHERE t.train.id = :trainId " +
-            "AND" + " t.user.id = :userId";
+    private static final String TICKET_BY_TRAIN_AND_PASSENGER_ID = "SELECT t FROM Ticket t WHERE t.train.id = :trainId " +
+            "AND" + " t.passenger.id = :passengerId";
+
+//    private static final String TICKET_BY_TRAIN_ID = "SELECT t FROM Ticket t WHERE t.id = :ticketId AND t.passenger.id = :passengerId";
 
     /**
      * Logger for StationHibernateDao class.
@@ -31,7 +33,7 @@ public class TicketHibernateDao extends HibernateDao<Ticket> implements TicketDa
     }
 
     @Override
-    public int count(int trainId) {
+    public int countOfTickets(int trainId) {
 
         Query query = entityManager.createQuery(TICKET_COUNT_BY_TRAIN_ID);
         query.setParameter("trainId", trainId);
@@ -46,19 +48,19 @@ public class TicketHibernateDao extends HibernateDao<Ticket> implements TicketDa
     }
 
     @Override
-    public boolean isRegistered(int trainId, int userId) {
+    public boolean hasBeenRegistered(int trainId, int passengerId) {
 
-        Query query = entityManager.createQuery(TICKET_BY_TRAIN_AND_USER_ID);
+        Query query = entityManager.createQuery(TICKET_BY_TRAIN_AND_PASSENGER_ID);
         query.setParameter("trainId", trainId);
-        query.setParameter("userId", userId);
+        query.setParameter("passengerId", passengerId);
 
-        boolean isRegistered = false;
+        boolean registered = false;
         try {
             Ticket ticket = (Ticket) query.getSingleResult();
-            isRegistered = (ticket != null);
+            registered = (ticket != null);
         } catch (NoResultException e) {
             log.log(Level.INFO, "No tickets was found for trainId: \"" + trainId + "\"");
         }
-        return isRegistered;
+        return registered;
     }
 }

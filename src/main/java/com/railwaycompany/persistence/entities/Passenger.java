@@ -18,6 +18,9 @@ public class Passenger implements Serializable {
     private String surname;
     @Column(name = "birthdate")
     private Date birthdate;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
     public Passenger() {
     }
@@ -52,5 +55,13 @@ public class Passenger implements Serializable {
 
     public void setBirthdate(Date birthdate) {
         this.birthdate = birthdate;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

@@ -4,7 +4,7 @@ import java.util.regex.Pattern;
 
 public class ValidationHelper {
 
-    private static final String DATE_PATTERN_STR = "^(20\\d\\d)-(0?[1-9]|1[012])-(0?[1-9]|[12][0-9]|3[01])$";
+    private static final String DATE_PATTERN_STR = "^(19|20\\d\\d)-(0?[1-9]|1[012])-(0?[1-9]|[12][0-9]|3[01])$";
 
     private static final String TIME_PATTERN_STR = "^(0?[0-9]|1[0-9]|2[0-3]):([0-5][0-9])$";
 
@@ -50,5 +50,11 @@ public class ValidationHelper {
 
     public static boolean isValidPassword(String password) {
         return password != null && !password.isEmpty() && passwordPattern.matcher(password).matches();
+    }
+
+    public static boolean isValidPassengerNameOrSurname(String passengerName) {
+        //TODO
+//        return passengerName!= null && !passengerName.isEmpty();
+        return true;
     }
 }

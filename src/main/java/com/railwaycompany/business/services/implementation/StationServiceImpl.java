@@ -1,5 +1,6 @@
 package com.railwaycompany.business.services.implementation;
 
+import com.railwaycompany.persistence.dao.interfaces.DaoContext;
 import com.railwaycompany.persistence.dao.interfaces.StationDao;
 import com.railwaycompany.persistence.entities.Station;
 import com.railwaycompany.business.services.interfaces.StationService;
@@ -15,12 +16,12 @@ public class StationServiceImpl implements StationService {
 
     private StationDao stationDao;
 
-    public StationServiceImpl(StationDao stationDao) {
-        this.stationDao = stationDao;
+    public StationServiceImpl(DaoContext daoContext) {
+        stationDao = (StationDao) daoContext.get(StationDao.class);
     }
 
     @Override
     public Station getStation(String name) {
-        return stationDao.findStation(name);
+        return stationDao.getStation(name);
     }
 }

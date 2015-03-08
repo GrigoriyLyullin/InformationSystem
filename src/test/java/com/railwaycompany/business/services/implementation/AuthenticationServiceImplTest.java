@@ -1,7 +1,9 @@
 package com.railwaycompany.business.services.implementation;
 
-import com.railwaycompany.persistence.dao.interfaces.UserDao;
 import com.railwaycompany.business.services.interfaces.AuthenticationService;
+import com.railwaycompany.persistence.dao.hibernate.HibernateDaoContext;
+import com.railwaycompany.persistence.dao.interfaces.DaoContext;
+import com.railwaycompany.persistence.dao.interfaces.UserDao;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -21,9 +23,10 @@ public class AuthenticationServiceImplTest {
 
         UserDao userDao = mock(UserDao.class);
 
+        DaoContext daoContext = new HibernateDaoContext();
+        daoContext.put(UserDao.class, userDao);
 
-
-        authenticationService = new AuthenticationServiceImpl(userDao);
+        authenticationService = new AuthenticationServiceImpl(daoContext);
     }
 
     @Test

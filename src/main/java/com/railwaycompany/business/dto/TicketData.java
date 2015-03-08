@@ -9,6 +9,7 @@ public class TicketData {
     private String stationTo;
     private Date departureDate;
     private Date arrivalDate;
+    private PassengerData passengerData;
 
     public int getTrainNumber() {
         return trainNumber;
@@ -48,5 +49,13 @@ public class TicketData {
 
     public void setArrivalDate(Date arrivalDate) {
         this.arrivalDate = arrivalDate;
+    }
+
+    public PassengerData getPassengerData() {
+        return passengerData;
+    }
+
+    public void setPassengerData(PassengerData passengerData) {
+        this.passengerData = passengerData;
     }
 }

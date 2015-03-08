@@ -10,6 +10,8 @@ public class ValidationHelper {
 
     private static final String STATION_NAME_PATTERN_STR = "^[a-zA-Zа-яА-Я]+[- ]*[a-zA-Zа-яА-Я]+$";
 
+    private static final String NAME_PATTERN_STR = "^[a-zA-Zа-яА-Я]+$";
+
     private static final String TRAIN_NUMBER_PATTERN_STR = "^[0-9]+$";
 
     private static final String LOGIN_PATTERN_STR = "^[a-zA-Z0-9]*$";
@@ -27,6 +29,8 @@ public class ValidationHelper {
     private static Pattern loginPattern = Pattern.compile(LOGIN_PATTERN_STR);
 
     private static Pattern passwordPattern = Pattern.compile(PASSWORD_PATTERN_STR);
+
+    private static Pattern namePattern = Pattern.compile(NAME_PATTERN_STR);
 
     public static boolean isValidDateStr(String date) {
         return date != null && !date.isEmpty() && datePattern.matcher(date).matches();
@@ -52,9 +56,7 @@ public class ValidationHelper {
         return password != null && !password.isEmpty() && passwordPattern.matcher(password).matches();
     }
 
-    public static boolean isValidPassengerNameOrSurname(String passengerName) {
-        //TODO
-//        return passengerName!= null && !passengerName.isEmpty();
-        return true;
+    public static boolean isValidPassengerNameOrSurname(String name) {
+        return name != null && !name.isEmpty() && namePattern.matcher(name).matches();
     }
 }

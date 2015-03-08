@@ -1,6 +1,7 @@
 package com.railwaycompany.business.services.implementation;
 
 import com.railwaycompany.business.dto.PassengerData;
+import com.railwaycompany.business.dto.TicketData;
 import com.railwaycompany.business.services.exceptions.AlreadyRegisteredException;
 import com.railwaycompany.business.services.exceptions.HasNoEmptySeatsException;
 import com.railwaycompany.business.services.exceptions.InvalidInputDataException;
@@ -38,7 +39,7 @@ public class TicketServiceImpl implements TicketService {
     }
 
     @Override
-    public void buyTicket(int userId, int trainNumber, Date departureDate, String stationName, PassengerData
+    public TicketData buyTicket(int userId, int trainNumber, Date departureDate, String stationName, PassengerData
             passengerData)
             throws HasNoEmptySeatsException, AlreadyRegisteredException, SalesStopException, InvalidInputDataException {
 
@@ -62,24 +63,18 @@ public class TicketServiceImpl implements TicketService {
             if (countOfTickets < seats) {
 
                 Passenger passenger = passengerDao.getPassenger(name, surname, birthdate);
-                boolean passengerNull = false;
+                boolean newPassenger = false;
                 if (passenger == null) {
-
-                    passengerNull = true;
-
+                    newPassenger = true;
                     passenger = new Passenger();
-//                    passenger.setId(1);
                     passenger.setName(name);
                     passenger.setSurname(surname);
                     passenger.setBirthdate(birthdate);
                     passenger.setUser(userDao.read(userId));
-
                     passengerDao.create(passenger);
-
-//                    passenger = passengerDao.getPassenger(name, surname, birthdate);
-
                 }
-                if (passengerNull) { //|| !ticketDao.hasBeenRegistered(trainId, passenger.getId())) {
+
+                if (newPassenger || !ticketDao.hasBeenRegistered(trainId, passenger.getId())) {
 
                     Date realDepartureDate = scheduleDao.getDepartureDate(trainId, stationId);
 
@@ -91,6 +86,14 @@ public class TicketServiceImpl implements TicketService {
                         ticket.setPassenger(passenger);
 
                         ticketDao.create(ticket);
+
+                        TicketData ticketData = new TicketData();
+                        ticketData.setTrainNumber(trainNumber);
+                        ticketData.setStationFrom(stationName);
+                        ticketData.setDepartureDate(realDepartureDate);
+                        ticketData.setPassengerData(passengerData);
+
+                        return ticketData;
 
                     } else {
                         String message = "Departure date " + realDepartureDate + " in less than 10 minutes.";

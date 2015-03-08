@@ -39,23 +39,24 @@
                            placeholder="Station name" value="<c:out value="${sessionScope.stationFromName}"/>">
                     <span class="add-on">Departure date</span>
                     <input id="date_from" name="departureDate" type="date" class="input-medium">
-                    <%--<span class="add-on">Time</span>--%>
-                    <%--<input id="time_from" name="date_from" type="time" class="input-small">--%>
                     <br>
                     <br>
-                    <span class="add-on">Passenger name:</span>
+                    <span class="add-on">Passenger name</span>
                     <input name="passengerName" type="text" class="input-medium">
-                    <span class="add-on">surname</span>
+                    <span class="add-on">Surname</span>
                     <input name="passengerSurname" type="text" class="input-medium">
-                    <span class="add-on">birthdate</span>
+                    <span class="add-on">Birthdate</span>
                     <input name="passengerBirthdate" type="date" class="input-medium">
                 </div>
                 <button type="submit" class="btn btn-success">Buy</button>
             </form>
         </div>
-        <div class="alert alert-error" id="buyTicketAlert">
-            <p>Incorrect input data. Try again.</p>
-        </div>
+        <c:if test="${sessionScope.buyTicketIncorrectData}">
+            <div class="alert alert-error" id="buyTicketAlert">
+                <p>Incorrect input data. Try again.</p>
+            </div>
+                <c:set scope="session" var="buyTicketIncorrectData" value="${false}"/>
+        </c:if>
     </div>
     <jsp:include page="/footer.jsp"/>
 </div>

@@ -1,6 +1,7 @@
 package com.railwaycompany.presentation.servlets;
 
 import com.railwaycompany.business.dto.PassengerData;
+import com.railwaycompany.business.dto.TicketData;
 import com.railwaycompany.business.dto.UserData;
 import com.railwaycompany.business.services.exceptions.AlreadyRegisteredException;
 import com.railwaycompany.business.services.exceptions.HasNoEmptySeatsException;
@@ -45,8 +46,6 @@ public class BuyTicketServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        log.info("start buying ticket...");
-
         HttpSession session = req.getSession();
         UserData userData = (UserData) session.getAttribute("userData");
 
@@ -77,14 +76,42 @@ public class BuyTicketServlet extends HttpServlet {
             passengerData.setName(passengerNameParam);
             passengerData.setSurname(passengerSurnameParam);
             passengerData.setBirthdate(DateHelper.convertDate(passengerBirthdateParam));
-            try {
-                ticketService.buyTicket(userId, trainNumber, departureDate, stationNameParam, passengerData);
-            } catch (HasNoEmptySeatsException | AlreadyRegisteredException | SalesStopException | InvalidInputDataException e) {
-                log.log(Level.WARNING, "", e);
-            }
-        }
 
-        log.info("stop buying ticket");
+            boolean error = false;
+            TicketData ticketData = null;
+            try {
+                ticketData = ticketService.buyTicket(userId, trainNumber, departureDate, stationNameParam,
+                        passengerData);
+            } catch (HasNoEmptySeatsException e) {
+                error = true;
+                session.setAttribute("buyTicketHasNoEmptySeats", true);
+                log.log(Level.WARNING, "This train has no empty seats", e);
+            } catch (AlreadyRegisteredException e) {
+                error = true;
+                session.setAttribute("buyTicketAlreadyRegistered", true);
+                log.log(Level.WARNING, "Such passenger already registered on this train", e);
+            } catch (SalesStopException e) {
+                error = true;
+                session.setAttribute("buyTicketSalesStop", true);
+                log.log(Level.WARNING, "Ticket sales has been stopped", e);
+            } catch (InvalidInputDataException e) {
+                error = true;
+                session.setAttribute("buyTicketInvalidData", true);
+                log.log(Level.WARNING, "Invalid input data", e);
+            }
+
+            if (error) {
+                getServletContext().getRequestDispatcher("/buy_ticket_error.jsp").forward(req, resp);
+            } else {
+                session.setAttribute("ticketData", ticketData);
+                getServletContext().getRequestDispatcher("/buy_ticket_success.jsp").forward(req, resp);
+            }
+
+        } else {
+            log.log(Level.WARNING, "Incorrect input data");
+            session.setAttribute("buyTicketIncorrectData", true);
+            getServletContext().getRequestDispatcher("/buy_ticket.jsp").forward(req, resp);
+        }
     }
 
     private boolean checkPassengerInput(String passengerNameParam, String passengerSurnameParam,

@@ -4,6 +4,7 @@
 <head>
     <link rel="stylesheet" type="text/css" href="style/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="style/index.css">
+    <link rel="stylesheet" type="text/css" href="style/employee_page.css">
     <script src="js/bootstrap.min.js"></script>
     <script src="js/jquery-1.11.2.min.js"></script>
     <script src="js/index.js"></script>
@@ -14,6 +15,9 @@
 <div class="container">
     <h1>Railway Company</h1>
     <jsp:include page="/navbar.jsp"/>
+    <div class="row">
+        <div class="span12 img-rounded" id="jumbotron"></div>
+    </div>
     <jsp:include page="/add_station.jsp"/>
     <jsp:include page="/add_train.jsp"/>
     <a href="#view_trains"></a>

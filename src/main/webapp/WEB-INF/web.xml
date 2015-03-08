@@ -46,12 +46,30 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>EmployeePageServlet</servlet-name>
+        <servlet-class>com.railwaycompany.presentation.servlets.EmployeePageServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>EmployeePageServlet</servlet-name>
+        <url-pattern>/employee_page</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>AddStationServlet</servlet-name>
         <servlet-class>com.railwaycompany.presentation.servlets.AddStationServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>AddStationServlet</servlet-name>
         <url-pattern>/add_station</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>AddTrainServlet</servlet-name>
+        <servlet-class>com.railwaycompany.presentation.servlets.AddTrainServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AddTrainServlet</servlet-name>
+        <url-pattern>/add_train</url-pattern>
     </servlet-mapping>
 
     <listener>
@@ -77,7 +95,7 @@
         </init-param>
         <init-param>
             <param-name>Employee pages</param-name>
-            <param-value>/add_station;/add_station.jsp</param-value>
+            <param-value>/add_station;/add_station.jsp;/add_train;/add_train.jsp</param-value>
         </init-param>
     </filter>
 

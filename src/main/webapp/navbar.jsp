@@ -20,7 +20,7 @@
                     <c:if test="${not empty sessionScope.authenticationId}">
                         <c:if test="${sessionScope.userData.employee}">
                             <li class="pull-right">
-                                <a href="${pageContext.request.contextPath}add_station">Add station</a>
+                                <a href="${pageContext.request.contextPath}employee_page">Control cab</a>
                             </li>
                         </c:if>
                         <li class="pull-right">

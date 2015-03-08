@@ -1,12 +1,13 @@
 package com.railwaycompany.business.services.implementation;
 
+import com.railwaycompany.business.dto.TrainData;
+import com.railwaycompany.business.services.exceptions.TrainWithSuchNumberExistException;
 import com.railwaycompany.business.services.interfaces.TrainService;
-import com.railwaycompany.persistence.dao.interfaces.*;
-import com.railwaycompany.persistence.entities.Schedule;
-import com.railwaycompany.persistence.entities.Station;
+import com.railwaycompany.persistence.dao.interfaces.DaoContext;
+import com.railwaycompany.persistence.dao.interfaces.TrainDao;
 import com.railwaycompany.persistence.entities.Train;
 
-import java.util.Date;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -18,51 +19,40 @@ public class TrainServiceImpl implements TrainService {
     private static Logger log = Logger.getLogger(TrainServiceImpl.class.getName());
 
     private TrainDao trainDao;
-    private TicketDao ticketDao;
-    private StationDao stationDao;
-    private ScheduleDao scheduleDao;
 
     public TrainServiceImpl(DaoContext daoContext) {
         trainDao = (TrainDao) daoContext.get(TrainDao.class);
-        ticketDao = (TicketDao) daoContext.get(TicketDao.class);
-        stationDao = (StationDao) daoContext.get(StationDao.class);
-        scheduleDao = (ScheduleDao) daoContext.get(ScheduleDao.class);
     }
 
     @Override
-    public boolean hasEmptySeats(int trainId) {
-        Train train = trainDao.read(trainId);
-        if (train != null) {
-            int seats = train.getSeats();
-            int count = ticketDao.countOfTickets(trainId);
-            if (count < seats) {
-                return true;
+    public List<TrainData> getAll() {
+        List<TrainData> trainDataList = null;
+        List<Train> trainList = trainDao.getAll();
+        if (trainList != null && !trainList.isEmpty()) {
+            trainDataList = new ArrayList<>();
+            for (Train t : trainList) {
+                TrainData trainData = new TrainData();
+                trainData.setId(t.getId());
+                trainData.setNumber(t.getNumber());
+                trainData.setSeats(t.getSeats());
+                trainDataList.add(trainData);
             }
         }
-        return false;
+        return trainDataList;
     }
 
     @Override
-    public Integer getTrainId(int trainNumber) {
-        Integer trainId = null;
-        Train train = trainDao.findTrain(trainNumber);
-        if (train != null) {
-            trainId = train.getId();
+    public void addTrain(int trainNumber, int trainSeats, boolean addAnyway) throws TrainWithSuchNumberExistException {
+        List<Train> trainList = trainDao.findTrains(trainNumber, trainSeats);
+        if (trainList == null || trainList.isEmpty() || addAnyway) {
+            Train train = new Train();
+            train.setNumber(trainNumber);
+            train.setSeats(trainSeats);
+            trainDao.create(train);
+        } else {
+            String msg = "Train with number: " + trainNumber + " and seats " + trainSeats + " already exist. Add " +
+                    "anyway mode: false";
+            throw new TrainWithSuchNumberExistException(msg);
         }
-        return trainId;
-    }
-
-    @Override
-    public Date getDepartureDate(String stationFromName, int trainId) {
-        Date timeDeparture = null;
-        Station station = stationDao.getStation(stationFromName);
-        if (station != null) {
-            int stationId = station.getId();
-            List<Schedule> schedules = scheduleDao.getSchedules(stationId, trainId);
-            if (schedules.size() == 1) {
-                timeDeparture = schedules.get(0).getTimeDeparture();
-            }
-        }
-        return timeDeparture;
     }
 }

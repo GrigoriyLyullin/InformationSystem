@@ -1,12 +1,13 @@
 package com.railwaycompany.business.services.interfaces;
 
-import java.util.Date;
+import com.railwaycompany.business.dto.TrainData;
+import com.railwaycompany.business.services.exceptions.TrainWithSuchNumberExistException;
+
+import java.util.List;
 
 public interface TrainService {
 
-    boolean hasEmptySeats(int trainId);
+    List<TrainData> getAll();
 
-    Date getDepartureDate(String stationFromName, int trainId);
-
-    Integer getTrainId(int trainNumber);
+    void addTrain(int trainNumber, int trainSeats, boolean addAnyway) throws TrainWithSuchNumberExistException;
 }

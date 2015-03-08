@@ -26,12 +26,12 @@ public class AddStationServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<StationData> allStationList = null;
-        Boolean getAll = Boolean.valueOf(req.getParameter("getAll"));
+        Boolean getAll = Boolean.valueOf(req.getParameter("getAllStation"));
         if (getAll) {
             allStationList = stationService.getAll();
         }
         req.getSession().setAttribute("allStationList", allStationList);
-        getServletContext().getRequestDispatcher("/add_station.jsp").forward(req, resp);
+        getServletContext().getRequestDispatcher("/employee_page.jsp").forward(req, resp);
     }
 
     @Override
@@ -53,6 +53,6 @@ public class AddStationServlet extends HttpServlet {
         } else {
             session.setAttribute("invalidStationNameError", true);
         }
-        getServletContext().getRequestDispatcher("/add_station.jsp").forward(req, resp);
+        getServletContext().getRequestDispatcher("/employee_page.jsp").forward(req, resp);
     }
 }

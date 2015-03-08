@@ -4,14 +4,16 @@ import com.railwaycompany.persistence.dao.interfaces.TrainDao;
 import com.railwaycompany.persistence.entities.Train;
 
 import javax.persistence.EntityManager;
-import javax.persistence.NoResultException;
 import javax.persistence.Query;
-import java.util.logging.Level;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Logger;
 
 public class TrainHibernateDao extends HibernateDao<Train> implements TrainDao {
 
-    private static final String FIND_TRAIN_BY_NUMBER = "SELECT t FROM Train t WHERE t.number = :number";
+    private static final String FIND_TRAIN_BY_NUMBER_AND_SEATS = "SELECT t FROM Train t WHERE t.number = :number " +
+            "AND t.seats = :seats";
+    private static final String SELECT_ALL_TRAINS = "SELECT t FROM Train t";
 
     /**
      * Logger for StationHibernateDao class.
@@ -29,20 +31,36 @@ public class TrainHibernateDao extends HibernateDao<Train> implements TrainDao {
 
 
     @Override
-    public Train findTrain(int number) {
-
-        Query query = entityManager.createQuery(FIND_TRAIN_BY_NUMBER);
-        query.setParameter("number", number);
-
-        Train train = null;
-        try {
-            train = (Train) query.getSingleResult();
-        } catch (NoResultException e) {
-            log.log(Level.INFO, "No train was found for number: \"" + number + "\"");
-        } catch (ClassCastException e) {
-            log.log(Level.WARNING, "Query returns not Train object.", e);
+    public List<Train> getAll() {
+        Query query = entityManager.createQuery(SELECT_ALL_TRAINS);
+        List<Train> trainList = null;
+        List resultList = query.getResultList();
+        if (resultList != null && !resultList.isEmpty()) {
+            trainList = new ArrayList<>();
+            for (Object o : resultList) {
+                if (o instanceof Train) {
+                    trainList.add((Train) o);
+                }
+            }
         }
+        return trainList;
+    }
 
-        return train;
+    @Override
+    public List<Train> findTrains(int trainNumber, int trainSeats) {
+        Query query = entityManager.createQuery(FIND_TRAIN_BY_NUMBER_AND_SEATS);
+        query.setParameter("number", trainNumber);
+        query.setParameter("seats", trainSeats);
+        List<Train> trainList = null;
+        List resultList = query.getResultList();
+        if (resultList != null && !resultList.isEmpty()) {
+            trainList = new ArrayList<>();
+            for (Object o : resultList) {
+                if (o instanceof Train) {
+                    trainList.add((Train) o);
+                }
+            }
+        }
+        return trainList;
     }
 }

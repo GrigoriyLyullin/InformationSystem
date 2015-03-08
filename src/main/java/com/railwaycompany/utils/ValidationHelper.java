@@ -59,4 +59,8 @@ public class ValidationHelper {
     public static boolean isValidPassengerNameOrSurname(String name) {
         return name != null && !name.isEmpty() && namePattern.matcher(name).matches();
     }
+
+    public static boolean isValidTrainSeats(String trainSeats) {
+        return isValidTrainNumber(trainSeats);
+    }
 }

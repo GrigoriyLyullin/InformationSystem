@@ -75,6 +75,10 @@ h1 {
     height: 30px;
 }
 
+#inputFromAddTrain input {
+    height: 30px;
+}
+
 #Station-From-Name {
     margin-right: 5px;
 }

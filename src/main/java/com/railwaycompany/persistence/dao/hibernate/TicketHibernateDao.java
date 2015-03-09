@@ -6,6 +6,8 @@ import com.railwaycompany.persistence.entities.Ticket;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -16,7 +18,7 @@ public class TicketHibernateDao extends HibernateDao<Ticket> implements TicketDa
     private static final String TICKET_BY_TRAIN_AND_PASSENGER_ID = "SELECT t FROM Ticket t WHERE t.train.id = :trainId " +
             "AND" + " t.passenger.id = :passengerId";
 
-//    private static final String TICKET_BY_TRAIN_ID = "SELECT t FROM Ticket t WHERE t.id = :ticketId AND t.passenger.id = :passengerId";
+    private static final String TICKET_BY_TRAIN_ID = "SELECT t FROM Ticket t WHERE t.train.id = :trainId";
 
     /**
      * Logger for StationHibernateDao class.
@@ -62,5 +64,24 @@ public class TicketHibernateDao extends HibernateDao<Ticket> implements TicketDa
             log.log(Level.INFO, "No tickets was found for trainId: \"" + trainId + "\"");
         }
         return registered;
+    }
+
+    @Override
+    public List<Ticket> getTicketsByTrainId(int trainId) {
+
+        Query query = entityManager.createQuery(TICKET_BY_TRAIN_ID);
+        query.setParameter("trainId", trainId);
+
+        List<Ticket> ticketList = null;
+        List resultList = query.getResultList();
+        if (resultList != null && !resultList.isEmpty()) {
+            ticketList = new ArrayList<>();
+            for (Object o : resultList) {
+                if (o instanceof Ticket) {
+                    ticketList.add((Ticket) o);
+                }
+            }
+        }
+        return ticketList;
     }
 }

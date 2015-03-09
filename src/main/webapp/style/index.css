@@ -101,6 +101,12 @@ h1 {
     height: 30px;
 }
 
+#inputFromSearchTrain #passengerCollapseBtn {
+    margin-top: 10px;
+    margin-left: 5px;
+    height: 20px;
+}
+
 #extendedFormButton {
     margin-top: 10px;
     margin-left: 5px;
@@ -122,4 +128,12 @@ thead {
 
 .span4 {
     width: 30%;
+}
+
+.height20 {
+    height: 20px;
+}
+
+.height30 {
+    height: 30px;
 }

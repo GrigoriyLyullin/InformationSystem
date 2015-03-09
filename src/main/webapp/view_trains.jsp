@@ -7,14 +7,15 @@
     <p>View information about all trains
         <c:choose>
             <c:when test="${empty sessionScope.viewAllTrainsList}">
-                <a href="${pageContext.request.contextPath}view_all_trains?viewAllTrains=true" class="btn btn-primary">
-                    <i class=" icon-white icon-chevron-down"></i>
+                <a href="${pageContext.request.contextPath}view_all_trains?viewAllTrains=true"
+                   class="height20 btn btn-primary">
+                    <i class="icon-white icon-chevron-down"></i>
                 </a>
             </c:when>
             <c:when test="${not empty sessionScope.viewAllTrainsList}">
                 <a href="${pageContext.request.contextPath}view_all_trains?viewAllTrains=false"
-                   class="btn btn-primary active">
-                    <i class="icon-white icon-chevron-down"></i>
+                   class="height20 btn btn-primary active">
+                    <i class="icon-white icon-chevron-up"></i>
                 </a>
             </c:when>
         </c:choose>

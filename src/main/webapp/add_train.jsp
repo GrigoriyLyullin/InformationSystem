@@ -14,18 +14,19 @@
                 <span class="add-on">Seats</span>
                 <input name="trainSeats" type="text" class="input-medium" placeholder="Train seats">
             </div>
-            <button type="submit" class="btn btn-success">
+            <button type="submit" class="height30 btn btn-success">
                 <i class="icon-white icon-plus"></i>
             </button>
             <c:choose>
                 <c:when test="${ empty sessionScope.allTrainList}">
-                    <a href="${pageContext.request.contextPath}add_train?getAllTrain=true" class="btn btn-primary">
+                    <a href="${pageContext.request.contextPath}add_train?getAllTrain=true"
+                       class="height20 btn btn-primary">
                         <i class="icon-white icon-list"></i>
                     </a>
                 </c:when>
                 <c:when test="${not empty sessionScope.allTrainList}">
                     <a href="${pageContext.request.contextPath}add_train?getAllTrain=false"
-                       class="btn btn-primary active">
+                       class="height20 btn btn-primary active">
                         <i class="icon-white icon-list"></i>
                     </a>
                 </c:when>

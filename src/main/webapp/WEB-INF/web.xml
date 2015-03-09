@@ -81,6 +81,15 @@
         <url-pattern>/view_all_trains</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>ViewAllPassengerServlet</servlet-name>
+        <servlet-class>com.railwaycompany.presentation.servlets.ViewAllPassengerServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ViewAllPassengerServlet</servlet-name>
+        <url-pattern>/view_all_passengers</url-pattern>
+    </servlet-mapping>
+
     <listener>
         <listener-class>com.railwaycompany.presentation.servlets.MainServletContextListener</listener-class>
     </listener>

@@ -63,4 +63,8 @@ public class ValidationHelper {
     public static boolean isValidTrainSeats(String trainSeats) {
         return isValidTrainNumber(trainSeats);
     }
+
+    public static boolean isValidId(String trainId) {
+        return isValidTrainNumber(trainId);
+    }
 }

@@ -14,5 +14,7 @@ public interface ServiceFactory {
 
     TicketService getTicketService();
 
+    PassengerService getPassengerService();
+
     void close();
 }

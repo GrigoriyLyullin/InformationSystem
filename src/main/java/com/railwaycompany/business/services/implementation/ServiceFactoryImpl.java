@@ -21,6 +21,8 @@ public class ServiceFactoryImpl implements ServiceFactory {
 
     private TicketService ticketService;
 
+    private PassengerService passengerService;
+
     public ServiceFactoryImpl() {
         this.daoFactory = HibernateDaoFactorySingleton.getInstance();
 
@@ -45,6 +47,7 @@ public class ServiceFactoryImpl implements ServiceFactory {
         trainService = new TrainServiceImpl(daoContext);
         userService = new UserServiceImpl(daoContext);
         ticketService = new TicketServiceImpl(daoContext);
+        passengerService = new PassengerServiceImpl(daoContext);
     }
 
 
@@ -76,6 +79,11 @@ public class ServiceFactoryImpl implements ServiceFactory {
     @Override
     public TicketService getTicketService() {
         return ticketService;
+    }
+
+    @Override
+    public PassengerService getPassengerService() {
+        return passengerService;
     }
 
     @Override

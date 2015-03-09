@@ -6,28 +6,27 @@ import java.security.SecureRandom;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * Designed for working with hashes.
+ */
 public class HashHelper {
 
     /**
      * Hash algorithm name.
      */
     private static final String HASH_ALG = "MD5";
-
     /**
      * Logger for UserService class.
      */
     private static final Logger LOG = Logger.getLogger(HashHelper.class.getName());
-
     /**
      * Characters for random string generation.
      */
     private static final String RAND_STR_CHARACTERS = "abcdefghijklmnopqrstuvwxyz0123456789";
-
     /**
      * Random string length.
      */
     private static final int RAND_STR_LENGTH = 32;
-
     /**
      * SecureRandom for random string generation.
      */
@@ -56,10 +55,21 @@ public class HashHelper {
         return generateHash;
     }
 
+    /**
+     * Generates random hash.
+     *
+     * @return String that contains random hash.
+     */
     public static String generateRandomHash() {
         return hash(generateRandomString(RAND_STR_LENGTH));
     }
 
+    /**
+     * Generates random string.
+     *
+     * @param length - random string length
+     * @return String contains random symbols.
+     */
     private static String generateRandomString(int length) {
         char[] text = new char[length];
         for (int i = 0; i < length; i++) {

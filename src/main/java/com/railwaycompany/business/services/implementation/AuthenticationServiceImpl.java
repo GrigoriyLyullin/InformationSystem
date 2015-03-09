@@ -16,7 +16,10 @@ import java.util.logging.Logger;
  */
 public class AuthenticationServiceImpl implements AuthenticationService {
 
-    public static final String ROOT_LOCATION = "/";
+    /**
+     * Main page location.
+     */
+    public static final String ROOT_LOCATION = "/index";
     /**
      * Parameter name for login.
      */
@@ -57,19 +60,18 @@ public class AuthenticationServiceImpl implements AuthenticationService {
      * GenericDAO<User> implementation for work with User entities.
      */
     private final UserDao userDao;
-
     /**
      * Map contains pairs session id on authentication id.
      */
     private final Map<String, String> sessionToAuthenticationId;
-
     /**
      * Map contains pairs session id on user id.
      */
     private final Map<String, Integer> sessionIdToUserId;
-
+    /**
+     * Map contains pairs session id on user employee flag.
+     */
     private final Map<String, Boolean> sessionIdToIsEmployee;
-
     /**
      * AuthenticationServiceImpl constructor.
      */

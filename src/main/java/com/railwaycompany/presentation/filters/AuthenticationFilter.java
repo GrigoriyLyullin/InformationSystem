@@ -16,6 +16,10 @@ import java.util.logging.Logger;
 
 import static com.railwaycompany.business.services.implementation.AuthenticationServiceImpl.*;
 
+/**
+ * AuthenticationFilter designed to control user access to specific pages.
+ * Some pages available only for authorization users and some only for employees.
+ */
 public class AuthenticationFilter implements Filter {
 
     /**
@@ -27,12 +31,26 @@ public class AuthenticationFilter implements Filter {
      * Private pages initial parameter in FilterConfig.
      */
     private static final String PAGES_INIT_PARAM = "Private pages";
+
+    /**
+     * Employee pages initial parameter in FilterConfig.
+     */
     private static final String EMPLOYEE_PAGES_INIT_PARAM = "Employee pages";
 
     /**
      * Initial parameters splitter.
      */
     private static final String INIT_PARAM_SPLITTER = ";";
+
+    /**
+     * Pattern for filter request URI clean.
+     */
+    private static final String FILTER_REQUEST_URI_PATTERN = "/{2,}";
+
+    /**
+     * Slash symbol.
+     */
+    private static final String SLASH = "/";
 
     /**
      * AuthenticationService using for users authentication on server.
@@ -44,6 +62,9 @@ public class AuthenticationFilter implements Filter {
      */
     private List<String> privatePagesList;
 
+    /**
+     * List contains URI pages that should be available only for employees.
+     */
     private List<String> employeePagesList;
 
     @Override
@@ -66,6 +87,7 @@ public class AuthenticationFilter implements Filter {
             ServletException {
         HttpServletRequest httpRequest = (HttpServletRequest) req;
         String requestURI = httpRequest.getRequestURI();
+        requestURI = filterRequestURI(requestURI);
 
         if (privatePagesList.contains(requestURI) || employeePagesList.contains(requestURI)) {
             HttpServletResponse httpResponse = (HttpServletResponse) resp;
@@ -90,10 +112,8 @@ public class AuthenticationFilter implements Filter {
             } else {
                 LOG.log(Level.INFO, "User with session id: " + sessionId + " is not authorized. Request URI: "
                         + requestURI);
-
                 session.setAttribute(SIGN_IN_URL_ATTR, requestURI);
                 session.setAttribute(SIGN_IN_MSG_ATTR, getSignInMessage(requestURI));
-
                 httpResponse.sendRedirect(ROOT_LOCATION);
             }
         } else {
@@ -104,6 +124,16 @@ public class AuthenticationFilter implements Filter {
     @Override
     public void destroy() {
 
+    }
+
+    /**
+     * Removes useless slashes from request URI. It is necessary for proper work this filter.
+     *
+     * @param requestURI - input request URI
+     * @return Requst URI without extra slashes.
+     */
+    private String filterRequestURI(String requestURI) {
+        return requestURI.replaceAll(FILTER_REQUEST_URI_PATTERN, SLASH);
     }
 
     /**

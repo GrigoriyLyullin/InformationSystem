@@ -3,7 +3,6 @@ package com.railwaycompany.presentation.servlets;
 import com.railwaycompany.business.dto.ScheduleData;
 import com.railwaycompany.business.services.implementation.ServiceFactorySingleton;
 import com.railwaycompany.business.services.interfaces.ScheduleService;
-import com.railwaycompany.business.services.interfaces.ServiceFactory;
 import com.railwaycompany.utils.DateHelper;
 import com.railwaycompany.utils.ValidationHelper;
 
@@ -15,46 +14,57 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class SearchTrainServlet extends HttpServlet {
 
-    private static Logger log = Logger.getLogger(SearchTrainServlet.class.getName());
+    private static final String INDEX_PAGE = "/WEB-INF/index.jsp";
+    private static final String EXTENDED_FORM_PARAM = "extendedForm";
+    private static final String STATION_FORM_NAME_PARAM = "Station-From-Name";
+    private static final String STATION_TO_NAME_PARAM = "Station-To-Name";
+    private static final String DATE_FROM_PARAM = "dateFrom";
+    private static final String DATE_TO_PARAM = "dateTo";
+    private static final String TIME_FROM_PARAM = "timeFrom";
+    private static final String TIME_TO_PARAM = "timeTo";
+    private static final String EXTENDED_FORM_ATTR = "extendedForm";
+    private static final String STATION_FROM_NAME_ATTR = "stationFromName";
+    private static final String STATION_TO_NAME_ATTR = "stationToName";
+    private static final String DATE_FROM_ATTR = "dateFrom";
+    private static final String DATE_TO_ATTR = "dateTo";
+    private static final String TRAIN_SEARCHING_ERROR_ATTR = "trainSearchingError";
+    private static final String TRAIN_LIST_ATTR = "trainList";
+    private static final String TRAIN_NOT_FOUND_ATTR = "trainNotFoundError";
+
+    private static final Logger LOG = Logger.getLogger(SearchTrainServlet.class.getName());
 
     private ScheduleService scheduleService;
 
     @Override
     public void init() throws ServletException {
-        ServiceFactory serviceFactory = ServiceFactorySingleton.getInstance();
-        scheduleService = serviceFactory.getScheduleService();
+        scheduleService = ServiceFactorySingleton.getInstance().getScheduleService();
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getSession().setAttribute("extendedForm", Boolean.valueOf(req.getParameter("extendedForm")));
-        resp.sendRedirect("/#search_train");
+        req.getSession().setAttribute(EXTENDED_FORM_ATTR, Boolean.valueOf(req.getParameter(EXTENDED_FORM_PARAM)));
+        getServletContext().getRequestDispatcher(INDEX_PAGE).forward(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-        String stationFromName = req.getParameter("Station-From-Name");
-        String stationToName = req.getParameter("Station-To-Name");
-        String dateFromStr = req.getParameter("dateFrom");
-        String dateToStr = req.getParameter("dateTo");
-        String timeFromStr = req.getParameter("timeFrom");
-        String timeToStr = req.getParameter("timeTo");
-
-        log.info("stationFrom: " + stationFromName + " stationTo: " + stationToName + " dateFrom: " +
-                dateFromStr + " timeFrom: " + timeFromStr + " dateTo: " + dateToStr + " timeTo: " + timeToStr);
+        String stationFromName = req.getParameter(STATION_FORM_NAME_PARAM);
+        String stationToName = req.getParameter(STATION_TO_NAME_PARAM);
+        String dateFromStr = req.getParameter(DATE_FROM_PARAM);
+        String dateToStr = req.getParameter(DATE_TO_PARAM);
+        String timeFromStr = req.getParameter(TIME_FROM_PARAM);
+        String timeToStr = req.getParameter(TIME_TO_PARAM);
 
         HttpSession session = req.getSession();
-
-        session.setAttribute("stationFromName", stationFromName);
-        session.setAttribute("stationToName", stationToName);
-
-        session.setAttribute("dateFrom", dateFromStr);
-        session.setAttribute("dateTo", dateToStr);
+        session.setAttribute(STATION_FROM_NAME_ATTR, stationFromName);
+        session.setAttribute(STATION_TO_NAME_ATTR, stationToName);
+        session.setAttribute(DATE_FROM_ATTR, dateFromStr);
+        session.setAttribute(DATE_TO_ATTR, dateToStr);
 
         boolean validStationFromName = ValidationHelper.isValidStationName(stationFromName);
         boolean validStationToName = ValidationHelper.isValidStationName(stationToName);
@@ -63,7 +73,6 @@ public class SearchTrainServlet extends HttpServlet {
         boolean validTimeFromStr = ValidationHelper.isValidTimeStr(timeFromStr);
         boolean validTimeToStr = ValidationHelper.isValidTimeStr(timeToStr);
 
-        //Simple train search
         if (validStationFromName && validStationToName && validDateFromStr) {
             List<ScheduleData> scheduleList;
             Date dateFrom = DateHelper.convertDate(dateFromStr);
@@ -79,15 +88,16 @@ public class SearchTrainServlet extends HttpServlet {
             } else {
                 scheduleList = scheduleService.getSchedule(stationFromName, stationToName, dateFrom);
             }
-
-            session.setAttribute("trainSearchingError", false);
-
+            session.setAttribute(TRAIN_SEARCHING_ERROR_ATTR, false);
             if (scheduleList != null) {
-                session.setAttribute("trainList", scheduleList);
+                session.setAttribute(TRAIN_LIST_ATTR, scheduleList);
             } else {
-                session.setAttribute("trainNotFoundError", true);
+                session.setAttribute(TRAIN_NOT_FOUND_ATTR, true);
             }
+        } else {
+            LOG.log(Level.WARNING, "Incorrect minimum data. stationFrom: " + stationFromName + " stationTo: " +
+                    stationToName + " dateFrom: " + dateFromStr);
         }
-        resp.sendRedirect("/#search_train");
+        getServletContext().getRequestDispatcher(INDEX_PAGE).forward(req, resp);
     }
 }

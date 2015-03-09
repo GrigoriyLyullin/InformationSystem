@@ -16,10 +16,37 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import static com.railwaycompany.business.services.implementation.AuthenticationServiceImpl.*;
-
 public class LoginServlet extends HttpServlet {
 
+    /**
+     * Parameter name for login.
+     */
+    public static final String LOGIN_PARAM = "login";
+    /**
+     * Parameter name for password.
+     */
+    public static final String PASSWORD_PARAM = "password";
+    /**
+     * Attribute name for authentication id.
+     */
+    public static final String AUTH_ID_ATTR = "authenticationId";
+    /**
+     * Attribute name for user data.
+     */
+    public static final String USER_DATA_ATTR = "userData";
+    /**
+     * Attribute name for sign in error.
+     */
+    public static final String SIGN_IN_ERROR_ATTR = "signInError";
+    /**
+     * Attribute name for sign in.
+     */
+    public static final String SIGN_IN_ATTR = "signIn";
+    /**
+     * Attribute name for sign in message.
+     */
+    public static final String SIGN_IN_MSG_ATTR = "signInMessage";
+    private static final String INDEX_PAGE = "/WEB-INF/index.jsp";
     /**
      * Logger for LoginServlet class.
      */
@@ -42,9 +69,8 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String signInMessage = req.getParameter(SIGN_IN_MSG_ATTR);
-        LOG.log(Level.FINE, SIGN_IN_MSG_ATTR + " : " + signInMessage);
         req.getSession().setAttribute(SIGN_IN_MSG_ATTR, signInMessage);
-        getServletContext().getRequestDispatcher("/WEB-INF/index.jsp").forward(req, resp);
+        getServletContext().getRequestDispatcher(INDEX_PAGE).forward(req, resp);
     }
 
     @Override
@@ -72,10 +98,10 @@ public class LoginServlet extends HttpServlet {
                 LOG.log(Level.WARNING, "User cannot sign in");
             }
         } else {
-            LOG.log(Level.INFO, "User try to sign in with invalid login: " + login + " and password: " + password);
+            LOG.log(Level.WARNING, "User try to sign in with invalid login: " + login + " and password: " + password);
         }
         session.setAttribute(SIGN_IN_ERROR_ATTR, signIn);
         session.setAttribute(SIGN_IN_ATTR, signIn);
-        getServletContext().getRequestDispatcher("/WEB-INF/index.jsp").forward(req, resp);
+        getServletContext().getRequestDispatcher(INDEX_PAGE).forward(req, resp);
     }
 }

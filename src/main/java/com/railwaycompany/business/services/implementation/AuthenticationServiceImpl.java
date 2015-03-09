@@ -17,42 +17,6 @@ import java.util.logging.Logger;
 public class AuthenticationServiceImpl implements AuthenticationService {
 
     /**
-     * Main page location.
-     */
-    public static final String ROOT_LOCATION = "/index";
-    /**
-     * Parameter name for login.
-     */
-    public static final String LOGIN_PARAM = "login";
-    /**
-     * Parameter name for password.
-     */
-    public static final String PASSWORD_PARAM = "password";
-    /**
-     * Attribute name for authentication id.
-     */
-    public static final String AUTH_ID_ATTR = "authenticationId";
-    /**
-     * Attribute name for user data.
-     */
-    public static final String USER_DATA_ATTR = "userData";
-    /**
-     * Attribute name for sign in error.
-     */
-    public static final String SIGN_IN_ERROR_ATTR = "signInError";
-    /**
-     * Attribute name for sign in.
-     */
-    public static final String SIGN_IN_ATTR = "signIn";
-    /**
-     * Attribute name for sign in url.
-     */
-    public static final String SIGN_IN_URL_ATTR = "signInUrl";
-    /**
-     * Attribute name for sign in message.
-     */
-    public static final String SIGN_IN_MSG_ATTR = "signInMessage";
-    /**
      * Logger for LoginServlet class.
      */
     private static final Logger LOG = Logger.getLogger(AuthenticationServiceImpl.class.getName());

@@ -8,8 +8,10 @@ import java.io.IOException;
 
 public class EmployeePageServlet extends HttpServlet {
 
+    private static final String EMPLOYEE_PAGE = "/WEB-INF/employee_page.jsp";
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        getServletContext().getRequestDispatcher("/WEB-INF/employee_page.jsp").forward(req, resp);
+        getServletContext().getRequestDispatcher(EMPLOYEE_PAGE).forward(req, resp);
     }
 }

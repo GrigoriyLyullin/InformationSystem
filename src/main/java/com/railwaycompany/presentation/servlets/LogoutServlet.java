@@ -1,6 +1,5 @@
 package com.railwaycompany.presentation.servlets;
 
-import com.railwaycompany.business.services.implementation.AuthenticationServiceImpl;
 import com.railwaycompany.business.services.implementation.ServiceFactorySingleton;
 import com.railwaycompany.business.services.interfaces.AuthenticationService;
 
@@ -13,6 +12,11 @@ import java.io.IOException;
 
 public class LogoutServlet extends HttpServlet {
 
+    /**
+     * Attribute name for authentication id.
+     */
+    public static final String AUTH_ID_ATTR = "authenticationId";
+    private static final String INDEX_PAGE = "/WEB-INF/index.jsp";
     /**
      * AuthenticationService uses for users authentication on server.
      */
@@ -43,13 +47,13 @@ public class LogoutServlet extends HttpServlet {
     private void signOut(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         HttpSession session = req.getSession(false);
         if (session != null) {
-            String authId = (String) session.getAttribute(AuthenticationServiceImpl.AUTH_ID_ATTR);
+            String authId = (String) session.getAttribute(AUTH_ID_ATTR);
             if (authId != null && !authId.isEmpty()) {
                 String sessionId = session.getId();
                 authenticationService.signOut(sessionId);
             }
             session.invalidate();
         }
-        getServletContext().getRequestDispatcher("/WEB-INF/index.jsp").forward(req, resp);
+        getServletContext().getRequestDispatcher(INDEX_PAGE).forward(req, resp);
     }
 }

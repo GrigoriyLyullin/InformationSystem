@@ -18,6 +18,17 @@ import static com.railwaycompany.utils.ValidationHelper.isValidTrainSeats;
 
 public class AddTrainServlet extends HttpServlet {
 
+    private static final String EMPLOYEE_PAGE = "/WEB-INF/employee_page.jsp";
+    private static final String GET_ALL_TRAIN_PARAM = "getAllTrain";
+    private static final String TRAIN_NUMBER_PARAM = "trainNumber";
+    private static final String TRAIN_SEATS_PARAM = "trainSeats";
+    private static final String ADD_TRAIN_ANYWAY_PARAM = "addTrainAnyway";
+    private static final String ALL_TRAIN_LIST_ATTR = "allTrainList";
+    private static final String INVALID_INPUT_DATA_ATTR = "invalidInputDataError";
+    private static final String EXIST_TRAIN_WARNING_ATTR = "existTrainWarning";
+    private static final String EXIST_TRAIN_NUMBER_ATTR = "existTrainNumber";
+    private static final String EXIST_TRAIN_SEATS_ATTR = "existTrainSeats";
+
     private TrainService trainService;
 
     @Override
@@ -28,22 +39,22 @@ public class AddTrainServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<TrainData> allTrainList = null;
-        Boolean getAll = Boolean.valueOf(req.getParameter("getAllTrain"));
+        Boolean getAll = Boolean.valueOf(req.getParameter(GET_ALL_TRAIN_PARAM));
         if (getAll) {
             allTrainList = trainService.getAll();
         }
-        req.getSession().setAttribute("allTrainList", allTrainList);
-        getServletContext().getRequestDispatcher("/WEB-INF/employee_page.jsp").forward(req, resp);
+        req.getSession().setAttribute(ALL_TRAIN_LIST_ATTR, allTrainList);
+        getServletContext().getRequestDispatcher(EMPLOYEE_PAGE).forward(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         HttpSession session = req.getSession();
-        String trainNumberStr = req.getParameter("trainNumber");
-        String trainSeatsStr = req.getParameter("trainSeats");
-        boolean addTrainAnyway = Boolean.valueOf(req.getParameter("addTrainAnyway"));
-        boolean allTrainListExist = (session.getAttribute("allTrainList") != null);
+        String trainNumberStr = req.getParameter(TRAIN_NUMBER_PARAM);
+        String trainSeatsStr = req.getParameter(TRAIN_SEATS_PARAM);
+        boolean addTrainAnyway = Boolean.valueOf(req.getParameter(ADD_TRAIN_ANYWAY_PARAM));
+        boolean allTrainListExist = (session.getAttribute(ALL_TRAIN_LIST_ATTR) != null);
 
         if (isValidTrainNumber(trainNumberStr) && isValidTrainSeats(trainSeatsStr)) {
             try {
@@ -51,18 +62,18 @@ public class AddTrainServlet extends HttpServlet {
                 int trainSeats = Integer.valueOf(trainSeatsStr);
                 trainService.addTrain(trainNumber, trainSeats, addTrainAnyway);
                 if (allTrainListExist) {
-                    session.setAttribute("allTrainList", trainService.getAll());
+                    session.setAttribute(ALL_TRAIN_LIST_ATTR, trainService.getAll());
                 }
             } catch (TrainWithSuchNumberExistException e) {
-                session.setAttribute("existTrainWarning", true);
-                session.setAttribute("existTrainNumber", trainNumberStr);
-                session.setAttribute("existTrainSeats", trainSeatsStr);
+                session.setAttribute(EXIST_TRAIN_WARNING_ATTR, true);
+                session.setAttribute(EXIST_TRAIN_NUMBER_ATTR, trainNumberStr);
+                session.setAttribute(EXIST_TRAIN_SEATS_ATTR, trainSeatsStr);
             } catch (NumberFormatException e) {
-                session.setAttribute("invalidInputDataError", true);
+                session.setAttribute(INVALID_INPUT_DATA_ATTR, true);
             }
         } else {
-            session.setAttribute("invalidInputDataError", true);
+            session.setAttribute(INVALID_INPUT_DATA_ATTR, true);
         }
-        getServletContext().getRequestDispatcher("/WEB-INF/employee_page.jsp").forward(req, resp);
+        getServletContext().getRequestDispatcher(EMPLOYEE_PAGE).forward(req, resp);
     }
 }

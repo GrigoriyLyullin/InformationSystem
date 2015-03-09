@@ -15,7 +15,7 @@ import java.util.List;
 
 public class ScheduleServiceImpl implements ScheduleService {
 
-    public static final String STATION_NAME_ATTR = "Station-Name";
+
 
     private ScheduleDao scheduleDao;
 

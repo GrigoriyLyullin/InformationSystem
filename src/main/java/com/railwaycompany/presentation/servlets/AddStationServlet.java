@@ -16,6 +16,14 @@ import java.util.List;
 
 public class AddStationServlet extends HttpServlet {
 
+    private static final String EMPLOYEE_PAGE = "/WEB-INF/employee_page.jsp";
+    private static final String GET_ALL_STATION_PARAM = "getAllStation";
+    private static final String STATION_NAME_PARAM = "stationName";
+    private static final String ALL_STATION_LIST_ATTR = "allStationList";
+    private static final String EXIST_STATION_ERROR_ATTR = "existStationError";
+    private static final String EXIST_STATION_NAME_ATTR = "existStationName";
+    private static final String INVALID_STATION_NAME_ATTR = "invalidStationNameError";
+
     private StationService stationService;
 
     @Override
@@ -26,33 +34,33 @@ public class AddStationServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<StationData> allStationList = null;
-        Boolean getAll = Boolean.valueOf(req.getParameter("getAllStation"));
+        Boolean getAll = Boolean.valueOf(req.getParameter(GET_ALL_STATION_PARAM));
         if (getAll) {
             allStationList = stationService.getAll();
         }
-        req.getSession().setAttribute("allStationList", allStationList);
-        getServletContext().getRequestDispatcher("/WEB-INF/employee_page.jsp").forward(req, resp);
+        req.getSession().setAttribute(ALL_STATION_LIST_ATTR, allStationList);
+        getServletContext().getRequestDispatcher(EMPLOYEE_PAGE).forward(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
-        String stationName = req.getParameter("stationName");
-        boolean allStationListExist = (session.getAttribute("allStationList") != null);
+        String stationName = req.getParameter(STATION_NAME_PARAM);
+        boolean allStationListExist = (session.getAttribute(ALL_STATION_LIST_ATTR) != null);
 
         if (ValidationHelper.isValidStationName(stationName)) {
             try {
                 stationService.addStation(stationName);
                 if (allStationListExist) {
-                    session.setAttribute("allStationList", stationService.getAll());
+                    session.setAttribute(ALL_STATION_LIST_ATTR, stationService.getAll());
                 }
             } catch (StationWithSuchNameExistException e) {
-                session.setAttribute("existStationError", true);
-                session.setAttribute("existStationName", stationName);
+                session.setAttribute(EXIST_STATION_ERROR_ATTR, true);
+                session.setAttribute(EXIST_STATION_NAME_ATTR, stationName);
             }
         } else {
-            session.setAttribute("invalidStationNameError", true);
+            session.setAttribute(INVALID_STATION_NAME_ATTR, true);
         }
-        getServletContext().getRequestDispatcher("/WEB-INF/employee_page.jsp").forward(req, resp);
+        getServletContext().getRequestDispatcher(EMPLOYEE_PAGE).forward(req, resp);
     }
 }

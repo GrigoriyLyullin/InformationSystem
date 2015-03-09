@@ -16,6 +16,14 @@ import java.util.logging.Logger;
 
 public class ViewAllPassengerServlet extends HttpServlet {
 
+    private static final String EMPLOYEE_PAGE = "/WEB-INF/employee_page.jsp";
+    private static final String HIDE_ALL_PASSENGERS_PARAM = "hideAllPassengers";
+    private static final String TRAIN_ID_PARAM = "trainId";
+    private static final String ALL_PASSENGER_LIST_ATTR = "allPassengerList";
+    private static final String PASSENGER_NOT_FOUND_ATTR = "passengersNotFound";
+    private static final String PASSENGER_NOT_FOUND_TRAIN_ID_ATTR = "passengersNotFoundTrainId";
+    private static final String INVALID_TRAIN_ID_ATTR = "invalidTrainIdError";
+
     private static final Logger LOG = Logger.getLogger(ViewAllPassengerServlet.class.getName());
 
     private PassengerService passengerService;
@@ -27,29 +35,29 @@ public class ViewAllPassengerServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        if (Boolean.valueOf(req.getParameter("hideAllPassengers"))) {
-            req.getSession().removeAttribute("allPassengerList");
+        if (Boolean.valueOf(req.getParameter(HIDE_ALL_PASSENGERS_PARAM))) {
+            req.getSession().removeAttribute(ALL_PASSENGER_LIST_ATTR);
         }
-        getServletContext().getRequestDispatcher("/WEB-INF/employee_page.jsp").forward(req, resp);
+        getServletContext().getRequestDispatcher(EMPLOYEE_PAGE).forward(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
-        String trainIdStr = req.getParameter("trainId");
+        String trainIdStr = req.getParameter(TRAIN_ID_PARAM);
         List<PassengerData> allPassengersList = null;
         if (ValidationHelper.isValidId(trainIdStr)) {
             int trainId = Integer.valueOf(trainIdStr);
             allPassengersList = passengerService.getAllPassengersByTrainId(trainId);
             if (allPassengersList == null || allPassengersList.isEmpty()) {
-                session.setAttribute("passengersNotFound", true);
-                session.setAttribute("passengersNotFoundTrainId", trainId);
+                session.setAttribute(PASSENGER_NOT_FOUND_ATTR, true);
+                session.setAttribute(PASSENGER_NOT_FOUND_TRAIN_ID_ATTR, trainId);
             }
         } else {
             LOG.info("Invalid trainId: " + trainIdStr);
-            session.setAttribute("invalidTrainIdError", true);
+            session.setAttribute(INVALID_TRAIN_ID_ATTR, true);
         }
-        session.setAttribute("allPassengerList", allPassengersList);
-        getServletContext().getRequestDispatcher("/WEB-INF/employee_page.jsp").forward(req, resp);
+        session.setAttribute(ALL_PASSENGER_LIST_ATTR, allPassengersList);
+        getServletContext().getRequestDispatcher(EMPLOYEE_PAGE).forward(req, resp);
     }
 }

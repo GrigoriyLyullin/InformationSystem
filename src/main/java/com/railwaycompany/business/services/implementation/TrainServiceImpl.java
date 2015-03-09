@@ -6,7 +6,6 @@ import com.railwaycompany.business.services.exceptions.TrainWithSuchNumberExistE
 import com.railwaycompany.business.services.interfaces.TrainService;
 import com.railwaycompany.persistence.dao.interfaces.DaoContext;
 import com.railwaycompany.persistence.dao.interfaces.ScheduleDao;
-import com.railwaycompany.persistence.dao.interfaces.StationDao;
 import com.railwaycompany.persistence.dao.interfaces.TrainDao;
 import com.railwaycompany.persistence.entities.Schedule;
 import com.railwaycompany.persistence.entities.Station;
@@ -25,12 +24,10 @@ public class TrainServiceImpl implements TrainService {
 
     private TrainDao trainDao;
     private ScheduleDao scheduleDao;
-    private StationDao stationDao;
 
     public TrainServiceImpl(DaoContext daoContext) {
         trainDao = (TrainDao) daoContext.get(TrainDao.class);
         scheduleDao = (ScheduleDao) daoContext.get(ScheduleDao.class);
-        stationDao = (StationDao) daoContext.get(StationDao.class);
     }
 
     @Override

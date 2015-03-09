@@ -25,8 +25,15 @@ public class StationServiceImpl implements StationService {
     }
 
     @Override
-    public Station getStation(String name) {
-        return stationDao.getStation(name);
+    public StationData getStation(String name) {
+        Station station = stationDao.getStation(name);
+        StationData stationData = null;
+        if (station != null) {
+            stationData = new StationData();
+            stationData.setId(station.getId());
+            stationData.setName(station.getName());
+        }
+        return stationData;
     }
 
     @Override

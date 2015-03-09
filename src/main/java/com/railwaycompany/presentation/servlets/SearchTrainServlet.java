@@ -1,11 +1,9 @@
 package com.railwaycompany.presentation.servlets;
 
-import com.railwaycompany.persistence.entities.Station;
 import com.railwaycompany.business.dto.ScheduleData;
+import com.railwaycompany.business.services.implementation.ServiceFactorySingleton;
 import com.railwaycompany.business.services.interfaces.ScheduleService;
 import com.railwaycompany.business.services.interfaces.ServiceFactory;
-import com.railwaycompany.business.services.interfaces.StationService;
-import com.railwaycompany.business.services.implementation.ServiceFactorySingleton;
 import com.railwaycompany.utils.DateHelper;
 import com.railwaycompany.utils.ValidationHelper;
 
@@ -24,13 +22,11 @@ public class SearchTrainServlet extends HttpServlet {
     private static Logger log = Logger.getLogger(SearchTrainServlet.class.getName());
 
     private ScheduleService scheduleService;
-    private StationService stationService;
 
     @Override
     public void init() throws ServletException {
         ServiceFactory serviceFactory = ServiceFactorySingleton.getInstance();
         scheduleService = serviceFactory.getScheduleService();
-        stationService = serviceFactory.getStationService();
     }
 
     @Override
@@ -60,9 +56,6 @@ public class SearchTrainServlet extends HttpServlet {
         session.setAttribute("dateFrom", dateFromStr);
         session.setAttribute("dateTo", dateToStr);
 
-//        session.setAttribute("trainNotFound", true);
-//        session.setAttribute("trainList", null);
-
         boolean validStationFromName = ValidationHelper.isValidStationName(stationFromName);
         boolean validStationToName = ValidationHelper.isValidStationName(stationToName);
         boolean validDateFromStr = ValidationHelper.isValidDateStr(dateFromStr);
@@ -82,13 +75,9 @@ public class SearchTrainServlet extends HttpServlet {
                 if (validTimeToStr) {
                     dateTo = DateHelper.convertDatetime(dateToStr + " " + timeToStr);
                 }
-                Station stationFrom = stationService.getStation(stationFromName);
-                Station stationTo = stationService.getStation(stationToName);
-                scheduleList = scheduleService.getSchedule(stationFrom, stationTo, dateFrom, dateTo);
+                scheduleList = scheduleService.getSchedule(stationFromName, stationToName, dateFrom, dateTo);
             } else {
-                Station stationFrom = stationService.getStation(stationFromName);
-                Station stationTo = stationService.getStation(stationToName);
-                scheduleList = scheduleService.getSchedule(stationFrom, stationTo, dateFrom);
+                scheduleList = scheduleService.getSchedule(stationFromName, stationToName, dateFrom);
             }
 
             session.setAttribute("trainSearchingError", false);

@@ -4,6 +4,7 @@ import com.railwaycompany.business.dto.ScheduleData;
 import com.railwaycompany.business.services.interfaces.ScheduleService;
 import com.railwaycompany.persistence.dao.interfaces.DaoContext;
 import com.railwaycompany.persistence.dao.interfaces.ScheduleDao;
+import com.railwaycompany.persistence.dao.interfaces.StationDao;
 import com.railwaycompany.persistence.entities.Schedule;
 import com.railwaycompany.persistence.entities.Station;
 import com.railwaycompany.persistence.entities.Train;
@@ -18,8 +19,11 @@ public class ScheduleServiceImpl implements ScheduleService {
 
     private ScheduleDao scheduleDao;
 
+    private StationDao stationDao;
+
     public ScheduleServiceImpl(DaoContext daoContext) {
         scheduleDao = (ScheduleDao) daoContext.get(ScheduleDao.class);
+        stationDao = (StationDao) daoContext.get(StationDao.class);
     }
 
     @Override
@@ -45,6 +49,12 @@ public class ScheduleServiceImpl implements ScheduleService {
             }
         }
         return scheduleDataList;
+    }
+
+    @Override
+    public List<ScheduleData> getSchedule(String stationName) {
+        Station station = stationDao.getStation(stationName);
+        return getSchedule(station);
     }
 
     @Override
@@ -75,6 +85,20 @@ public class ScheduleServiceImpl implements ScheduleService {
             }
         }
         return scheduleDataList;
+    }
+
+    @Override
+    public List<ScheduleData> getSchedule(String stationFromName, String stationToName, Date dateFrom) {
+        Station stationFrom = stationDao.getStation(stationFromName);
+        Station stationTo = stationDao.getStation(stationToName);
+        return getSchedule(stationFrom, stationTo, dateFrom);
+    }
+
+    @Override
+    public List<ScheduleData> getSchedule(String stationFromName, String stationToName, Date dateFrom, Date dateTo) {
+        Station stationFrom = stationDao.getStation(stationFromName);
+        Station stationTo = stationDao.getStation(stationToName);
+        return getSchedule(stationFrom, stationTo, dateFrom, dateTo);
     }
 
     @Override

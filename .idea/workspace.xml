@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0a97a00a-bfdc-41f8-aef4-6bd013891077" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/login.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/login.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/railwaycompany/business/services/implementation/TicketServiceImplTest.java" afterPath="$PROJECT_DIR$/src/test/java/com/railwaycompany/business/services/implementation/TicketServiceImplTest.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path=".idea/dataSources.local.xml" />
@@ -46,18 +46,7 @@
     <favorites_list name="InformationSystem" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="login.jsp" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/login.jsp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.56856185" vertical-offset="0" max-vertical-offset="629">
-              <caret line="20" column="74" selection-start-line="20" selection-start-column="74" selection-end-line="20" selection-end-column="74" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="Git.Settings">
     <option name="PUSH_AUTO_UPDATE" value="true" />
@@ -72,7 +61,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/webapp/navbar.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/com/railwaycompany/business/dto/TrainData.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/railwaycompany/persistence/dao/interfaces/ScheduleDao.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/railwaycompany/business/dto/StationData.java" />
@@ -123,6 +111,7 @@
         <option value="$PROJECT_DIR$/src/main/webapp/style/index.css" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/buy_ticket.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/login.jsp" />
+        <option value="$PROJECT_DIR$/src/test/java/com/railwaycompany/business/services/implementation/TicketServiceImplTest.java" />
       </list>
     </option>
   </component>
@@ -310,6 +299,10 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="implementation" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -602,7 +595,7 @@
       <recent name="com.railwaycompany.dao" />
     </key>
   </component>
-  <component name="RunManager" selected="Tomcat Server.TomcatLocal">
+  <component name="RunManager" selected="JUnit.TicketServiceImplTest">
     <configuration default="false" name="TicketServiceImplTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -1123,9 +1116,9 @@
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="JUnit.AuthenticationServiceImplTest" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.ScheduleServiceImplTest" />
-        <item index="2" class="java.lang.String" itemvalue="JUnit.TicketServiceImplTest" />
+        <item index="0" class="java.lang.String" itemvalue="JUnit.TicketServiceImplTest" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.AuthenticationServiceImplTest" />
+        <item index="2" class="java.lang.String" itemvalue="JUnit.ScheduleServiceImplTest" />
         <item index="3" class="java.lang.String" itemvalue="JUnit.TicketServiceImplTest.testBuyTicketSalesStopLateDatetime" />
         <item index="4" class="java.lang.String" itemvalue="JUnit.TicketServiceImplTest.testBuyTicket" />
       </list>
@@ -1167,7 +1160,7 @@
       <workItem from="1425731717289" duration="32658000" />
       <workItem from="1425801184755" duration="38489000" />
       <workItem from="1425842263016" duration="348000" />
-      <workItem from="1425891514847" duration="20349000" />
+      <workItem from="1425891514847" duration="20993000" />
     </task>
     <task id="LOCAL-00001" summary="GenericDao has added">
       <created>1424344776704</created>
@@ -1439,11 +1432,17 @@
       <option name="project" value="LOCAL" />
       <updated>1425923062701</updated>
     </task>
-    <option name="localTasksCounter" value="46" />
+    <task id="LOCAL-00046" summary="Log in error view has been changed.">
+      <created>1425923285391</created>
+      <option name="number" value="00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1425923285391</updated>
+    </task>
+    <option name="localTasksCounter" value="47" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="344287000" />
+    <option name="totallyTimeSpent" value="344931000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -1467,7 +1466,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="784" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1487,10 +1486,10 @@
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32843137" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.654908" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.6303681" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5720859" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Persistence" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.27987897" sideWeight="0.50162864" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.34871408" sideWeight="0.49837133" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.34871408" sideWeight="0.49837133" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5506135" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1516,7 +1515,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="Charset encoding problem has been resolved by CharsetEncodingFilter." />
     <MESSAGE value="ValidationCheck (for form inputs) and DateHelper(for date convertion from string) has been added." />
     <MESSAGE value="Search trains from station A to B logic implementation." />
     <MESSAGE value="Buy tickets logic start implementation." />
@@ -1541,7 +1539,8 @@
     <MESSAGE value="JSP pages moved into WEB-INF." />
     <MESSAGE value="Multiple slashes security problem has been solved." />
     <MESSAGE value="Buy ticket form has been improved." />
-    <option name="LAST_COMMIT_MESSAGE" value="Buy ticket form has been improved." />
+    <MESSAGE value="Log in error view has been changed." />
+    <option name="LAST_COMMIT_MESSAGE" value="Log in error view has been changed." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1554,22 +1553,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/style/employee_page.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.08173077" vertical-offset="0" max-vertical-offset="624">
-          <caret line="3" column="35" selection-start-line="3" selection-start-column="35" selection-end-line="3" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/railwaycompany/business/services/interfaces/ScheduleService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.10897436" vertical-offset="0" max-vertical-offset="624">
-          <caret line="8" column="17" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/railwaycompany/business/services/implementation/ScheduleServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.2782324" vertical-offset="0" max-vertical-offset="1768">
@@ -1978,6 +1961,22 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.56856185" vertical-offset="0" max-vertical-offset="629">
           <caret line="20" column="74" selection-start-line="20" selection-start-column="74" selection-end-line="20" selection-end-column="74" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/railwaycompany/business/services/implementation/TicketServiceImplTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="3.561375" vertical-offset="0" max-vertical-offset="3502">
+          <caret line="147" column="0" selection-start-line="147" selection-start-column="0" selection-end-line="147" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/railwaycompany/business/services/implementation/TicketServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.0016366612" vertical-offset="664" max-vertical-offset="2193">
+          <caret line="55" column="10" selection-start-line="55" selection-start-column="10" selection-end-line="55" selection-end-column="10" />
           <folding />
         </state>
       </provider>

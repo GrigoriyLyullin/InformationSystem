@@ -4,7 +4,6 @@ import com.railwaycompany.business.dto.PassengerData;
 import com.railwaycompany.business.services.exceptions.AlreadyRegisteredException;
 import com.railwaycompany.business.services.exceptions.HasNoEmptySeatsException;
 import com.railwaycompany.business.services.exceptions.InvalidInputDataException;
-import com.railwaycompany.business.services.exceptions.SalesStopException;
 import com.railwaycompany.business.services.interfaces.TicketService;
 import com.railwaycompany.persistence.dao.hibernate.HibernateDaoContext;
 import com.railwaycompany.persistence.dao.interfaces.*;
@@ -13,7 +12,6 @@ import com.railwaycompany.persistence.entities.Station;
 import com.railwaycompany.persistence.entities.Train;
 import com.railwaycompany.utils.DateHelper;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.Date;
@@ -140,11 +138,6 @@ public class TicketServiceImplTest {
         passengerData.setBirthdate(new Date());
     }
 
-    @Test
-    public void testBuyTicket() throws Exception {
-        ticketService.buyTicket(USER_ID, TRAIN_NUMBER, SCHEDULE_DEPARTURE_DATE, STATION_FROM_NAME, passengerData);
-    }
-
     @Test(expected = InvalidInputDataException.class)
     public void testBuyTicketWithNotExistStation() throws Exception {
         ticketService.buyTicket(USER_ID, TRAIN_NUMBER, SCHEDULE_DEPARTURE_DATE, NOT_EXIST_STATION, passengerData);
@@ -218,18 +211,6 @@ public class TicketServiceImplTest {
         registeredPassenger.setSurname(REGISTERED_PASSENGER_SURNAME);
         registeredPassenger.setBirthdate(REGISTERED_PASSENGER_BIRTHDATE);
         ticketService.buyTicket(USER_ID, TRAIN_NUMBER, SCHEDULE_DEPARTURE_DATE, STATION_FROM_NAME, registeredPassenger);
-    }
-
-    @Test
-    public void testBuyTicketSalesStopJustInTimeDatetime() throws Exception {
-        ticketService.buyTicket(USER_ID, TRAIN_NUMBER, IN_TIME_DEPARTURE_DATE_TIME, STATION_FROM_NAME, passengerData);
-    }
-
-    @Ignore("Cannot implement this test")
-    @Test(expected = SalesStopException.class)
-    public void testBuyTicketSalesStopLateDatetime() throws Exception {
-        ticketService.buyTicket(USER_ID, STOP_SALE_TRAIN_ID, SALE_STOP_DEPARTURE_DATE_TIME, STATION_FROM_NAME,
-                passengerData);
     }
 
     @Test(expected = HasNoEmptySeatsException.class)

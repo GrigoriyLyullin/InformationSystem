@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0a97a00a-bfdc-41f8-aef4-6bd013891077" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/railwaycompany/business/services/implementation/TicketServiceImplTest.java" afterPath="$PROJECT_DIR$/src/test/java/com/railwaycompany/business/services/implementation/TicketServiceImplTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/railwaycompany/business/services/implementation/AuthenticationServiceImplTest.java" afterPath="$PROJECT_DIR$/src/test/java/com/railwaycompany/business/services/implementation/AuthenticationServiceImplTest.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path=".idea/dataSources.local.xml" />
@@ -46,7 +46,40 @@
     <favorites_list name="InformationSystem" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file leaf-file-name="AuthenticationServiceImplTest.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/test/java/com/railwaycompany/business/services/implementation/AuthenticationServiceImplTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.10897436" vertical-offset="0" max-vertical-offset="1309">
+              <caret line="14" column="42" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="42" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AuthenticationServiceImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/railwaycompany/business/services/implementation/AuthenticationServiceImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-6.6896553" vertical-offset="1421" max-vertical-offset="2499">
+              <caret line="95" column="18" selection-start-line="95" selection-start-column="18" selection-end-line="95" selection-end-column="18" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AuthenticationService.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/railwaycompany/business/services/interfaces/AuthenticationService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="234" max-vertical-offset="1003">
+              <caret line="26" column="11" selection-start-line="26" selection-start-column="11" selection-end-line="26" selection-end-column="11" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="Git.Settings">
     <option name="PUSH_AUTO_UPDATE" value="true" />
@@ -61,7 +94,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/railwaycompany/business/dto/TrainData.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/railwaycompany/persistence/dao/interfaces/ScheduleDao.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/railwaycompany/business/dto/StationData.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/railwaycompany/business/services/implementation/TrainServiceImpl.java" />
@@ -112,6 +144,7 @@
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/buy_ticket.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/login.jsp" />
         <option value="$PROJECT_DIR$/src/test/java/com/railwaycompany/business/services/implementation/TicketServiceImplTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/railwaycompany/business/services/implementation/AuthenticationServiceImplTest.java" />
       </list>
     </option>
   </component>
@@ -595,7 +628,7 @@
       <recent name="com.railwaycompany.dao" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.TicketServiceImplTest">
+  <component name="RunManager" selected="JUnit.AuthenticationServiceImplTest">
     <configuration default="false" name="TicketServiceImplTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -630,96 +663,6 @@
       <ConfigurationWrapper RunnerId="Run" />
       <method />
     </configuration>
-    <configuration default="false" name="TicketServiceImplTest.testBuyTicketSalesStopLateDatetime" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="com.railwaycompany.business.services.implementation.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <module name="InformationSystem" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="com.railwaycompany.business.services.implementation" />
-      <option name="MAIN_CLASS_NAME" value="com.railwaycompany.business.services.implementation.TicketServiceImplTest" />
-      <option name="METHOD_NAME" value="testBuyTicketSalesStopLateDatetime" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <envs />
-      <patterns />
-      <RunnerSettings RunnerId="Debug">
-        <option name="DEBUG_PORT" value="" />
-        <option name="TRANSPORT" value="0" />
-        <option name="LOCAL" value="true" />
-      </RunnerSettings>
-      <RunnerSettings RunnerId="Run" />
-      <ConfigurationWrapper RunnerId="Debug" />
-      <ConfigurationWrapper RunnerId="Run" />
-      <method />
-    </configuration>
-    <configuration default="false" name="TicketServiceImplTest.testBuyTicket" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="com.railwaycompany.business.services.implementation.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <module name="InformationSystem" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="com.railwaycompany.business.services.implementation" />
-      <option name="MAIN_CLASS_NAME" value="com.railwaycompany.business.services.implementation.TicketServiceImplTest" />
-      <option name="METHOD_NAME" value="testBuyTicket" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <envs />
-      <patterns />
-      <RunnerSettings RunnerId="Run" />
-      <ConfigurationWrapper RunnerId="Run" />
-      <method />
-    </configuration>
-    <configuration default="false" name="ScheduleServiceImplTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="com.railwaycompany.business.services.implementation.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <module name="InformationSystem" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="com.railwaycompany.business.services.implementation" />
-      <option name="MAIN_CLASS_NAME" value="com.railwaycompany.business.services.implementation.ScheduleServiceImplTest" />
-      <option name="METHOD_NAME" />
-      <option name="TEST_OBJECT" value="class" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <envs />
-      <patterns />
-      <RunnerSettings RunnerId="Run" />
-      <ConfigurationWrapper RunnerId="Run" />
-      <method />
-    </configuration>
     <configuration default="false" name="AuthenticationServiceImplTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -734,6 +677,90 @@
       <option name="MAIN_CLASS_NAME" value="com.railwaycompany.business.services.implementation.AuthenticationServiceImplTest" />
       <option name="METHOD_NAME" />
       <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
+    <configuration default="false" name="AuthenticationServiceImplTest.testSignIn" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="com.railwaycompany.business.services.implementation.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="InformationSystem" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="com.railwaycompany.business.services.implementation" />
+      <option name="MAIN_CLASS_NAME" value="com.railwaycompany.business.services.implementation.AuthenticationServiceImplTest" />
+      <option name="METHOD_NAME" value="testSignIn" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
+    <configuration default="false" name="AuthenticationServiceImplTest.testIsAuthorized" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="com.railwaycompany.business.services.implementation.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="InformationSystem" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="com.railwaycompany.business.services.implementation" />
+      <option name="MAIN_CLASS_NAME" value="com.railwaycompany.business.services.implementation.AuthenticationServiceImplTest" />
+      <option name="METHOD_NAME" value="testIsAuthorized" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
+    <configuration default="false" name="AuthenticationServiceImplTest.testSignOut" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="com.railwaycompany.business.services.implementation.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="InformationSystem" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="com.railwaycompany.business.services.implementation" />
+      <option name="MAIN_CLASS_NAME" value="com.railwaycompany.business.services.implementation.AuthenticationServiceImplTest" />
+      <option name="METHOD_NAME" value="testSignOut" />
+      <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
@@ -1108,19 +1135,19 @@
     </configuration>
     <list size="6">
       <item index="0" class="java.lang.String" itemvalue="JUnit.TicketServiceImplTest" />
-      <item index="1" class="java.lang.String" itemvalue="JUnit.TicketServiceImplTest.testBuyTicketSalesStopLateDatetime" />
-      <item index="2" class="java.lang.String" itemvalue="JUnit.TicketServiceImplTest.testBuyTicket" />
-      <item index="3" class="java.lang.String" itemvalue="JUnit.ScheduleServiceImplTest" />
-      <item index="4" class="java.lang.String" itemvalue="JUnit.AuthenticationServiceImplTest" />
-      <item index="5" class="java.lang.String" itemvalue="Tomcat Server.TomcatLocal" />
+      <item index="1" class="java.lang.String" itemvalue="JUnit.AuthenticationServiceImplTest" />
+      <item index="2" class="java.lang.String" itemvalue="Tomcat Server.TomcatLocal" />
+      <item index="3" class="java.lang.String" itemvalue="JUnit.AuthenticationServiceImplTest.testSignIn" />
+      <item index="4" class="java.lang.String" itemvalue="JUnit.AuthenticationServiceImplTest.testIsAuthorized" />
+      <item index="5" class="java.lang.String" itemvalue="JUnit.AuthenticationServiceImplTest.testSignOut" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="JUnit.TicketServiceImplTest" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.AuthenticationServiceImplTest" />
-        <item index="2" class="java.lang.String" itemvalue="JUnit.ScheduleServiceImplTest" />
-        <item index="3" class="java.lang.String" itemvalue="JUnit.TicketServiceImplTest.testBuyTicketSalesStopLateDatetime" />
-        <item index="4" class="java.lang.String" itemvalue="JUnit.TicketServiceImplTest.testBuyTicket" />
+        <item index="0" class="java.lang.String" itemvalue="JUnit.AuthenticationServiceImplTest" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.AuthenticationServiceImplTest.testSignOut" />
+        <item index="2" class="java.lang.String" itemvalue="JUnit.AuthenticationServiceImplTest.testIsAuthorized" />
+        <item index="3" class="java.lang.String" itemvalue="JUnit.AuthenticationServiceImplTest.testSignIn" />
+        <item index="4" class="java.lang.String" itemvalue="JUnit.TicketServiceImplTest" />
       </list>
     </recent_temporary>
   </component>
@@ -1160,7 +1187,7 @@
       <workItem from="1425731717289" duration="32658000" />
       <workItem from="1425801184755" duration="38489000" />
       <workItem from="1425842263016" duration="348000" />
-      <workItem from="1425891514847" duration="20993000" />
+      <workItem from="1425891514847" duration="21532000" />
     </task>
     <task id="LOCAL-00001" summary="GenericDao has added">
       <created>1424344776704</created>
@@ -1438,11 +1465,17 @@
       <option name="project" value="LOCAL" />
       <updated>1425923285391</updated>
     </task>
-    <option name="localTasksCounter" value="47" />
+    <task id="LOCAL-00047" summary="TicketService test has been repaired">
+      <created>1425923930407</created>
+      <option name="number" value="00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1425923930407</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="344931000" />
+    <option name="totallyTimeSpent" value="345470000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -1466,7 +1499,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="784" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1489,7 +1522,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.6303681" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5720859" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Persistence" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.27987897" sideWeight="0.50162864" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.34871408" sideWeight="0.49837133" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.34871408" sideWeight="0.49837133" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5506135" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1515,7 +1548,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="ValidationCheck (for form inputs) and DateHelper(for date convertion from string) has been added." />
     <MESSAGE value="Search trains from station A to B logic implementation." />
     <MESSAGE value="Buy tickets logic start implementation." />
     <MESSAGE value="Add extended search train form" />
@@ -1540,7 +1572,8 @@
     <MESSAGE value="Multiple slashes security problem has been solved." />
     <MESSAGE value="Buy ticket form has been improved." />
     <MESSAGE value="Log in error view has been changed." />
-    <option name="LAST_COMMIT_MESSAGE" value="Log in error view has been changed." />
+    <MESSAGE value="TicketService test has been repaired" />
+    <option name="LAST_COMMIT_MESSAGE" value="TicketService test has been repaired" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1553,25 +1586,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/railwaycompany/business/services/implementation/ScheduleServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2782324" vertical-offset="0" max-vertical-offset="1768">
-          <caret line="20" column="52" selection-start-line="20" selection-start-column="31" selection-end-line="20" selection-end-column="52" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/railwaycompany/business/services/implementation/ServiceFactoryImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6730769" vertical-offset="770" max-vertical-offset="1394">
-          <caret line="85" column="31" selection-start-line="85" selection-start-column="31" selection-end-line="85" selection-end-column="31" />
-          <folding>
-            <element signature="e#2693#2694#0" expanded="false" />
-            <element signature="e#2732#2733#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/railwaycompany/business/services/interfaces/ServiceFactory.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.43589744" vertical-offset="0" max-vertical-offset="624">
@@ -1899,14 +1913,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/railwaycompany/business/services/implementation/AuthenticationServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="3.0327332" vertical-offset="0" max-vertical-offset="2346">
-          <caret line="118" column="13" selection-start-line="118" selection-start-column="13" selection-end-line="118" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/railwaycompany/presentation/filters/AuthenticationFilter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33333334" vertical-offset="166" max-vertical-offset="2686">
@@ -1977,6 +1983,32 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.0016366612" vertical-offset="664" max-vertical-offset="2193">
           <caret line="55" column="10" selection-start-line="55" selection-start-column="10" selection-end-line="55" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/railwaycompany/business/services/interfaces/AuthenticationService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="234" max-vertical-offset="1003">
+          <caret line="26" column="11" selection-start-line="26" selection-start-column="11" selection-end-line="26" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/railwaycompany/business/services/implementation/AuthenticationServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.6896553" vertical-offset="1421" max-vertical-offset="2499">
+          <caret line="95" column="18" selection-start-line="95" selection-start-column="18" selection-end-line="95" selection-end-column="18" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/railwaycompany/business/services/implementation/AuthenticationServiceImplTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.10897436" vertical-offset="0" max-vertical-offset="1309">
+          <caret line="14" column="42" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="42" />
           <folding />
         </state>
       </provider>

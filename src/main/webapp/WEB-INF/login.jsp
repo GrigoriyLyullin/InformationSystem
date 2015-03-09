@@ -15,9 +15,10 @@
             </div>
             <c:choose>
                 <c:when test="${not empty sessionScope.signInMessage}">
-                    <div class="alert alert-info" id="loginMessage">
+                    <div class="alert alert-error" id="loginMessage">
                         <p>Please log in to <c:out value="${sessionScope.signInMessage}">to continue</c:out></p>
                     </div>
+                    <c:set scope="session" var="signInMessage" value="null"/>
                 </c:when>
                 <c:when test="${sessionScope.signInError}">
                     <div class="alert alert-error" id="loginError">

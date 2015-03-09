@@ -30,7 +30,7 @@ public class ViewAllPassengerServlet extends HttpServlet {
         if (Boolean.valueOf(req.getParameter("hideAllPassengers"))) {
             req.getSession().removeAttribute("allPassengerList");
         }
-        getServletContext().getRequestDispatcher("/employee_page.jsp").forward(req, resp);
+        getServletContext().getRequestDispatcher("/WEB-INF/employee_page.jsp").forward(req, resp);
     }
 
     @Override
@@ -50,6 +50,6 @@ public class ViewAllPassengerServlet extends HttpServlet {
             session.setAttribute("invalidTrainIdError", true);
         }
         session.setAttribute("allPassengerList", allPassengersList);
-        getServletContext().getRequestDispatcher("/employee_page.jsp").forward(req, resp);
+        getServletContext().getRequestDispatcher("/WEB-INF/employee_page.jsp").forward(req, resp);
     }
 }

@@ -90,6 +90,15 @@
         <url-pattern>/view_all_passengers</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>IndexPageServlet</servlet-name>
+        <servlet-class>com.railwaycompany.presentation.servlets.IndexPageServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>IndexPageServlet</servlet-name>
+        <url-pattern>/index</url-pattern>
+    </servlet-mapping>
+
     <listener>
         <listener-class>com.railwaycompany.presentation.servlets.MainServletContextListener</listener-class>
     </listener>
@@ -125,12 +134,20 @@
     </filter-mapping>
 
     <welcome-file-list>
-        <welcome-file>index.jsp</welcome-file>
+        <welcome-file>index.html</welcome-file>
     </welcome-file-list>
 
     <error-page>
         <error-code>404</error-code>
-        <location>/error.jsp</location>
+        <location>/404.html</location>
+    </error-page>
+    <error-page>
+        <error-code>500</error-code>
+        <location>/500.html</location>
+    </error-page>
+    <error-page>
+        <error-code>400</error-code>
+        <location>/400.html</location>
     </error-page>
 
 </web-app>

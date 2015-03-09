@@ -2,29 +2,29 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="style/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="style/index.css">
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery-1.11.2.min.js"></script>
-    <script src="js/index.js"></script>
+    <link rel="stylesheet" type="text/css" href="../style/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../style/index.css">
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery-1.11.2.min.js"></script>
+    <script src="../js/index.js"></script>
     <meta charset="utf-8">
     <title>Railway Company</title>
 </head>
 <body>
 <div class="container">
     <h1>Railway Company</h1>
-    <jsp:include page="/navbar.jsp"/>
+    <jsp:include page="/WEB-INF/navbar.jsp" flush="true"/>
     <div class="row">
         <div class="span12 img-rounded" id="jumbotron">
             <c:if test="${empty sessionScope.authenticationId}">
-                <jsp:include page="/login.jsp"/>
+                <jsp:include page="/WEB-INF/login.jsp" flush="true"/>
             </c:if>
         </div>
     </div>
     <a name="search_train"></a>
-    <jsp:include page="/search_train.jsp"/>
+    <jsp:include page="/WEB-INF/search_train.jsp" flush="true"/>
     <a name="schedule_by_station"></a>
-    <jsp:include page="/schedule_by_station.jsp"/>
+    <jsp:include page="/WEB-INF/schedule_by_station.jsp" flush="true"/>
     <a name="about"></a>
     <div class="well">
         <h2>About us</h2>
@@ -49,7 +49,7 @@
             </div>
         </div>
     </div>
-    <jsp:include page="/footer.jsp"/>
+    <jsp:include page="/WEB-INF/footer.jsp" flush="true"/>
 </div>
 </body>
 </html>

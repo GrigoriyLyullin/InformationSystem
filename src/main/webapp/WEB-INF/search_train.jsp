@@ -10,10 +10,10 @@
 
     <c:choose>
         <c:when test="${empty sessionScope.extendedForm || sessionScope.extendedForm == false}">
-            <jsp:include page="/search_train_simple_form.jsp" flush="true"/>
+            <jsp:include page="/WEB-INF/search_train_simple_form.jsp" flush="true"/>
         </c:when>
         <c:when test="${sessionScope.extendedForm == true}">
-            <jsp:include page="/search_train_extended_form.jsp" flush="true"/>
+            <jsp:include page="/WEB-INF/search_train_extended_form.jsp" flush="true"/>
         </c:when>
     </c:choose>
 
@@ -29,7 +29,7 @@
                     <th>Train number</th>
                     <th>${sessionScope.stationFromName} departure time</th>
                     <th>${sessionScope.stationToName} arrival time</th>
-                    <th>Buy ticket</th>
+                    <%--<th>Buy ticket</th>--%>
                 </tr>
                 </thead>
                 <tbody>
@@ -38,22 +38,22 @@
                         <td>${train.trainNumber}</td>
                         <td>${train.timeArrival}</td>
                         <td>${train.timeDeparture}</td>
-                        <td>
-                            <c:choose>
-                                <c:when test="${empty sessionScope.authorizationId}">
-                                    <form action="${pageContext.request.contextPath}buy_ticket" method="get">
-                                        <button type="submit" class="btn disabled btn-block">Buy</button>
-                                    </form>
-                                </c:when>
-                                <c:when test="${not empty sessionScope.authorizationId}">
-                                    <form action="${pageContext.request.contextPath}buy_ticket" method="post">
-                                        <input type="hidden" name="trainNumber" value="${train.trainNumber}">
-                                        <input type="hidden" name="timeDeparture" value="${train.timeDeparture}">
-                                        <button type="submit" class="btn btn-block btn-success">Buy</button>
-                                    </form>
-                                </c:when>
-                            </c:choose>
-                        </td>
+                        <%--<td>--%>
+                            <%--<c:choose>--%>
+                                <%--<c:when test="${empty sessionScope.authorizationId}">--%>
+                                    <%--<form action="${pageContext.request.contextPath}buy_ticket" method="get">--%>
+                                        <%--<button type="submit" class="btn disabled btn-block">Buy</button>--%>
+                                    <%--</form>--%>
+                                <%--</c:when>--%>
+                                <%--<c:when test="${not empty sessionScope.authorizationId}">--%>
+                                    <%--<form action="${pageContext.request.contextPath}buy_ticket" method="post">--%>
+                                        <%--<input type="hidden" name="trainNumber" value="${train.trainNumber}">--%>
+                                        <%--<input type="hidden" name="timeDeparture" value="${train.timeDeparture}">--%>
+                                        <%--<button type="submit" class="btn btn-block btn-success">Buy</button>--%>
+                                    <%--</form>--%>
+                                <%--</c:when>--%>
+                            <%--</c:choose>--%>
+                        <%--</td>--%>
                     </tr>
                 </c:forEach>
                 </tbody>

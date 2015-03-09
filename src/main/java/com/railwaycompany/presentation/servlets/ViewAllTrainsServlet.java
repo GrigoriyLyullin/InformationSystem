@@ -28,6 +28,6 @@ public class ViewAllTrainsServlet extends HttpServlet {
             viewAllTrainsList = trainService.getAll();
         }
         req.getSession().setAttribute("viewAllTrainsList", viewAllTrainsList);
-        getServletContext().getRequestDispatcher("/employee_page.jsp").forward(req, resp);
+        getServletContext().getRequestDispatcher("/WEB-INF/employee_page.jsp").forward(req, resp);
     }
 }

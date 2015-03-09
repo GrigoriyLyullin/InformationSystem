@@ -31,7 +31,7 @@ public class AddStationServlet extends HttpServlet {
             allStationList = stationService.getAll();
         }
         req.getSession().setAttribute("allStationList", allStationList);
-        getServletContext().getRequestDispatcher("/employee_page.jsp").forward(req, resp);
+        getServletContext().getRequestDispatcher("/WEB-INF/employee_page.jsp").forward(req, resp);
     }
 
     @Override
@@ -53,6 +53,6 @@ public class AddStationServlet extends HttpServlet {
         } else {
             session.setAttribute("invalidStationNameError", true);
         }
-        getServletContext().getRequestDispatcher("/employee_page.jsp").forward(req, resp);
+        getServletContext().getRequestDispatcher("/WEB-INF/employee_page.jsp").forward(req, resp);
     }
 }

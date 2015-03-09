@@ -5,10 +5,10 @@
         <div class="navbar navbar-inverse">
             <nav class="navbar-inner">
                 <ul class="nav pull-left">
-                    <li><a href="${pageContext.request.contextPath}/#search_train">Search train</a></li>
-                    <li><a href="${pageContext.request.contextPath}/#schedule_by_station">Schedule by station</a></li>
+                    <li><a href="${pageContext.request.contextPath}index#search_train">Search train</a></li>
+                    <li><a href="${pageContext.request.contextPath}index#schedule_by_station">Schedule by station</a></li>
                     <li><a href="${pageContext.request.contextPath}buy_ticket">Buy ticket</a></li>
-                    <li><a href="${pageContext.request.contextPath}/#about">About us</a></li>
+                    <li><a href="${pageContext.request.contextPath}index#about">About us</a></li>
                     <li class="divider-vertical"></li>
                 </ul>
                 <ul class="nav pull-right">

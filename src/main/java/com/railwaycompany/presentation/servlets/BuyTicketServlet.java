@@ -28,19 +28,18 @@ public class BuyTicketServlet extends HttpServlet {
     /**
      * Logger for BuyTicketServlet class.
      */
-    private static Logger log = Logger.getLogger(BuyTicketServlet.class.getName());
+    private static final Logger LOG = Logger.getLogger(BuyTicketServlet.class.getName());
 
     private TicketService ticketService;
 
     @Override
     public void init() throws ServletException {
-//        trainService = ServiceFactorySingleton.getInstance().getTrainService();
         ticketService = ServiceFactorySingleton.getInstance().getTicketService();
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.sendRedirect("/buy_ticket.jsp");
+        getServletContext().getRequestDispatcher("/WEB-INF/buy_ticket.jsp").forward(req, resp);
     }
 
     @Override
@@ -59,9 +58,9 @@ public class BuyTicketServlet extends HttpServlet {
         String passengerSurnameParam = req.getParameter("passengerSurname");
         String passengerBirthdateParam = req.getParameter("passengerBirthdate");
 
-        log.info("trainNumberParam: " + trainNumberParam + " departureDateParam: " + departureDateParam + " " +
+        LOG.info("trainNumberParam: " + trainNumberParam + " departureDateParam: " + departureDateParam + " " +
                 "stationNameParam: " + stationNameParam);
-        log.info("passengerNameParam: " + passengerNameParam + " passengerSurnameParam: " + passengerSurnameParam + "" +
+        LOG.info("passengerNameParam: " + passengerNameParam + " passengerSurnameParam: " + passengerSurnameParam + "" +
                 " passengerBirthdateParam: " + passengerBirthdateParam);
 
         boolean checkInput = checkInput(trainNumberParam, departureDateParam, stationNameParam);
@@ -85,32 +84,32 @@ public class BuyTicketServlet extends HttpServlet {
             } catch (HasNoEmptySeatsException e) {
                 error = true;
                 session.setAttribute("buyTicketHasNoEmptySeats", true);
-                log.log(Level.WARNING, "This train has no empty seats", e);
+                LOG.log(Level.WARNING, "This train has no empty seats", e);
             } catch (AlreadyRegisteredException e) {
                 error = true;
                 session.setAttribute("buyTicketAlreadyRegistered", true);
-                log.log(Level.WARNING, "Such passenger already registered on this train", e);
+                LOG.log(Level.WARNING, "Such passenger already registered on this train", e);
             } catch (SalesStopException e) {
                 error = true;
                 session.setAttribute("buyTicketSalesStop", true);
-                log.log(Level.WARNING, "Ticket sales has been stopped", e);
+                LOG.log(Level.WARNING, "Ticket sales has been stopped", e);
             } catch (InvalidInputDataException e) {
                 error = true;
                 session.setAttribute("buyTicketInvalidData", true);
-                log.log(Level.WARNING, "Invalid input data", e);
+                LOG.log(Level.WARNING, "Invalid input data", e);
             }
 
             if (error) {
-                getServletContext().getRequestDispatcher("/buy_ticket_error.jsp").forward(req, resp);
+                getServletContext().getRequestDispatcher("/WEB-INF/buy_ticket_error.jsp").forward(req, resp);
             } else {
                 session.setAttribute("ticketData", ticketData);
-                getServletContext().getRequestDispatcher("/buy_ticket_success.jsp").forward(req, resp);
+                getServletContext().getRequestDispatcher("/WEB-INF/buy_ticket_success.jsp").forward(req, resp);
             }
 
         } else {
-            log.log(Level.WARNING, "Incorrect input data");
+            LOG.log(Level.WARNING, "Incorrect input data");
             session.setAttribute("buyTicketIncorrectData", true);
-            getServletContext().getRequestDispatcher("/buy_ticket.jsp").forward(req, resp);
+            getServletContext().getRequestDispatcher("/WEB-INF/buy_ticket.jsp").forward(req, resp);
         }
     }
 

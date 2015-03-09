@@ -2,19 +2,19 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="style/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="style/index.css">
-    <link rel="stylesheet" type="text/css" href="style/buy_ticket.css">
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery-1.11.2.min.js"></script>
-    <script src="js/index.js"></script>
+    <link rel="stylesheet" type="text/css" href="../style/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../style/index.css">
+    <link rel="stylesheet" type="text/css" href="../style/buy_ticket.css">
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery-1.11.2.min.js"></script>
+    <script src="../js/index.js"></script>
     <meta charset="utf-8">
     <title>Railway Company</title>
 </head>
 <body>
 <div class="container">
     <h1>Railway Company</h1>
-    <jsp:include page="/navbar.jsp"/>
+    <jsp:include page="/WEB-INF/navbar.jsp"/>
     <div class="row">
         <div class="span12 img-rounded" id="jumbotron"></div>
     </div>
@@ -23,8 +23,8 @@
 
         <p>
             If you do not know all the necessary information for the purchase of a ticket you can use <a
-                href="${pageContext.request.contextPath}/#search_train">search</a> or <a
-                href="${pageContext.request.contextPath}/#schedule_by_station">train schedule by station</a>.
+                href="${pageContext.request.contextPath}index#search_train">search</a> or <a
+                href="${pageContext.request.contextPath}index#schedule_by_station">train schedule by station</a>.
         </p>
 
         <div id="inputFromSearchTrain">
@@ -38,15 +38,15 @@
                     <input id="Station-From-Name" name="stationName" type="text" class="input-medium"
                            placeholder="Station name" value="<c:out value="${sessionScope.stationFromName}"/>">
                     <span class="add-on">Departure date</span>
-                    <input id="date_from" name="departureDate" type="date" class="input-medium">
+                    <input name="departureDate" type="date" class="input-medium" placeholder="">
                     <br>
                     <br>
                     <span class="add-on">Passenger name</span>
-                    <input name="passengerName" type="text" class="input-medium">
+                    <input name="passengerName" type="text" class="input-medium" placeholder="Name">
                     <span class="add-on">Surname</span>
-                    <input name="passengerSurname" type="text" class="input-medium">
+                    <input name="passengerSurname" type="text" class="input-medium" placeholder="Surname">
                     <span class="add-on">Birthdate</span>
-                    <input name="passengerBirthdate" type="date" class="input-medium">
+                    <input name="passengerBirthdate" type="date" class="input-medium" placeholder="">
                 </div>
                 <button type="submit" class="btn btn-success">Buy</button>
             </form>
@@ -58,7 +58,7 @@
                 <c:set scope="session" var="buyTicketIncorrectData" value="${false}"/>
         </c:if>
     </div>
-    <jsp:include page="/footer.jsp"/>
+    <jsp:include page="/WEB-INF/footer.jsp"/>
 </div>
 </body>
 </html>

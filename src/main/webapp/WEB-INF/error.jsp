@@ -2,16 +2,16 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="style/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="style/index.css">
-    <link rel="stylesheet" type="text/css" href="style/error.css">
+    <link rel="stylesheet" type="text/css" href="../style/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../style/index.css">
+    <link rel="stylesheet" type="text/css" href="../style/error.css">
     <meta charset="utf-8">
     <title>Error</title>
 </head>
 <body>
 <div class="container">
     <h1>Railway Company</h1>
-    <jsp:include page="/navbar.jsp" flush="true"/>
+    <jsp:include page="/WEB-INF/navbar.jsp" flush="true"/>
     <div class="row">
         <div class="span12 img-rounded" id="jumbotron"></div>
     </div>
@@ -23,7 +23,7 @@
         <a href="${pageContext.request.contextPath}/" class="btn btn-primary">Try again</a>
         <a href="mailto:grisha.lyullin@gmail.com" class="btn">Contact us</a>
     </div>
-    <jsp:include page="/footer.jsp"/>
+    <jsp:include page="/WEB-INF/footer.jsp"/>
 </div>
 </body>
 </html>

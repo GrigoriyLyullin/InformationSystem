@@ -8,7 +8,7 @@
         </ul>
 
         <ul class="nav pull-right">
-            <li><a href="${pageContext.request.contextPath}/">©RailwayCompany All rights reserved</a></li>
+            <li><a href="${pageContext.request.contextPath}index">RailwayCompany© All rights reserved</a></li>
         </ul>
 
     </div>

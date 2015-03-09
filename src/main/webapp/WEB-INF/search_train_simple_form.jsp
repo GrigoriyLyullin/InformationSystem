@@ -20,10 +20,10 @@
         </div>
 
 
-        <a href="${pageContext.request.contextPath}search_train?extendedForm=true" class="btn btn-primary"
-           id="extendedFormButton">
-            <i class="icon-white icon-plus"></i>
-        </a>
+        <%--<a href="${pageContext.request.contextPath}search_train?extendedForm=true" class="btn btn-primary"--%>
+           <%--id="extendedFormButton">--%>
+            <%--<i class="icon-white icon-plus"></i>--%>
+        <%--</a>--%>
 
         <button type="submit" class="btn btn-success">
             <i class="icon-white icon-search"></i>

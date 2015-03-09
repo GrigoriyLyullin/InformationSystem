@@ -1,8 +1,8 @@
 package com.railwaycompany.presentation.servlets;
 
-import com.railwaycompany.business.services.interfaces.AuthenticationService;
 import com.railwaycompany.business.services.implementation.AuthenticationServiceImpl;
 import com.railwaycompany.business.services.implementation.ServiceFactorySingleton;
+import com.railwaycompany.business.services.interfaces.AuthenticationService;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -40,7 +40,7 @@ public class LogoutServlet extends HttpServlet {
      * @param resp - http servlet response
      * @throws IOException - If an input or output exception occurs
      */
-    private void signOut(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    private void signOut(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         HttpSession session = req.getSession(false);
         if (session != null) {
             String authId = (String) session.getAttribute(AuthenticationServiceImpl.AUTH_ID_ATTR);
@@ -50,6 +50,6 @@ public class LogoutServlet extends HttpServlet {
             }
             session.invalidate();
         }
-        resp.sendRedirect(AuthenticationServiceImpl.ROOT_LOCATION);
+        getServletContext().getRequestDispatcher("/WEB-INF/index.jsp").forward(req, resp);
     }
 }

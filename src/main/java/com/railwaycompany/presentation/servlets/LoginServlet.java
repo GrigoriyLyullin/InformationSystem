@@ -44,7 +44,7 @@ public class LoginServlet extends HttpServlet {
         String signInMessage = req.getParameter(SIGN_IN_MSG_ATTR);
         LOG.log(Level.FINE, SIGN_IN_MSG_ATTR + " : " + signInMessage);
         req.getSession().setAttribute(SIGN_IN_MSG_ATTR, signInMessage);
-        resp.sendRedirect(ROOT_LOCATION);
+        getServletContext().getRequestDispatcher("/WEB-INF/index.jsp").forward(req, resp);
     }
 
     @Override
@@ -55,7 +55,6 @@ public class LoginServlet extends HttpServlet {
         boolean validPassword = ValidationHelper.isValidPassword(password);
         HttpSession session = req.getSession();
         boolean signIn = true;
-        String signUpUrl = null;
 
         if (validLogin && validPassword) {
             LOG.log(Level.INFO, "User try to sign in with valid login: " + login + " and password: " + password);
@@ -68,7 +67,6 @@ public class LoginServlet extends HttpServlet {
                 UserData userData = userService.getUserData(authenticationService.getUserId(sessionId, authenticationId));
                 session.setAttribute(AUTH_ID_ATTR, authenticationId);
                 session.setAttribute(USER_DATA_ATTR, userData);
-                signUpUrl = (String) session.getAttribute(SIGN_IN_URL_ATTR);
                 LOG.log(Level.INFO, "User successfully sign in");
             } else {
                 LOG.log(Level.WARNING, "User cannot sign in");
@@ -78,6 +76,6 @@ public class LoginServlet extends HttpServlet {
         }
         session.setAttribute(SIGN_IN_ERROR_ATTR, signIn);
         session.setAttribute(SIGN_IN_ATTR, signIn);
-        resp.sendRedirect((signUpUrl != null) ? signUpUrl : ROOT_LOCATION);
+        getServletContext().getRequestDispatcher("/WEB-INF/index.jsp").forward(req, resp);
     }
 }

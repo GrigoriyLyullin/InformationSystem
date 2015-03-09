@@ -33,7 +33,7 @@ public class AddTrainServlet extends HttpServlet {
             allTrainList = trainService.getAll();
         }
         req.getSession().setAttribute("allTrainList", allTrainList);
-        getServletContext().getRequestDispatcher("/employee_page.jsp").forward(req, resp);
+        getServletContext().getRequestDispatcher("/WEB-INF/employee_page.jsp").forward(req, resp);
     }
 
     @Override
@@ -63,6 +63,6 @@ public class AddTrainServlet extends HttpServlet {
         } else {
             session.setAttribute("invalidInputDataError", true);
         }
-        getServletContext().getRequestDispatcher("/employee_page.jsp").forward(req, resp);
+        getServletContext().getRequestDispatcher("/WEB-INF/employee_page.jsp").forward(req, resp);
     }
 }

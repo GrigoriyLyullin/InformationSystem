@@ -14,8 +14,6 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import static com.railwaycompany.business.services.implementation.AuthenticationServiceImpl.*;
-
 /**
  * AuthenticationFilter designed to control user access to specific pages.
  * Some pages available only for authorization users and some only for employees.
@@ -26,12 +24,22 @@ public class AuthenticationFilter implements Filter {
      * Logger for AuthenticationFilter class.
      */
     private static final Logger LOG = Logger.getLogger(AuthenticationFilter.class.getName());
-
+    /**
+     * Attribute name for sign in message.
+     */
+    private static final String SIGN_IN_MSG_ATTR = "signInMessage";
+    /**
+     * Attribute name for authentication id.
+     */
+    private static final String AUTH_ID_ATTR = "authenticationId";
+    /**
+     * Link to index page.
+     */
+    private static final String ROOT_LOCATION = "/index";
     /**
      * Private pages initial parameter in FilterConfig.
      */
     private static final String PAGES_INIT_PARAM = "Private pages";
-
     /**
      * Employee pages initial parameter in FilterConfig.
      */
@@ -112,7 +120,6 @@ public class AuthenticationFilter implements Filter {
             } else {
                 LOG.log(Level.INFO, "User with session id: " + sessionId + " is not authorized. Request URI: "
                         + requestURI);
-                session.setAttribute(SIGN_IN_URL_ATTR, requestURI);
                 session.setAttribute(SIGN_IN_MSG_ATTR, getSignInMessage(requestURI));
                 httpResponse.sendRedirect(ROOT_LOCATION);
             }

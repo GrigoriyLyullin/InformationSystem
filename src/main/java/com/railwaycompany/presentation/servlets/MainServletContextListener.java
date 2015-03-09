@@ -5,7 +5,9 @@ import com.railwaycompany.business.services.interfaces.ServiceFactory;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
+import java.io.IOException;
 import java.util.logging.Level;
+import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
 public class MainServletContextListener implements ServletContextListener {
@@ -14,6 +16,13 @@ public class MainServletContextListener implements ServletContextListener {
 
     @Override
     public void contextInitialized(ServletContextEvent servletContextEvent) {
+        try {
+            LogManager.getLogManager().readConfiguration(
+                    MainServletContextListener.class.getResourceAsStream("/logging.properties"));
+            LOG.info("Application starting...");
+        } catch (IOException e) {
+            System.err.println("Could not setup logger configuration: " + e.toString());
+        }
         ServiceFactory factory = ServiceFactorySingleton.getInstance();
         if (factory == null) {
             LOG.log(Level.SEVERE, "Cannot create ServiceFactory");
@@ -31,5 +40,6 @@ public class MainServletContextListener implements ServletContextListener {
         } else {
             LOG.log(Level.WARNING, "ServiceFactory is null");
         }
+        LOG.info("Application has been closed");
     }
 }

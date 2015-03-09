@@ -1,7 +1,7 @@
 <%@ page isELIgnored="false" contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <div id="inputFromSearchTrain">
-    <form class="form-inline" onsubmit="return checkScheduleByStationForm(this)" method="post"
+    <form class="form-inline" method="post"
           action="${pageContext.request.contextPath}schedule_by_station">
         <div class="input-prepend">
             <span class="add-on">Station</span>

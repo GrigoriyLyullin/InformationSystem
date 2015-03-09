@@ -19,25 +19,6 @@ function checkSignInForm() {
     }
 }
 
-function checkScheduleByStationForm() {
-
-    //var scheduleAlert = $('#scheduleAlert');
-    //var stationNotFoundAlert = $('#stationNotFoundAlert');
-    //scheduleAlert.hide();
-    //stationNotFoundAlert.hide();
-    //
-    //var stationName = $('#Station-Name').val();
-    ////var date = $('#date').val();
-    ////var time = $('#time').val();
-    //
-    //if (stationName === "") { // || date === "" || time === "") {
-    //    scheduleAlert.show();
-    //
-    //    return false;
-    //}
-    return true;
-}
-
 function checkSearchTrainForm() {
 
     var searchTrainAlert = $('#searchTrainAlert');
@@ -54,9 +35,5 @@ function checkSearchTrainForm() {
         searchTrainAlert.show();
         return false;
     }
-    return true;
-}
-
-function checkBuyTicketForm() {
     return true;
 }

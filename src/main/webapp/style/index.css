@@ -87,12 +87,22 @@ h1 {
     margin-right: 5px;
 }
 
-#Date-from{
-
-}
-
 #timeFrom {
     margin-right: 7px;
+}
+
+#inputFromBuyTicket button {
+    margin-top: 10px;
+    margin-left: 5px;
+    height: 30px;
+}
+
+#inputFromBuyTicket input {
+    height: 30px;
+}
+
+#inputFromBuyTicket .input-prepend {
+    margin-top: 10px;
 }
 
 #inputFromSearchTrain .input-prepend {

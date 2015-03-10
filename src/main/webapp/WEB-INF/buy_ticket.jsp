@@ -59,6 +59,12 @@
             </div>
             <c:set scope="session" var="buyTicketIncorrectData" value="${false}"/>
         </c:if>
+        <c:if test="${sessionScope.passengerIsNotAdult}">
+            <div class="alert alert-error">
+                <p>We do not selling tickets for passenger under 14 years old.</p>
+            </div>
+            <c:set scope="session" var="passengerIsNotAdult" value="${false}"/>
+        </c:if>
     </div>
     <jsp:include page="/WEB-INF/footer.jsp"/>
 </div>

@@ -16,6 +16,10 @@ public class DateHelper {
      */
     public static final long MILLIS_IN_DAY = 86_400_000;
     /**
+     * Number of milliseconds in one year.
+     */
+    public static final long MILLIS_IN_YEAR = MILLIS_IN_DAY * 365;
+    /**
      * Number of milliseconds in 10 minutes.
      */
     public static final long MILLIS_IN_10_MINUTES = 600_000;
@@ -114,5 +118,11 @@ public class DateHelper {
      */
     public static Date convertDatetime(String date, String time) {
         return convertDatetime(date + " " + time);
+    }
+
+    public static boolean hasEnoughtYearsToNow(Date birthdate, long years) {
+        Date now = new Date();
+        long difference = now.getTime() - birthdate.getTime();
+        return difference > years;
     }
 }

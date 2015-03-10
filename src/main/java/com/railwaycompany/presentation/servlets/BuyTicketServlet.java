@@ -41,6 +41,9 @@ public class BuyTicketServlet extends HttpServlet {
     private static final String PASSENGER_NAME_PARAM = "passengerName";
     private static final String PASSENGER_SURNAME_PARAM = "passengerSurname";
     private static final String PASSENGER_BIRTHDATE_PARAM = "passengerBirthdate";
+    private static final String NOT_ADULT_PASSENGER_ATTR = "passengerIsNotAdult";
+
+    private final static int PASSENGER_MIN_AGE = 14;
 
     /**
      * Logger for BuyTicketServlet class.
@@ -79,39 +82,47 @@ public class BuyTicketServlet extends HttpServlet {
             PassengerData passengerData = new PassengerData();
             passengerData.setName(passengerNameParam);
             passengerData.setSurname(passengerSurnameParam);
-            passengerData.setBirthdate(DateHelper.convertDate(passengerBirthdateParam));
+            Date birthdate = DateHelper.convertDate(passengerBirthdateParam);
+            boolean hasEnoughtYearsToNow = DateHelper.hasEnoughtYearsToNow(birthdate,
+                    DateHelper.MILLIS_IN_YEAR * PASSENGER_MIN_AGE);
+            if (hasEnoughtYearsToNow) {
+                passengerData.setBirthdate(birthdate);
+                boolean error = false;
+                TicketData ticketData = null;
+                try {
+                    int userId = ((UserData) session.getAttribute(USER_DATA_ATTR)).getId();
+                    ticketData = ticketService.buyTicket(userId, trainNumber, departureDate, stationNameParam,
+                            passengerData);
+                } catch (HasNoEmptySeatsException e) {
+                    error = true;
+                    session.setAttribute(HAS_NO_EMPTY_SEATS_ATTR, true);
+                    LOG.log(Level.WARNING, "This train has no empty seats", e);
+                } catch (AlreadyRegisteredException e) {
+                    error = true;
+                    session.setAttribute(ALREADY_REGISTERED_ATTR, true);
+                    LOG.log(Level.WARNING, "Such passenger already registered on this train", e);
+                } catch (SalesStopException e) {
+                    error = true;
+                    session.setAttribute(SALES_STOP_ATTR, true);
+                    LOG.log(Level.WARNING, "Ticket sales has been stopped", e);
+                } catch (InvalidInputDataException e) {
+                    error = true;
+                    session.setAttribute(INVALID_DATA_ATTR, true);
+                    LOG.log(Level.WARNING, "Invalid input data", e);
+                }
 
-            boolean error = false;
-            TicketData ticketData = null;
-            try {
-                int userId = ((UserData) session.getAttribute(USER_DATA_ATTR)).getId();
-                ticketData = ticketService.buyTicket(userId, trainNumber, departureDate, stationNameParam,
-                        passengerData);
-            } catch (HasNoEmptySeatsException e) {
-                error = true;
-                session.setAttribute(HAS_NO_EMPTY_SEATS_ATTR, true);
-                LOG.log(Level.WARNING, "This train has no empty seats", e);
-            } catch (AlreadyRegisteredException e) {
-                error = true;
-                session.setAttribute(ALREADY_REGISTERED_ATTR, true);
-                LOG.log(Level.WARNING, "Such passenger already registered on this train", e);
-            } catch (SalesStopException e) {
-                error = true;
-                session.setAttribute(SALES_STOP_ATTR, true);
-                LOG.log(Level.WARNING, "Ticket sales has been stopped", e);
-            } catch (InvalidInputDataException e) {
-                error = true;
-                session.setAttribute(INVALID_DATA_ATTR, true);
-                LOG.log(Level.WARNING, "Invalid input data", e);
-            }
-
-            if (error) {
-                getServletContext().getRequestDispatcher(BUY_TICKET_ERROR_PAGE).forward(req, resp);
+                if (error) {
+                    getServletContext().getRequestDispatcher(BUY_TICKET_ERROR_PAGE).forward(req, resp);
+                } else {
+                    session.setAttribute(TICKET_DATA_ATTR, ticketData);
+                    getServletContext().getRequestDispatcher(BUY_TICKET_SUCCESS_PAGE).forward(req, resp);
+                }
             } else {
-                session.setAttribute(TICKET_DATA_ATTR, ticketData);
-                getServletContext().getRequestDispatcher(BUY_TICKET_SUCCESS_PAGE).forward(req, resp);
+                session.setAttribute(NOT_ADULT_PASSENGER_ATTR, true);
+                LOG.warning("Not adult passenger. passengerName:" + passengerNameParam + " passengerSurname: " +
+                        passengerSurnameParam + " passengerBirthdate: " + passengerBirthdateParam);
+                getServletContext().getRequestDispatcher(BUY_TICKET_PAGE).forward(req, resp);
             }
-
         } else {
             LOG.log(Level.WARNING, "Incorrect input data. trainNumber: " + trainNumberParam + " departureDate: " +
                     departureDateParam + " stationName: " + stationNameParam + " passengerName: " + passengerNameParam +

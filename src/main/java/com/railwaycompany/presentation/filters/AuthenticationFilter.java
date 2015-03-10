@@ -137,7 +137,7 @@ public class AuthenticationFilter implements Filter {
      * Removes useless slashes from request URI. It is necessary for proper work this filter.
      *
      * @param requestURI - input request URI
-     * @return Requst URI without extra slashes.
+     * @return Request URI without extra slashes.
      */
     private String filterRequestURI(String requestURI) {
         return requestURI.replaceAll(FILTER_REQUEST_URI_PATTERN, SLASH);

@@ -4,7 +4,7 @@
 <div class="well">
     <h2>Add train</h2>
 
-    <p>Add train page. Should be available only for employee</p>
+    <p>Here you can add new train into database.</p>
 
     <div id="inputFromAddTrain">
         <form class="form-inline" action="${pageContext.request.contextPath}add_train" method="post">

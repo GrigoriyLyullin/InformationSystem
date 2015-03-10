@@ -20,6 +20,7 @@
     </div>
     <jsp:include page="/WEB-INF/add_station.jsp"/>
     <jsp:include page="/WEB-INF/add_train.jsp"/>
+    <jsp:include page="/WEB-INF/add_schedule.jsp"/>
     <jsp:include page="/WEB-INF/view_trains.jsp"/>
     <jsp:include page="/WEB-INF/view_passengers.jsp"/>
     <jsp:include page="/WEB-INF/footer.jsp"/>

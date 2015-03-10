@@ -18,6 +18,9 @@ public class ScheduleHibernateDao extends HibernateDao<Schedule> implements Sche
 
     private static final String SCHEDULES_WITH_STATION_ID = "SELECT s FROM Schedule s WHERE s.station.id = :stationId";
 
+    private static final String SPECIFIC_SCHEDULE = "SELECT s FROM Schedule s WHERE s.station.id = " +
+            ":stationId AND s.train.id = :trainId AND s.timeArrival = :arrivalDate AND s.timeDeparture = :departureDate";
+
     private static final String SCHEDULES_WITH_TRAIN_ID = "SELECT s FROM Schedule s WHERE s.train.id = :trainId";
 
     private static final String SCHEDULES_STATION_DEPARTURE = "SELECT s FROM Schedule s WHERE s" + ".station" +
@@ -191,6 +194,25 @@ public class ScheduleHibernateDao extends HibernateDao<Schedule> implements Sche
 //                    trainId + "\"");
         }
         return schedules;
+    }
+
+    @Override
+    public Schedule getSchedule(int stationId, int trainId, Date arrivalDate, Date departureDate) {
+
+        Query query = entityManager.createQuery(SPECIFIC_SCHEDULE);
+        query.setParameter("stationId", stationId);
+        query.setParameter("trainId", trainId);
+        query.setParameter("arrivalDate", arrivalDate);
+        query.setParameter("departureDate", departureDate);
+
+
+        Schedule schedule = null;
+        try {
+            schedule = (Schedule) query.getSingleResult();
+        } catch (Exception e) {
+        }
+
+        return schedule;
     }
 
     @Override

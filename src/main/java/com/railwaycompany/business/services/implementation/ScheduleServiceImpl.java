@@ -1,10 +1,14 @@
 package com.railwaycompany.business.services.implementation;
 
 import com.railwaycompany.business.dto.ScheduleData;
+import com.railwaycompany.business.services.exceptions.StationDoesNotExistException;
+import com.railwaycompany.business.services.exceptions.SuchScheduleExistException;
+import com.railwaycompany.business.services.exceptions.TrainDoesNotExistException;
 import com.railwaycompany.business.services.interfaces.ScheduleService;
 import com.railwaycompany.persistence.dao.interfaces.DaoContext;
 import com.railwaycompany.persistence.dao.interfaces.ScheduleDao;
 import com.railwaycompany.persistence.dao.interfaces.StationDao;
+import com.railwaycompany.persistence.dao.interfaces.TrainDao;
 import com.railwaycompany.persistence.entities.Schedule;
 import com.railwaycompany.persistence.entities.Station;
 import com.railwaycompany.persistence.entities.Train;
@@ -16,14 +20,16 @@ import java.util.List;
 public class ScheduleServiceImpl implements ScheduleService {
 
 
-
     private ScheduleDao scheduleDao;
 
     private StationDao stationDao;
 
+    private TrainDao trainDao;
+
     public ScheduleServiceImpl(DaoContext daoContext) {
         scheduleDao = (ScheduleDao) daoContext.get(ScheduleDao.class);
         stationDao = (StationDao) daoContext.get(StationDao.class);
+        trainDao = (TrainDao) daoContext.get(TrainDao.class);
     }
 
     @Override
@@ -99,6 +105,32 @@ public class ScheduleServiceImpl implements ScheduleService {
         Station stationFrom = stationDao.getStation(stationFromName);
         Station stationTo = stationDao.getStation(stationToName);
         return getSchedule(stationFrom, stationTo, dateFrom, dateTo);
+    }
+
+    @Override
+    public void addSchedule(int stationId, int trainId, Date arrivalDate, Date departureDate)
+            throws SuchScheduleExistException, TrainDoesNotExistException, StationDoesNotExistException {
+        Station station = stationDao.read(stationId);
+        if (station != null) {
+            Train train = trainDao.read(trainId);
+            if (train != null) {
+                Schedule schedule = scheduleDao.getSchedule(stationId, trainId, arrivalDate, departureDate);
+                if (schedule == null) {
+                    Schedule newSchedule = new Schedule();
+                    newSchedule.setStation(station);
+                    newSchedule.setTrain(train);
+                    newSchedule.setTimeArrival(arrivalDate);
+                    newSchedule.setTimeDeparture(departureDate);
+                    scheduleDao.create(newSchedule);
+                } else {
+                    throw new SuchScheduleExistException();
+                }
+            } else {
+                throw new TrainDoesNotExistException();
+            }
+        } else {
+            throw new StationDoesNotExistException();
+        }
     }
 
     @Override

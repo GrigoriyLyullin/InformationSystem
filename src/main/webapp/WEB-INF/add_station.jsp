@@ -3,7 +3,7 @@
 <div class="well">
     <h2>Add station</h2>
 
-    <p>Add station page. Should be available only for employee</p>
+    <p>Here you can add new station into database.</p>
 
     <div id="inputFromAddStation">
         <form class="form-inline" action="${pageContext.request.contextPath}add_station" method="post">

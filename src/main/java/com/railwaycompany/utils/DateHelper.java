@@ -100,4 +100,15 @@ public class DateHelper {
     public static boolean hasMoreThanTenMinutes(Date date) {
         return isEnoughTime(date, MILLIS_IN_10_MINUTES);
     }
+
+    /**
+     * Converts string with date and time into Date object.
+     *
+     * @param date- string with date
+     * @param time- string with time
+     * @return Date object or null if cannot convert this strings into Date.
+     */
+    public static Date convertDatetime(String date, String time) {
+        return convertDatetime(date + " " + time);
+    }
 }

@@ -26,4 +26,6 @@ public interface ScheduleDao extends GenericDAO<Schedule> {
     Integer getTrainId(int trainNumber, int stationId, Date departureDate);
 
     List<Schedule> getSchedules(int stationId, Date departureDateFrom, Date departureDateTo);
+
+    Schedule getSchedule(int stationId, int trainId, Date arrivalDate, Date departureDate);
 }

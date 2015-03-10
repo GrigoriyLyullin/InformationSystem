@@ -25,7 +25,7 @@ public class ValidationHelper {
     /**
      * String with pattern for train number checks.
      */
-    private static final String TRAIN_NUMBER_PATTERN_STR = "^[0-9]+$";
+    private static final String TRAIN_NUMBER_PATTERN_STR = "^[0-9]{1,9}$";
     /**
      * String with pattern for login checks.
      */

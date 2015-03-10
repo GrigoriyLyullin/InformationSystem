@@ -99,6 +99,15 @@
         <url-pattern>/index</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>AddScheduleServlet</servlet-name>
+        <servlet-class>com.railwaycompany.presentation.servlets.AddScheduleServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AddScheduleServlet</servlet-name>
+        <url-pattern>/add_schedule</url-pattern>
+    </servlet-mapping>
+
     <listener>
         <listener-class>com.railwaycompany.presentation.servlets.MainServletContextListener</listener-class>
     </listener>

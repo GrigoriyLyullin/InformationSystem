@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
@@ -89,10 +90,11 @@ public class SearchTrainServlet extends HttpServlet {
                 scheduleList = scheduleService.getSchedule(stationFromName, stationToName, dateFrom);
             }
             session.setAttribute(TRAIN_SEARCHING_ERROR_ATTR, false);
-            if (scheduleList != null) {
+            if (scheduleList != null && !scheduleList.isEmpty()) {
                 session.setAttribute(TRAIN_LIST_ATTR, scheduleList);
             } else {
                 session.setAttribute(TRAIN_NOT_FOUND_ATTR, true);
+                session.setAttribute(TRAIN_LIST_ATTR, new ArrayList<>());
             }
         } else {
             LOG.log(Level.WARNING, "Incorrect minimum data. stationFrom: " + stationFromName + " stationTo: " +

@@ -23,13 +23,13 @@
 
         <p>
             <c:choose>
-                <c:when test="${sessionScope.buyTicketHasNoEmptySeats}">
-                    All tickets for this train has been sold.
-                    <c:set scope="session" var="buyTicketHasNoEmptySeats" value="${false}"/>
-                </c:when>
                 <c:when test="${sessionScope.buyTicketAlreadyRegistered}">
                     You already registered on this train.
                     <c:set scope="session" var="buyTicketAlreadyRegistered" value="${false}"/>
+                </c:when>
+                <c:when test="${sessionScope.buyTicketHasNoEmptySeats}">
+                    All tickets for this train has been sold.
+                    <c:set scope="session" var="buyTicketHasNoEmptySeats" value="${false}"/>
                 </c:when>
                 <c:when test="${sessionScope.buyTicketSalesStop}">
                     Ticket sales for this train has been stopped (Less than 10 minute to train departure).

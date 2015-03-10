@@ -154,6 +154,9 @@ public class ScheduleServiceImpl implements ScheduleService {
     public List<ScheduleData> getSchedule(Station stationFrom, Station stationTo, Date dateFrom) {
 
         List<Schedule> schedulesFrom = scheduleDao.getSchedules(stationFrom.getId(), dateFrom);
+        Schedule first = schedulesFrom.get(0);
+        schedulesFrom = new ArrayList<>();
+        schedulesFrom.add(first);
         List<Schedule> schedulesTo = scheduleDao.getSchedules(stationTo.getId(), dateFrom);
 
         List<ScheduleData> scheduleDataList = null;

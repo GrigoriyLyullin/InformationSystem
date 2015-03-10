@@ -14,7 +14,7 @@
             <input id="Station-To-Name" name="Station-To-Name" type="text" class="input-large"
                    placeholder="Station name" value="<c:out value="${sessionScope.stationToName}"/>">
 
-            <span class="add-on">Date</span>
+            <span class="add-on">Departure date</span>
             <input id="dateFrom" name="dateFrom" type="date" class="input-medium" title="Date"
                    value="<c:out value="${sessionScope.dateFrom}"/>">
         </div>

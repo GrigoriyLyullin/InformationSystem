@@ -43,6 +43,7 @@
                         <td><fmt:formatDate type="both" dateStyle="short" timeStyle="short"
                                             value="${train.timeDeparture}"/>
                         </td>
+
                     </tr>
                 </c:forEach>
                 </tbody>
@@ -50,22 +51,19 @@
         </c:when>
         <c:when test="${empty sessionScope.trainList}">
             <c:choose>
-
                 <c:when test="${sessionScope.trainSearchingError}">
                     <div class="alert alert-error" id="trainSearchingErrorAlert">
                         <p>Invalid input data.</p>
                     </div>
                     <c:set scope="session" var="trainSearchingError" value="false"/>
                 </c:when>
-
                 <c:when test="${sessionScope.trainNotFoundError}">
                     <div class="alert alert-error" id="trainNotFoundAlert">
                         <p>Train from station "${sessionScope.stationFromName}" to "${sessionScope.stationToName}"
-                            was not found.</p>
+                            on date ${sessionScope.dateFrom} was not found.</p>
                     </div>
                     <c:set scope="session" var="trainNotFoundError" value="false"/>
                 </c:when>
-
             </c:choose>
         </c:when>
     </c:choose>

@@ -8,9 +8,6 @@
             <input id="Station-Name" name="Station-Name" type="text" class="input-large"
                    placeholder="Station name" value="<c:out value="${sessionScope.stationName}"/>">
         </div>
-        <%--<a href="${pageContext.request.contextPath}schedule_by_station?extendedForm=true" class="btn btn-primary" id="extendedFormButton">--%>
-            <%--<i class="icon-white icon-plus"></i>--%>
-        <%--</a>--%>
         <button type="submit" class="btn btn-success">
             <i class="icon-white icon-search"></i>
         </button>

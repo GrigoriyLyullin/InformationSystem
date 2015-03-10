@@ -36,14 +36,14 @@
 
         <p>
             <b>Passenger information</b><br>
-            Name: ${sessionScope.ticketData.passengerData.name}" Surname:
+            Name: ${sessionScope.ticketData.passengerData.name} Surname:
             ${sessionScope.ticketData.passengerData.surname}
             Birthdate:
             <fmt:formatDate type="date" dateStyle="short" value="${sessionScope.ticketData.passengerData.birthdate}"/>
             <br>
         </p>
         <a href="${pageContext.request.contextPath}buy_ticket" class="btn btn-primary">Back</a>
-        <a href="${pageContext.request.contextPath}" class="btn ">Main page</a>
+        <a href="${pageContext.request.contextPath}index" class="btn ">Main page</a>
     </div>
     <jsp:include page="/WEB-INF/footer.jsp"/>
 </div>

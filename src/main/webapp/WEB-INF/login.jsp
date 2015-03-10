@@ -6,7 +6,7 @@
         <div id="form-signin-body">
             <h2 class="form-signin-heading">Sign in</h2>
             <input name="login" id="username" type="text" class="input-block-level"
-                   placeholder="Username or Email address">
+                   placeholder="Username">
             <input name="password" id="password" type="password" class="input-block-level"
                    placeholder="Password">
 

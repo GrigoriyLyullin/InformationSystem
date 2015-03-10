@@ -15,6 +15,7 @@ import com.railwaycompany.persistence.entities.Train;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 public class ScheduleServiceImpl implements ScheduleService {
@@ -75,17 +76,27 @@ public class ScheduleServiceImpl implements ScheduleService {
         if (schedulesFrom != null && schedulesTo != null && dateFrom != null && dateTo != null && !schedulesFrom
                 .isEmpty() && !schedulesTo.isEmpty()) {
             scheduleDataList = new ArrayList<>();
-            for (Schedule sFrom : schedulesFrom) {
-                Train trainFrom = sFrom.getTrain();
-                for (Schedule sTo : schedulesTo) {
-                    Train trainTo = sTo.getTrain();
-                    if (trainFrom.equals(trainTo)) {
-                        ScheduleData scheduleData = new ScheduleData();
-                        scheduleData.setTrainId(trainFrom.getId());
-                        scheduleData.setTrainNumber(trainFrom.getNumber());
-                        scheduleData.setTimeDeparture(sFrom.getTimeDeparture());
-                        scheduleData.setTimeArrival(sTo.getTimeArrival());
-                        scheduleDataList.add(scheduleData);
+
+            Iterator<Schedule> fromIterator = schedulesFrom.iterator();
+            Iterator<Schedule> toIterator = schedulesTo.iterator();
+
+            while (fromIterator.hasNext()) {
+                Schedule sFrom = fromIterator.next();
+                if (toIterator.hasNext()) {
+                    Schedule sTo = toIterator.next();
+                    Train sFromTrain = sFrom.getTrain();
+                    Train sToTrain = sTo.getTrain();
+                    if (sFromTrain.getId() == sToTrain.getId()) {
+                        Date timeArrival = sTo.getTimeArrival();
+                        Date timeDeparture = sFrom.getTimeDeparture();
+                        if (timeDeparture.getTime() < timeArrival.getTime()) {
+                            ScheduleData scheduleData = new ScheduleData();
+                            scheduleData.setTrainId(sFromTrain.getId());
+                            scheduleData.setTrainNumber(sFromTrain.getNumber());
+                            scheduleData.setTimeDeparture(timeArrival);
+                            scheduleData.setTimeArrival(timeDeparture);
+                            scheduleDataList.add(scheduleData);
+                        }
                     }
                 }
             }
@@ -97,14 +108,20 @@ public class ScheduleServiceImpl implements ScheduleService {
     public List<ScheduleData> getSchedule(String stationFromName, String stationToName, Date dateFrom) {
         Station stationFrom = stationDao.getStation(stationFromName);
         Station stationTo = stationDao.getStation(stationToName);
-        return getSchedule(stationFrom, stationTo, dateFrom);
+        if (stationFrom != null && stationTo != null) {
+            return getSchedule(stationFrom, stationTo, dateFrom);
+        }
+        return null;
     }
 
     @Override
     public List<ScheduleData> getSchedule(String stationFromName, String stationToName, Date dateFrom, Date dateTo) {
         Station stationFrom = stationDao.getStation(stationFromName);
         Station stationTo = stationDao.getStation(stationToName);
-        return getSchedule(stationFrom, stationTo, dateFrom, dateTo);
+        if (stationFrom != null && stationTo != null) {
+            return getSchedule(stationFrom, stationTo, dateFrom, dateTo);
+        }
+        return null;
     }
 
     @Override
@@ -146,17 +163,27 @@ public class ScheduleServiceImpl implements ScheduleService {
 
             scheduleDataList = new ArrayList<>();
 
-            for (Schedule sFrom : schedulesFrom) {
-                Train trainFrom = sFrom.getTrain();
-                for (Schedule sTo : schedulesTo) {
-                    Train trainTo = sTo.getTrain();
-                    if (trainFrom.equals(trainTo)) {
-                        ScheduleData scheduleData = new ScheduleData();
-                        scheduleData.setTrainId(trainFrom.getId());
-                        scheduleData.setTrainNumber(trainFrom.getNumber());
-                        scheduleData.setTimeDeparture(sFrom.getTimeDeparture());
-                        scheduleData.setTimeArrival(sTo.getTimeArrival());
-                        scheduleDataList.add(scheduleData);
+            Iterator<Schedule> fromIterator = schedulesFrom.iterator();
+            Iterator<Schedule> toIterator = schedulesTo.iterator();
+
+            while (fromIterator.hasNext()) {
+                Schedule sFrom = fromIterator.next();
+                if (toIterator.hasNext()) {
+                    Schedule sTo = toIterator.next();
+                    Train sFromTrain = sFrom.getTrain();
+                    Train sToTrain = sTo.getTrain();
+                    if (sFromTrain.getId() == sToTrain.getId()) {
+
+                        Date timeArrival = sTo.getTimeArrival();
+                        Date timeDeparture = sFrom.getTimeDeparture();
+                        if (timeDeparture.getTime() < timeArrival.getTime()) {
+                            ScheduleData scheduleData = new ScheduleData();
+                            scheduleData.setTrainId(sFromTrain.getId());
+                            scheduleData.setTrainNumber(sFromTrain.getNumber());
+                            scheduleData.setTimeDeparture(timeArrival);
+                            scheduleData.setTimeArrival(timeDeparture);
+                            scheduleDataList.add(scheduleData);
+                        }
                     }
                 }
             }

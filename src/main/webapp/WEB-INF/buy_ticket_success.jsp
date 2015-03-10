@@ -1,5 +1,6 @@
 <%@ page isELIgnored="false" contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="../style/bootstrap.min.css">
@@ -28,16 +29,21 @@
         <p>
             <b>Ticket information:</b><br>
             Train number: ${sessionScope.ticketData.trainNumber} From station: ${sessionScope.ticketData.stationFrom}
-            Departure date: ${sessionScope.ticketData.departureDate}<br>
+            Departure date:
+            <fmt:formatDate type="date" dateStyle="short" value="${sessionScope.ticketData.departureDate}"/>
+            <br>
         </p>
 
         <p>
             <b>Passenger information</b><br>
             Name: ${sessionScope.ticketData.passengerData.name}" Surname:
             ${sessionScope.ticketData.passengerData.surname}
-            Birthdate: ${sessionScope.ticketData.passengerData.birthdate}<br>
+            Birthdate:
+            <fmt:formatDate type="date" dateStyle="short" value="${sessionScope.ticketData.passengerData.birthdate}"/>
+            <br>
         </p>
-        <a href="${pageContext.request.contextPath}" class="btn btn-primary">Main page</a>
+        <a href="${pageContext.request.contextPath}buy_ticket" class="btn btn-primary">Back</a>
+        <a href="${pageContext.request.contextPath}" class="btn ">Main page</a>
     </div>
     <jsp:include page="/WEB-INF/footer.jsp"/>
 </div>

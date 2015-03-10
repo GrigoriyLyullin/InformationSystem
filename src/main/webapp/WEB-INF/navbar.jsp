@@ -6,7 +6,8 @@
             <nav class="navbar-inner">
                 <ul class="nav pull-left">
                     <li><a href="${pageContext.request.contextPath}index#search_train">Search train</a></li>
-                    <li><a href="${pageContext.request.contextPath}index#schedule_by_station">Schedule by station</a></li>
+                    <li><a href="${pageContext.request.contextPath}index#schedule_by_station">Schedule by station</a>
+                    </li>
                     <li><a href="${pageContext.request.contextPath}buy_ticket">Buy ticket</a></li>
                     <li><a href="${pageContext.request.contextPath}index#about">About us</a></li>
                     <li class="divider-vertical"></li>
@@ -15,7 +16,6 @@
                     <li class="divider-vertical"></li>
                     <c:if test="${empty sessionScope.authenticationId}">
                         <li><a href="${pageContext.request.contextPath}login">Sign in</a></li>
-                        <li><a href="${pageContext.request.contextPath}register">Sign up</a></li>
                     </c:if>
                     <c:if test="${not empty sessionScope.authenticationId}">
                         <c:if test="${sessionScope.userData.employee}">

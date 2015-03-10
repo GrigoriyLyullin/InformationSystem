@@ -38,9 +38,10 @@
                            placeholder="Station name" value="<c:out value="${sessionScope.stationFromName}"/>">
                 </div>
                 <div class="input-prepend">
-                    <span class="add-on">Departure datetime</span>
-                    <input name="departureDate" type="date" class="input-medium" placeholder="dd.mm.yyyy" title="Date">
-                    <input name="departureTime" type="time" class="input-small" placeholder="hh:mm" title="Time">
+                    <span class="add-on">Departure date</span>
+                    <input name="departureDate" type="date" class="input-xlarge" placeholder="dd.mm.yyyy"
+                           title="Date">
+                    <%--<input name="departureTime" type="time" class="input-small" placeholder="hh:mm" title="Time">--%>
                 </div>
                 <div class="input-prepend">
                     <span class="add-on">Passenger name</span>

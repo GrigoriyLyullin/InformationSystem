@@ -60,7 +60,7 @@
                     <td>${passenger.id}</td>
                     <td>${passenger.name}</td>
                     <td>${passenger.surname}</td>
-                    <td>${passenger.birthdate}</td>
+                    <td><fmt:formatDate type="date" dateStyle="short" value="${passenger.birthdate}"/></td>
                 </tr>
             </c:forEach>
             </tbody>

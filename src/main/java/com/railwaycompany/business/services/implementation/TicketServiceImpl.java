@@ -55,65 +55,70 @@ public class TicketServiceImpl implements TicketService {
 
             Integer trainId = scheduleDao.getTrainId(trainNumber, stationId, departureDate);
 
-            Train train = trainDao.read(trainId);
+            if (trainId != null) {
 
-            int countOfTickets = ticketDao.countOfTickets(trainId);
-            int seats = train.getSeats();
+                Train train = trainDao.read(trainId);
 
-            if (countOfTickets < seats) {
+                int countOfTickets = ticketDao.countOfTickets(trainId);
+                int seats = train.getSeats();
 
-                Passenger passenger = passengerDao.getPassenger(name, surname, birthdate);
-                boolean newPassenger = false;
-                if (passenger == null) {
-                    newPassenger = true;
-                    passenger = new Passenger();
-                    passenger.setName(name);
-                    passenger.setSurname(surname);
-                    passenger.setBirthdate(birthdate);
-                    passenger.setUser(userDao.read(userId));
-                    passengerDao.create(passenger);
-                }
+                if (countOfTickets < seats) {
 
-                if (newPassenger || !ticketDao.hasBeenRegistered(trainId, passenger.getId())) {
+                    Passenger passenger = passengerDao.getPassenger(name, surname, birthdate);
+                    boolean newPassenger = false;
+                    if (passenger == null) {
+                        newPassenger = true;
+                        passenger = new Passenger();
+                        passenger.setName(name);
+                        passenger.setSurname(surname);
+                        passenger.setBirthdate(birthdate);
+                        passenger.setUser(userDao.read(userId));
+                        passengerDao.create(passenger);
+                    }
 
-                    Date realDepartureDate = scheduleDao.getDepartureDate(trainId, stationId);
+                    if (newPassenger || !ticketDao.hasBeenRegistered(trainId, passenger.getId())) {
 
-                    if (DateHelper.hasMoreThanTenMinutes(realDepartureDate)) {
+                        if (DateHelper.hasMoreThanTenMinutes(departureDate)) {
 
 
-                        Ticket ticket = new Ticket();
-                        ticket.setTrain(train);
-                        ticket.setPassenger(passenger);
+                            Ticket ticket = new Ticket();
+                            ticket.setTrain(train);
+                            ticket.setPassenger(passenger);
 
-                        ticketDao.create(ticket);
+                            ticketDao.create(ticket);
 
-                        TicketData ticketData = new TicketData();
-                        ticketData.setTrainNumber(trainNumber);
-                        ticketData.setStationFrom(stationName);
-                        ticketData.setDepartureDate(realDepartureDate);
-                        ticketData.setPassengerData(passengerData);
+                            TicketData ticketData = new TicketData();
+                            ticketData.setTrainNumber(trainNumber);
+                            ticketData.setStationFrom(stationName);
+                            ticketData.setDepartureDate(departureDate);
+                            ticketData.setPassengerData(passengerData);
 
-                        return ticketData;
+                            return ticketData;
+
+                        } else {
+                            String message = "Departure date " + departureDate + " in less than 10 minutes.";
+                            LOG.warning(message);
+                            throw new SalesStopException(message);
+                        }
 
                     } else {
-                        String message = "Departure date " + realDepartureDate + " in less than 10 minutes.";
-                        LOG.info(message);
-                        throw new SalesStopException(message);
+                        String message = "Passenger: " + passengerData + " already registered on train with id: " + trainId;
+                        LOG.warning(message);
+                        throw new AlreadyRegisteredException(message);
                     }
 
                 } else {
-                    String message = "Passenger: " + passengerData + " already registered on train with id: " + trainId;
-                    LOG.info(message);
-                    throw new AlreadyRegisteredException(message);
+                    String message = "Train with id: " + trainId + " has " + seats + " seats, " + countOfTickets + " " +
+                            "tickets has been sold.";
+                    LOG.warning(message);
+                    throw new HasNoEmptySeatsException(message);
                 }
-
             } else {
-                String message = "Train with id: " + trainId + " has " + seats + " seats, " + countOfTickets + " " +
-                        "tickets has been sold.";
-                LOG.info(message);
-                throw new HasNoEmptySeatsException(message);
+                String msg = "Train not found exception. trainNumber: " + trainNumber + " departureDate: " +
+                        departureDate;
+                LOG.warning(msg);
+                throw new InvalidInputDataException(msg);
             }
-
         } catch (NullPointerException e) {
             StringBuilder msg = new StringBuilder("Possible that input information is not valid: ");
             if (trainNumber <= 0)

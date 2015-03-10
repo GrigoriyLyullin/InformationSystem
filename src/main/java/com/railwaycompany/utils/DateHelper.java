@@ -24,6 +24,10 @@ public class DateHelper {
      */
     public static final long MILLIS_IN_1_MINUTE = 60_000;
     /**
+     * of milliseconds in 1 week.
+     */
+    public static final long MILLIS_IN_WEEK = MILLIS_IN_DAY * 7;
+    /**
      * Logger for DateHelper class.
      */
     private static final Logger LOG = Logger.getLogger(DateHelper.class.getName());

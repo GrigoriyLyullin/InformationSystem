@@ -22,7 +22,11 @@ function checkSignInForm() {
 function checkSearchTrainForm() {
 
     var searchTrainAlert = $('#searchTrainAlert');
+    var trainSearchingError = $('#trainSearchingErrorAlert');
+    var trainNotFoundError = $('#trainNotFoundAlert');
     searchTrainAlert.hide();
+    trainSearchingError.hide();
+    trainNotFoundError.hide();
 
     var stationFromName = $('#Station-From-Name').val();
     var stationToName = $('#Station-To-Name').val();

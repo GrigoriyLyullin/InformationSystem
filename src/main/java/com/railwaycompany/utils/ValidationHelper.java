@@ -19,10 +19,6 @@ public class ValidationHelper {
      */
     private static final String STATION_NAME_PATTERN_STR = "^[a-zA-Zа-яА-Я]+[- ]*[a-zA-Zа-яА-Я]+$";
     /**
-     * String with pattern for name checks.
-     */
-    private static final String NAME_PATTERN_STR = "^[a-zA-Zа-яА-Я]+$";
-    /**
      * String with pattern for train number checks.
      */
     private static final String TRAIN_NUMBER_PATTERN_STR = "^[0-9]{1,9}$";
@@ -58,10 +54,6 @@ public class ValidationHelper {
      * Pattern for password checks.
      */
     private static Pattern passwordPattern = Pattern.compile(PASSWORD_PATTERN_STR);
-    /**
-     * Pattern for name checks.
-     */
-    private static Pattern namePattern = Pattern.compile(NAME_PATTERN_STR);
 
     /**
      * Checks that string contains valid date.
@@ -130,7 +122,7 @@ public class ValidationHelper {
      * @return True if string contains valid name or surname, otherwise - False.
      */
     public static boolean isValidPassengerNameOrSurname(String name) {
-        return name != null && !name.isEmpty() && namePattern.matcher(name).matches();
+        return name != null && !name.isEmpty();
     }
 
     /**

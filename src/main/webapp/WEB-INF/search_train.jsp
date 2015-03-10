@@ -1,5 +1,6 @@
 <%@ page isELIgnored="false" contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <div class="well">
 
     <div class="header">
@@ -29,31 +30,19 @@
                     <th>Train number</th>
                     <th>${sessionScope.stationFromName} departure time</th>
                     <th>${sessionScope.stationToName} arrival time</th>
-                    <%--<th>Buy ticket</th>--%>
                 </tr>
                 </thead>
                 <tbody>
                 <c:forEach items="${sessionScope.trainList}" var="train">
                     <tr>
                         <td>${train.trainNumber}</td>
-                        <td>${train.timeArrival}</td>
-                        <td>${train.timeDeparture}</td>
-                        <%--<td>--%>
-                            <%--<c:choose>--%>
-                                <%--<c:when test="${empty sessionScope.authorizationId}">--%>
-                                    <%--<form action="${pageContext.request.contextPath}buy_ticket" method="get">--%>
-                                        <%--<button type="submit" class="btn disabled btn-block">Buy</button>--%>
-                                    <%--</form>--%>
-                                <%--</c:when>--%>
-                                <%--<c:when test="${not empty sessionScope.authorizationId}">--%>
-                                    <%--<form action="${pageContext.request.contextPath}buy_ticket" method="post">--%>
-                                        <%--<input type="hidden" name="trainNumber" value="${train.trainNumber}">--%>
-                                        <%--<input type="hidden" name="timeDeparture" value="${train.timeDeparture}">--%>
-                                        <%--<button type="submit" class="btn btn-block btn-success">Buy</button>--%>
-                                    <%--</form>--%>
-                                <%--</c:when>--%>
-                            <%--</c:choose>--%>
-                        <%--</td>--%>
+                        <td>
+                            <fmt:formatDate type="both" dateStyle="short" timeStyle="short"
+                                            value="${train.timeArrival}"/>
+                        </td>
+                        <td><fmt:formatDate type="both" dateStyle="short" timeStyle="short"
+                                            value="${train.timeDeparture}"/>
+                        </td>
                     </tr>
                 </c:forEach>
                 </tbody>
@@ -64,8 +53,9 @@
 
                 <c:when test="${sessionScope.trainSearchingError}">
                     <div class="alert alert-error" id="trainSearchingErrorAlert">
-                        <p>Error! Invalid input data.</p>
+                        <p>Invalid input data.</p>
                     </div>
+                    <c:set scope="session" var="trainSearchingError" value="false"/>
                 </c:when>
 
                 <c:when test="${sessionScope.trainNotFoundError}">
@@ -73,6 +63,7 @@
                         <p>Train from station "${sessionScope.stationFromName}" to "${sessionScope.stationToName}"
                             was not found.</p>
                     </div>
+                    <c:set scope="session" var="trainNotFoundError" value="false"/>
                 </c:when>
 
             </c:choose>

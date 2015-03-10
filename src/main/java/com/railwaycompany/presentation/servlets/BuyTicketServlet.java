@@ -113,7 +113,9 @@ public class BuyTicketServlet extends HttpServlet {
             }
 
         } else {
-            LOG.log(Level.WARNING, "Incorrect input data");
+            LOG.log(Level.WARNING, "Incorrect input data. trainNumber: " + trainNumberParam + " departureDate: " +
+                    departureDateParam + " stationName: " + stationNameParam + " passengerName: " + passengerNameParam +
+                    " passengerSurname: " + passengerSurnameParam + " passengerBirthdate:" + passengerBirthdateParam);
             session.setAttribute(INCORRECT_DATA_ATTR, true);
             getServletContext().getRequestDispatcher(BUY_TICKET_PAGE).forward(req, resp);
         }
@@ -122,8 +124,12 @@ public class BuyTicketServlet extends HttpServlet {
     private boolean checkPassengerInput(String passengerNameParam, String passengerSurnameParam,
                                         String passengerBirthdateParam) {
         return isValidPassengerNameOrSurname(passengerNameParam) && isValidPassengerNameOrSurname
-                (passengerSurnameParam) && isValidDateStr(passengerBirthdateParam);
+                (passengerSurnameParam) && isValidBirthdateStr(passengerBirthdateParam);
 
+    }
+
+    private boolean isValidBirthdateStr(String passengerBirthdateParam) {
+        return passengerBirthdateParam != null && !passengerBirthdateParam.isEmpty();
     }
 
     private boolean checkInput(String trainNumberParam, String departureDateParam, String stationNameParam) {

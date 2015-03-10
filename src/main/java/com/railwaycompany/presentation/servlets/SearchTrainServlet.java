@@ -79,10 +79,10 @@ public class SearchTrainServlet extends HttpServlet {
             if (validDateToStr) {
                 Date dateTo = DateHelper.convertDate(dateToStr);
                 if (validTimeFromStr) {
-                    dateFrom = DateHelper.convertDatetime(dateFromStr + " " + timeFromStr);
+                    dateFrom = DateHelper.convertDatetime(dateFromStr, timeFromStr);
                 }
                 if (validTimeToStr) {
-                    dateTo = DateHelper.convertDatetime(dateToStr + " " + timeToStr);
+                    dateTo = DateHelper.convertDatetime(dateToStr, timeToStr);
                 }
                 scheduleList = scheduleService.getSchedule(stationFromName, stationToName, dateFrom, dateTo);
             } else {

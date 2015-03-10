@@ -65,6 +65,5 @@
             </c:forEach>
             </tbody>
         </table>
-        <%--Total: <c:out value="${sessionScope.allPassengerList.numberOfItems}"/>--%>
     </c:if>
 </div>

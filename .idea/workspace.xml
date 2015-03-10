@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0a97a00a-bfdc-41f8-aef4-6bd013891077" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/railwaycompany/persistence/dao/interfaces/DaoFactory.java" afterPath="$PROJECT_DIR$/src/main/java/com/railwaycompany/persistence/dao/interfaces/DaoFactory.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/railwaycompany/persistence/dao/hibernate/HibernateDaoFactory.java" afterPath="$PROJECT_DIR$/src/main/java/com/railwaycompany/persistence/dao/hibernate/HibernateDaoFactory.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/view_passengers.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/view_passengers.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/view_trains.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/view_trains.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path=".idea/dataSources.local.xml" />
@@ -48,21 +48,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="AddScheduleServlet.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/railwaycompany/presentation/servlets/AddScheduleServlet.java">
+      <file leaf-file-name="view_passengers.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view_passengers.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="855" max-vertical-offset="1479">
-              <caret line="39" column="114" selection-start-line="39" selection-start-column="114" selection-end-line="39" selection-end-column="114" />
+            <state vertical-scroll-proportion="-3.0769231" vertical-offset="634" max-vertical-offset="1258">
+              <caret line="42" column="21" selection-start-line="42" selection-start-column="21" selection-end-line="42" selection-end-column="21" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DaoFactory.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/railwaycompany/persistence/dao/interfaces/DaoFactory.java">
+      <file leaf-file-name="view_trains.jsp" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view_trains.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7275641" vertical-offset="311" max-vertical-offset="1020">
-              <caret line="45" column="35" selection-start-line="45" selection-start-column="35" selection-end-line="45" selection-end-column="35" />
+            <state vertical-scroll-proportion="0.5033445" vertical-offset="396" max-vertical-offset="1020">
+              <caret line="41" column="57" selection-start-line="41" selection-start-column="57" selection-end-line="41" selection-end-column="57" />
               <folding />
             </state>
           </provider>
@@ -83,7 +83,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/test/java/com/railwaycompany/business/services/implementation/TrainServiceImplTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/railwaycompany/business/services/implementation/UserServiceImplTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/railwaycompany/utils/HashHelper.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/railwaycompany/presentation/servlets/AddStationServlet.java" />
@@ -115,7 +114,6 @@
         <option value="$PROJECT_DIR$/src/main/webapp/js/index.js" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/search_train_extended_form.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/com/railwaycompany/business/services/implementation/TicketServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/view_passengers.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/schedule_by_station.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/login.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/navbar.jsp" />
@@ -134,6 +132,8 @@
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/buy_ticket_success.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/com/railwaycompany/persistence/dao/interfaces/DaoFactory.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/view_passengers.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/view_trains.jsp" />
       </list>
     </option>
   </component>
@@ -1252,13 +1252,7 @@
       <workItem from="1425891514847" duration="43729000" />
       <workItem from="1425964914890" duration="14197000" />
       <workItem from="1425983441441" duration="1748000" />
-      <workItem from="1425987735543" duration="2297000" />
-    </task>
-    <task id="LOCAL-00016" summary="Log out logic has been implemented.">
-      <created>1425047538523</created>
-      <option name="number" value="00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1425047538523</updated>
+      <workItem from="1425987735543" duration="2776000" />
     </task>
     <task id="LOCAL-00017" summary="Log out logic has been implemented.">
       <created>1425047549995</created>
@@ -1548,11 +1542,17 @@
       <option name="project" value="LOCAL" />
       <updated>1425989925464</updated>
     </task>
-    <option name="localTasksCounter" value="65" />
+    <task id="LOCAL-00065" summary="Safe delete entity manager getter.">
+      <created>1425990055808</created>
+      <option name="number" value="00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1425990055808</updated>
+    </task>
+    <option name="localTasksCounter" value="66" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="385909000" />
+    <option name="totallyTimeSpent" value="386388000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -1625,7 +1625,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="View all trains logic and page implementation." />
     <MESSAGE value="Employee page has been changed." />
     <MESSAGE value="View all registered passenger logic and page implementation." />
     <MESSAGE value="JSP pages moved into WEB-INF." />
@@ -1650,7 +1649,8 @@
     <MESSAGE value="Welcome file has been changed." />
     <MESSAGE value="Passenger age check has been added." />
     <MESSAGE value="Bug fix before presentation." />
-    <option name="LAST_COMMIT_MESSAGE" value="Bug fix before presentation." />
+    <MESSAGE value="Safe delete entity manager getter." />
+    <option name="LAST_COMMIT_MESSAGE" value="Safe delete entity manager getter." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1845,20 +1845,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view_passengers.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-14.0" vertical-offset="690" max-vertical-offset="1275">
-          <caret line="62" column="27" selection-start-line="62" selection-start-column="27" selection-end-line="62" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view_trains.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5735786" vertical-offset="422" max-vertical-offset="1020">
-          <caret line="45" column="78" selection-start-line="44" selection-start-column="28" selection-end-line="45" selection-end-column="78" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/navbar.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.4940171" vertical-offset="0" max-vertical-offset="680">
@@ -2028,6 +2014,22 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.7275641" vertical-offset="311" max-vertical-offset="1020">
           <caret line="45" column="35" selection-start-line="45" selection-start-column="35" selection-end-line="45" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view_passengers.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.0769231" vertical-offset="634" max-vertical-offset="1258">
+          <caret line="42" column="21" selection-start-line="42" selection-start-column="21" selection-end-line="42" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view_trains.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5033445" vertical-offset="396" max-vertical-offset="1020">
+          <caret line="41" column="57" selection-start-line="41" selection-start-column="57" selection-end-line="41" selection-end-column="57" />
           <folding />
         </state>
       </provider>

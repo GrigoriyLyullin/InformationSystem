@@ -40,10 +40,10 @@
                     <td>
                         <c:forEach items="${train.stations}" var="station">
                             ${station.id}.${station.name}
-                            <fmt:formatDate type="both" dateStyle="short" timeStyle="short"
-                                            value="${station.arrivalDate}"/>
-                            <fmt:formatDate type="both" dateStyle="short" timeStyle="short"
-                                            value="${station.departureDate}"/>
+                            Arrival: <fmt:formatDate type="both" dateStyle="short" timeStyle="short"
+                                                     value="${station.arrivalDate}"/>
+                            Departure: <fmt:formatDate type="both" dateStyle="short" timeStyle="short"
+                                                       value="${station.departureDate}"/>
                             <br>
                         </c:forEach>
                     </td>

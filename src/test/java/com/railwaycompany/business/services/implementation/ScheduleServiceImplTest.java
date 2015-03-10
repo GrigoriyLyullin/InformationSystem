@@ -122,8 +122,8 @@ public class ScheduleServiceImplTest {
         ScheduleData scheduleData = schedule.get(0);
         assertEquals(scheduleData.getTrainId(), TRAIN_ID);
         assertEquals(scheduleData.getTrainNumber(), TRAIN_NUMBER);
-        assertEquals(scheduleData.getTimeDeparture(), dateDepartureStationFrom);
-        assertEquals(scheduleData.getTimeArrival(), dateArrivalStationTo);
+        assertEquals(scheduleData.getTimeDeparture(), dateArrivalStationTo);
+        assertEquals(scheduleData.getTimeArrival(), dateDepartureStationFrom);
 
         schedule = scheduleService.getSchedule(notExistStation, stationTo, dateDepartureStationFrom);
         assertNull(schedule);
@@ -143,7 +143,7 @@ public class ScheduleServiceImplTest {
         ScheduleData scheduleData = schedule.get(0);
         assertEquals(scheduleData.getTrainId(), TRAIN_ID);
         assertEquals(scheduleData.getTrainNumber(), TRAIN_NUMBER);
-        assertEquals(scheduleData.getTimeDeparture(), dateDepartureStationFrom);
+        assertEquals(scheduleData.getTimeDeparture(), dateArrivalStationTo);
         assertTrue(scheduleData.getTimeArrival().getTime() <= dateArrivalStationTo.getTime());
 
         schedule = scheduleService.getSchedule(notExistStation, stationTo, dateDepartureStationFrom,

@@ -2,12 +2,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="../style/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="../style/index.css">
-    <link rel="stylesheet" type="text/css" href="../style/buy_ticket.css">
-    <script src="../js/bootstrap.min.js"></script>
-    <script src="../js/jquery-1.11.2.min.js"></script>
-    <script src="../js/index.js"></script>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/style/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/style/index.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/style/buy_ticket.css">
+    <script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/jquery-1.11.2.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/index.js"></script>
     <meta charset="utf-8">
     <title>Railway Company</title>
 </head>
@@ -23,12 +23,12 @@
 
         <p> Enter passenger and train information below. If you do not know all the necessary information for the
             purchase of a ticket you can use
-            <a href="${pageContext.request.contextPath}index#search_train">search</a> or
-            <a href="${pageContext.request.contextPath}index#schedule_by_station">train schedule by station</a>.
+            <a href="${pageContext.request.contextPath}/index#search_train">search</a> or
+            <a href="${pageContext.request.contextPath}/index#schedule_by_station">train schedule by station</a>.
         </p>
 
         <div id="inputFromBuyTicket">
-            <form class="form-inline" method="post" action="${pageContext.request.contextPath}buy_ticket">
+            <form class="form-inline" method="post" action="${pageContext.request.contextPath}/buy_ticket">
                 <div class="input-prepend">
                     <span class="add-on">Train number</span>
                     <input id="Train-Number" name="trainNumber" type="text" class="input-medium"

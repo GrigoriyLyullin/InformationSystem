@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <div id="inputFromSearchTrain">
     <form class="form-inline" onsubmit="return checkSearchTrainForm(this)" method="post"
-          action="${pageContext.request.contextPath}search_train">
+          action="${pageContext.request.contextPath}/search_train">
 
         <div class="input-prepend">
 

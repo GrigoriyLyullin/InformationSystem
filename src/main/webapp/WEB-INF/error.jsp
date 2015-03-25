@@ -2,9 +2,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="../style/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="../style/index.css">
-    <link rel="stylesheet" type="text/css" href="../style/error.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/style/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/style/index.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/style/error.css">
     <meta charset="utf-8">
     <title>Error</title>
 </head>

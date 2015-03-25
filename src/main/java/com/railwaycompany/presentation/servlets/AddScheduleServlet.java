@@ -3,12 +3,14 @@ package com.railwaycompany.presentation.servlets;
 import com.railwaycompany.business.services.exceptions.StationDoesNotExistException;
 import com.railwaycompany.business.services.exceptions.SuchScheduleExistException;
 import com.railwaycompany.business.services.exceptions.TrainDoesNotExistException;
-import com.railwaycompany.business.services.implementation.ServiceFactorySingleton;
 import com.railwaycompany.business.services.interfaces.ScheduleService;
 import com.railwaycompany.utils.DateHelper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -18,26 +20,24 @@ import java.util.logging.Logger;
 
 import static com.railwaycompany.utils.ValidationHelper.*;
 
-public class AddScheduleServlet extends HttpServlet {
+@Controller
+@RequestMapping("add_schedule")
+public class AddScheduleServlet {
 
     private static final Logger LOG = Logger.getLogger(AddScheduleServlet.class.getName());
 
     private static final String EMPLOYEE_PAGE = "/WEB-INF/employee_page.jsp";
 
+    @Autowired
     private ScheduleService scheduleService;
 
-    @Override
-    public void init() throws ServletException {
-        scheduleService = ServiceFactorySingleton.getInstance().getScheduleService();
+    @RequestMapping(method = RequestMethod.GET)
+    public String doGet() {
+        return "employee_page";
     }
 
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        getServletContext().getRequestDispatcher(EMPLOYEE_PAGE).forward(req, resp);
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    @RequestMapping(method = RequestMethod.POST)
+    protected String doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String stationIdStr = req.getParameter("stationId");
         String trainIdStr = req.getParameter("trainId");
         String arrivalDateStr = req.getParameter("arrivalDate");
@@ -86,7 +86,7 @@ public class AddScheduleServlet extends HttpServlet {
                     departureDateStr + " departureTime: " + departureTimeStr);
             session.setAttribute("invalidAddScheduleInputDataError", true);
         }
-        getServletContext().getRequestDispatcher(EMPLOYEE_PAGE).forward(req, resp);
+        return "employee_page";
     }
 
     private boolean checkInput(String stationId, String trainId, String arrivalDate, String arrivalTime,

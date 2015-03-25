@@ -3,14 +3,17 @@ package com.railwaycompany.business.services.implementation;
 import com.railwaycompany.business.dto.StationData;
 import com.railwaycompany.business.services.exceptions.StationWithSuchNameExistException;
 import com.railwaycompany.business.services.interfaces.StationService;
-import com.railwaycompany.persistence.dao.interfaces.DaoContext;
 import com.railwaycompany.persistence.dao.interfaces.StationDao;
 import com.railwaycompany.persistence.entities.Station;
+import com.sun.xml.internal.ws.developer.Serialization;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
+@Service
 public class StationServiceImpl implements StationService {
 
     /**
@@ -18,10 +21,11 @@ public class StationServiceImpl implements StationService {
      */
     private static Logger log = Logger.getLogger(StationServiceImpl.class.getName());
 
+    @Autowired
     private StationDao stationDao;
 
-    public StationServiceImpl(DaoContext daoContext) {
-        stationDao = (StationDao) daoContext.get(StationDao.class);
+    public StationServiceImpl() {
+
     }
 
     @Override

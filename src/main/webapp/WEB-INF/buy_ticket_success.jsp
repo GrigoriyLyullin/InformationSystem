@@ -3,12 +3,12 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="../style/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="../style/index.css">
-    <link rel="stylesheet" type="text/css" href="../style/buy_ticket.css">
-    <script src="../js/bootstrap.min.js"></script>
-    <script src="../js/jquery-1.11.2.min.js"></script>
-    <script src="../js/index.js"></script>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/style/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/style/index.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/style/buy_ticket.css">
+    <script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/jquery-1.11.2.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/index.js"></script>
     <meta charset="utf-8">
     <title>Railway Company</title>
 </head>
@@ -42,8 +42,8 @@
             <fmt:formatDate type="date" dateStyle="short" value="${sessionScope.ticketData.passengerData.birthdate}"/>
             <br>
         </p>
-        <a href="${pageContext.request.contextPath}buy_ticket" class="btn btn-primary">Back</a>
-        <a href="${pageContext.request.contextPath}index" class="btn ">Main page</a>
+        <a href="${pageContext.request.contextPath}/buy_ticket" class="btn btn-primary">Back</a>
+        <a href="${pageContext.request.contextPath}/index" class="btn ">Main page</a>
     </div>
     <jsp:include page="/WEB-INF/footer.jsp"/>
 </div>

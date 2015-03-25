@@ -1,8 +1,6 @@
 package com.railwaycompany.business.services.implementation;
 
 import com.railwaycompany.business.services.interfaces.AuthenticationService;
-import com.railwaycompany.persistence.dao.hibernate.HibernateDaoContext;
-import com.railwaycompany.persistence.dao.interfaces.DaoContext;
 import com.railwaycompany.persistence.dao.interfaces.UserDao;
 import com.railwaycompany.persistence.entities.User;
 import org.junit.Assert;
@@ -35,10 +33,7 @@ public class AuthenticationServiceImplTest {
 
         when(userDao.findUser(USER_LOGIN, USER_PASSWORD_HASH)).thenReturn(user);
 
-        DaoContext daoContext = new HibernateDaoContext();
-        daoContext.put(UserDao.class, userDao);
-
-        authenticationService = new AuthenticationServiceImpl(daoContext);
+        authenticationService = new AuthenticationServiceImpl();
     }
 
     @Test

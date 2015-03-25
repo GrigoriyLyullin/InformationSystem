@@ -2,12 +2,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="../style/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="../style/index.css">
-    <link rel="stylesheet" type="text/css" href="../style/employee_page.css">
-    <script src="../js/bootstrap.min.js"></script>
-    <script src="../js/jquery-1.11.2.min.js"></script>
-    <script src="../js/index.js"></script>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/style/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/style/index.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/style/employee_page.css">
+    <script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/jquery-1.11.2.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/index.js"></script>
     <meta charset="utf-8">
     <title>Railway Company</title>
 </head>

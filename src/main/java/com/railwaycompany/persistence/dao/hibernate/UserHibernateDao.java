@@ -2,8 +2,8 @@ package com.railwaycompany.persistence.dao.hibernate;
 
 import com.railwaycompany.persistence.dao.interfaces.UserDao;
 import com.railwaycompany.persistence.entities.User;
+import org.springframework.stereotype.Repository;
 
-import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
 import java.util.logging.Level;
@@ -12,6 +12,7 @@ import java.util.logging.Logger;
 /**
  * HibernateDao implementation for work with User entities.
  */
+@Repository
 public class UserHibernateDao extends HibernateDao<User> implements UserDao {
 
     private static final String FIND_USER = "SELECT u FROM User u WHERE u.login = :login AND" + " u" +
@@ -23,11 +24,9 @@ public class UserHibernateDao extends HibernateDao<User> implements UserDao {
 
     /**
      * UserHibernateDao constructor.
-     *
-     * @param entityManager - entity manager
      */
-    public UserHibernateDao(EntityManager entityManager) {
-        super(entityManager, User.class);
+    public UserHibernateDao() {
+        this.setEntityClass(User.class);
     }
 
     @Override

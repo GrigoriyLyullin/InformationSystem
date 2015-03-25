@@ -1,6 +1,9 @@
 package com.railwaycompany.persistence.dao.hibernate;
 
 import com.railwaycompany.persistence.dao.interfaces.GenericDAO;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
@@ -12,6 +15,7 @@ import java.util.logging.Logger;
  *
  * @param <T> Entity type.
  */
+@Repository
 public class HibernateDao<T extends Serializable> implements GenericDAO<T> {
 
     /**
@@ -22,6 +26,7 @@ public class HibernateDao<T extends Serializable> implements GenericDAO<T> {
     /**
      * EntityManager, interface used to interact with the persistence context.
      */
+    @Autowired
     protected EntityManager entityManager;
 
     /**
@@ -32,10 +37,19 @@ public class HibernateDao<T extends Serializable> implements GenericDAO<T> {
     /**
      * HibernateDao constructor.
      *
-     * @param entityClass - entity class
      */
-    public HibernateDao(EntityManager entityManager, Class<T> entityClass) {
-        this.entityManager = entityManager;
+//    public HibernateDao(EntityManager entityManager, Class<T> entityClass) {
+//        this.entityManager = entityManager;
+//        this.entityClass = entityClass;
+//    }
+    public HibernateDao() {
+    }
+
+    public Class<T> getEntityClass() {
+        return entityClass;
+    }
+
+    public void setEntityClass(Class<T> entityClass) {
         this.entityClass = entityClass;
     }
 

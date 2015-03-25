@@ -7,7 +7,7 @@
     <p>Here you can add new train into database.</p>
 
     <div id="inputFromAddTrain">
-        <form class="form-inline" action="${pageContext.request.contextPath}add_train" method="post">
+        <form class="form-inline" action="${pageContext.request.contextPath}/add_train" method="post">
             <div class="input-prepend">
                 <span class="add-on">New train number</span>
                 <input name="trainNumber" type="text" class="input-medium" placeholder="Train number">
@@ -19,13 +19,13 @@
             </button>
             <c:choose>
                 <c:when test="${ empty sessionScope.allTrainList}">
-                    <a href="${pageContext.request.contextPath}add_train?getAllTrain=true"
+                    <a href="${pageContext.request.contextPath}/add_train?getAllTrain=true"
                        class="height20 btn btn-primary">
                         <i class="icon-white icon-list"></i>
                     </a>
                 </c:when>
                 <c:when test="${not empty sessionScope.allTrainList}">
-                    <a href="${pageContext.request.contextPath}add_train?getAllTrain=false"
+                    <a href="${pageContext.request.contextPath}/add_train?getAllTrain=false"
                        class="height20 btn btn-primary active">
                         <i class="icon-white icon-list"></i>
                     </a>

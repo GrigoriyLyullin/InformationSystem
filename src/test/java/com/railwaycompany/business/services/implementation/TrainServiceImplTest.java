@@ -3,8 +3,6 @@ package com.railwaycompany.business.services.implementation;
 import com.railwaycompany.business.dto.TrainData;
 import com.railwaycompany.business.services.exceptions.TrainWithSuchNumberExistException;
 import com.railwaycompany.business.services.interfaces.TrainService;
-import com.railwaycompany.persistence.dao.hibernate.HibernateDaoContext;
-import com.railwaycompany.persistence.dao.interfaces.DaoContext;
 import com.railwaycompany.persistence.dao.interfaces.ScheduleDao;
 import com.railwaycompany.persistence.dao.interfaces.TrainDao;
 import com.railwaycompany.persistence.entities.Schedule;
@@ -71,10 +69,7 @@ public class TrainServiceImplTest {
         when(trainDao.getAll()).thenReturn(trainList);
         when(scheduleDao.getSchedulesByTrainId(TRAIN_ID)).thenReturn(scheduleList);
 
-        DaoContext daoContext = new HibernateDaoContext();
-        daoContext.put(TrainDao.class, trainDao);
-        daoContext.put(ScheduleDao.class, scheduleDao);
-        trainService = new TrainServiceImpl(daoContext);
+        trainService = new TrainServiceImpl();
     }
 
     @Test

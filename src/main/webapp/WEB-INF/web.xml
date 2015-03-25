@@ -3,115 +3,6 @@
 
     <display-name>Archetype Created Web Application</display-name>
 
-    <servlet>
-        <servlet-name>LoginServlet</servlet-name>
-        <servlet-class>com.railwaycompany.presentation.servlets.LoginServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>LogoutServlet</servlet-name>
-        <servlet-class>com.railwaycompany.presentation.servlets.LogoutServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>SearchTrainServlet</servlet-name>
-        <servlet-class>com.railwaycompany.presentation.servlets.SearchTrainServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>ScheduleByStationServlet</servlet-name>
-        <servlet-class>com.railwaycompany.presentation.servlets.ScheduleByStationServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>BuyTicketServlet</servlet-name>
-        <servlet-class>com.railwaycompany.presentation.servlets.BuyTicketServlet</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>LoginServlet</servlet-name>
-        <url-pattern>/login</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>LogoutServlet</servlet-name>
-        <url-pattern>/logout</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>SearchTrainServlet</servlet-name>
-        <url-pattern>/search_train</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ScheduleByStationServlet</servlet-name>
-        <url-pattern>/schedule_by_station</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>BuyTicketServlet</servlet-name>
-        <url-pattern>/buy_ticket</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>EmployeePageServlet</servlet-name>
-        <servlet-class>com.railwaycompany.presentation.servlets.EmployeePageServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>EmployeePageServlet</servlet-name>
-        <url-pattern>/employee_page</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>AddStationServlet</servlet-name>
-        <servlet-class>com.railwaycompany.presentation.servlets.AddStationServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>AddStationServlet</servlet-name>
-        <url-pattern>/add_station</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>AddTrainServlet</servlet-name>
-        <servlet-class>com.railwaycompany.presentation.servlets.AddTrainServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>AddTrainServlet</servlet-name>
-        <url-pattern>/add_train</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>ViewAllTrainsServlet</servlet-name>
-        <servlet-class>com.railwaycompany.presentation.servlets.ViewAllTrainsServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>ViewAllTrainsServlet</servlet-name>
-        <url-pattern>/view_all_trains</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>ViewAllPassengerServlet</servlet-name>
-        <servlet-class>com.railwaycompany.presentation.servlets.ViewAllPassengerServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>ViewAllPassengerServlet</servlet-name>
-        <url-pattern>/view_all_passengers</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>IndexPageServlet</servlet-name>
-        <servlet-class>com.railwaycompany.presentation.servlets.IndexPageServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>IndexPageServlet</servlet-name>
-        <url-pattern>/index</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>AddScheduleServlet</servlet-name>
-        <servlet-class>com.railwaycompany.presentation.servlets.AddScheduleServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>AddScheduleServlet</servlet-name>
-        <url-pattern>/add_schedule</url-pattern>
-    </servlet-mapping>
-
-    <listener>
-        <listener-class>com.railwaycompany.presentation.servlets.MainServletContextListener</listener-class>
-    </listener>
-
     <filter>
         <filter-name>CharsetEncodingFilter</filter-name>
         <filter-class>com.railwaycompany.presentation.filters.CharsetEncodingFilter</filter-class>
@@ -127,7 +18,7 @@
         <filter-class>com.railwaycompany.presentation.filters.AuthenticationFilter</filter-class>
         <init-param>
             <param-name>Private pages</param-name>
-            <param-value>/buy_ticket;/buy_ticket.jsp;</param-value>
+            <param-value>/InformationSystem/buy_ticket</param-value>
         </init-param>
         <init-param>
             <param-name>Employee pages</param-name>
@@ -158,5 +49,37 @@
         <error-code>400</error-code>
         <location>/400.html</location>
     </error-page>
+
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>
+            /WEB-INF/spring-business-context.xml,
+            /WEB-INF/mvc-dispatcher-servlet.xml
+        </param-value>
+    </context-param>
+
+    <listener>
+        <listener-class>
+            org.springframework.web.context.ContextLoaderListener
+        </listener-class>
+    </listener>
+
+    <persistence-context-ref>
+        <persistence-context-ref-name>EntityManager</persistence-context-ref-name>
+        <persistence-unit-name>RailwayInformationSystem</persistence-unit-name>
+    </persistence-context-ref>
+
+    <servlet>
+        <servlet-name>mvc-dispatcher</servlet-name>
+        <servlet-class>
+            org.springframework.web.servlet.DispatcherServlet
+        </servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>mvc-dispatcher</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
 
 </web-app>

@@ -13,29 +13,33 @@ import com.railwaycompany.persistence.entities.Station;
 import com.railwaycompany.persistence.entities.Ticket;
 import com.railwaycompany.persistence.entities.Train;
 import com.railwaycompany.utils.DateHelper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+@Service
 public class TicketServiceImpl implements TicketService {
 
     private static final Logger LOG = Logger.getLogger(TicketServiceImpl.class.getName());
 
-    private final TrainDao trainDao;
-    private final ScheduleDao scheduleDao;
-    private final StationDao stationDao;
-    private final TicketDao ticketDao;
-    private final PassengerDao passengerDao;
-    private final UserDao userDao;
+    @Autowired
+    private TrainDao trainDao;
+    @Autowired
+    private ScheduleDao scheduleDao;
+    @Autowired
+    private StationDao stationDao;
+    @Autowired
+    private TicketDao ticketDao;
+    @Autowired
+    private PassengerDao passengerDao;
+    @Autowired
+    private UserDao userDao;
 
-    public TicketServiceImpl(DaoContext daoContext) {
-        trainDao = (TrainDao) daoContext.get(TrainDao.class);
-        scheduleDao = (ScheduleDao) daoContext.get(ScheduleDao.class);
-        stationDao = (StationDao) daoContext.get(StationDao.class);
-        ticketDao = (TicketDao) daoContext.get(TicketDao.class);
-        passengerDao = (PassengerDao) daoContext.get(PassengerDao.class);
-        userDao = (UserDao) daoContext.get(UserDao.class);
+    public TicketServiceImpl() {
+
     }
 
     @Override

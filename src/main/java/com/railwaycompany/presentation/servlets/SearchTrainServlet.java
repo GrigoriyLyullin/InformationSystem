@@ -1,13 +1,15 @@
 package com.railwaycompany.presentation.servlets;
 
 import com.railwaycompany.business.dto.ScheduleData;
-import com.railwaycompany.business.services.implementation.ServiceFactorySingleton;
 import com.railwaycompany.business.services.interfaces.ScheduleService;
 import com.railwaycompany.utils.DateHelper;
 import com.railwaycompany.utils.ValidationHelper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -18,7 +20,9 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class SearchTrainServlet extends HttpServlet {
+@Controller
+@RequestMapping("search_train")
+public class SearchTrainServlet {
 
     private static final String INDEX_PAGE = "/WEB-INF/index.jsp";
     private static final String EXTENDED_FORM_PARAM = "extendedForm";
@@ -39,21 +43,17 @@ public class SearchTrainServlet extends HttpServlet {
 
     private static final Logger LOG = Logger.getLogger(SearchTrainServlet.class.getName());
 
+    @Autowired
     private ScheduleService scheduleService;
 
-    @Override
-    public void init() throws ServletException {
-        scheduleService = ServiceFactorySingleton.getInstance().getScheduleService();
-    }
-
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    @RequestMapping(method = RequestMethod.GET)
+    public String doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.getSession().setAttribute(EXTENDED_FORM_ATTR, Boolean.valueOf(req.getParameter(EXTENDED_FORM_PARAM)));
-        getServletContext().getRequestDispatcher(INDEX_PAGE).forward(req, resp);
+        return "index";
     }
 
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    @RequestMapping(method = RequestMethod.POST)
+    public String doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String stationFromName = req.getParameter(STATION_FORM_NAME_PARAM);
         String stationToName = req.getParameter(STATION_TO_NAME_PARAM);
         String dateFromStr = req.getParameter(DATE_FROM_PARAM);
@@ -100,6 +100,6 @@ public class SearchTrainServlet extends HttpServlet {
             LOG.log(Level.WARNING, "Incorrect minimum data. stationFrom: " + stationFromName + " stationTo: " +
                     stationToName + " dateFrom: " + dateFromStr);
         }
-        getServletContext().getRequestDispatcher(INDEX_PAGE).forward(req, resp);
+        return "index";
     }
 }

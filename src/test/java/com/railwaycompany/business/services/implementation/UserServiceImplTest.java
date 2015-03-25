@@ -2,8 +2,6 @@ package com.railwaycompany.business.services.implementation;
 
 import com.railwaycompany.business.dto.UserData;
 import com.railwaycompany.business.services.interfaces.UserService;
-import com.railwaycompany.persistence.dao.hibernate.HibernateDaoContext;
-import com.railwaycompany.persistence.dao.interfaces.DaoContext;
 import com.railwaycompany.persistence.dao.interfaces.UserDao;
 import com.railwaycompany.persistence.entities.User;
 import org.junit.Assert;
@@ -35,9 +33,7 @@ public class UserServiceImplTest {
         when(userDao.read(USER_ID)).thenReturn(user);
         when(userDao.read(NOT_EXIST_USER_ID)).thenReturn(null);
 
-        DaoContext daoContext = new HibernateDaoContext();
-        daoContext.put(UserDao.class, userDao);
-        userService = new UserServiceImpl(daoContext);
+        userService = new UserServiceImpl();
     }
 
     @Test

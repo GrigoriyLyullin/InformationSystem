@@ -1,22 +1,23 @@
 package com.railwaycompany.presentation.servlets;
 
 import com.railwaycompany.business.dto.UserData;
-import com.railwaycompany.business.services.implementation.ServiceFactorySingleton;
 import com.railwaycompany.business.services.interfaces.AuthenticationService;
-import com.railwaycompany.business.services.interfaces.ServiceFactory;
 import com.railwaycompany.business.services.interfaces.UserService;
 import com.railwaycompany.utils.ValidationHelper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class LoginServlet extends HttpServlet {
+@Controller
+@RequestMapping("login")
+public class LoginServlet {
 
     /**
      * Parameter name for login.
@@ -55,26 +56,22 @@ public class LoginServlet extends HttpServlet {
     /**
      * AuthenticationService uses for users authentication on server.
      */
+    @Autowired
     private AuthenticationService authenticationService;
 
+    @Autowired
     private UserService userService;
 
-    @Override
-    public void init() throws ServletException {
-        ServiceFactory serviceFactory = ServiceFactorySingleton.getInstance();
-        authenticationService = serviceFactory.getAuthenticationService();
-        userService = serviceFactory.getUserService();
-    }
 
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    @RequestMapping(method = RequestMethod.GET)
+    protected String doGet(HttpServletRequest req) {
         String signInMessage = req.getParameter(SIGN_IN_MSG_ATTR);
         req.getSession().setAttribute(SIGN_IN_MSG_ATTR, signInMessage);
-        getServletContext().getRequestDispatcher(INDEX_PAGE).forward(req, resp);
+        return "login";
     }
 
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    @RequestMapping(method = RequestMethod.POST)
+    protected String doPost(HttpServletRequest req, HttpServletResponse resp) {
         String login = req.getParameter(LOGIN_PARAM);
         String password = req.getParameter(PASSWORD_PARAM);
         boolean validLogin = ValidationHelper.isValidLogin(login);
@@ -102,6 +99,6 @@ public class LoginServlet extends HttpServlet {
         }
         session.setAttribute(SIGN_IN_ERROR_ATTR, signIn);
         session.setAttribute(SIGN_IN_ATTR, signIn);
-        getServletContext().getRequestDispatcher(INDEX_PAGE).forward(req, resp);
+        return "index";
     }
 }

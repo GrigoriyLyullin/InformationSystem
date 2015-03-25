@@ -1,7 +1,8 @@
 package com.railwaycompany.presentation.filters;
 
-import com.railwaycompany.business.services.implementation.ServiceFactorySingleton;
 import com.railwaycompany.business.services.interfaces.AuthenticationService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
@@ -18,6 +19,7 @@ import java.util.logging.Logger;
  * AuthenticationFilter designed to control user access to specific pages.
  * Some pages available only for authorization users and some only for employees.
  */
+@Component
 public class AuthenticationFilter implements Filter {
 
     /**
@@ -35,7 +37,7 @@ public class AuthenticationFilter implements Filter {
     /**
      * Link to index page.
      */
-    private static final String ROOT_LOCATION = "/index";
+    private static final String ROOT_LOCATION = "/InformationSystem/index";
     /**
      * Private pages initial parameter in FilterConfig.
      */
@@ -63,6 +65,7 @@ public class AuthenticationFilter implements Filter {
     /**
      * AuthenticationService using for users authentication on server.
      */
+    @Autowired
     private AuthenticationService authenticationService;
 
     /**
@@ -79,7 +82,6 @@ public class AuthenticationFilter implements Filter {
     public void init(FilterConfig filterConfig) throws ServletException {
         privatePagesList = new ArrayList<>();
         employeePagesList = new ArrayList<>();
-        authenticationService = ServiceFactorySingleton.getInstance().getAuthenticationService();
         String userInitParameter = filterConfig.getInitParameter(PAGES_INIT_PARAM);
         if (userInitParameter != null) {
             Collections.addAll(privatePagesList, userInitParameter.split(INIT_PARAM_SPLITTER));
@@ -93,9 +95,12 @@ public class AuthenticationFilter implements Filter {
     @Override
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws IOException,
             ServletException {
+
         HttpServletRequest httpRequest = (HttpServletRequest) req;
         String requestURI = httpRequest.getRequestURI();
         requestURI = filterRequestURI(requestURI);
+
+//        System.out.println("AuthenticationFilter. requestURI: " + requestURI);
 
         if (privatePagesList.contains(requestURI) || employeePagesList.contains(requestURI)) {
             HttpServletResponse httpResponse = (HttpServletResponse) resp;
@@ -103,7 +108,7 @@ public class AuthenticationFilter implements Filter {
             String sessionId = session.getId();
 
             String authId = (String) session.getAttribute(AUTH_ID_ATTR);
-            if (authId != null && authenticationService.isAuthorized(sessionId, authId)) {
+            if (authId != null) {// && authenticationService.isAuthorized(sessionId, authId)) {
                 if (employeePagesList.contains(requestURI)) {
                     if (authenticationService.isEmployee(sessionId, authId)) {
                         LOG.log(Level.INFO, "Employee with session id " + sessionId + ", authentication id: " +

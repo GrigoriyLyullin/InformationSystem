@@ -1,10 +1,11 @@
 package com.railwaycompany.business.services.implementation;
 
 import com.railwaycompany.business.services.interfaces.AuthenticationService;
-import com.railwaycompany.persistence.dao.interfaces.DaoContext;
 import com.railwaycompany.persistence.dao.interfaces.UserDao;
 import com.railwaycompany.persistence.entities.User;
 import com.railwaycompany.utils.HashHelper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -14,6 +15,7 @@ import java.util.logging.Logger;
 /**
  * The service implements users authentication on server.
  */
+@Service
 public class AuthenticationServiceImpl implements AuthenticationService {
 
     /**
@@ -23,7 +25,8 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     /**
      * GenericDAO<User> implementation for work with User entities.
      */
-    private final UserDao userDao;
+    @Autowired
+    private UserDao userDao;
     /**
      * Map contains pairs session id on authentication id.
      */
@@ -39,8 +42,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     /**
      * AuthenticationServiceImpl constructor.
      */
-    public AuthenticationServiceImpl(DaoContext daoContext) {
-        userDao = (UserDao) daoContext.get(UserDao.class);
+    public AuthenticationServiceImpl() {
         sessionToAuthenticationId = new ConcurrentHashMap<>();
         sessionIdToUserId = new ConcurrentHashMap<>();
         sessionIdToIsEmployee = new ConcurrentHashMap<>();

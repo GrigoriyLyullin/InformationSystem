@@ -3,8 +3,6 @@ package com.railwaycompany.business.services.implementation;
 import com.railwaycompany.business.dto.StationData;
 import com.railwaycompany.business.services.exceptions.StationWithSuchNameExistException;
 import com.railwaycompany.business.services.interfaces.StationService;
-import com.railwaycompany.persistence.dao.hibernate.HibernateDaoContext;
-import com.railwaycompany.persistence.dao.interfaces.DaoContext;
 import com.railwaycompany.persistence.dao.interfaces.StationDao;
 import com.railwaycompany.persistence.entities.Station;
 import org.junit.Assert;
@@ -41,9 +39,7 @@ public class StationServiceImplTest {
         when(stationDao.getStation(NOT_EXIST_STATION_NAME)).thenReturn(null);
         when(stationDao.getAll()).thenReturn(stationList);
 
-        DaoContext daoContext = new HibernateDaoContext();
-        daoContext.put(StationDao.class, stationDao);
-        stationService = new StationServiceImpl(daoContext);
+        stationService = new StationServiceImpl();
     }
 
     @Test

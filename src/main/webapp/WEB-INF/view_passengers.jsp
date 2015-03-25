@@ -8,7 +8,7 @@
     <p>View information about all passengers that has been registered on selected train.</p>
 
     <div id="inputFromSearchTrain">
-        <form class="form-inline" method="post" action="${pageContext.request.contextPath}view_all_passengers">
+        <form class="form-inline" method="post" action="${pageContext.request.contextPath}/view_all_passengers">
             <div class="input-prepend">
                 <span class="add-on">Train id</span>
                 <input name="trainId" type="text" class="input-small" placeholder="Train id">
@@ -18,7 +18,7 @@
             </button>
             <c:if test="${not empty sessionScope.allPassengerList}">
                 <a id="passengerCollapseBtn"
-                   href="${pageContext.request.contextPath}view_all_passengers?hideAllPassengers=true"
+                   href="${pageContext.request.contextPath}/view_all_passengers?hideAllPassengers=true"
                    class="btn btn-primary">
                     <i class="icon-white icon-chevron-up"></i>
                 </a>

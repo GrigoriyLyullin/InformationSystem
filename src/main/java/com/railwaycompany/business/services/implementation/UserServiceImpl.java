@@ -2,16 +2,18 @@ package com.railwaycompany.business.services.implementation;
 
 import com.railwaycompany.business.dto.UserData;
 import com.railwaycompany.business.services.interfaces.UserService;
-import com.railwaycompany.persistence.dao.interfaces.DaoContext;
 import com.railwaycompany.persistence.dao.interfaces.UserDao;
 import com.railwaycompany.persistence.entities.User;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class UserServiceImpl implements UserService {
 
+    @Autowired
     private UserDao userDao;
 
-    public UserServiceImpl(DaoContext daoContext) {
-        userDao = (UserDao) daoContext.get(UserDao.class);
+    public UserServiceImpl() {
     }
 
     @Override

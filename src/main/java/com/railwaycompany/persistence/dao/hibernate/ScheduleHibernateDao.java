@@ -4,6 +4,8 @@ import com.railwaycompany.persistence.dao.interfaces.ScheduleDao;
 import com.railwaycompany.persistence.entities.Schedule;
 import com.railwaycompany.persistence.entities.Train;
 import com.railwaycompany.utils.DateHelper;
+import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
@@ -14,6 +16,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+@Repository
 public class ScheduleHibernateDao extends HibernateDao<Schedule> implements ScheduleDao {
 
     private static final String SCHEDULES_WITH_STATION_ID = "SELECT s FROM Schedule s WHERE s.station.id = :stationId";
@@ -45,11 +48,9 @@ public class ScheduleHibernateDao extends HibernateDao<Schedule> implements Sche
 
     /**
      * HibernateDao constructor.
-     *
-     * @param entityManager - entity manager
      */
-    public ScheduleHibernateDao(EntityManager entityManager) {
-        super(entityManager, Schedule.class);
+    public ScheduleHibernateDao() {
+        this.setEntityClass(Schedule.class);
     }
 
     @Override

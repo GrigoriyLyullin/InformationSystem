@@ -5,32 +5,32 @@ import com.railwaycompany.business.services.exceptions.StationDoesNotExistExcept
 import com.railwaycompany.business.services.exceptions.SuchScheduleExistException;
 import com.railwaycompany.business.services.exceptions.TrainDoesNotExistException;
 import com.railwaycompany.business.services.interfaces.ScheduleService;
-import com.railwaycompany.persistence.dao.interfaces.DaoContext;
 import com.railwaycompany.persistence.dao.interfaces.ScheduleDao;
 import com.railwaycompany.persistence.dao.interfaces.StationDao;
 import com.railwaycompany.persistence.dao.interfaces.TrainDao;
 import com.railwaycompany.persistence.entities.Schedule;
 import com.railwaycompany.persistence.entities.Station;
 import com.railwaycompany.persistence.entities.Train;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
+@Service
 public class ScheduleServiceImpl implements ScheduleService {
 
-
+    @Autowired
     private ScheduleDao scheduleDao;
-
+    @Autowired
     private StationDao stationDao;
-
+    @Autowired
     private TrainDao trainDao;
 
-    public ScheduleServiceImpl(DaoContext daoContext) {
-        scheduleDao = (ScheduleDao) daoContext.get(ScheduleDao.class);
-        stationDao = (StationDao) daoContext.get(StationDao.class);
-        trainDao = (TrainDao) daoContext.get(TrainDao.class);
+    public ScheduleServiceImpl() {
+
     }
 
     @Override

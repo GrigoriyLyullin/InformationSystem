@@ -2,13 +2,14 @@ package com.railwaycompany.persistence.dao.hibernate;
 
 import com.railwaycompany.persistence.dao.interfaces.PassengerDao;
 import com.railwaycompany.persistence.entities.Passenger;
+import org.springframework.stereotype.Repository;
 
-import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.NonUniqueResultException;
 import javax.persistence.Query;
 import java.util.Date;
 
+@Repository
 public class PassengerHibernateDao extends HibernateDao<Passenger> implements PassengerDao {
 
     private static final String FIND_PASSENGER = "SELECT p FROM Passenger p WHERE p.name = :name " +
@@ -16,11 +17,9 @@ public class PassengerHibernateDao extends HibernateDao<Passenger> implements Pa
 
     /**
      * HibernateDao constructor.
-     *
-     * @param entityManager
      */
-    public PassengerHibernateDao(EntityManager entityManager) {
-        super(entityManager, Passenger.class);
+    public PassengerHibernateDao() {
+        this.setEntityClass(Passenger.class);
     }
 
 

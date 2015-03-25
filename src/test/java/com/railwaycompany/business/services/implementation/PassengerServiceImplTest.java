@@ -2,8 +2,6 @@ package com.railwaycompany.business.services.implementation;
 
 import com.railwaycompany.business.dto.PassengerData;
 import com.railwaycompany.business.services.interfaces.PassengerService;
-import com.railwaycompany.persistence.dao.hibernate.HibernateDaoContext;
-import com.railwaycompany.persistence.dao.interfaces.DaoContext;
 import com.railwaycompany.persistence.dao.interfaces.TicketDao;
 import com.railwaycompany.persistence.entities.Passenger;
 import com.railwaycompany.persistence.entities.Ticket;
@@ -58,9 +56,7 @@ public class PassengerServiceImplTest {
         when(ticketDao.getTicketsByTrainId(NOT_EXIST_TRAIN_ID)).thenReturn(null);
         when(ticketDao.getTicketsByTrainId(EMPTY_TRAIN_ID)).thenReturn(new ArrayList<Ticket>());
 
-        DaoContext daoContext = new HibernateDaoContext();
-        daoContext.put(TicketDao.class, ticketDao);
-        passengerService = new PassengerServiceImpl(daoContext);
+        passengerService = new PassengerServiceImpl();
     }
 
     @Test

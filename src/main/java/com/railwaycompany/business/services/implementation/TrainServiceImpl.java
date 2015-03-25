@@ -4,17 +4,18 @@ import com.railwaycompany.business.dto.StationData;
 import com.railwaycompany.business.dto.TrainData;
 import com.railwaycompany.business.services.exceptions.TrainWithSuchNumberExistException;
 import com.railwaycompany.business.services.interfaces.TrainService;
-import com.railwaycompany.persistence.dao.interfaces.DaoContext;
 import com.railwaycompany.persistence.dao.interfaces.ScheduleDao;
 import com.railwaycompany.persistence.dao.interfaces.TrainDao;
 import com.railwaycompany.persistence.entities.Schedule;
 import com.railwaycompany.persistence.entities.Station;
 import com.railwaycompany.persistence.entities.Train;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
-
+@Service
 public class TrainServiceImpl implements TrainService {
 
     /**
@@ -22,12 +23,12 @@ public class TrainServiceImpl implements TrainService {
      */
     private static Logger log = Logger.getLogger(TrainServiceImpl.class.getName());
 
+    @Autowired
     private TrainDao trainDao;
+    @Autowired
     private ScheduleDao scheduleDao;
 
-    public TrainServiceImpl(DaoContext daoContext) {
-        trainDao = (TrainDao) daoContext.get(TrainDao.class);
-        scheduleDao = (ScheduleDao) daoContext.get(ScheduleDao.class);
+    public TrainServiceImpl() {
     }
 
     @Override

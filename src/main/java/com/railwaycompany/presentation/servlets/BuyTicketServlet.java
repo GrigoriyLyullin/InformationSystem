@@ -7,12 +7,14 @@ import com.railwaycompany.business.services.exceptions.AlreadyRegisteredExceptio
 import com.railwaycompany.business.services.exceptions.HasNoEmptySeatsException;
 import com.railwaycompany.business.services.exceptions.InvalidInputDataException;
 import com.railwaycompany.business.services.exceptions.SalesStopException;
-import com.railwaycompany.business.services.implementation.ServiceFactorySingleton;
 import com.railwaycompany.business.services.interfaces.TicketService;
 import com.railwaycompany.utils.DateHelper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -23,7 +25,9 @@ import java.util.logging.Logger;
 
 import static com.railwaycompany.utils.ValidationHelper.*;
 
-public class BuyTicketServlet extends HttpServlet {
+@Controller
+@RequestMapping("buy_ticket")
+public class BuyTicketServlet {
 
     private static final String BUY_TICKET_PAGE = "/WEB-INF/buy_ticket.jsp";
     private static final String BUY_TICKET_SUCCESS_PAGE = "/WEB-INF/buy_ticket_success.jsp";
@@ -50,20 +54,16 @@ public class BuyTicketServlet extends HttpServlet {
      */
     private static final Logger LOG = Logger.getLogger(BuyTicketServlet.class.getName());
 
+    @Autowired
     private TicketService ticketService;
 
-    @Override
-    public void init() throws ServletException {
-        ticketService = ServiceFactorySingleton.getInstance().getTicketService();
+    @RequestMapping(method = RequestMethod.GET)
+    public String doGet() {
+        return "buy_ticket";
     }
 
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        getServletContext().getRequestDispatcher(BUY_TICKET_PAGE).forward(req, resp);
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    @RequestMapping(method = RequestMethod.POST)
+    public String doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String trainNumberParam = req.getParameter(TRAIN_NUMBER_PARAM);
         String departureDateParam = req.getParameter(DEPARTURE_DATE_PARAM);
         String stationNameParam = req.getParameter(STATION_NAME_PARAM);
@@ -112,23 +112,23 @@ public class BuyTicketServlet extends HttpServlet {
                 }
 
                 if (error) {
-                    getServletContext().getRequestDispatcher(BUY_TICKET_ERROR_PAGE).forward(req, resp);
+                    return "buy_ticket_error";
                 } else {
                     session.setAttribute(TICKET_DATA_ATTR, ticketData);
-                    getServletContext().getRequestDispatcher(BUY_TICKET_SUCCESS_PAGE).forward(req, resp);
+                    return "buy_ticket_success";
                 }
             } else {
                 session.setAttribute(NOT_ADULT_PASSENGER_ATTR, true);
                 LOG.warning("Not adult passenger. passengerName:" + passengerNameParam + " passengerSurname: " +
                         passengerSurnameParam + " passengerBirthdate: " + passengerBirthdateParam);
-                getServletContext().getRequestDispatcher(BUY_TICKET_PAGE).forward(req, resp);
+                return "buy_ticket";
             }
         } else {
             LOG.log(Level.WARNING, "Incorrect input data. trainNumber: " + trainNumberParam + " departureDate: " +
                     departureDateParam + " stationName: " + stationNameParam + " passengerName: " + passengerNameParam +
                     " passengerSurname: " + passengerSurnameParam + " passengerBirthdate:" + passengerBirthdateParam);
             session.setAttribute(INCORRECT_DATA_ATTR, true);
-            getServletContext().getRequestDispatcher(BUY_TICKET_PAGE).forward(req, resp);
+            return "buy_ticket";
         }
     }
 

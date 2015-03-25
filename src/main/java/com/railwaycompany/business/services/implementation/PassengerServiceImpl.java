@@ -2,20 +2,22 @@ package com.railwaycompany.business.services.implementation;
 
 import com.railwaycompany.business.dto.PassengerData;
 import com.railwaycompany.business.services.interfaces.PassengerService;
-import com.railwaycompany.persistence.dao.interfaces.DaoContext;
 import com.railwaycompany.persistence.dao.interfaces.TicketDao;
 import com.railwaycompany.persistence.entities.Passenger;
 import com.railwaycompany.persistence.entities.Ticket;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class PassengerServiceImpl implements PassengerService {
 
+    @Autowired
     private TicketDao ticketDao;
 
-    public PassengerServiceImpl(DaoContext daoContext) {
-        ticketDao = (TicketDao) daoContext.get(TicketDao.class);
+    public PassengerServiceImpl() {
     }
 
     @Override

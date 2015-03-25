@@ -2,19 +2,23 @@ package com.railwaycompany.presentation.servlets;
 
 import com.railwaycompany.business.dto.StationData;
 import com.railwaycompany.business.services.exceptions.StationWithSuchNameExistException;
-import com.railwaycompany.business.services.implementation.ServiceFactorySingleton;
 import com.railwaycompany.business.services.interfaces.StationService;
 import com.railwaycompany.utils.ValidationHelper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
-public class AddStationServlet extends HttpServlet {
+@Controller
+@RequestMapping("add_station")
+public class AddStationServlet {
 
     private static final String EMPLOYEE_PAGE = "/WEB-INF/employee_page.jsp";
     private static final String GET_ALL_STATION_PARAM = "getAllStation";
@@ -24,26 +28,22 @@ public class AddStationServlet extends HttpServlet {
     private static final String EXIST_STATION_NAME_ATTR = "existStationName";
     private static final String INVALID_STATION_NAME_ATTR = "invalidStationNameError";
 
+    @Autowired
     private StationService stationService;
 
-    @Override
-    public void init() throws ServletException {
-        stationService = ServiceFactorySingleton.getInstance().getStationService();
-    }
-
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    @RequestMapping(method = RequestMethod.GET)
+    public String doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<StationData> allStationList = null;
         Boolean getAll = Boolean.valueOf(req.getParameter(GET_ALL_STATION_PARAM));
         if (getAll) {
             allStationList = stationService.getAll();
         }
         req.getSession().setAttribute(ALL_STATION_LIST_ATTR, allStationList);
-        getServletContext().getRequestDispatcher(EMPLOYEE_PAGE).forward(req, resp);
+        return "employee_page";
     }
 
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    @RequestMapping(method = RequestMethod.POST)
+    public String doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
         String stationName = req.getParameter(STATION_NAME_PARAM);
         boolean allStationListExist = (session.getAttribute(ALL_STATION_LIST_ATTR) != null);
@@ -61,6 +61,6 @@ public class AddStationServlet extends HttpServlet {
         } else {
             session.setAttribute(INVALID_STATION_NAME_ATTR, true);
         }
-        getServletContext().getRequestDispatcher(EMPLOYEE_PAGE).forward(req, resp);
+        return "employee_page";
     }
 }

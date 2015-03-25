@@ -2,11 +2,13 @@ package com.railwaycompany.presentation.servlets;
 
 import com.railwaycompany.business.dto.TrainData;
 import com.railwaycompany.business.services.exceptions.TrainWithSuchNumberExistException;
-import com.railwaycompany.business.services.implementation.ServiceFactorySingleton;
 import com.railwaycompany.business.services.interfaces.TrainService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -16,7 +18,9 @@ import java.util.List;
 import static com.railwaycompany.utils.ValidationHelper.isValidTrainNumber;
 import static com.railwaycompany.utils.ValidationHelper.isValidTrainSeats;
 
-public class AddTrainServlet extends HttpServlet {
+@Controller
+@RequestMapping("add_train")
+public class AddTrainServlet {
 
     private static final String EMPLOYEE_PAGE = "/WEB-INF/employee_page.jsp";
     private static final String GET_ALL_TRAIN_PARAM = "getAllTrain";
@@ -29,26 +33,22 @@ public class AddTrainServlet extends HttpServlet {
     private static final String EXIST_TRAIN_NUMBER_ATTR = "existTrainNumber";
     private static final String EXIST_TRAIN_SEATS_ATTR = "existTrainSeats";
 
+    @Autowired
     private TrainService trainService;
 
-    @Override
-    public void init() throws ServletException {
-        trainService = ServiceFactorySingleton.getInstance().getTrainService();
-    }
-
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    @RequestMapping(method = RequestMethod.GET)
+    public String doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<TrainData> allTrainList = null;
         Boolean getAll = Boolean.valueOf(req.getParameter(GET_ALL_TRAIN_PARAM));
         if (getAll) {
             allTrainList = trainService.getAll();
         }
         req.getSession().setAttribute(ALL_TRAIN_LIST_ATTR, allTrainList);
-        getServletContext().getRequestDispatcher(EMPLOYEE_PAGE).forward(req, resp);
+        return "employee_page";
     }
 
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    @RequestMapping(method = RequestMethod.POST)
+    public String doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         HttpSession session = req.getSession();
         String trainNumberStr = req.getParameter(TRAIN_NUMBER_PARAM);
@@ -74,6 +74,6 @@ public class AddTrainServlet extends HttpServlet {
         } else {
             session.setAttribute(INVALID_INPUT_DATA_ATTR, true);
         }
-        getServletContext().getRequestDispatcher(EMPLOYEE_PAGE).forward(req, resp);
+        return "employee_page";
     }
 }

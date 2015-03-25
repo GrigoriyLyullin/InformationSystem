@@ -5,7 +5,6 @@ import com.railwaycompany.business.services.exceptions.AlreadyRegisteredExceptio
 import com.railwaycompany.business.services.exceptions.HasNoEmptySeatsException;
 import com.railwaycompany.business.services.exceptions.InvalidInputDataException;
 import com.railwaycompany.business.services.interfaces.TicketService;
-import com.railwaycompany.persistence.dao.hibernate.HibernateDaoContext;
 import com.railwaycompany.persistence.dao.interfaces.*;
 import com.railwaycompany.persistence.entities.Passenger;
 import com.railwaycompany.persistence.entities.Station;
@@ -123,14 +122,7 @@ public class TicketServiceImplTest {
         when(passengerDao.getPassenger(REGISTERED_PASSENGER_NAME, REGISTERED_PASSENGER_SURNAME, REGISTERED_PASSENGER_BIRTHDATE))
                 .thenReturn(registeredPassenger);
 
-        DaoContext context = new HibernateDaoContext();
-        context.put(TrainDao.class, trainDao);
-        context.put(ScheduleDao.class, scheduleDao);
-        context.put(StationDao.class, stationDao);
-        context.put(TicketDao.class, ticketDao);
-        context.put(PassengerDao.class, passengerDao);
-
-        ticketService = new TicketServiceImpl(context);
+        ticketService = new TicketServiceImpl();
 
         passengerData = new PassengerData();
         passengerData.setName("");

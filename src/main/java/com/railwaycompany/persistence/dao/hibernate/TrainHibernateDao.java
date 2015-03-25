@@ -2,13 +2,14 @@ package com.railwaycompany.persistence.dao.hibernate;
 
 import com.railwaycompany.persistence.dao.interfaces.TrainDao;
 import com.railwaycompany.persistence.entities.Train;
+import org.springframework.stereotype.Repository;
 
-import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
+@Repository
 public class TrainHibernateDao extends HibernateDao<Train> implements TrainDao {
 
     private static final String FIND_TRAIN_BY_NUMBER_AND_SEATS = "SELECT t FROM Train t WHERE t.number = :number " +
@@ -22,11 +23,9 @@ public class TrainHibernateDao extends HibernateDao<Train> implements TrainDao {
 
     /**
      * HibernateDao constructor.
-     *
-     * @param entityManager - entity manager
      */
-    public TrainHibernateDao(EntityManager entityManager) {
-        super(entityManager, Train.class);
+    public TrainHibernateDao() {
+        this.setEntityClass(Train.class);
     }
 
 

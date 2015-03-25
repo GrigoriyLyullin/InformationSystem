@@ -2,8 +2,8 @@ package com.railwaycompany.persistence.dao.hibernate;
 
 import com.railwaycompany.persistence.dao.interfaces.StationDao;
 import com.railwaycompany.persistence.entities.Station;
+import org.springframework.stereotype.Repository;
 
-import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
 import java.util.ArrayList;
@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+@Repository
 public class StationHibernateDao extends HibernateDao<Station> implements StationDao {
 
     private static final String FIND_STATION_BY_NAME = "SELECT s FROM Station s WHERE s.name = :name";
@@ -24,11 +25,9 @@ public class StationHibernateDao extends HibernateDao<Station> implements Statio
 
     /**
      * HibernateDao constructor.
-     *
-     * @param entityManager - entity manager
      */
-    public StationHibernateDao(EntityManager entityManager) {
-        super(entityManager, Station.class);
+    public StationHibernateDao() {
+        this.setEntityClass(Station.class);
     }
 
     @Override

@@ -1,17 +1,22 @@
 package com.railwaycompany.presentation.servlets;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
-public class IndexPageServlet extends HttpServlet {
+@Controller
+@RequestMapping("index")
+public class IndexPageServlet {
 
-    private static final String INDEX_PAGE = "/WEB-INF/index.jsp";
+//    private static final String INDEX_PAGE = "/WEB-INF/index.jsp";
 
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        getServletContext().getRequestDispatcher(INDEX_PAGE).forward(req, resp);
+//    @Override
+//    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+//        getServletContext().getRequestDispatcher(INDEX_PAGE).forward(req, resp);
+//    }
+
+    @RequestMapping(method = RequestMethod.GET)
+    public String getIndexPage() {
+        return "index";
     }
 }

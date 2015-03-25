@@ -6,7 +6,7 @@
     <p>Here you can add new station into database.</p>
 
     <div id="inputFromAddSchedule">
-        <form class="form-inline" action="${pageContext.request.contextPath}add_schedule" method="post">
+        <form class="form-inline" action="${pageContext.request.contextPath}/add_schedule" method="post">
             <div class="input-prepend">
                 <span class="add-on">Station id</span>
                 <input name="stationId" type="text" class="input-medium" placeholder="Station id">

@@ -2,8 +2,8 @@ package com.railwaycompany.persistence.dao.hibernate;
 
 import com.railwaycompany.persistence.dao.interfaces.TicketDao;
 import com.railwaycompany.persistence.entities.Ticket;
+import org.springframework.stereotype.Repository;
 
-import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
 import java.util.ArrayList;
@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+@Repository
 public class TicketHibernateDao extends HibernateDao<Ticket> implements TicketDao {
 
     private static final String TICKET_COUNT_BY_TRAIN_ID = "SELECT t FROM Ticket t WHERE t.train.id = :trainId";
@@ -27,11 +28,9 @@ public class TicketHibernateDao extends HibernateDao<Ticket> implements TicketDa
 
     /**
      * HibernateDao constructor.
-     *
-     * @param entityManager - entity manager
      */
-    public TicketHibernateDao(EntityManager entityManager) {
-        super(entityManager, Ticket.class);
+    public TicketHibernateDao() {
+        this.setEntityClass(Ticket.class);
     }
 
     @Override

@@ -6,6 +6,7 @@ import com.railwaycompany.persistence.dao.interfaces.UserDao;
 import com.railwaycompany.persistence.entities.User;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.mockito.Mockito.mock;
@@ -21,6 +22,7 @@ public class UserServiceImplTest {
     private UserService userService;
 
     @Before
+    @Ignore
     public void setUp() throws Exception {
 
         User user = new User();
@@ -37,6 +39,7 @@ public class UserServiceImplTest {
     }
 
     @Test
+    @Ignore
     public void testGetUserData() throws Exception {
         UserData userData = userService.getUserData(USER_ID);
         Assert.assertNotNull(userData);
@@ -46,6 +49,7 @@ public class UserServiceImplTest {
     }
 
     @Test
+    @Ignore
     public void testGetNotExistUserData() throws Exception {
         UserData userData = userService.getUserData(NOT_EXIST_USER_ID);
         Assert.assertNull(userData);

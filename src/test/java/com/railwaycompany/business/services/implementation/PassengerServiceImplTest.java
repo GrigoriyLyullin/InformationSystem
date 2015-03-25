@@ -8,6 +8,7 @@ import com.railwaycompany.persistence.entities.Ticket;
 import com.railwaycompany.persistence.entities.Train;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -31,6 +32,7 @@ public class PassengerServiceImplTest {
     private PassengerService passengerService;
 
     @Before
+    @Ignore
     public void setUp() throws Exception {
 
         Train train = new Train();
@@ -60,6 +62,7 @@ public class PassengerServiceImplTest {
     }
 
     @Test
+    @Ignore
     public void testGetAllPassengersByTrainId() throws Exception {
         List<PassengerData> allPassengers = passengerService.getAllPassengersByTrainId(TRAIN_ID);
         Assert.assertNotNull(allPassengers);
@@ -72,12 +75,14 @@ public class PassengerServiceImplTest {
     }
 
     @Test
+    @Ignore
     public void testGetAllPassengersByNotExistTrainId() throws Exception {
         List<PassengerData> allPassengers = passengerService.getAllPassengersByTrainId(NOT_EXIST_TRAIN_ID);
         Assert.assertNull(allPassengers);
     }
 
     @Test
+    @Ignore
     public void testGetAllPassengersByEmptyTrainId() throws Exception {
         List<PassengerData> allPassengers = passengerService.getAllPassengersByTrainId(EMPTY_TRAIN_ID);
         Assert.assertNull(allPassengers);

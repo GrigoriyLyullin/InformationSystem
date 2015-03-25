@@ -11,6 +11,7 @@ import com.railwaycompany.persistence.entities.Train;
 import com.railwaycompany.utils.DateHelper;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -38,6 +39,7 @@ public class TrainServiceImplTest {
     private TrainService trainService;
 
     @Before
+    @Ignore
     public void setUp() throws Exception {
 
         Train train = new Train();
@@ -73,6 +75,7 @@ public class TrainServiceImplTest {
     }
 
     @Test
+    @Ignore
     public void testGetAll() throws Exception {
         List<TrainData> trainDataList = trainService.getAll();
         Assert.assertNotNull(trainDataList);
@@ -80,11 +83,13 @@ public class TrainServiceImplTest {
     }
 
     @Test(expected = TrainWithSuchNumberExistException.class)
+    @Ignore
     public void testAddExistTrain() throws Exception {
         trainService.addTrain(TRAIN_NUMBER, TRAIN_SEATS, false);
     }
 
     @Test
+    @Ignore
     public void testAddExistTrainAnyway() throws Exception {
         trainService.addTrain(NOT_EXIST_TRAIN_NUMBER, TRAIN_SEATS, false);
     }

@@ -5,6 +5,7 @@ import com.railwaycompany.persistence.dao.interfaces.UserDao;
 import com.railwaycompany.persistence.entities.User;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.mockito.Mockito.mock;
@@ -21,6 +22,7 @@ public class AuthenticationServiceImplTest {
     private AuthenticationService authenticationService;
 
     @Before
+    @Ignore
     public void setUp() throws Exception {
 
         User user = new User();
@@ -37,6 +39,7 @@ public class AuthenticationServiceImplTest {
     }
 
     @Test
+    @Ignore
     public void testIsAuthorized() throws Exception {
         String authId = authenticationService.signIn(SESSION_ID, USER_LOGIN, USER_PASSWORD);
         Assert.assertNotNull(authId);
@@ -50,6 +53,7 @@ public class AuthenticationServiceImplTest {
     }
 
     @Test
+    @Ignore
     public void testSignIn() throws Exception {
         String authId = authenticationService.signIn(SESSION_ID, USER_LOGIN, USER_PASSWORD);
         Assert.assertNotNull(authId);
@@ -60,6 +64,7 @@ public class AuthenticationServiceImplTest {
     }
 
     @Test
+    @Ignore
     public void testSignOut() throws Exception {
         String authId = authenticationService.signIn(SESSION_ID, USER_LOGIN, USER_PASSWORD);
         Assert.assertTrue(authenticationService.isAuthorized(SESSION_ID, authId));
@@ -68,6 +73,7 @@ public class AuthenticationServiceImplTest {
     }
 
     @Test
+    @Ignore
     public void testGetUserId() throws Exception {
         String authId = authenticationService.signIn(SESSION_ID, USER_LOGIN, USER_PASSWORD);
         Assert.assertNotNull(authenticationService.getUserId(SESSION_ID, authId));

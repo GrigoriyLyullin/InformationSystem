@@ -7,7 +7,7 @@
         <h2>Schedule by station</h2>
     </div>
 
-    <jsp:include page="/WEB-INF/schedule_by_station_simple_form.jsp"/>
+    <jsp:include page="/WEB-INF/jsp/schedule_by_station_simple_form.jsp"/>
 
     <c:choose>
         <c:when test="${not empty sessionScope.scheduleList}">

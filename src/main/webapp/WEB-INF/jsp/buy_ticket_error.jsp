@@ -14,7 +14,7 @@
 <body>
 <div class="container">
     <h1>Railway Company</h1>
-    <jsp:include page="/WEB-INF/navbar.jsp"/>
+    <jsp:include page="/WEB-INF/jsp/navbar.jsp"/>
     <div class="row">
         <div class="span12 img-rounded" id="jumbotron"></div>
     </div>
@@ -45,7 +45,7 @@
             <a href="${pageContext.request.contextPath}/buy_ticket" class="btn btn-primary">Back</a>
         </p>
     </div>
-    <jsp:include page="/WEB-INF/footer.jsp"/>
+    <jsp:include page="/WEB-INF/jsp/footer.jsp"/>
 </div>
 </body>
 </html>

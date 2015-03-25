@@ -17,7 +17,7 @@ public class ValidationHelper {
     /**
      * String with pattern for station name checks.
      */
-    private static final String STATION_NAME_PATTERN_STR = "^[a-zA-Zа-яА-Я]+[- ]*[a-zA-Zа-яА-Я]+$";
+    private static final String STATION_NAME_PATTERN_STR = "^[a-zA-Z]+[- ]*[a-zA-Z]+$";
     /**
      * String with pattern for train number checks.
      */

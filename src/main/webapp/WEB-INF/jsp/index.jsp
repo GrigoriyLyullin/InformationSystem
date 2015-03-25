@@ -13,18 +13,18 @@
 <body>
 <div class="container">
     <h1>Railway Company</h1>
-    <jsp:include page="/WEB-INF/navbar.jsp" flush="true"/>
+    <jsp:include page="/WEB-INF/jsp/navbar.jsp" flush="true"/>
     <div class="row">
         <div class="span12 img-rounded" id="jumbotron">
             <c:if test="${empty sessionScope.authenticationId}">
-                <jsp:include page="/WEB-INF/login.jsp" flush="true"/>
+                <jsp:include page="/WEB-INF/jsp/login.jsp" flush="true"/>
             </c:if>
         </div>
     </div>
     <a name="search_train"></a>
-    <jsp:include page="/WEB-INF/search_train.jsp" flush="true"/>
+    <jsp:include page="/WEB-INF/jsp/search_train.jsp" flush="true"/>
     <a name="schedule_by_station"></a>
-    <jsp:include page="/WEB-INF/schedule_by_station.jsp" flush="true"/>
+    <jsp:include page="/WEB-INF/jsp/schedule_by_station.jsp" flush="true"/>
     <a name="about"></a>
     <div class="well">
         <h2>About us</h2>
@@ -49,7 +49,7 @@
             </div>
         </div>
     </div>
-    <jsp:include page="/WEB-INF/footer.jsp" flush="true"/>
+    <jsp:include page="/WEB-INF/jsp/footer.jsp" flush="true"/>
 </div>
 </body>
 </html>

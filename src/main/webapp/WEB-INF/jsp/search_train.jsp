@@ -11,10 +11,10 @@
 
     <c:choose>
         <c:when test="${empty sessionScope.extendedForm || sessionScope.extendedForm == false}">
-            <jsp:include page="/WEB-INF/search_train_simple_form.jsp" flush="true"/>
+            <jsp:include page="/WEB-INF/jsp/search_train_simple_form.jsp" flush="true"/>
         </c:when>
         <c:when test="${sessionScope.extendedForm == true}">
-            <jsp:include page="/WEB-INF/search_train_extended_form.jsp" flush="true"/>
+            <jsp:include page="/WEB-INF/jsp/search_train_extended_form.jsp" flush="true"/>
         </c:when>
     </c:choose>
 

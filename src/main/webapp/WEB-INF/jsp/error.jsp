@@ -11,7 +11,7 @@
 <body>
 <div class="container">
     <h1>Railway Company</h1>
-    <jsp:include page="/WEB-INF/navbar.jsp" flush="true"/>
+    <jsp:include page="/WEB-INF/jsp/navbar.jsp" flush="true"/>
     <div class="row">
         <div class="span12 img-rounded" id="jumbotron"></div>
     </div>
@@ -23,7 +23,7 @@
         <a href="${pageContext.request.contextPath}/" class="btn btn-primary">Try again</a>
         <a href="mailto:grisha.lyullin@gmail.com" class="btn">Contact us</a>
     </div>
-    <jsp:include page="/WEB-INF/footer.jsp"/>
+    <jsp:include page="/WEB-INF/jsp/footer.jsp"/>
 </div>
 </body>
 </html>

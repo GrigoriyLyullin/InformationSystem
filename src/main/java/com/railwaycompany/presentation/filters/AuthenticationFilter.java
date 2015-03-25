@@ -110,13 +110,13 @@ public class AuthenticationFilter implements Filter {
             String authId = (String) session.getAttribute(AUTH_ID_ATTR);
             if (authId != null) {// && authenticationService.isAuthorized(sessionId, authId)) {
                 if (employeePagesList.contains(requestURI)) {
-                    if (authenticationService.isEmployee(sessionId, authId)) {
-                        LOG.log(Level.INFO, "Employee with session id " + sessionId + ", authentication id: " +
-                                authId + "is authorized. Request URI:" + requestURI);
-                        chain.doFilter(req, resp);
-                    } else {
-                        httpResponse.sendRedirect(ROOT_LOCATION);
-                    }
+//                    if (authenticationService.isEmployee(sessionId, authId)) {
+//                        LOG.log(Level.INFO, "Employee with session id " + sessionId + ", authentication id: " +
+//                                authId + "is authorized. Request URI:" + requestURI);
+//                        chain.doFilter(req, resp);
+//                    } else {
+//                        httpResponse.sendRedirect(ROOT_LOCATION);
+//                    }
                 } else {
                     LOG.log(Level.INFO, "User with session id " + sessionId + ", authentication id: " +
                             authId + "is authorized. Request URI:" + requestURI);

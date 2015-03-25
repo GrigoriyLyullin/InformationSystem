@@ -83,6 +83,13 @@ h1 {
     height: 30px;
 }
 
+#login-centered {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    margin: 0 auto;
+    width: 30%;
+}
+
 #Station-From-Name {
     margin-right: 5px;
 }

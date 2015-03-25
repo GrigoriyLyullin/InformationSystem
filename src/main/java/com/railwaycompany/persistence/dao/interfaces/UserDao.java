@@ -7,13 +7,14 @@ import com.railwaycompany.persistence.entities.User;
  */
 public interface UserDao extends GenericDAO<User> {
 
-    /**
-     * Find user by login and password.
-     *
-     * @param login - User login
-     * @param password - User password
-     * @return User with this login and password or null if user with this parameters does not exists in data source.
-     */
-    User findUser(String login, String password);
+//    /**
+//     * Find user by login and password.
+//     *
+//     * @param login - User login
+//     * @param password - User password
+//     * @return User with this login and password or null if user with this parameters does not exists in data source.
+//     */
+//    User findUser(String login, String password);
 
+    User findUser(String login);
 }

@@ -16,8 +16,9 @@ public class User implements Serializable {
     private String login;
     @Column(name = "password")
     private String password;
-    @Column(name = "isEmployee")
-    private boolean isEmployee;
+    @OneToOne
+    @JoinColumn(name = "role_id")
+    private UserRole userRole;
     @OneToMany
     @JoinColumn(name = "id_passenger")
     private List<Passenger> passengers;
@@ -46,12 +47,12 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public boolean isEmployee() {
-        return isEmployee;
+    public UserRole getUserRole() {
+        return userRole;
     }
 
-    public void setEmployee(boolean isEmployee) {
-        this.isEmployee = isEmployee;
+    public void setUserRole(UserRole userRole) {
+        this.userRole = userRole;
     }
 
     public List<Passenger> getPassengers() {

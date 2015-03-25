@@ -50,7 +50,7 @@ public class LogoutServlet {
             String authId = (String) session.getAttribute(AUTH_ID_ATTR);
             if (authId != null && !authId.isEmpty()) {
                 String sessionId = session.getId();
-                authenticationService.signOut(sessionId);
+//                authenticationService.signOut(sessionId);
             }
             session.invalidate();
         }

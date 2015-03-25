@@ -28,7 +28,7 @@ public class UserServiceImplTest {
         User user = new User();
         user.setId(USER_ID);
         user.setLogin(USER_LOGIN);
-        user.setEmployee(USER_IS_EMPLOYEE);
+//        user.setEmployee(USER_IS_EMPLOYEE);
 
         UserDao userDao = mock(UserDao.class);
 

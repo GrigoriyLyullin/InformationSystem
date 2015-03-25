@@ -4,9 +4,7 @@ import com.railwaycompany.persistence.dao.interfaces.UserDao;
 import com.railwaycompany.persistence.entities.User;
 import org.springframework.stereotype.Repository;
 
-import javax.persistence.NoResultException;
 import javax.persistence.Query;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -15,8 +13,7 @@ import java.util.logging.Logger;
 @Repository
 public class UserHibernateDao extends HibernateDao<User> implements UserDao {
 
-    private static final String FIND_USER = "SELECT u FROM User u WHERE u.login = :login AND" + " u" +
-            ".password = :password";
+    private static final String FIND_USER_BY_LOGIN = "SELECT u FROM User u WHERE u.login = :login";
     /**
      * Logger for UserHibernateDao class.
      */
@@ -30,19 +27,9 @@ public class UserHibernateDao extends HibernateDao<User> implements UserDao {
     }
 
     @Override
-    public User findUser(String login, String password) {
-
-        Query queryFindUserStr = entityManager.createQuery(FIND_USER);
-
+    public User findUser(String login) {
+        Query queryFindUserStr = entityManager.createQuery(FIND_USER_BY_LOGIN);
         queryFindUserStr.setParameter("login", login);
-        queryFindUserStr.setParameter("password", password);
-
-        User user = null;
-        try {
-            user = (User) queryFindUserStr.getSingleResult();
-        } catch (NoResultException e) {
-            log.log(Level.INFO, "User was not found");
-        }
-        return user;
+        return (User) queryFindUserStr.getSingleResult();
     }
 }

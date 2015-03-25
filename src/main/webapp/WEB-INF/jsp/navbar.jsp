@@ -14,17 +14,17 @@
                 </ul>
                 <ul class="nav pull-right">
                     <li class="divider-vertical"></li>
-                    <c:if test="${empty sessionScope.authenticationId}">
+                    <c:if test="${empty sessionScope.userData}">
                         <li><a href="${pageContext.request.contextPath}/login">Sign in</a></li>
                     </c:if>
-                    <c:if test="${not empty sessionScope.authenticationId}">
-                        <c:if test="${sessionScope.userData.employee}">
+                    <c:if test="${not empty sessionScope.userData}">
+                        <c:if test="${sessionScope.userData.role == 'ROLE_ADMIN'}">
                             <li class="pull-right">
                                 <a href="${pageContext.request.contextPath}/employee_page">Control cab</a>
                             </li>
                         </c:if>
                         <li class="pull-right">
-                            <a href="">${sessionScope.userData.login}</a>
+                            <a href="">${sessionScope.userData.username}</a>
                         </li>
                         <li class="pull-right"><a href="${pageContext.request.contextPath}/logout">Sign out</a></li>
                     </c:if>

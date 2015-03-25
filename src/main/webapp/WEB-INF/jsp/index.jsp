@@ -17,9 +17,9 @@
     <div class="row">
         <div class="span12 img-rounded" id="jumbotron">
             <%--<c:if test="${empty sessionScope.authenticationId}">--%>
-                <%--<div class="hero-unit" id="form-signin">--%>
-                    <%--<jsp:include page="/WEB-INF/jsp/login_form.jsp" flush="true"/>--%>
-                <%--</div>--%>
+            <%--<div class="hero-unit" id="form-signin">--%>
+            <%--<jsp:include page="/WEB-INF/jsp/login_form.jsp" flush="true"/>--%>
+            <%--</div>--%>
             <%--</c:if>--%>
         </div>
     </div>

@@ -23,7 +23,7 @@ public class UserServiceImpl implements UserService {
         if (user != null) {
             userData = new UserData();
             userData.setId(user.getId());
-            userData.setLogin(user.getLogin());
+            userData.setUsername(user.getLogin());
 //            userData.setEmployee(user.isEmployee());
         }
         return userData;

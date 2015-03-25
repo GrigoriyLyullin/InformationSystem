@@ -3,8 +3,8 @@ package com.railwaycompany.business.dto;
 public class UserData {
 
     private int id;
-    private String login;
-    private boolean employee;
+    private String username;
+    private String role;
 
     public int getId() {
         return id;
@@ -14,19 +14,19 @@ public class UserData {
         this.id = id;
     }
 
-    public String getLogin() {
-        return login;
+    public String getUsername() {
+        return username;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public boolean isEmployee() {
-        return employee;
+    public String getRole() {
+        return role;
     }
 
-    public void setEmployee(boolean employee) {
-        this.employee = employee;
+    public void setRole(String role) {
+        this.role = role;
     }
 }

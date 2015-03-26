@@ -1,4 +1,4 @@
-package com.railwaycompany.presentation.servlets;
+package com.railwaycompany.presentation.controllers;
 
 import com.railwaycompany.business.dto.TrainData;
 import com.railwaycompany.business.services.interfaces.TrainService;

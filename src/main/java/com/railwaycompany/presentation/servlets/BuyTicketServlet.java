@@ -14,11 +14,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.io.IOException;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -29,9 +26,6 @@ import static com.railwaycompany.utils.ValidationHelper.*;
 @RequestMapping("buy_ticket")
 public class BuyTicketServlet {
 
-    private static final String BUY_TICKET_PAGE = "/WEB-INF/buy_ticket.jsp";
-    private static final String BUY_TICKET_SUCCESS_PAGE = "/WEB-INF/buy_ticket_success.jsp";
-    private static final String BUY_TICKET_ERROR_PAGE = "/WEB-INF/buy_ticket_error.jsp";
     private static final String USER_DATA_ATTR = "userData";
     private static final String HAS_NO_EMPTY_SEATS_ATTR = "buyTicketHasNoEmptySeats";
     private static final String ALREADY_REGISTERED_ATTR = "buyTicketAlreadyRegistered";
@@ -63,7 +57,7 @@ public class BuyTicketServlet {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public String doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    public String doPost(HttpServletRequest req) {
         String trainNumberParam = req.getParameter(TRAIN_NUMBER_PARAM);
         String departureDateParam = req.getParameter(DEPARTURE_DATE_PARAM);
         String stationNameParam = req.getParameter(STATION_NAME_PARAM);

@@ -9,11 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -22,9 +19,8 @@ import java.util.logging.Logger;
 
 @Controller
 @RequestMapping("search_train")
-public class SearchTrainServlet {
+public class SearchTrainController {
 
-    private static final String INDEX_PAGE = "/WEB-INF/index.jsp";
     private static final String EXTENDED_FORM_PARAM = "extendedForm";
     private static final String STATION_FORM_NAME_PARAM = "Station-From-Name";
     private static final String STATION_TO_NAME_PARAM = "Station-To-Name";
@@ -41,19 +37,19 @@ public class SearchTrainServlet {
     private static final String TRAIN_LIST_ATTR = "trainList";
     private static final String TRAIN_NOT_FOUND_ATTR = "trainNotFoundError";
 
-    private static final Logger LOG = Logger.getLogger(SearchTrainServlet.class.getName());
+    private static final Logger LOG = Logger.getLogger(SearchTrainController.class.getName());
 
     @Autowired
     private ScheduleService scheduleService;
 
     @RequestMapping(method = RequestMethod.GET)
-    public String doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    public String doGet(HttpServletRequest req) {
         req.getSession().setAttribute(EXTENDED_FORM_ATTR, Boolean.valueOf(req.getParameter(EXTENDED_FORM_PARAM)));
         return "index";
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public String doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    public String doPost(HttpServletRequest req) {
         String stationFromName = req.getParameter(STATION_FORM_NAME_PARAM);
         String stationToName = req.getParameter(STATION_TO_NAME_PARAM);
         String dateFromStr = req.getParameter(DATE_FROM_PARAM);

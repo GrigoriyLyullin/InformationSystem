@@ -11,16 +11,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
 @Controller
 @RequestMapping("add_station")
-public class AddStationServlet {
+public class AddStationController {
 
-    private static final String EMPLOYEE_PAGE = "/WEB-INF/employee_page.jsp";
     private static final String GET_ALL_STATION_PARAM = "getAllStation";
     private static final String STATION_NAME_PARAM = "stationName";
     private static final String ALL_STATION_LIST_ATTR = "allStationList";
@@ -32,7 +30,7 @@ public class AddStationServlet {
     private StationService stationService;
 
     @RequestMapping(method = RequestMethod.GET)
-    public String doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    public String doGet(HttpServletRequest req) throws ServletException, IOException {
         List<StationData> allStationList = null;
         Boolean getAll = Boolean.valueOf(req.getParameter(GET_ALL_STATION_PARAM));
         if (getAll) {
@@ -43,7 +41,7 @@ public class AddStationServlet {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public String doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    public String doPost(HttpServletRequest req) throws ServletException, IOException {
         HttpSession session = req.getSession();
         String stationName = req.getParameter(STATION_NAME_PARAM);
         boolean allStationListExist = (session.getAttribute(ALL_STATION_LIST_ATTR) != null);

@@ -10,11 +10,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
-import java.util.Iterator;
 
 @Controller
 @RequestMapping("index")
-public class IndexPageServlet {
+public class IndexPageController {
 
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView getIndexPage(HttpSession session) {
@@ -25,9 +24,7 @@ public class IndexPageServlet {
                 UserDetails userDetails = (UserDetails) principal;
                 userData = new UserData();
                 userData.setUsername(userDetails.getUsername());
-                Iterator<? extends GrantedAuthority> iterator = userDetails.getAuthorities().iterator();
-                while (iterator.hasNext()) {
-                    GrantedAuthority authority = iterator.next();
+                for (GrantedAuthority authority : userDetails.getAuthorities()) {
                     if (authority.getAuthority().equals("ROLE_ADMIN")) {
                         userData.setRole("ROLE_ADMIN");
                         break;

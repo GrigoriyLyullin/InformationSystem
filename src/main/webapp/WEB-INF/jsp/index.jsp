@@ -16,11 +16,11 @@
     <jsp:include page="/WEB-INF/jsp/navbar.jsp" flush="true"/>
     <div class="row">
         <div class="span12 img-rounded" id="jumbotron">
-            <%--<c:if test="${empty sessionScope.authenticationId}">--%>
-            <%--<div class="hero-unit" id="form-signin">--%>
-            <%--<jsp:include page="/WEB-INF/jsp/login_form.jsp" flush="true"/>--%>
-            <%--</div>--%>
-            <%--</c:if>--%>
+            <c:if test="${empty sessionScope.userData}">
+                <div class="hero-unit" id="form-signin">
+                    <jsp:include page="login_form.jsp" flush="true"/>
+                </div>
+            </c:if>
         </div>
     </div>
     <a name="search_train"></a>

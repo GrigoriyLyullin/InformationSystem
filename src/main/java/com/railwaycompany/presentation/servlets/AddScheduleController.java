@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.Date;
@@ -22,11 +21,9 @@ import static com.railwaycompany.utils.ValidationHelper.*;
 
 @Controller
 @RequestMapping("add_schedule")
-public class AddScheduleServlet {
+public class AddScheduleController {
 
-    private static final Logger LOG = Logger.getLogger(AddScheduleServlet.class.getName());
-
-    private static final String EMPLOYEE_PAGE = "/WEB-INF/employee_page.jsp";
+    private static final Logger LOG = Logger.getLogger(AddScheduleController.class.getName());
 
     @Autowired
     private ScheduleService scheduleService;
@@ -37,7 +34,7 @@ public class AddScheduleServlet {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    protected String doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected String doPost(HttpServletRequest req) throws ServletException, IOException {
         String stationIdStr = req.getParameter("stationId");
         String trainIdStr = req.getParameter("trainId");
         String arrivalDateStr = req.getParameter("arrivalDate");

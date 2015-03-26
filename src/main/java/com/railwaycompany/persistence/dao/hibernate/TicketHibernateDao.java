@@ -21,6 +21,8 @@ public class TicketHibernateDao extends HibernateDao<Ticket> implements TicketDa
 
     private static final String TICKET_BY_TRAIN_ID = "SELECT t FROM Ticket t WHERE t.train.id = :trainId";
 
+    private static final String GET_ALL_TICKETS = "SELECT t FROM Ticket t";
+
     /**
      * Logger for StationHibernateDao class.
      */
@@ -71,6 +73,22 @@ public class TicketHibernateDao extends HibernateDao<Ticket> implements TicketDa
         Query query = entityManager.createQuery(TICKET_BY_TRAIN_ID);
         query.setParameter("trainId", trainId);
 
+        List<Ticket> ticketList = null;
+        List resultList = query.getResultList();
+        if (resultList != null && !resultList.isEmpty()) {
+            ticketList = new ArrayList<>();
+            for (Object o : resultList) {
+                if (o instanceof Ticket) {
+                    ticketList.add((Ticket) o);
+                }
+            }
+        }
+        return ticketList;
+    }
+
+    @Override
+    public List<Ticket> getAll() {
+        Query query = entityManager.createQuery(GET_ALL_TICKETS);
         List<Ticket> ticketList = null;
         List resultList = query.getResultList();
         if (resultList != null && !resultList.isEmpty()) {

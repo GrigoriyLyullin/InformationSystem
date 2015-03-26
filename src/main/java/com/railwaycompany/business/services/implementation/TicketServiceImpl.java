@@ -16,7 +16,9 @@ import com.railwaycompany.utils.DateHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -144,5 +146,25 @@ public class TicketServiceImpl implements TicketService {
             LOG.log(Level.WARNING, msg.toString(), e);
             throw new InvalidInputDataException(msg.toString(), e);
         }
+    }
+
+    @Override
+    public List<TicketData> getAll() {
+        List<TicketData> ticketDataList = new ArrayList<>();
+        List<Ticket> ticketList = ticketDao.getAll();
+        for (Ticket t : ticketList) {
+            TicketData ticketData = new TicketData();
+            Train train = t.getTrain();
+            ticketData.setTrainNumber(train.getNumber());
+            Passenger p = t.getPassenger();
+            PassengerData passengerData = new PassengerData();
+            passengerData.setId(p.getId());
+            passengerData.setName(p.getName());
+            passengerData.setSurname(p.getSurname());
+            passengerData.setBirthdate(p.getBirthdate());
+            ticketData.setPassengerData(passengerData);
+            ticketDataList.add(ticketData);
+        }
+        return ticketDataList;
     }
 }

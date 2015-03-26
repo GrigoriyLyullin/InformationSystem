@@ -8,9 +8,12 @@ import com.railwaycompany.business.services.exceptions.InvalidInputDataException
 import com.railwaycompany.business.services.exceptions.SalesStopException;
 
 import java.util.Date;
+import java.util.List;
 
 public interface TicketService {
 
     TicketData buyTicket(int userId, int trainNumber, Date departureDate, String stationFromStr, PassengerData passengerData)
             throws HasNoEmptySeatsException, AlreadyRegisteredException, SalesStopException, InvalidInputDataException;
+
+    List<TicketData> getAll();
 }

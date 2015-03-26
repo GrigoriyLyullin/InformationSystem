@@ -33,4 +33,6 @@ public interface TicketDao extends GenericDAO<Ticket> {
      * @return List of tickets
      */
     List<Ticket> getTicketsByTrainId(int trainId);
+
+    List<Ticket> getAll();
 }

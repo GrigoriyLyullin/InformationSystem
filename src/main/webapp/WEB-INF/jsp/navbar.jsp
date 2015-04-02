@@ -1,5 +1,6 @@
 <%@ page isELIgnored="false" contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <div class="row">
     <div class="span12">
         <div class="navbar navbar-inverse">
@@ -14,20 +15,22 @@
                 </ul>
                 <ul class="nav pull-right">
                     <li class="divider-vertical"></li>
-                    <c:if test="${empty sessionScope.userData}">
+                    <sec:authorize access="isAnonymous()">
                         <li><a href="${pageContext.request.contextPath}/login">Sign in</a></li>
-                    </c:if>
-                    <c:if test="${not empty sessionScope.userData}">
-                        <c:if test="${sessionScope.userData.role == 'ROLE_ADMIN'}">
+                    </sec:authorize>
+                    <sec:authorize access="isAuthenticated()">
+                        <sec:authorize access="hasRole('ROLE_ADMIN')">
                             <li class="pull-right">
                                 <a href="${pageContext.request.contextPath}/employee_page">Control cab</a>
                             </li>
-                        </c:if>
+                        </sec:authorize>
                         <li class="pull-right">
-                            <a href="">${sessionScope.userData.username}</a>
+                            <a href=""><sec:authentication property="principal.username"/></a>
                         </li>
-                        <li class="pull-right"><a href="${pageContext.request.contextPath}/logout">Sign out</a></li>
-                    </c:if>
+                        <li class="pull-right">
+                            <a href="${pageContext.request.contextPath}/j_spring_security_logout">Sign out</a>
+                        </li>
+                    </sec:authorize>
                 </ul>
             </nav>
         </div>

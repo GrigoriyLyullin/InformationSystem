@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <web-app
-    xmlns="http://java.sun.com/xml/ns/javaee"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
-    http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
-    version="3.0">
+        xmlns="http://java.sun.com/xml/ns/javaee"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+        http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+        version="3.0">
 
     <display-name>Archetype Created Web Application</display-name>
 
@@ -19,21 +19,6 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 
-    <!--<filter>-->
-        <!--<filter-name>AuthenticationFilter</filter-name>-->
-        <!--<filter-class>com.railwaycompany.presentation.filters.AuthenticationFilter</filter-class>-->
-        <!--<init-param>-->
-            <!--<param-name>Private pages</param-name>-->
-            <!--<param-value>/InformationSystem/buy_ticket</param-value>-->
-        <!--</init-param>-->
-        <!--<init-param>-->
-            <!--<param-name>Employee pages</param-name>-->
-            <!--<param-value>-->
-                <!--/add_station;/add_station.jsp;/add_train;/add_train.jsp;/view_all_trains;/view_all_trains.jsp-->
-            <!--</param-value>-->
-        <!--</init-param>-->
-    <!--</filter>-->
-
     <filter>
         <filter-name>springSecurityFilterChain</filter-name>
         <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
@@ -42,16 +27,6 @@
         <filter-name>springSecurityFilterChain</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
-
-    <!--<filter-mapping>-->
-        <!--<filter-name>AuthenticationFilter</filter-name>-->
-        <!--<url-pattern>/*</url-pattern>-->
-    <!--</filter-mapping>-->
-
-
-    <!--<welcome-file-list>-->
-    <!--<welcome-file>/index.html</welcome-file>-->
-    <!--</welcome-file-list>-->
 
     <error-page>
         <error-code>404</error-code>

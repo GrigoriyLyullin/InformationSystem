@@ -5,9 +5,7 @@ import com.railwaycompany.persistence.entities.Schedule;
 import com.railwaycompany.persistence.entities.Train;
 import com.railwaycompany.utils.DateHelper;
 import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.Service;
 
-import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
 import java.util.ArrayList;
@@ -40,6 +38,9 @@ public class ScheduleHibernateDao extends HibernateDao<Schedule> implements Sche
 
     private static final String DEPARTURE_TIME_BY_STATION_AND_TRAIN_ID = "SELECT s.timeDeparture FROM Schedule s WHERE" +
             " s.train.id = :trainId AND s.station.id = :stationId";
+
+    private static final String SCHEDULES_WITH_DATE_FROM_AND_DATE_TO = "SELECT s FROM Schedule s WHERE " +
+            "s.timeDeparture >= :dateFrom AND s.timeArrival <= :dateTo";
 
     /**
      * Logger for ScheduleHibernateDao class.
@@ -209,6 +210,29 @@ public class ScheduleHibernateDao extends HibernateDao<Schedule> implements Sche
             log.warning("Cast to Schedule exception.");
         }
         return schedule;
+    }
+
+    @Override
+    public List<Schedule> getSchedules(Date dateFrom, Date dateTo) {
+
+        Query query = entityManager.createQuery(SCHEDULES_WITH_DATE_FROM_AND_DATE_TO);
+        query.setParameter("dateFrom", dateFrom);
+        query.setParameter("dateTo", dateTo);
+
+        List<Schedule> schedules = null;
+        try {
+
+            List resultList = query.getResultList();
+            schedules = new ArrayList<>();
+            for (Object s : resultList) {
+                schedules.add((Schedule) s);
+            }
+
+        } catch (NoResultException e) {
+
+        }
+
+        return schedules;
     }
 
     @Override

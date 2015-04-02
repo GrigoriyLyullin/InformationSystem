@@ -47,9 +47,12 @@
           <element id="library" level="project" name="Maven: aopalliance:aopalliance:1.0" />
           <element id="library" level="project" name="Maven: org.springframework.security:spring-security-web:3.2.3.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework.security:spring-security-config:3.2.3.RELEASE" />
-          <element id="library" level="project" name="Maven: org.springframework.security:spring-security-taglibs:3.2.3.RELEASE" />
-          <element id="library" level="project" name="Maven: org.springframework.security:spring-security-acl:3.2.3.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework.security:spring-security-crypto:3.2.6.RELEASE" />
+          <element id="library" level="project" name="Maven: javax.ws.rs:javax.ws.rs-api:2.0" />
+          <element id="library" level="project" name="Maven: org.codehaus.jackson:jackson-mapper-asl:1.9.2" />
+          <element id="library" level="project" name="Maven: org.codehaus.jackson:jackson-core-asl:1.9.2" />
+          <element id="library" level="project" name="Maven: org.springframework.security:spring-security-taglibs:4.0.0.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework.security:spring-security-acl:4.0.0.RELEASE" />
         </element>
       </element>
       <element id="directory" name="META-INF">

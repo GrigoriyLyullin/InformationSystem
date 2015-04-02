@@ -6,8 +6,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpSession;
-
 @Controller
 public class AuthenticationController {
 
@@ -22,9 +20,4 @@ public class AuthenticationController {
         return model;
     }
 
-    @RequestMapping(value = "logout", method = RequestMethod.GET)
-    public final ModelAndView logout(final HttpSession session) {
-        session.invalidate();
-        return new ModelAndView("index");
-    }
 }

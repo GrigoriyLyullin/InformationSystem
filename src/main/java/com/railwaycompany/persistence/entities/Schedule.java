@@ -9,7 +9,7 @@ import java.util.Date;
 public class Schedule implements Serializable {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue( strategy = GenerationType.IDENTITY)
     @Column(name = "id_schedule")
     private int id;
     @Column(name = "time_arrival")

@@ -5,19 +5,16 @@ import com.railwaycompany.persistence.entities.User;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.Query;
-import java.util.logging.Logger;
+import javax.transaction.Transactional;
 
 /**
  * HibernateDao implementation for work with User entities.
  */
 @Repository
+@Transactional
 public class UserHibernateDao extends HibernateDao<User> implements UserDao {
 
     private static final String FIND_USER_BY_LOGIN = "SELECT u FROM User u WHERE u.login = :login";
-    /**
-     * Logger for UserHibernateDao class.
-     */
-    private static Logger log = Logger.getLogger(UserHibernateDao.class.getName());
 
     /**
      * UserHibernateDao constructor.
@@ -30,6 +27,12 @@ public class UserHibernateDao extends HibernateDao<User> implements UserDao {
     public User findUser(String login) {
         Query queryFindUserStr = entityManager.createQuery(FIND_USER_BY_LOGIN);
         queryFindUserStr.setParameter("login", login);
-        return (User) queryFindUserStr.getSingleResult();
+        User user = null;
+        try {
+            user = (User) queryFindUserStr.getSingleResult();
+        } catch (Exception e) {
+
+        }
+        return user;
     }
 }

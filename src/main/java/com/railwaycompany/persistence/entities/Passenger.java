@@ -9,7 +9,7 @@ import java.util.Date;
 public class Passenger implements Serializable {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue( strategy = GenerationType.IDENTITY)
     @Column(name = "id_passenger")
     private int id;
     @Column(name = "name")
@@ -20,6 +20,7 @@ public class Passenger implements Serializable {
     private Date birthdate;
     @ManyToOne
     @JoinColumn(name = "user_id")
+    @Transient
     private User user;
 
     public Passenger() {

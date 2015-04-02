@@ -6,6 +6,7 @@ import com.railwaycompany.business.services.exceptions.AlreadyRegisteredExceptio
 import com.railwaycompany.business.services.exceptions.HasNoEmptySeatsException;
 import com.railwaycompany.business.services.exceptions.InvalidInputDataException;
 import com.railwaycompany.business.services.exceptions.SalesStopException;
+import com.railwaycompany.persistence.entities.Ticket;
 
 import java.util.Date;
 import java.util.List;
@@ -15,5 +16,5 @@ public interface TicketService {
     TicketData buyTicket(int userId, int trainNumber, Date departureDate, String stationFromStr, PassengerData passengerData)
             throws HasNoEmptySeatsException, AlreadyRegisteredException, SalesStopException, InvalidInputDataException;
 
-    List<TicketData> getAll();
+    List<Ticket> getTickets(String dateFrom, String timeFrom, String dateTo, String timeTo);
 }

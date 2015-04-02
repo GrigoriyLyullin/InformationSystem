@@ -8,7 +8,7 @@ import java.io.Serializable;
 public class Station implements Serializable {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue( strategy = GenerationType.IDENTITY)
     @Column(name = "id_station")
     private int id;
 

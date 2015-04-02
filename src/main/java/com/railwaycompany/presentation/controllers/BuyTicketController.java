@@ -24,7 +24,7 @@ import static com.railwaycompany.utils.ValidationHelper.*;
 
 @Controller
 @RequestMapping("buy_ticket")
-public class BuyTicketServlet {
+public class BuyTicketController {
 
     private static final String USER_DATA_ATTR = "userData";
     private static final String HAS_NO_EMPTY_SEATS_ATTR = "buyTicketHasNoEmptySeats";
@@ -46,7 +46,7 @@ public class BuyTicketServlet {
     /**
      * Logger for BuyTicketServlet class.
      */
-    private static final Logger LOG = Logger.getLogger(BuyTicketServlet.class.getName());
+    private static final Logger LOG = Logger.getLogger(BuyTicketController.class.getName());
 
     @Autowired
     private TicketService ticketService;

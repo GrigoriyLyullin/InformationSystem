@@ -1,22 +1,53 @@
 package com.railwaycompany.presentation.controllers;
 
 import com.railwaycompany.business.services.interfaces.TicketService;
-import org.json.JSONArray;
+import com.railwaycompany.persistence.entities.Ticket;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+import javax.servlet.http.HttpServletResponse;
+import java.util.List;
+
+import static com.railwaycompany.utils.ValidationHelper.isValidDateStr;
+
+@RestController
+@RequestMapping("tickets")
 public class TicketRestController {
 
     @Autowired
     private TicketService ticketService;
 
-    @RequestMapping(value = "ticketRest/getAll", method = RequestMethod.GET)
-    public @ResponseBody String getAllTicketsInJSON() {
-        JSONArray jsonArray = new JSONArray(ticketService.getAll());
-        return jsonArray.toString(4);
+    @RequestMapping(method = RequestMethod.GET)
+    public List<Ticket> getTickets(@RequestParam(value = "dateFrom", required = false) String dateFrom,
+                                   @RequestParam(value = "timeFrom", defaultValue = "00:00") String timeFrom,
+                                   @RequestParam(value = "dateTo", required = false) String dateTo,
+                                   @RequestParam(value = "timeTo", defaultValue = "00:00") String timeTo,
+                                   HttpServletResponse response) {
+        List<Ticket> ticketList = null;
+        if (isValidDateStr(dateFrom) && isValidDateStr(dateTo)) {
+            response.setStatus(HttpServletResponse.SC_OK);
+            ticketList = ticketService.getTickets(dateFrom, timeFrom, dateTo, timeTo);
+        } else {
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+        }
+        return ticketList;
+    }
+
+    @RequestMapping(method = RequestMethod.POST)
+    public void postTicket(HttpServletResponse response) {
+        response.setStatus(HttpServletResponse.SC_NOT_IMPLEMENTED);
+    }
+
+    @RequestMapping(method = RequestMethod.DELETE)
+    public void deleteTicket(HttpServletResponse response) {
+        response.setStatus(HttpServletResponse.SC_NOT_IMPLEMENTED);
+    }
+
+    @RequestMapping(method = RequestMethod.PUT)
+    public void putTicket(HttpServletResponse response) {
+        response.setStatus(HttpServletResponse.SC_NOT_IMPLEMENTED);
     }
 }

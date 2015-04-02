@@ -14,11 +14,26 @@ public class ValidationHelper {
      * String with pattern for time checks.
      */
     private static final String TIME_PATTERN_STR = "^(0?[0-9]|1[0-9]|2[0-3]):([0-5][0-9])$";
-
+    /**
+     * String with pattern for station name checks.
+     */
+    private static final String STATION_NAME_PATTERN_STR = "^[a-zA-Zа-яА-Я]+[- ]*[a-zA-Zа-яА-Я]+$";
+    /**
+     * String with pattern for name checks.
+     */
+    private static final String NAME_PATTERN_STR = "^[a-zA-Zа-яА-Я]+$";
     /**
      * String with pattern for train number checks.
      */
     private static final String TRAIN_NUMBER_PATTERN_STR = "^[0-9]{1,9}$";
+    /**
+     * String with pattern for login checks.
+     */
+    private static final String LOGIN_PATTERN_STR = "^[a-zA-Z0-9]*$";
+    /**
+     * String with pattern for password checks.
+     */
+    private static final String PASSWORD_PATTERN_STR = "^[a-zA-Z0-9]*$";
     /**
      * Pattern for date checks.
      */
@@ -26,7 +41,7 @@ public class ValidationHelper {
     /**
      * Pattern for station name checks.
      */
-
+    private static Pattern stationNamePattern = Pattern.compile(STATION_NAME_PATTERN_STR);
     /**
      * Pattern for time checks.
      */
@@ -35,7 +50,18 @@ public class ValidationHelper {
      * Pattern for train number checks.
      */
     private static Pattern trainNumberPattern = Pattern.compile(TRAIN_NUMBER_PATTERN_STR);
-
+    /**
+     * Pattern for login checks.
+     */
+    private static Pattern loginPattern = Pattern.compile(LOGIN_PATTERN_STR);
+    /**
+     * Pattern for password checks.
+     */
+    private static Pattern passwordPattern = Pattern.compile(PASSWORD_PATTERN_STR);
+    /**
+     * Pattern for name checks.
+     */
+    private static Pattern namePattern = Pattern.compile(NAME_PATTERN_STR);
 
     /**
      * Checks that string contains valid date.
@@ -54,7 +80,7 @@ public class ValidationHelper {
      * @return True if string contains valid station name, otherwise - False.
      */
     public static boolean isValidStationName(String name) {
-        return name != null && !name.isEmpty();
+        return name != null && !name.isEmpty() && stationNamePattern.matcher(name).matches();
     }
 
     /**
@@ -78,13 +104,33 @@ public class ValidationHelper {
     }
 
     /**
+     * Checks that string contains valid login.
+     *
+     * @param login - string with login
+     * @return True if string contains valid login, otherwise - False.
+     */
+    public static boolean isValidLogin(String login) {
+        return login != null && !login.isEmpty() && loginPattern.matcher(login).matches();
+    }
+
+    /**
+     * Checks that string contains valid password.
+     *
+     * @param password - string with password
+     * @return True if string contains valid password, otherwise - False.
+     */
+    public static boolean isValidPassword(String password) {
+        return password != null && !password.isEmpty() && passwordPattern.matcher(password).matches();
+    }
+
+    /**
      * Checks that string contains valid name or surname.
      *
      * @param name - string with name
      * @return True if string contains valid name or surname, otherwise - False.
      */
     public static boolean isValidPassengerNameOrSurname(String name) {
-        return name != null && !name.isEmpty();
+        return name != null && !name.isEmpty() && namePattern.matcher(name).matches();
     }
 
     /**

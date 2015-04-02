@@ -7,6 +7,7 @@ import javax.persistence.*;
 public class UserRole {
 
     @Id
+    @GeneratedValue( strategy = GenerationType.IDENTITY)
     @Column(name = "id_role")
     private int id;
     @OneToOne

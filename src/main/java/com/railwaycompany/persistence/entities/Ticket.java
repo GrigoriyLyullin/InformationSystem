@@ -8,7 +8,7 @@ import java.io.Serializable;
 public class Ticket implements Serializable {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue( strategy = GenerationType.IDENTITY)
     @Column(name = "id_ticket")
     private int id;
 

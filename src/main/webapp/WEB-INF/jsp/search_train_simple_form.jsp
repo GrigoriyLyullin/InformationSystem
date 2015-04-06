@@ -8,11 +8,13 @@
 
             <span class="add-on">From</span>
             <input id="Station-From-Name" name="Station-From-Name" type="text" class="input-large"
-                   placeholder="Station name" value="<c:out value="${sessionScope.stationFromName}"/>">
+                   placeholder="Station name" value="<c:out value="${sessionScope.stationFromName}"/>"
+                   autocomplete="off" data-provide="typeahead">
 
             <span class="add-on">To</span>
             <input id="Station-To-Name" name="Station-To-Name" type="text" class="input-large"
-                   placeholder="Station name" value="<c:out value="${sessionScope.stationToName}"/>">
+                   placeholder="Station name" value="<c:out value="${sessionScope.stationToName}"/>"
+                   autocomplete="off" data-provide="typeahead">
 
             <span class="add-on">Departure date</span>
             <input id="dateFrom" name="dateFrom" type="date" class="input-medium" title="Date"

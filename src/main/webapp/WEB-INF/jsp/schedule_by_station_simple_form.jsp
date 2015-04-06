@@ -6,7 +6,8 @@
         <div class="input-prepend">
             <span class="add-on">Station</span>
             <input id="Station-Name" name="Station-Name" type="text" class="input-large"
-                   placeholder="Station name" value="<c:out value="${sessionScope.stationName}"/>">
+                   placeholder="Station name" value="<c:out value="${sessionScope.stationName}"/>"
+                   autocomplete="off" data-provide="typeahead">
         </div>
         <button type="submit" class="btn btn-success">
             <i class="icon-white icon-search"></i>

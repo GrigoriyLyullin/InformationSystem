@@ -172,3 +172,8 @@ thead {
 .height30 {
     height: 30px;
 }
+
+#stationNamePrompt {
+    margin-left: 55px;
+    width: 207px;
+}

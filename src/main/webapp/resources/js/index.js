@@ -41,3 +41,44 @@ function checkSearchTrainForm() {
     }
     return true;
 }
+
+var stationNames = [];
+
+function initStationNameListener() {
+    $(document).ready(function ($) {
+        // Workaround for bug in mouse item selection
+        $.fn.typeahead.Constructor.prototype.blur = function () {
+            var that = this;
+            setTimeout(function () {
+                that.hide()
+            }, 250);
+        };
+        $('#Station-Name').typeahead({
+            source: function (query, process) {
+                $.get('stations?startWith=' + $('#Station-Name').val(), function (data) {
+                    stationNames = JSON.parse(data);
+                    console.log(stationNames);
+                });
+                return stationNames;
+            }
+        });
+        $('#Station-From-Name').typeahead({
+            source: function (query, process) {
+                $.get('stations?startWith=' + $('#Station-From-Name').val(), function (data) {
+                    stationNames = JSON.parse(data);
+                    console.log(stationNames);
+                });
+                return stationNames;
+            }
+        });
+        $('#Station-To-Name').typeahead({
+            source: function (query, process) {
+                $.get('stations?startWith=' + $('#Station-To-Name').val(), function (data) {
+                    stationNames = JSON.parse(data);
+                    console.log(stationNames);
+                });
+                return stationNames;
+            }
+        });
+    });
+}

@@ -4,6 +4,7 @@ import com.railwaycompany.business.services.interfaces.AuthenticationService;
 import com.railwaycompany.persistence.dao.interfaces.UserDao;
 import com.railwaycompany.persistence.entities.User;
 import com.railwaycompany.persistence.entities.UserRole;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -23,6 +24,8 @@ import java.util.Set;
 @Service
 public class AuthenticationServiceImpl implements AuthenticationService {
 
+    private static final Logger LOG = Logger.getLogger(AuthenticationServiceImpl.class);
+
     @Autowired
     private UserDao userDao;
 
@@ -32,7 +35,8 @@ public class AuthenticationServiceImpl implements AuthenticationService {
             throws UsernameNotFoundException {
 
         if (username != null) {
-            System.out.println("AuthenticationServiceImpl. loadUserByUsername : " + username);
+
+            LOG.info("AuthenticationServiceImpl. loadUserByUsername : " + username);
 
             User user = userDao.findUser(username);
             if (user != null) {

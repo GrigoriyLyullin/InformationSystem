@@ -1,5 +1,7 @@
 package com.railwaycompany.presentation.controllers;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.railwaycompany.business.services.interfaces.TicketService;
 import com.railwaycompany.persistence.entities.Ticket;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +23,7 @@ public class TicketRestController {
     private TicketService ticketService;
 
     @RequestMapping(method = RequestMethod.GET)
-    public List<Ticket> getTickets(@RequestParam(value = "dateFrom", required = false) String dateFrom,
+    public String getTickets(@RequestParam(value = "dateFrom", required = false) String dateFrom,
                                    @RequestParam(value = "timeFrom", defaultValue = "00:00") String timeFrom,
                                    @RequestParam(value = "dateTo", required = false) String dateTo,
                                    @RequestParam(value = "timeTo", defaultValue = "00:00") String timeTo,
@@ -33,7 +35,10 @@ public class TicketRestController {
         } else {
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
         }
-        return ticketList;
+        response.setContentType("text/html;charset=UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        Gson gson=  new GsonBuilder().setDateFormat("yyyy-MM-dd").setPrettyPrinting().create();
+        return gson.toJson(ticketList);
     }
 
     @RequestMapping(method = RequestMethod.POST)

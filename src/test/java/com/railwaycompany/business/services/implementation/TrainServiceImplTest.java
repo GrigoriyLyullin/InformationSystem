@@ -10,9 +10,14 @@ import com.railwaycompany.persistence.entities.Station;
 import com.railwaycompany.persistence.entities.Train;
 import com.railwaycompany.utils.DateHelper;
 import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.support.AnnotationConfigContextLoader;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -21,6 +26,8 @@ import java.util.List;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(loader = AnnotationConfigContextLoader.class)
 public class TrainServiceImplTest {
 
     private static final int TRAIN_ID = 1;
@@ -36,46 +43,10 @@ public class TrainServiceImplTest {
     private static final Date SCHEDULE_TIME_DEPARTURE = new Date(SCHEDULE_TIME_ARRIVAL.getTime() + DateHelper
             .MILLIS_IN_10_MINUTES);
 
+    @Autowired
     private TrainService trainService;
 
-    @Before
-    @Ignore
-    public void setUp() throws Exception {
-
-        Train train = new Train();
-        train.setId(TRAIN_ID);
-        train.setNumber(TRAIN_NUMBER);
-        train.setSeats(TRAIN_SEATS);
-
-        List<Train> trainList = new ArrayList<>();
-        trainList.add(train);
-
-        Station station = new Station();
-        station.setId(STATION_ID);
-        station.setName(STATION_NAME);
-
-        Schedule schedule = new Schedule();
-        schedule.setId(SCHEDULE_ID);
-        schedule.setTimeArrival(SCHEDULE_TIME_ARRIVAL);
-        schedule.setTimeDeparture(SCHEDULE_TIME_DEPARTURE);
-        schedule.setTrain(train);
-        schedule.setStation(station);
-
-        List<Schedule> scheduleList = new ArrayList<>();
-        scheduleList.add(schedule);
-
-        TrainDao trainDao = mock(TrainDao.class);
-        ScheduleDao scheduleDao = mock(ScheduleDao.class);
-
-        when(trainDao.findTrains(TRAIN_NUMBER, TRAIN_SEATS)).thenReturn(trainList);
-        when(trainDao.getAll()).thenReturn(trainList);
-        when(scheduleDao.getSchedulesByTrainId(TRAIN_ID)).thenReturn(scheduleList);
-
-        trainService = new TrainServiceImpl();
-    }
-
     @Test
-    @Ignore
     public void testGetAll() throws Exception {
         List<TrainData> trainDataList = trainService.getAll();
         Assert.assertNotNull(trainDataList);
@@ -83,14 +54,65 @@ public class TrainServiceImplTest {
     }
 
     @Test(expected = TrainWithSuchNumberExistException.class)
-    @Ignore
     public void testAddExistTrain() throws Exception {
         trainService.addTrain(TRAIN_NUMBER, TRAIN_SEATS, false);
     }
 
     @Test
-    @Ignore
     public void testAddExistTrainAnyway() throws Exception {
         trainService.addTrain(NOT_EXIST_TRAIN_NUMBER, TRAIN_SEATS, false);
+    }
+
+    @Configuration
+    static class ContextConfiguration {
+
+        @Bean
+        public TrainService trainService() {
+            return new TrainServiceImpl();
+        }
+
+        @Bean
+        public TrainDao trainDao() {
+            TrainDao trainDao = mock(TrainDao.class);
+
+            Train train = new Train();
+            train.setId(TRAIN_ID);
+            train.setNumber(TRAIN_NUMBER);
+            train.setSeats(TRAIN_SEATS);
+
+            List<Train> trainList = new ArrayList<>();
+            trainList.add(train);
+
+            when(trainDao.findTrains(TRAIN_NUMBER, TRAIN_SEATS)).thenReturn(trainList);
+            when(trainDao.getAll()).thenReturn(trainList);
+            return trainDao;
+        }
+
+        @Bean
+        public ScheduleDao scheduleDao() {
+            ScheduleDao scheduleDao = mock(ScheduleDao.class);
+
+            Train train = new Train();
+            train.setId(TRAIN_ID);
+            train.setNumber(TRAIN_NUMBER);
+            train.setSeats(TRAIN_SEATS);
+
+            Station station = new Station();
+            station.setId(STATION_ID);
+            station.setName(STATION_NAME);
+
+            Schedule schedule = new Schedule();
+            schedule.setId(SCHEDULE_ID);
+            schedule.setTimeArrival(SCHEDULE_TIME_ARRIVAL);
+            schedule.setTimeDeparture(SCHEDULE_TIME_DEPARTURE);
+            schedule.setTrain(train);
+            schedule.setStation(station);
+
+            List<Schedule> scheduleList = new ArrayList<>();
+            scheduleList.add(schedule);
+
+            when(scheduleDao.getSchedulesByTrainId(TRAIN_ID)).thenReturn(scheduleList);
+            return scheduleDao;
+        }
     }
 }

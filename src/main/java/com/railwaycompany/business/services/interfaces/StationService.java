@@ -12,4 +12,6 @@ public interface StationService {
     void addStation(String name) throws StationWithSuchNameExistException;
 
     List<StationData> getAll();
+
+    List<String> getAllStationNames(String startWith);
 }

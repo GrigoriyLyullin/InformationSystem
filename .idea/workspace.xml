@@ -1,16 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0a97a00a-bfdc-41f8-aef4-6bd013891077" name="Default" comment="Add AJAX auto complete for station name inputs">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/railwaycompany/presentation/controllers/StationRestController.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/resources/js/bootstrap-typeahead.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dictionaries/.xml" afterPath="$PROJECT_DIR$/.idea/dictionaries/.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/resources/style/index.css" afterPath="$PROJECT_DIR$/src/main/webapp/resources/style/index.css" />
+    <list default="true" id="0a97a00a-bfdc-41f8-aef4-6bd013891077" name="Default" comment="AJAX auto complete some improves">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/railwaycompany/presentation/controllers/StationRestController.java" afterPath="$PROJECT_DIR$/src/main/java/com/railwaycompany/presentation/controllers/StationRestController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/railwaycompany/business/services/interfaces/StationService.java" afterPath="$PROJECT_DIR$/src/main/java/com/railwaycompany/business/services/interfaces/StationService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/railwaycompany/business/services/implementation/StationServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/railwaycompany/business/services/implementation/StationServiceImpl.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/resources/js/index.js" afterPath="$PROJECT_DIR$/src/main/webapp/resources/js/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/index.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/index.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/schedule_by_station_simple_form.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/schedule_by_station_simple_form.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/search_train_simple_form.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/search_train_simple_form.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path=".idea/dataSources.local.xml" />
@@ -72,7 +67,50 @@
     <favorites_list name="InformationSystem" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file leaf-file-name="StationRestController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/railwaycompany/presentation/controllers/StationRestController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="629">
+              <caret line="24" column="66" selection-start-line="24" selection-start-column="66" selection-end-line="24" selection-end-column="66" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="StationService.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/railwaycompany/business/services/interfaces/StationService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="340">
+              <caret line="15" column="23" selection-start-line="15" selection-start-column="23" selection-end-line="15" selection-end-column="23" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/resources/js/index.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="855" max-vertical-offset="1547">
+              <caret line="75" column="0" selection-start-line="75" selection-start-column="0" selection-end-line="75" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="StationServiceImpl.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/railwaycompany/business/services/implementation/StationServiceImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.13461539" vertical-offset="103" max-vertical-offset="1513">
+              <caret line="11" column="21" selection-start-line="11" selection-start-column="21" selection-end-line="11" selection-end-column="21" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="Git.Settings">
     <option name="PUSH_AUTO_UPDATE" value="true" />
@@ -87,8 +125,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/railwaycompany/persistence/entities/Ticket.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/railwaycompany/persistence/entities/Station.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/railwaycompany/persistence/entities/Schedule.java" />
         <option value="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/railwaycompany/persistence/dao/interfaces/UserDao.java" />
@@ -133,11 +169,13 @@
         <option value="$PROJECT_DIR$/src/test/java/com/railwaycompany/business/services/implementation/ScheduleServiceImplTest.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/ajax.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/resources/style/index.css" />
-        <option value="$PROJECT_DIR$/src/main/java/com/railwaycompany/presentation/controllers/StationRestController.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/index.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/schedule_by_station_simple_form.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/resources/js/index.js" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/search_train_simple_form.jsp" />
+        <option value="$PROJECT_DIR$/src/main/java/com/railwaycompany/business/services/interfaces/StationService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/railwaycompany/presentation/controllers/StationRestController.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/resources/js/index.js" />
+        <option value="$PROJECT_DIR$/src/main/java/com/railwaycompany/business/services/implementation/StationServiceImpl.java" />
       </list>
     </option>
   </component>
@@ -1367,13 +1405,7 @@
       <workItem from="1428038298187" duration="3279000" />
       <workItem from="1428157704181" duration="3059000" />
       <workItem from="1428221635087" duration="7421000" />
-      <workItem from="1428306216357" duration="26053000" />
-    </task>
-    <task id="LOCAL-00027" summary="Battery low. Just commit">
-      <created>1425390627479</created>
-      <option name="number" value="00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1425390627479</updated>
+      <workItem from="1428306216357" duration="27094000" />
     </task>
     <task id="LOCAL-00028" summary="UI has been changed">
       <created>1425471989699</created>
@@ -1663,11 +1695,17 @@
       <option name="project" value="LOCAL" />
       <updated>1428318005960</updated>
     </task>
-    <option name="localTasksCounter" value="76" />
+    <task id="LOCAL-00076" summary="Add AJAX auto complete for station name inputs">
+      <created>1428348771010</created>
+      <option name="number" value="00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1428348771010</updated>
+    </task>
+    <option name="localTasksCounter" value="77" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="528967000" />
+    <option name="totallyTimeSpent" value="530008000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -1691,7 +1729,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="784" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -1715,7 +1753,7 @@
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5720859" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Persistence" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33282906" sideWeight="0.5016835" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.29954615" sideWeight="0.4983165" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.29954615" sideWeight="0.4983165" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980332" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
@@ -1743,7 +1781,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="JS check form has been corrected." />
     <MESSAGE value="JavaDoc for utils has been added" />
     <MESSAGE value="In all servlets all strings moved into constant fields." />
     <MESSAGE value="Logging into file has been added." />
@@ -1768,7 +1805,8 @@
     <MESSAGE value="Rest authentication by token logic has been implemented" />
     <MESSAGE value="Fixed all tests to work with Spring." />
     <MESSAGE value="Add AJAX auto complete for station name inputs" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add AJAX auto complete for station name inputs" />
+    <MESSAGE value="AJAX auto complete some improves" />
+    <option name="LAST_COMMIT_MESSAGE" value="AJAX auto complete some improves" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1964,22 +2002,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/railwaycompany/business/services/interfaces/StationService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.10897436" vertical-offset="0" max-vertical-offset="624">
-          <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/railwaycompany/business/services/implementation/StationServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.13621795" vertical-offset="0" max-vertical-offset="1122">
-          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/railwaycompany/business/services/interfaces/TicketService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.111292966" vertical-offset="0" max-vertical-offset="611">
@@ -2165,24 +2187,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/railwaycompany/presentation/controllers/StationRestController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.78205127" vertical-offset="158" max-vertical-offset="918">
-          <caret line="38" column="1" selection-start-line="38" selection-start-column="1" selection-end-line="38" selection-end-column="1" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/resources/js/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.8363339" vertical-offset="0" max-vertical-offset="1530">
-          <caret line="66" column="67" selection-start-line="66" selection-start-column="67" selection-end-line="66" selection-end-column="67" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/index.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.50167227" vertical-offset="159" max-vertical-offset="1156">
@@ -2211,6 +2215,40 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33070865" vertical-offset="290" max-vertical-offset="5304">
           <caret line="39" column="3" selection-start-line="39" selection-start-column="3" selection-end-line="39" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/railwaycompany/business/services/interfaces/StationService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="340">
+          <caret line="15" column="23" selection-start-line="15" selection-start-column="23" selection-end-line="15" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/railwaycompany/presentation/controllers/StationRestController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="629">
+          <caret line="24" column="66" selection-start-line="24" selection-start-column="66" selection-end-line="24" selection-end-column="66" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/resources/js/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="855" max-vertical-offset="1547">
+          <caret line="75" column="0" selection-start-line="75" selection-start-column="0" selection-end-line="75" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/railwaycompany/business/services/implementation/StationServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.13461539" vertical-offset="103" max-vertical-offset="1513">
+          <caret line="11" column="21" selection-start-line="11" selection-start-column="21" selection-end-line="11" selection-end-column="21" />
           <folding />
         </state>
       </provider>

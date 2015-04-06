@@ -46,36 +46,37 @@ var stationNames = [];
 
 function initStationNameListener() {
     $(document).ready(function ($) {
-        // Workaround for bug in mouse item selection
+        // workaround for bug in mouse item selection
         $.fn.typeahead.Constructor.prototype.blur = function () {
             var that = this;
             setTimeout(function () {
                 that.hide()
             }, 250);
         };
+        // load all station names
+        $.get('stations', function (data) {
+            stationNames = JSON.parse(data);
+        });
         $('#Station-Name').typeahead({
-            source: function (query, process) {
-                $.get('stations?startWith=' + $('#Station-Name').val(), function (data) {
+            source: function () {
+                $.get('stations?startWith=' + $('#Station-Name').val().slice(0, -1), function (data) {
                     stationNames = JSON.parse(data);
-                    console.log(stationNames);
                 });
                 return stationNames;
             }
         });
         $('#Station-From-Name').typeahead({
-            source: function (query, process) {
-                $.get('stations?startWith=' + $('#Station-From-Name').val(), function (data) {
+            source: function () {
+                $.get('stations?startWith=' + $('#Station-From-Name').val().slice(0, -1), function (data) {
                     stationNames = JSON.parse(data);
-                    console.log(stationNames);
                 });
                 return stationNames;
             }
         });
         $('#Station-To-Name').typeahead({
-            source: function (query, process) {
-                $.get('stations?startWith=' + $('#Station-To-Name').val(), function (data) {
+            source: function () {
+                $.get('stations?startWith=' + $('#Station-To-Name').val().slice(0, -1), function (data) {
                     stationNames = JSON.parse(data);
-                    console.log(stationNames);
                 });
                 return stationNames;
             }

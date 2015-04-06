@@ -10,15 +10,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 
 @Service
 public class StationServiceImpl implements StationService {
-
-    /**
-     * Logger for StationServiceImpl class.
-     */
-    private static Logger log = Logger.getLogger(StationServiceImpl.class.getName());
 
     @Autowired
     private StationDao stationDao;
@@ -66,5 +60,24 @@ public class StationServiceImpl implements StationService {
             }
         }
         return stationDataList;
+    }
+
+    @Override
+    public List<String> getAllStationNames(String startWithStr) {
+        List<String> stationNameList = new ArrayList<>();
+        List<Station> stationList = stationDao.getAll();
+        if (startWithStr == null || startWithStr.isEmpty()) {
+            for (Station station : stationList) {
+                stationNameList.add(station.getName());
+            }
+        } else {
+            for (Station station : stationList) {
+                String name = station.getName();
+                if (name.startsWith(startWithStr.toUpperCase()) || name.startsWith(startWithStr.toLowerCase())) {
+                    stationNameList.add(name);
+                }
+            }
+        }
+        return stationNameList;
     }
 }

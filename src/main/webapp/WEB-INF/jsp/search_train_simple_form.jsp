@@ -21,7 +21,7 @@
                    value="<c:out value="${sessionScope.dateFrom}"/>">
         </div>
 
-        <button type="submit" class="btn btn-success">
+        <button type="submit" class="btn btn-primary">
             <i class="icon-white icon-search"></i>
         </button>
 

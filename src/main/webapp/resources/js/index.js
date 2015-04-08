@@ -46,40 +46,30 @@ var stationNames = [];
 
 function initStationNameListener() {
     $(document).ready(function ($) {
-        // workaround for bug in mouse item selection
-        $.fn.typeahead.Constructor.prototype.blur = function () {
-            var that = this;
-            setTimeout(function () {
-                that.hide()
-            }, 250);
-        };
         // load all station names
         $.get('stations', function (data) {
             stationNames = JSON.parse(data);
         });
         $('#Station-Name').typeahead({
             source: function () {
-                $.get('stations?startWith=' + $('#Station-Name').val().slice(0, -1), function (data) {
-                    stationNames = JSON.parse(data);
-                });
                 return stationNames;
-            }
+            },
+            items: 5,
+            minLength: 0
         });
         $('#Station-From-Name').typeahead({
             source: function () {
-                $.get('stations?startWith=' + $('#Station-From-Name').val().slice(0, -1), function (data) {
-                    stationNames = JSON.parse(data);
-                });
                 return stationNames;
-            }
+            },
+            items: 5,
+            minLength: 0
         });
         $('#Station-To-Name').typeahead({
             source: function () {
-                $.get('stations?startWith=' + $('#Station-To-Name').val().slice(0, -1), function (data) {
-                    stationNames = JSON.parse(data);
-                });
                 return stationNames;
-            }
+            },
+            items: 5,
+            minLength: 0
         });
     });
 }

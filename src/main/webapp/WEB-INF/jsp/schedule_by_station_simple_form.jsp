@@ -9,7 +9,7 @@
                    placeholder="Station name" value="<c:out value="${sessionScope.stationName}"/>"
                    autocomplete="off" data-provide="typeahead">
         </div>
-        <button type="submit" class="btn btn-success">
+        <button type="submit" class="btn btn-primary">
             <i class="icon-white icon-search"></i>
         </button>
     </form>

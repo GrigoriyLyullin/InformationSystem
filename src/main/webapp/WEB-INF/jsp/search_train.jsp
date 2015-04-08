@@ -1,6 +1,7 @@
 <%@ page isELIgnored="false" contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <div class="well">
 
     <div class="header">
@@ -30,6 +31,7 @@
                     <th>Train number</th>
                     <th>${sessionScope.stationFromName} departure time</th>
                     <th>${sessionScope.stationToName} arrival time</th>
+                    <th>Buy ticket</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -43,7 +45,21 @@
                         <td><fmt:formatDate type="both" dateStyle="short" timeStyle="short"
                                             value="${train.timeDeparture}"/>
                         </td>
-
+                        <td>
+                            <sec:authorize access="isAnonymous()">
+                                <form action="${pageContext.request.contextPath}buy_ticket" method="get">
+                                    <a href="${pageContext.request.contextPath}/login"
+                                       type="submit" class="btn disabled btn-block">Buy</a>
+                                </form>
+                            </sec:authorize>
+                            <sec:authorize access="isAuthenticated()">
+                                <form action="${pageContext.request.contextPath}/buy_ticket" method="post">
+                                    <input type="hidden" name="trainNumber" value="${train.trainNumber}">
+                                    <input type="hidden" name="timeDeparture" value="${train.timeDeparture}">
+                                    <button type="submit" class="btn btn-block btn-success">Buy</button>
+                                </form>
+                            </sec:authorize>
+                        </td>
                     </tr>
                 </c:forEach>
                 </tbody>

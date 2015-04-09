@@ -12,12 +12,12 @@
 
     <c:choose>
         <c:when test="${not empty sessionScope.scheduleList}">
-            <table class="table table-bordered">
+            <table class="body-table table table-bordered">
                 <thead>
                 <tr>
                     <th>Train number</th>
-                    <th>Arrival time</th>
-                    <th>Departure time</th>
+                    <th>Departure</th>
+                    <th>Stations</th>
                     <th>Buy ticket</th>
                 </tr>
                 </thead>
@@ -26,23 +26,25 @@
                     <tr>
                         <td>${train.trainNumber}</td>
                         <td>
-                            <fmt:formatDate type="both" dateStyle="short" timeStyle="short"
-                                            value="${train.timeArrival}"/>
+                            <fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${train.timeDeparture}"/>
                         </td>
                         <td>
-                            <fmt:formatDate type="both" dateStyle="short" timeStyle="short"
-                                            value="${train.timeDeparture}"/>
                         </td>
                         <td>
                             <sec:authorize access="isAnonymous()">
                                 <a href="${pageContext.request.contextPath}/login"
-                                   class="btn disabled btn-block">Buy</a>
+                                   class="btn disabled btn-block btn-buy btn-buy-disabled">Buy</a>
                             </sec:authorize>
                             <sec:authorize access="isAuthenticated()">
-                                <form action="${pageContext.request.contextPath}/buy_ticket" method="post">
+                                <form action="${pageContext.request.contextPath}/buy_ticket/step_1" method="post">
                                     <input type="hidden" name="trainNumber" value="${train.trainNumber}">
-                                    <input type="hidden" name="timeDeparture" value="${train.timeDeparture}">
-                                    <button type="submit" class="btn btn-block btn-success">Buy</button>
+                                    <input type="hidden" name="dispatchStation"
+                                           value="<c:out value="${sessionScope.stationName}"/>">
+                                    <input type="hidden" name="departureDate"
+                                           value="<fmt:formatDate pattern="yyyy-MM-dd"  value="${train.timeDeparture}"/>">
+                                    <input type="hidden" name="departureTime"
+                                           value="<fmt:formatDate pattern="HH:mm"  value="${train.timeDeparture}"/>">
+                                    <button type="submit" class="btn btn-block btn-success btn-buy">Buy</button>
                                 </form>
                             </sec:authorize>
                         </td>

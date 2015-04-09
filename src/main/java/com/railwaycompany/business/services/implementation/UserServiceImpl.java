@@ -29,4 +29,13 @@ public class UserServiceImpl implements UserService {
         }
         return userData;
     }
+
+    @Override
+    public Integer getUserIdByUsername(String username) {
+        User user = userDao.findUser(username);
+        if (user != null) {
+            return user.getId();
+        }
+        return null;
+    }
 }

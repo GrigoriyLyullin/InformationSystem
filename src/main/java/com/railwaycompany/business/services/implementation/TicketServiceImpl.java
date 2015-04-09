@@ -168,4 +168,90 @@ public class TicketServiceImpl implements TicketService {
         }
         return ticketList;
     }
+
+    @Override
+    public boolean hasEmptySeats(int trainNumber, String dispatchStationName, Date departureDate)
+            throws InvalidInputDataException {
+        int countOfTickets;
+        int seats;
+        try {
+            Station station = stationDao.getStation(dispatchStationName);
+            int stationId = station.getId();
+            Integer trainId = scheduleDao.getTrainId(trainNumber, stationId, departureDate);
+            Train train = trainDao.read(trainId);
+            countOfTickets = ticketDao.countOfTickets(trainId);
+            seats = train.getSeats();
+        } catch (NullPointerException e) {
+            StringBuilder msg = new StringBuilder("Possible that input information is not valid: ");
+            if (trainNumber <= 0)
+                msg.append("trainNumber: ").append(trainNumber);
+            if (departureDate == null)
+                msg.append("departureDate: null");
+            if (dispatchStationName == null)
+                msg.append("stationFrom: null");
+            LOG.log(Level.WARNING, msg.toString(), e);
+            throw new InvalidInputDataException(msg.toString(), e);
+        }
+        return countOfTickets < seats;
+    }
+
+    @Override
+    public boolean hasEnoughTimeBeforeDeparture(int trainNumber, String dispatchStationName, Date departureDate)
+            throws InvalidInputDataException {
+        try {
+            Station station = stationDao.getStation(dispatchStationName);
+            int stationId = station.getId();
+            Integer trainId = scheduleDao.getTrainId(trainNumber, stationId, departureDate);
+            Train train = trainDao.read(trainId);
+
+            if (train != null) {
+                return DateHelper.hasMoreThanTenMinutes(departureDate);
+            } else {
+                throw new InvalidInputDataException("Such train does not exist");
+            }
+        } catch (NullPointerException e) {
+            StringBuilder msg = new StringBuilder("Possible that input information is not valid: ");
+            if (trainNumber <= 0)
+                msg.append("trainNumber: ").append(trainNumber);
+            if (departureDate == null)
+                msg.append("departureDate: null");
+            if (dispatchStationName == null)
+                msg.append("stationFrom: null");
+            LOG.log(Level.WARNING, msg.toString(), e);
+            throw new InvalidInputDataException(msg.toString(), e);
+        }
+    }
+
+    @Override
+    public boolean isRegistered(Integer trainNumber, String dispatchStation, Date departureDate,
+                                String firstName, String lastName, Date birthdate) throws InvalidInputDataException {
+        Passenger passenger = passengerDao.getPassenger(firstName, lastName, birthdate);
+        if (passenger != null) {
+            try {
+                Station station = stationDao.getStation(dispatchStation);
+                int stationId = station.getId();
+                Integer trainId = scheduleDao.getTrainId(trainNumber, stationId, departureDate);
+                return ticketDao.hasBeenRegistered(trainId, passenger.getId());
+            } catch (NullPointerException e) {
+                throw new InvalidInputDataException(e);
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public Float getTicketCost(Integer trainNumber, String dispatchStation, Date date) throws InvalidInputDataException {
+        try {
+            Station station = stationDao.getStation(dispatchStation);
+            int stationId = station.getId();
+            Integer trainId = scheduleDao.getTrainId(trainNumber, stationId, date);
+            Train train = trainDao.read(trainId);
+            if (train != null) {
+                return train.getTicketCost();
+            }
+        } catch (NullPointerException e) {
+            throw new InvalidInputDataException(e);
+        }
+        return null;
+    }
 }

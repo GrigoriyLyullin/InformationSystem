@@ -1,27 +1,29 @@
 <%@ page isELIgnored="false" contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/style/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/style/index.css">
-    <script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/style/datepicker.css">
     <script src="${pageContext.request.contextPath}/resources/js/jquery-1.11.2.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/js/bootstrap-typeahead.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/bootstrap-datepicker.js"></script>
     <script src="${pageContext.request.contextPath}/resources/js/index.js"></script>
     <meta charset="utf-8">
     <title>Railway Company</title>
 </head>
-<body onload="initStationNameListener();">
+<body onload="init();">
 <div class="container">
     <h1>Railway Company</h1>
     <jsp:include page="/WEB-INF/jsp/navbar.jsp" flush="true"/>
     <div class="row">
         <div class="span12 img-rounded" id="jumbotron">
-            <c:if test="${empty sessionScope.userData}">
+            <sec:authorize access="isAnonymous()">
                 <div class="hero-unit" id="form-signin">
                     <jsp:include page="login_form.jsp" flush="true"/>
                 </div>
-            </c:if>
+            </sec:authorize>
         </div>
     </div>
     <a name="search_train"></a>

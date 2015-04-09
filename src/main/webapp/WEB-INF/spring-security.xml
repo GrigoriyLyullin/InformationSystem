@@ -30,8 +30,8 @@
     <!-- Security configuration for html form-based authentication -->
     <http auto-config="true" use-expressions="true">
         <intercept-url pattern="/employee_page" access="hasRole('ROLE_ADMIN')"/>
-        <intercept-url pattern="/buy_ticket" access="hasRole('ROLE_ADMIN')"/>
-        <intercept-url pattern="/buy_ticket" access="hasRole('ROLE_USER')"/>
+        <!--<intercept-url pattern="/buy_ticket" access="hasRole('ROLE_ADMIN')"/>-->
+        <!--<intercept-url pattern="/buy_ticket" access="hasRole('ROLE_USER')"/>-->
 
         <access-denied-handler error-page="/403"/>
         <form-login

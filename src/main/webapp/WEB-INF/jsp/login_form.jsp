@@ -10,16 +10,27 @@
         <input name="password" id="password" type="password" class="input-block-level"
                placeholder="Password">
 
-        <div class="alert alert-error" id="loginAlert">
-            <p>Incorrect username or password.</p>
+        <div class="alert alert-error" id="login-alert">
+            <p>Incorrect username or password</p>
+        </div>
+        <div class="alert alert-error" id="login-error">
+            <p>User with such data does not exist</p>
+        </div>
+        <div class="alert alert-error" id="login-message">
+            <p>Please, sign in to buy ticket</p>
         </div>
         <c:choose>
-            <c:when test="${signInError}">
-                <div class="alert alert-error" id="loginError">
+            <c:when test="${requestScope.signInError}">
+                <div class="alert alert-error" id="login-error-reserve">
                     <p>User with such data does not exist</p>
                 </div>
             </c:when>
+            <c:when test="${requestScope.signInMessage}">
+                <div class="alert alert-error" id="login-message-reserve">
+                    <p>Please, sign in to buy ticket</p>
+                </div>
+            </c:when>
         </c:choose>
-        <button class="btn btn-medium btn-primary" type="submit">Sign in</button>
+        <button id="btn-signin" class="btn btn-medium btn-primary" type="submit">Sign in</button>
     </div>
 </form>

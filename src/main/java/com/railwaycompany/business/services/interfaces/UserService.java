@@ -5,4 +5,6 @@ import com.railwaycompany.business.dto.UserData;
 public interface UserService {
 
     UserData getUserData(int userId);
+
+    Integer getUserIdByUsername(String username);
 }

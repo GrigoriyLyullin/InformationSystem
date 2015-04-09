@@ -17,13 +17,12 @@
                    autocomplete="off" data-provide="typeahead">
 
             <span class="add-on">Departure date</span>
-            <input id="dateFrom" name="dateFrom" type="date" class="input-medium" title="Date"
-                   value="<c:out value="${sessionScope.dateFrom}"/>">
+            <input id="dateFrom" name="dateFrom" class="input-medium" data-format="yyyy-mm-dd" type="text"
+                   autocomplete="off" value="<c:out value="${sessionScope.dateFrom}"/>" title="Date"
+                   placeholder="yyyy-mm-dd">
         </div>
-
         <button type="submit" class="btn btn-primary">
             <i class="icon-white icon-search"></i>
         </button>
-
     </form>
 </div>

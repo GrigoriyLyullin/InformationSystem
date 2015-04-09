@@ -2,8 +2,11 @@
   <dictionary name="Григорий">
     <words>
       <w>birthdate</w>
+      <w>datepicker</w>
       <w>railwaycompany</w>
+      <w>signin</w>
       <w>springframework</w>
+      <w>timepicker</w>
       <w>typeahead</w>
     </words>
   </dictionary>

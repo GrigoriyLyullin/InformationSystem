@@ -25,7 +25,7 @@
 
     <c:choose>
         <c:when test="${not empty sessionScope.trainList}">
-            <table class="table table-bordered">
+            <table class="body-table table table-bordered">
                 <thead>
                 <tr>
                     <th>Train number</th>

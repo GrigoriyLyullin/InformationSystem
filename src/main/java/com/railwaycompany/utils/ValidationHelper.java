@@ -70,7 +70,7 @@ public class ValidationHelper {
      * @return True if string contains valid date, otherwise - False.
      */
     public static boolean isValidDateStr(String date) {
-        return date != null && !date.isEmpty() && datePattern.matcher(date).matches();
+        return date != null && !date.isEmpty();//TODO Fix this part :  && datePattern.matcher(date).matches();
     }
 
     /**
@@ -151,5 +151,21 @@ public class ValidationHelper {
      */
     public static boolean isValidId(String id) {
         return isValidTrainNumber(id);
+    }
+
+    public static boolean isValidShortDateStr(String cardExpiresDate) {
+        return cardExpiresDate != null && !cardExpiresDate.isEmpty();
+    }
+
+    public static boolean isValidCardCVC(String cardCVC) {
+        return cardCVC != null && !cardCVC.isEmpty();
+    }
+
+    public static boolean isValidCardNumber(String cardNumber) {
+        return cardNumber != null && !cardNumber.isEmpty();
+    }
+
+    public static boolean isValidCardHolder(String cardHolder) {
+        return cardHolder != null && !cardHolder.isEmpty();
     }
 }

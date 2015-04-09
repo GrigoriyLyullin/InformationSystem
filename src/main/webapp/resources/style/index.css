@@ -26,20 +26,34 @@ h1 {
     font-size: 16px;
 }
 
-#loginAlert {
-    padding: 0 0 0 10px;
-    margin-bottom: 10px;
-    font-size: 8px;
+#login-alert {
     display: none;
-}
-
-#loginError {
     padding: 0 0 0 10px;
     margin-bottom: 10px;
     font-size: 8px;
 }
 
-#loginMessage {
+#login-error {
+    display: none;
+    padding: 0 0 0 10px;
+    margin-bottom: 10px;
+    font-size: 8px;
+}
+
+#login-error-reserve {
+    padding: 0 0 0 10px;
+    margin-bottom: 10px;
+    font-size: 8px;
+}
+
+#login-message-reserve {
+    padding: 0 0 0 10px;
+    margin-bottom: 10px;
+    font-size: 8px;
+}
+
+#login-message {
+    display: none;
     padding: 0 0 0 10px;
     margin-bottom: 10px;
     font-size: 8px;
@@ -148,9 +162,23 @@ h1 {
     height: 20px;
 }
 
-thead {
+.body-table thead {
     color: #FFFFFF;
     background: #666666;
+}
+
+.body-table th {
+    text-align: center;
+}
+
+.body-table td {
+    text-align: center;
+}
+
+.body-table .btn-buy {
+    margin-right: auto;
+    margin-left: auto;
+    width: 50px;
 }
 
 .well {
@@ -173,7 +201,158 @@ thead {
     height: 30px;
 }
 
-#stationNamePrompt {
-    margin-left: 55px;
-    width: 207px;
+.buy-ticket-span {
+    padding-left: 5px;
+    width: 30%;
+    border-radius: 10px;
+    box-shadow: 0 0 5px #73b8ee;
+    border: 1px solid #73b8ee;
+}
+
+.buy-ticket-span-disabled {
+    padding-left: 5px;
+    width: 30%;
+    border-radius: 10px;;
+    color: #BEBEBE;
+}
+
+.buy-ticket-span-disabled input {
+    display: block;
+    height: 30px;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.buy-ticket-span input {
+    display: block;
+    height: 30px;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.buy-ticket-span-disabled button {
+    display: block;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    bottom: 0;
+}
+
+.buy-ticket-span button {
+    display: block;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    bottom: 0;
+}
+
+.buy-ticket-span form p {
+    margin-left: 15px;
+}
+
+.buy-ticket-span-disabled form p {
+    margin-left: 15px;
+}
+
+.buy-ticket-form input {
+    display: block;
+    height: 30px;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.buy-ticket-form button {
+    display: block;
+    width: 60%;
+    height: 30px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#btn-back-step-3 {
+    display: block;
+    width: 5%;
+    position: relative;
+    left: 0;
+    top: 0;
+    margin-top: 15px;
+    margin-left: 15px;
+    margin-bottom: 0;
+}
+
+#btn-back-step-2 {
+    display: block;
+    width: 5%;
+    position: relative;
+    left: 0;
+    top: 0;
+    margin-top: 15px;
+    margin-left: 15px;
+    margin-bottom: 0;
+}
+
+.buy-ticket-span h3 {
+    text-align: right;
+    margin-right: 15px;
+}
+
+.buy-ticket-span-disabled h3 {
+    text-align: right;
+    margin-right: 15px;
+}
+
+.buy-ticket-form-error p {
+    font-weight: normal;
+    margin-top: -10px;
+    margin-left: 15px;
+    color: #FF4500;
+}
+
+.buy-ticket-form-error input {
+    color: #FF4500;
+    border: 1px solid #FF4500;
+    box-shadow: 0 0 5px #FF4500;
+}
+
+#total-cost {
+    color: #6E8B3D;
+    font-weight: bold;
+    text-align: center;
+}
+
+#buy-ticket-datetime-from {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#buy-ticket-date-from {
+    float: left;
+    margin-left: 15px;
+    width: 50%;
+}
+
+#buy-ticket-time-from {
+    width: 35%;
+    margin-right: 15px;
+}
+
+#buy-ticket-datetime-from p {
+    clear: left;
+}
+
+.bootstrap-timepicker-widget input {
+    height: 30px;
+    margin: 0;
+    padding: 0;
+}
+
+.buy-ticket-span .alert {
+    margin-left: 15px;
+    margin-right: 15px;
 }

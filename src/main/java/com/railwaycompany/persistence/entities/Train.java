@@ -8,13 +8,15 @@ import java.io.Serializable;
 public class Train implements Serializable {
 
     @Id
-    @GeneratedValue( strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_train")
     private int id;
     @Column(name = "number")
     private int number;
     @Column(name = "seats")
     private int seats;
+    @Column(name = "ticket_cost")
+    private float ticketCost;
 
     public int getId() {
         return id;
@@ -38,5 +40,13 @@ public class Train implements Serializable {
 
     public void setSeats(int seats) {
         this.seats = seats;
+    }
+
+    public float getTicketCost() {
+        return ticketCost;
+    }
+
+    public void setTicketCost(float ticketCost) {
+        this.ticketCost = ticketCost;
     }
 }

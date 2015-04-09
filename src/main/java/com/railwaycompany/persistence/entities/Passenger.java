@@ -20,7 +20,7 @@ public class Passenger implements Serializable {
     private Date birthdate;
     @ManyToOne
     @JoinColumn(name = "user_id")
-    @Transient
+//    @Transient
     private User user;
 
     public Passenger() {

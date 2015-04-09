@@ -17,4 +17,13 @@ public interface TicketService {
             throws HasNoEmptySeatsException, AlreadyRegisteredException, SalesStopException, InvalidInputDataException;
 
     List<Ticket> getTickets(String dateFrom, String timeFrom, String dateTo, String timeTo);
+
+    boolean hasEmptySeats(int trainNumber, String dispatchStationName, Date departureDate) throws InvalidInputDataException;
+
+    boolean hasEnoughTimeBeforeDeparture(int trainNumber, String dispatchStationName, Date departureDate) throws InvalidInputDataException;
+
+    boolean isRegistered(Integer trainNumberInt, String dispatchStation, Date date, String firstName, String lastName, Date birth)
+            throws InvalidInputDataException;
+
+    Float getTicketCost(Integer trainNumberInt, String dispatchStation, Date date) throws InvalidInputDataException;
 }

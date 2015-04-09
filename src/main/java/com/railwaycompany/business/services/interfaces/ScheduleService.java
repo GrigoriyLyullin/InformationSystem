@@ -4,6 +4,7 @@ import com.railwaycompany.business.dto.ScheduleData;
 import com.railwaycompany.business.services.exceptions.StationDoesNotExistException;
 import com.railwaycompany.business.services.exceptions.SuchScheduleExistException;
 import com.railwaycompany.business.services.exceptions.TrainDoesNotExistException;
+import com.railwaycompany.persistence.entities.Schedule;
 import com.railwaycompany.persistence.entities.Station;
 
 import java.util.Date;
@@ -25,4 +26,8 @@ public interface ScheduleService {
 
     void addSchedule(int stationId, int trainId, Date arrivalDate, Date departureDate) throws
             SuchScheduleExistException, StationDoesNotExistException, TrainDoesNotExistException;
+
+    List<ScheduleData> getSchedule(String stationName, Date startDate);
+
+    List<ScheduleData> getSchedule(String stationName, Date date, int stepSize, int startNumber);
 }

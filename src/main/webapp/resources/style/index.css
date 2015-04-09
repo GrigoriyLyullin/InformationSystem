@@ -356,3 +356,19 @@ h1 {
     margin-left: 15px;
     margin-right: 15px;
 }
+
+.centered-button {
+    text-align: center;
+}
+
+.centered-button-previous {
+    margin-left: 40%;
+    margin-right: auto;
+    float: left;
+}
+
+.centered-button-next {
+    margin-right: 40%;
+    margin-left: auto;
+    clear: left;
+}

@@ -56,7 +56,7 @@ function init() {
         $.get('stations', function (data) {
             stationNames = JSON.parse(data);
         });
-        $('#Station-Name').typeahead({
+        $('#schedule-by-station-name').typeahead({
             source: function () {
                 return stationNames;
             },

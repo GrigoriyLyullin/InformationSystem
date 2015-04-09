@@ -35,15 +35,15 @@
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach items="${sessionScope.trainList}" var="train">
+                <c:forEach items="${sessionScope.trainList}" var="scheduleData">
                     <tr>
-                        <td>${train.trainNumber}</td>
+                        <td>${scheduleData.trainNumber}</td>
                         <td>
                             <fmt:formatDate type="both" dateStyle="short" timeStyle="short"
-                                            value="${train.timeArrival}"/>
+                                            value="${scheduleData.timeArrival}"/>
                         </td>
                         <td><fmt:formatDate type="both" dateStyle="short" timeStyle="short"
-                                            value="${train.timeDeparture}"/>
+                                            value="${scheduleData.timeDeparture}"/>
                         </td>
                         <td>
                             <sec:authorize access="isAnonymous()">
@@ -54,8 +54,8 @@
                             </sec:authorize>
                             <sec:authorize access="isAuthenticated()">
                                 <form action="${pageContext.request.contextPath}/buy_ticket" method="post">
-                                    <input type="hidden" name="trainNumber" value="${train.trainNumber}">
-                                    <input type="hidden" name="timeDeparture" value="${train.timeDeparture}">
+                                    <input type="hidden" name="trainNumber" value="${scheduleData.trainNumber}">
+                                    <input type="hidden" name="timeDeparture" value="${scheduleData.timeDeparture}">
                                     <button type="submit" class="btn btn-block btn-success">Buy</button>
                                 </form>
                             </sec:authorize>

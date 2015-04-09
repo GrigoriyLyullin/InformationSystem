@@ -14,10 +14,7 @@ import com.railwaycompany.persistence.entities.Train;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class ScheduleServiceImpl implements ScheduleService {
@@ -28,10 +25,6 @@ public class ScheduleServiceImpl implements ScheduleService {
     private StationDao stationDao;
     @Autowired
     private TrainDao trainDao;
-
-    public ScheduleServiceImpl() {
-
-    }
 
     @Override
     public List<ScheduleData> getSchedule(Station station) {
@@ -148,6 +141,57 @@ public class ScheduleServiceImpl implements ScheduleService {
         } else {
             throw new StationDoesNotExistException();
         }
+    }
+
+    @Override
+    public List<ScheduleData> getSchedule(String stationName, Date startDate) {
+        List<ScheduleData> scheduleDataList = null;
+        List<ScheduleData> schedule = getSchedule(stationName);
+        if (schedule != null) {
+            scheduleDataList = new ArrayList<>();
+            for (ScheduleData s : schedule) {
+                if (s.getTimeDeparture().getTime() > startDate.getTime()) {
+                    scheduleDataList.add(s);
+                }
+            }
+        }
+        return scheduleDataList;
+    }
+
+    @Override
+    public List<ScheduleData> getSchedule(String stationName, Date startDate, int stepSize, int startNumber) {
+        List<ScheduleData> scheduleDataList = null;
+        List<ScheduleData> schedule = getSchedule(stationName);
+        if (schedule != null) {
+            scheduleDataList = new ArrayList<>();
+            for (ScheduleData s : schedule) {
+                if (s.getTimeDeparture().getTime() > startDate.getTime()) {
+                    scheduleDataList.add(s);
+                }
+            }
+
+            Collections.sort(scheduleDataList, new Comparator<ScheduleData>() {
+                @Override
+                public int compare(ScheduleData o1, ScheduleData o2) {
+                    if (o1.getTimeDeparture().getTime() > o2.getTimeDeparture().getTime()) {
+                        return 1;
+                    } else if (o1.getTimeDeparture().getTime() < o2.getTimeDeparture().getTime()) {
+                        return -1;
+                    }
+                    return 0;
+                }
+            });
+
+            List<ScheduleData> tmp = new ArrayList<>();
+
+            for (int s = startNumber; s < startNumber + stepSize; s++) {
+                if (s < scheduleDataList.size()) {
+                    tmp.add(scheduleDataList.get(s));
+                }
+            }
+            scheduleDataList = tmp;
+        }
+        return scheduleDataList;
     }
 
     @Override

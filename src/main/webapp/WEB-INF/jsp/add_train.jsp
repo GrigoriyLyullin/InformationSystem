@@ -67,11 +67,11 @@
             </tr>
             </thead>
             <tbody>
-            <c:forEach items="${sessionScope.allTrainList}" var="train">
+            <c:forEach items="${sessionScope.allTrainList}" var="scheduleData">
                 <tr>
-                    <td>${train.id}</td>
-                    <td>${train.number}</td>
-                    <td>${train.seats}</td>
+                    <td>${scheduleData.id}</td>
+                    <td>${scheduleData.number}</td>
+                    <td>${scheduleData.seats}</td>
                 </tr>
             </c:forEach>
             </tbody>

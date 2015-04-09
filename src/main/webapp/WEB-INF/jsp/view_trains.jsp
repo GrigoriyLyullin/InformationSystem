@@ -32,13 +32,13 @@
             </tr>
             </thead>
             <tbody>
-            <c:forEach items="${sessionScope.viewAllTrainsList}" var="train">
+            <c:forEach items="${sessionScope.viewAllTrainsList}" var="scheduleData">
                 <tr>
-                    <td>${train.id}</td>
-                    <td>${train.number}</td>
-                    <td>${train.seats}</td>
+                    <td>${scheduleData.id}</td>
+                    <td>${scheduleData.number}</td>
+                    <td>${scheduleData.seats}</td>
                     <td>
-                        <c:forEach items="${train.stations}" var="station">
+                        <c:forEach items="${scheduleData.stations}" var="station">
                             ${station.id}.${station.name}
                             Arrival: <fmt:formatDate type="both" dateStyle="short" timeStyle="short"
                                                      value="${station.arrivalDate}"/>

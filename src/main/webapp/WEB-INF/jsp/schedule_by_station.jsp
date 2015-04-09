@@ -2,34 +2,48 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<script src="${pageContext.request.contextPath}/resources/js/index.js"></script>
 <div class="well">
 
     <div class="header">
         <h2>Schedule by station</h2>
     </div>
 
-    <jsp:include page="/WEB-INF/jsp/schedule_by_station_simple_form.jsp"/>
+    <div id="inputFromSearchTrain">
+        <form class="form-inline" method="post" action="${pageContext.request.contextPath}/schedule_by_station">
+            <div class="input-prepend">
+                <span class="add-on">Station</span>
+                <input id="schedule-by-station-name" name="schedule-by-station-name" type="text" class="input-large"
+                       placeholder="Station name" value="<c:out value="${sessionScope.scheduleByStationName}"/>"
+                       autocomplete="off" data-provide="typeahead">
+            </div>
+            <button type="submit" class="btn btn-primary">
+                <i class="icon-white icon-search"></i>
+            </button>
+        </form>
+    </div>
 
     <c:choose>
-        <c:when test="${not empty sessionScope.scheduleList}">
+        <c:when test="${not empty sessionScope.scheduleDataList}">
             <table class="body-table table table-bordered">
                 <thead>
                 <tr>
                     <th>Train number</th>
                     <th>Departure</th>
-                    <th>Stations</th>
+                        <%--<th>Stations</th>--%>
                     <th>Buy ticket</th>
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach items="${sessionScope.scheduleList}" var="train">
+                <c:forEach items="${sessionScope.scheduleDataList}" var="scheduleData">
                     <tr>
-                        <td>${train.trainNumber}</td>
+                        <td>${scheduleData.trainNumber}</td>
                         <td>
-                            <fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${train.timeDeparture}"/>
+                            <fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${scheduleData.timeDeparture}"/>
                         </td>
-                        <td>
-                        </td>
+                            <%--<td>--%>
+                            <%--TODO Вывести список станций, через которые следует поезд--%>
+                            <%--</td>--%>
                         <td>
                             <sec:authorize access="isAnonymous()">
                                 <a href="${pageContext.request.contextPath}/login"
@@ -37,13 +51,16 @@
                             </sec:authorize>
                             <sec:authorize access="isAuthenticated()">
                                 <form action="${pageContext.request.contextPath}/buy_ticket/step_1" method="post">
-                                    <input type="hidden" name="trainNumber" value="${train.trainNumber}">
+                                    <input type="hidden" name="trainNumber"
+                                           value="${scheduleData.trainNumber}">
                                     <input type="hidden" name="dispatchStation"
                                            value="<c:out value="${sessionScope.stationName}"/>">
                                     <input type="hidden" name="departureDate"
-                                           value="<fmt:formatDate pattern="yyyy-MM-dd"  value="${train.timeDeparture}"/>">
+                                           value="<fmt:formatDate pattern="yyyy-MM-dd"
+                                           value="${scheduleData.timeDeparture}"/>">
                                     <input type="hidden" name="departureTime"
-                                           value="<fmt:formatDate pattern="HH:mm"  value="${train.timeDeparture}"/>">
+                                           value="<fmt:formatDate pattern="HH:mm"
+                                           value="${scheduleData.timeDeparture}"/>">
                                     <button type="submit" class="btn btn-block btn-success btn-buy">Buy</button>
                                 </form>
                             </sec:authorize>
@@ -52,11 +69,36 @@
                 </c:forEach>
                 </tbody>
             </table>
+            <div class="centered-button">
+                <c:if test="${sessionScope.startNumber ge sessionScope.stepSize}">
+                    <form method="post" action="${pageContext.request.contextPath}/schedule_by_station">
+                        <input type="hidden" name="schedule-by-station-name"
+                               value="<c:out value="${sessionScope.scheduleByStationName}"/>">
+                        <input type="hidden" name="step-size" value="${sessionScope.stepSize}">
+                        <input type="hidden" name="start-number"
+                               value="${sessionScope.startNumber - sessionScope.stepSize}">
+                        <button class="btn centered-button-previous"><i class="icon-arrow-left"></i></button>
+                    </form>
+                </c:if>
+                <c:if test="${sessionScope.startNumber lt sessionScope.maxSize}">
+                    <form method="post" action="${pageContext.request.contextPath}/schedule_by_station">
+                        <input type="hidden" name="schedule-by-station-name"
+                               value="<c:out value="${sessionScope.scheduleByStationName}"/>">
+                        <input type="hidden" name="step-size" value="${sessionScope.stepSize}">
+                        <input type="hidden" name="start-number"
+                               value="${sessionScope.startNumber + sessionScope.stepSize}">
+                        <button class="btn centered-button-next"><i class="icon-arrow-right"></i></button>
+                    </form>
+                </c:if>
+                <c:if test="${not (sessionScope.startNumber lt sessionScope.maxSize)}">
+                    <div class="centered-button-next"></div>
+                </c:if>
+            </div>
         </c:when>
-        <c:when test="${empty sessionScope.scheduleList}">
-            <c:if test="${sessionScope.stationNotFound}">
+        <c:when test="${empty sessionScope.scheduleDataList}">
+            <c:if test="${sessionScope.scheduleByStationNotFound}">
                 <div class="alert alert-error">
-                    <p>Station "${sessionScope.stationName}" was not found.</p>
+                    <p>Station "${sessionScope.scheduleByStationName}" was not found.</p>
                 </div>
             </c:if>
         </c:when>

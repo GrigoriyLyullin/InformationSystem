@@ -361,14 +361,6 @@ h1 {
     text-align: center;
 }
 
-.centered-button-previous {
-    margin-left: 40%;
-    margin-right: auto;
-    float: left;
-}
-
-.centered-button-next {
-    margin-right: 40%;
-    margin-left: auto;
-    clear: left;
+.centered-button-form {
+    display: inline-block;
 }

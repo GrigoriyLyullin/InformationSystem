@@ -23,9 +23,9 @@ public class TicketRestController {
     private TicketService ticketService;
 
     @RequestMapping(method = RequestMethod.GET)
-    public String getTickets(@RequestParam(value = "dateFrom", required = false) String dateFrom,
+    public String getTickets(@RequestParam(value = "dateFrom") String dateFrom,
                                    @RequestParam(value = "timeFrom", defaultValue = "00:00") String timeFrom,
-                                   @RequestParam(value = "dateTo", required = false) String dateTo,
+                                   @RequestParam(value = "dateTo") String dateTo,
                                    @RequestParam(value = "timeTo", defaultValue = "00:00") String timeTo,
                                    HttpServletResponse response) {
         List<Ticket> ticketList = null;

@@ -10,7 +10,7 @@
     </div>
 
     <div id="inputFromSearchTrain">
-        <form class="form-inline" method="post" action="${pageContext.request.contextPath}/schedule_by_station">
+        <form class="form-inline" method="get" action="${pageContext.request.contextPath}/schedule_by_station">
             <div class="input-prepend">
                 <span class="add-on">Station</span>
                 <input id="schedule-by-station-name" name="schedule-by-station-name" type="text" class="input-large"
@@ -24,7 +24,7 @@
     </div>
 
     <c:choose>
-        <c:when test="${not empty sessionScope.scheduleDataList}">
+        <c:when test="${not empty sessionScope.scheduleByStationDataList}">
             <table class="body-table table table-bordered">
                 <thead>
                 <tr>
@@ -35,7 +35,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach items="${sessionScope.scheduleDataList}" var="scheduleData">
+                <c:forEach items="${sessionScope.scheduleByStationDataList}" var="scheduleData">
                     <tr>
                         <td>${scheduleData.trainNumber}</td>
                         <td>
@@ -70,28 +70,25 @@
                 </tbody>
             </table>
             <div class="centered-button">
-                <c:if test="${sessionScope.startNumber ge sessionScope.stepSize}">
-                    <form method="post" action="${pageContext.request.contextPath}/schedule_by_station">
+                <c:if test="${sessionScope.scheduleByStationStartNumber ne 0}">
+                    <form class="centered-button-form" method="get"
+                          action="${pageContext.request.contextPath}/schedule_by_station/previous">
                         <input type="hidden" name="schedule-by-station-name"
                                value="<c:out value="${sessionScope.scheduleByStationName}"/>">
-                        <input type="hidden" name="step-size" value="${sessionScope.stepSize}">
-                        <input type="hidden" name="start-number"
-                               value="${sessionScope.startNumber - sessionScope.stepSize}">
-                        <button class="btn centered-button-previous"><i class="icon-arrow-left"></i></button>
+                        <input type="hidden" name="schedule-by-station-start-number"
+                               value="${sessionScope.scheduleByStationStartNumber}">
+                        <button class="btn"><i class="icon-arrow-left"></i></button>
                     </form>
                 </c:if>
-                <c:if test="${sessionScope.startNumber lt sessionScope.maxSize}">
-                    <form method="post" action="${pageContext.request.contextPath}/schedule_by_station">
+                <c:if test="${sessionScope.scheduleByStationStartNumber lt sessionScope.scheduleByStationMaxSize}">
+                    <form class="centered-button-form" method="get"
+                          action="${pageContext.request.contextPath}/schedule_by_station/next">
                         <input type="hidden" name="schedule-by-station-name"
                                value="<c:out value="${sessionScope.scheduleByStationName}"/>">
-                        <input type="hidden" name="step-size" value="${sessionScope.stepSize}">
-                        <input type="hidden" name="start-number"
-                               value="${sessionScope.startNumber + sessionScope.stepSize}">
-                        <button class="btn centered-button-next"><i class="icon-arrow-right"></i></button>
+                        <input type="hidden" name="schedule-by-station-start-number"
+                               value="${sessionScope.scheduleByStationStartNumber}">
+                        <button class="btn"><i class="icon-arrow-right"></i></button>
                     </form>
-                </c:if>
-                <c:if test="${not (sessionScope.startNumber lt sessionScope.maxSize)}">
-                    <div class="centered-button-next"></div>
                 </c:if>
             </div>
         </c:when>

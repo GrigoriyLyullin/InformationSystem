@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.Date;
 import java.util.List;
@@ -29,9 +30,9 @@ public class ScheduleByStationController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String getScheduleByStationPage(@RequestParam(value = "schedule-by-station-name", required = false)
-                                           String stationName, HttpSession session) {
+                                           String stationName, HttpServletRequest request, HttpSession session) {
         if (stationName != null) {
-            getSchedulesByStation(stationName, Integer.valueOf(STEP_SIZE), 0, Direction.NEXT, session);
+            getSchedulesByStation(stationName, Integer.valueOf(STEP_SIZE), 0, Direction.NONE, request, session);
         }
         return "index";
     }
@@ -42,51 +43,48 @@ public class ScheduleByStationController {
                                                     defaultValue = STEP_SIZE) int stepSize,
                                             @RequestParam(value = "schedule-by-station-start-number",
                                                     defaultValue = "0") int startNumber,
-                                            HttpSession session) {
-        getSchedulesByStation(stationName, stepSize, startNumber, Direction.NEXT, session);
+                                            HttpServletRequest request, HttpSession session) {
+        getSchedulesByStation(stationName, stepSize, startNumber, Direction.NEXT, request, session);
         return "index";
     }
 
     @RequestMapping(value = "previous", method = RequestMethod.GET)
     public String getPrevSchedulesByStation(@RequestParam(value = "schedule-by-station-name") String stationName,
-                                            @RequestParam(value = "schedule-by-station-step-size", defaultValue = STEP_SIZE) int stepSize,
-                                            @RequestParam(value = "schedule-by-station-start-number", defaultValue = "0") int startNumber,
-                                            HttpSession session) {
-        getSchedulesByStation(stationName, stepSize, startNumber, Direction.PREVIOUS, session);
+                                            @RequestParam(value = "schedule-by-station-step-size",
+                                                    defaultValue = STEP_SIZE) int stepSize,
+                                            @RequestParam(value = "schedule-by-station-start-number",
+                                                    defaultValue = "0") int startNumber,
+                                            HttpServletRequest request, HttpSession session) {
+        getSchedulesByStation(stationName, stepSize, startNumber, Direction.PREVIOUS, request, session);
         return "index";
     }
 
     private void getSchedulesByStation(String stationName, int stepSize, int startNumber, Direction direction,
-                                       HttpSession session) {
+                                       HttpServletRequest request, HttpSession session) {
         if (isValidStationName(stationName)) {
-
             int maxSize;
-            Object maxSizeAttr = session.getAttribute("scheduleByStationMaxSize");
+            Object maxSizeAttr = request.getAttribute("scheduleByStationMaxSize");
             if (maxSizeAttr == null) {
                 maxSize = scheduleService.getSchedule(stationName, new Date()).size() - 1;
-                session.setAttribute("scheduleByStationMaxSize", maxSize);
+                request.setAttribute("scheduleByStationMaxSize", maxSize);
             } else {
                 maxSize = (int) maxSizeAttr;
             }
-
             if (direction == Direction.PREVIOUS) {
                 startNumber = (startNumber >= stepSize) ? startNumber - stepSize : 0;
             } else if (direction == Direction.NEXT) {
                 startNumber = (startNumber < maxSize) ? startNumber + stepSize : maxSize;
             }
-
             session.setAttribute("scheduleByStationName", stationName);
             List<ScheduleData> scheduleOfTrainsByStation = scheduleService.
                     getSchedule(stationName, new Date(), stepSize, startNumber);
             if (scheduleOfTrainsByStation != null) {
-
-
-                session.setAttribute("scheduleByStationStartNumber", startNumber);
-                session.setAttribute("scheduleByStationDataList", scheduleOfTrainsByStation);
-                session.setAttribute("scheduleByStationNotFound", false);
+                request.setAttribute("scheduleByStationStartNumber", startNumber);
+                request.setAttribute("scheduleByStationDataList", scheduleOfTrainsByStation);
+                request.setAttribute("scheduleByStationNotFound", false);
             } else {
-                session.setAttribute("scheduleByStationDataList", null);
-                session.setAttribute("scheduleByStationNotFound", true);
+                request.setAttribute("scheduleByStationDataList", null);
+                request.setAttribute("scheduleByStationNotFound", true);
             }
         } else {
             LOG.log(Level.WARNING, "Invalid station name: " + stationName);
@@ -95,6 +93,7 @@ public class ScheduleByStationController {
 
     enum Direction {
         PREVIOUS,
-        NEXT
+        NEXT,
+        NONE
     }
 }

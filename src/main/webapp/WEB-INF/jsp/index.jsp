@@ -6,14 +6,16 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/style/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/style/index.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/style/datepicker.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/style/jquery.dataTables.css">
     <script src="${pageContext.request.contextPath}/resources/js/jquery-1.11.2.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/js/bootstrap-typeahead.js"></script>
     <script src="${pageContext.request.contextPath}/resources/js/bootstrap-datepicker.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/jquery.dataTables.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/js/index.js"></script>
     <meta charset="utf-8">
     <title>Railway Company</title>
 </head>
-<body onload="init();">
+<body onload="init_index_page();">
 <div class="container">
     <h1>Railway Company</h1>
     <jsp:include page="/WEB-INF/jsp/navbar.jsp" flush="true"/>

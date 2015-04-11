@@ -80,4 +80,9 @@ public class StationServiceImpl implements StationService {
         }
         return stationNameList;
     }
+
+    @Override
+    public boolean exist(String stationName) {
+        return stationDao.getStation(stationName) != null;
+    }
 }

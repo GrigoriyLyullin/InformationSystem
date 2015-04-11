@@ -10,11 +10,13 @@ import org.springframework.web.servlet.ModelAndView;
 public class AuthenticationController {
 
     @RequestMapping(value = "login", method = RequestMethod.GET)
-    public final ModelAndView login(@RequestParam(value = "error", required = false) final String error) {
-
+    public final ModelAndView login(@RequestParam(value = "msg", required = false) final String msg,
+                                    @RequestParam(value = "error", required = false) final String error) {
         ModelAndView model = new ModelAndView();
         if (error != null) {
             model.addObject("signInError", true);
+        } else if (msg != null) {
+            model.addObject("signInMessage", true);
         }
         model.setViewName("login");
         return model;

@@ -14,4 +14,6 @@ public interface StationService {
     List<StationData> getAll();
 
     List<String> getAllStationNames(String startWith);
+
+    boolean exist(String stationName);
 }

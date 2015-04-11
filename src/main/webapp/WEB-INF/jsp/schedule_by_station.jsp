@@ -3,6 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <script src="${pageContext.request.contextPath}/resources/js/index.js"></script>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/style/index.css">
 <div class="well">
 
     <div class="header">
@@ -10,7 +11,8 @@
     </div>
 
     <div id="inputFromSearchTrain">
-        <form class="form-inline" method="get" action="${pageContext.request.contextPath}/schedule_by_station">
+        <form class="form-inline" id="schedule-by-station-form" method="get"
+              action="${pageContext.request.contextPath}/schedule_by_station">
             <div class="input-prepend">
                 <span class="add-on">Station</span>
                 <input id="schedule-by-station-name" name="schedule-by-station-name" type="text" class="input-large"
@@ -20,7 +22,35 @@
             <button type="submit" class="btn btn-primary" id="btn-schedule-by-station">
                 <i class="icon-white icon-search"></i>
             </button>
+            <p class="hidden">Invalid station name</p>
         </form>
+    </div>
+
+    <sec:authorize access="isAnonymous()">
+        <c:set value="anonymous" var="authorizeAccess"/>
+    </sec:authorize>
+    <sec:authorize access="isAuthenticated()">
+        <c:set value="authenticated" var="authorizeAccess"/>
+    </sec:authorize>
+
+    <input type="hidden" name="authorize-access" value="${authorizeAccess}">
+    <input type="hidden" name="context-path" value="${pageContext.request.contextPath}">
+
+    <div id="schedule-by-station-table-ajax-preloader">
+        <img src="${pageContext.request.contextPath}/resources/img/preloader.gif"/>
+    </div>
+
+    <div>
+        <div id="schedule-by-station-table-ajax"></div>
+        <div id="schedule-by-station-table-ajax-empty" class="alert alert-error"></div>
+        <div class="centered-button">
+            <a href="#" class="btn centered-button-form" id="schedule-by-station-ajax-previous">
+                <i class="icon-arrow-left"></i>
+            </a>
+            <a href="#" class="btn centered-button-form" id="schedule-by-station-ajax-next">
+                <i class="icon-arrow-right"></i>
+            </a>
+        </div>
     </div>
 
     <c:choose>

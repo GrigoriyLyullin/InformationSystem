@@ -357,10 +357,53 @@ h1 {
     margin-right: 15px;
 }
 
+#schedule-by-station-ajax-previous {
+    display: none;
+}
+
+#schedule-by-station-ajax-next {
+    display: none;
+}
+
 .centered-button {
     text-align: center;
 }
 
 .centered-button-form {
     display: inline-block;
+}
+
+#schedule-by-station-table-ajax {
+    display: none;
+}
+
+#schedule-by-station-table-ajax-empty {
+    display: none;
+}
+
+.hidden {
+    display: none;
+}
+
+#schedule-by-station-table-ajax-preloader {
+    display: none;
+    margin-right: auto;
+    margin-left: auto;
+    width: 32px;
+}
+
+.input-field-error {
+    display: inline-block;
+}
+
+.input-field-error input {
+    color: #FF4500;
+    border: 1px solid #FF4500;
+    box-shadow: 0 0 5px #FF4500;
+}
+
+.input-field-error p {
+    margin-left: 60px;
+    color: #FF4500;
+    display: block;
 }

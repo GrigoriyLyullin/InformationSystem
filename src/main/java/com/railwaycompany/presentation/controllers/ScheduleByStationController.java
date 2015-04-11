@@ -90,10 +90,4 @@ public class ScheduleByStationController {
             LOG.log(Level.WARNING, "Invalid station name: " + stationName);
         }
     }
-
-    enum Direction {
-        PREVIOUS,
-        NEXT,
-        NONE
-    }
 }

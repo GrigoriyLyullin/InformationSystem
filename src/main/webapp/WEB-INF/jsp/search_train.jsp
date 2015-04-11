@@ -10,22 +10,40 @@
 
     <p>Enter the route and the date of the travel to choose the train: </p>
 
-    <c:choose>
-        <c:when test="${empty sessionScope.extendedForm || sessionScope.extendedForm == false}">
-            <jsp:include page="/WEB-INF/jsp/search_train_simple_form.jsp" flush="true"/>
-        </c:when>
-        <c:when test="${sessionScope.extendedForm == true}">
-            <jsp:include page="/WEB-INF/jsp/search_train_extended_form.jsp" flush="true"/>
-        </c:when>
-    </c:choose>
+    <div id="inputFromSearchTrain">
+        <form class="form-inline" onsubmit="return checkSearchTrainForm(this)" method="get"
+              action="${pageContext.request.contextPath}/search_train">
+
+            <div class="input-prepend">
+
+                <span class="add-on">From</span>
+                <input id="Station-From-Name" name="station-from-name" type="text" class="input-large"
+                       placeholder="Station name" value="<c:out value="${sessionScope.stationFromName}"/>"
+                       autocomplete="off" data-provide="typeahead">
+
+                <span class="add-on">To</span>
+                <input id="Station-To-Name" name="station-to-name" type="text" class="input-large"
+                       placeholder="Station name" value="<c:out value="${sessionScope.stationToName}"/>"
+                       autocomplete="off" data-provide="typeahead">
+
+                <span class="add-on">Departure date</span>
+                <input id="dateFrom" name="date-from" class="input-medium" data-format="yyyy-mm-dd" type="text"
+                       autocomplete="off" value="<c:out value="${sessionScope.dateFrom}"/>" title="Date"
+                       placeholder="yyyy-mm-dd">
+            </div>
+            <button type="submit" class="btn btn-primary">
+                <i class="icon-white icon-search"></i>
+            </button>
+        </form>
+    </div>
 
     <div class="alert alert-error" id="searchTrainAlert">
         <p>Incorrect input data. Try again.</p>
     </div>
 
     <c:choose>
-        <c:when test="${not empty sessionScope.trainList}">
-            <table class="body-table table table-bordered">
+        <c:when test="${not empty requestScope.trainList}">
+            <table class="body-table table table-bordered" id="search-train-table">
                 <thead>
                 <tr>
                     <th>Train number</th>
@@ -35,20 +53,19 @@
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach items="${sessionScope.trainList}" var="scheduleData">
+                <c:forEach items="${requestScope.trainList}" var="scheduleData">
                     <tr>
                         <td>${scheduleData.trainNumber}</td>
                         <td>
-                            <fmt:formatDate type="both" dateStyle="short" timeStyle="short"
-                                            value="${scheduleData.timeArrival}"/>
+                            <fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${scheduleData.timeDeparture}"/>
                         </td>
-                        <td><fmt:formatDate type="both" dateStyle="short" timeStyle="short"
-                                            value="${scheduleData.timeDeparture}"/>
+                        <td>
+                            <fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${scheduleData.timeArrival}"/>
                         </td>
                         <td>
                             <sec:authorize access="isAnonymous()">
                                 <form action="${pageContext.request.contextPath}buy_ticket" method="get">
-                                    <a href="${pageContext.request.contextPath}/login"
+                                    <a href="${pageContext.request.contextPath}/login?msg=true"
                                        type="submit" class="btn disabled btn-block">Buy</a>
                                 </form>
                             </sec:authorize>
@@ -64,21 +81,54 @@
                 </c:forEach>
                 </tbody>
             </table>
+            <div class="centered-button">
+                <c:if test="${requestScope.searchTrainStartNumber ne 0}">
+                    <form class="centered-button-form" method="get"
+                          action="${pageContext.request.contextPath}/search_train/previous">
+                        <input type="hidden" name="station-from-name"
+                               value="<c:out value="${sessionScope.stationFromName}"/>">
+                        <input type="hidden" name="station-to-name"
+                               value="<c:out value="${sessionScope.stationToName}"/>">
+                        <input type="hidden" name="date-from"
+                               value="<c:out value="${sessionScope.dateFrom}"/>">
+                        <input type="hidden" name="schedule-by-station-start-number"
+                               value="${requestScope.searchTrainStartNumber}">
+                        <button class="btn" id="search-train-previous"><i class="icon-arrow-left"></i></button>
+                    </form>
+                </c:if>
+                <c:if test="${requestScope.searchTrainStartNumber lt requestScope.searchTrainMaxSize}">
+                    <form class="centered-button-form" method="get"
+                          action="${pageContext.request.contextPath}/search_train/next">
+                        <input type="hidden" name="station-from-name"
+                               value="<c:out value="${sessionScope.stationFromName}"/>">
+                        <input type="hidden" name="station-to-name"
+                               value="<c:out value="${sessionScope.stationToName}"/>">
+                        <input type="hidden" name="date-from"
+                               value="<c:out value="${sessionScope.dateFrom}"/>">
+                        <input type="hidden" name="schedule-by-station-start-number"
+                               value="${requestScope.searchTrainStartNumber}">
+                        <button class="btn" id="search-train-next"><i class="icon-arrow-right"></i></button>
+                    </form>
+                </c:if>
+            </div>
         </c:when>
-        <c:when test="${empty sessionScope.trainList}">
+        <c:when test="${empty requestScope.trainList}">
             <c:choose>
-                <c:when test="${sessionScope.trainSearchingError}">
+                <c:when test="${requestScope.trainSearchingInvalidInput}">
                     <div class="alert alert-error" id="trainSearchingErrorAlert">
                         <p>Invalid input data.</p>
                     </div>
-                    <c:set scope="session" var="trainSearchingError" value="false"/>
                 </c:when>
-                <c:when test="${sessionScope.trainNotFoundError}">
+                <c:when test="${requestScope.stationWithSuchNameDoesNotExist}">
+                    <div class="alert alert-error" id="trainSearchingErrorAlert">
+                        <p>Station ${requestScope.stationDoesNotExist} does not exist.</p>
+                    </div>
+                </c:when>
+                <c:when test="${requestScope.trainNotFoundError}">
                     <div class="alert alert-error" id="trainNotFoundAlert">
                         <p>Train from station "${sessionScope.stationFromName}" to "${sessionScope.stationToName}"
                             on date ${sessionScope.dateFrom} was not found.</p>
                     </div>
-                    <c:set scope="session" var="trainNotFoundError" value="false"/>
                 </c:when>
             </c:choose>
         </c:when>

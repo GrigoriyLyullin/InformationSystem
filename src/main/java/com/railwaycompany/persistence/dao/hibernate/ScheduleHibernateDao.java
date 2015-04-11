@@ -1,5 +1,6 @@
 package com.railwaycompany.persistence.dao.hibernate;
 
+import com.railwaycompany.business.dto.ScheduleData;
 import com.railwaycompany.persistence.dao.interfaces.ScheduleDao;
 import com.railwaycompany.persistence.entities.Schedule;
 import com.railwaycompany.persistence.entities.Train;
@@ -191,6 +192,41 @@ public class ScheduleHibernateDao extends HibernateDao<Schedule> implements Sche
                     departureDateFrom + "\" departureDateTo: " + departureDateTo);
         }
         return schedules;
+    }
+
+    @Override
+    public List<ScheduleData> getSchedules(int stationFromId, int stationToId, Date departureDate) {
+
+        List<ScheduleData> scheduleDataList = null;
+
+        List<Schedule> schedulesFrom = getSchedules(stationFromId, departureDate);
+        List<Schedule> schedulesTo = getSchedules(stationToId, departureDate);
+
+        for (Schedule from : schedulesFrom) {
+            Train trainFrom = from.getTrain();
+            int trainFromId = trainFrom.getId();
+            for (Schedule to : schedulesTo) {
+                int trainToId = to.getTrain().getId();
+                // checks that the same train move throw second station after first station
+                if (trainFromId == trainToId) {
+                    Date fromTimeDeparture = from.getTimeDeparture();
+                    Date toTimeArrival = to.getTimeArrival();
+                    if (fromTimeDeparture.getTime() < toTimeArrival.getTime()) {
+                        if (scheduleDataList == null) {
+                            scheduleDataList = new ArrayList<>();
+                        }
+                        ScheduleData scheduleData = new ScheduleData();
+                        scheduleData.setTrainId(trainFromId);
+                        scheduleData.setTrainNumber(trainFrom.getNumber());
+                        scheduleData.setTimeDeparture(fromTimeDeparture);
+                        scheduleData.setTimeArrival(toTimeArrival);
+                        scheduleDataList.add(scheduleData);
+                    }
+                }
+            }
+        }
+
+        return scheduleDataList;
     }
 
     @Override

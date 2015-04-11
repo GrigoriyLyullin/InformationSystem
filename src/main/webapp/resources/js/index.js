@@ -5,12 +5,14 @@ function checkSignInForm() {
     var loginError = $('#login-error');
     var loginErrorReserve = $('#login-error-reserve');
     var loginMessage = $('#login-message');
+    var loginMessageReserve = $('#login-message-reserve');
 
     loginAlert.hide();
     loginError.hide();
     loginMessage.hide();
     loginErrorReserve.hide();
     loginAlertReserve.hide();
+    loginMessageReserve.hide();
 
     var loginStr = $('#username').val();
     var passwordStr = $('#password').val();
@@ -30,18 +32,19 @@ function checkSearchTrainForm() {
     var searchTrainAlert = $('#searchTrainAlert');
     var trainSearchingError = $('#trainSearchingErrorAlert');
     var trainNotFoundError = $('#trainNotFoundAlert');
+    var trainTable = $('#search-train-table');
+    var trainBtn = $('.centered-button');
     searchTrainAlert.hide();
     trainSearchingError.hide();
     trainNotFoundError.hide();
+    trainTable.hide();
+    trainBtn.hide();
 
     var stationFromName = $('#Station-From-Name').val();
     var stationToName = $('#Station-To-Name').val();
     var dateFrom = $('#dateFrom').val();
-    var timeFrom = $('#timeFrom').val();
-    var dateTo = $('#dateTo').val();
-    var timeTo = $('#timeTo').val();
 
-    if (stationFromName === "" || stationToName === "" || dateFrom === "" || dateTo === "") {
+    if (stationFromName === "" || stationToName === "" || dateFrom === "") {
         searchTrainAlert.show();
         return false;
     }

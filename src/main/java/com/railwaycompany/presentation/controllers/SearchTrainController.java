@@ -2,16 +2,17 @@ package com.railwaycompany.presentation.controllers;
 
 import com.railwaycompany.business.dto.ScheduleData;
 import com.railwaycompany.business.services.interfaces.ScheduleService;
+import com.railwaycompany.business.services.interfaces.StationService;
 import com.railwaycompany.utils.DateHelper;
 import com.railwaycompany.utils.ValidationHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
@@ -21,81 +22,111 @@ import java.util.logging.Logger;
 @RequestMapping("search_train")
 public class SearchTrainController {
 
-    private static final String EXTENDED_FORM_PARAM = "extendedForm";
-    private static final String STATION_FORM_NAME_PARAM = "Station-From-Name";
-    private static final String STATION_TO_NAME_PARAM = "Station-To-Name";
-    private static final String DATE_FROM_PARAM = "dateFrom";
-    private static final String DATE_TO_PARAM = "dateTo";
-    private static final String TIME_FROM_PARAM = "timeFrom";
-    private static final String TIME_TO_PARAM = "timeTo";
-    private static final String EXTENDED_FORM_ATTR = "extendedForm";
-    private static final String STATION_FROM_NAME_ATTR = "stationFromName";
-    private static final String STATION_TO_NAME_ATTR = "stationToName";
-    private static final String DATE_FROM_ATTR = "dateFrom";
-    private static final String DATE_TO_ATTR = "dateTo";
-    private static final String TRAIN_SEARCHING_ERROR_ATTR = "trainSearchingError";
-    private static final String TRAIN_LIST_ATTR = "trainList";
-    private static final String TRAIN_NOT_FOUND_ATTR = "trainNotFoundError";
-
     private static final Logger LOG = Logger.getLogger(SearchTrainController.class.getName());
+
+    private static final String STEP_SIZE = "3";
 
     @Autowired
     private ScheduleService scheduleService;
 
+    @Autowired
+    private StationService stationService;
+
     @RequestMapping(method = RequestMethod.GET)
-    public String doGet(HttpServletRequest req) {
-        req.getSession().setAttribute(EXTENDED_FORM_ATTR, Boolean.valueOf(req.getParameter(EXTENDED_FORM_PARAM)));
+    public String getSearchTrain(@RequestParam(value = "station-from-name", required = false) String stationFromName,
+                                 @RequestParam(value = "station-to-name", required = false) String stationToName,
+                                 @RequestParam(value = "date-from", required = false) String dateFromStr,
+                                 HttpServletRequest request, HttpSession session) {
+
+        if (stationFromName != null && stationToName != null && dateFromStr != null) {
+            getTrains(stationFromName, stationToName, dateFromStr, Integer.valueOf(STEP_SIZE), 0, Direction.NONE,
+                    request, session);
+        }
         return "index";
     }
 
-    @RequestMapping(method = RequestMethod.POST)
-    public String doPost(HttpServletRequest req) {
-        String stationFromName = req.getParameter(STATION_FORM_NAME_PARAM);
-        String stationToName = req.getParameter(STATION_TO_NAME_PARAM);
-        String dateFromStr = req.getParameter(DATE_FROM_PARAM);
-        String dateToStr = req.getParameter(DATE_TO_PARAM);
-        String timeFromStr = req.getParameter(TIME_FROM_PARAM);
-        String timeToStr = req.getParameter(TIME_TO_PARAM);
+    @RequestMapping(value = "previous", method = RequestMethod.GET)
+    public String getPreviousTrain(@RequestParam(value = "station-from-name", required = false) String stationFromName,
+                                   @RequestParam(value = "station-to-name", required = false) String stationToName,
+                                   @RequestParam(value = "date-from", required = false) String dateFromStr,
+                                   @RequestParam(value = "schedule-by-station-step-size",
+                                           defaultValue = STEP_SIZE) int stepSize,
+                                   @RequestParam(value = "schedule-by-station-start-number",
+                                           defaultValue = "0") int startNumber,
+                                   HttpServletRequest request, HttpSession session) {
+        getTrains(stationFromName, stationToName, dateFromStr, stepSize, startNumber, Direction.PREVIOUS,
+                request, session);
+        return "index";
+    }
 
-        HttpSession session = req.getSession();
-        session.setAttribute(STATION_FROM_NAME_ATTR, stationFromName);
-        session.setAttribute(STATION_TO_NAME_ATTR, stationToName);
-        session.setAttribute(DATE_FROM_ATTR, dateFromStr);
-        session.setAttribute(DATE_TO_ATTR, dateToStr);
+    @RequestMapping(value = "next", method = RequestMethod.GET)
+    public String getNextTrain(@RequestParam(value = "station-from-name", required = false) String stationFromName,
+                               @RequestParam(value = "station-to-name", required = false) String stationToName,
+                               @RequestParam(value = "date-from", required = false) String dateFromStr,
+                               @RequestParam(value = "schedule-by-station-step-size",
+                                       defaultValue = STEP_SIZE) int stepSize,
+                               @RequestParam(value = "schedule-by-station-start-number",
+                                       defaultValue = "0") int startNumber,
+                               HttpServletRequest request, HttpSession session) {
+        getTrains(stationFromName, stationToName, dateFromStr, stepSize, startNumber, Direction.NEXT,
+                request, session);
+        return "index";
+    }
+
+    private void getTrains(String stationFromName, String stationToName, String dateFromStr,
+                           int stepSize, int startNumber, Direction direction,
+                           HttpServletRequest request, HttpSession session) {
+        session.setAttribute("stationFromName", stationFromName);
+        session.setAttribute("stationToName", stationToName);
+        session.setAttribute("dateFrom", dateFromStr);
 
         boolean validStationFromName = ValidationHelper.isValidStationName(stationFromName);
         boolean validStationToName = ValidationHelper.isValidStationName(stationToName);
         boolean validDateFromStr = ValidationHelper.isValidDateStr(dateFromStr);
-        boolean validDateToStr = ValidationHelper.isValidDateStr(dateToStr);
-        boolean validTimeFromStr = ValidationHelper.isValidTimeStr(timeFromStr);
-        boolean validTimeToStr = ValidationHelper.isValidTimeStr(timeToStr);
 
         if (validStationFromName && validStationToName && validDateFromStr) {
-            List<ScheduleData> scheduleList;
-            Date dateFrom = DateHelper.convertDate(dateFromStr);
-            if (validDateToStr) {
-                Date dateTo = DateHelper.convertDate(dateToStr);
-                if (validTimeFromStr) {
-                    dateFrom = DateHelper.convertDatetime(dateFromStr, timeFromStr);
+            if (stationService.exist(stationFromName) && stationService.exist(stationToName)) {
+                List<ScheduleData> scheduleList;
+                Date dateFrom = DateHelper.convertDate(dateFromStr);
+
+                int maxSize;
+                Object maxSizeAttr = request.getAttribute("searchTrainMaxSize");
+                if (maxSizeAttr == null) {
+                    maxSize = scheduleService.getSchedule(stationFromName, stationToName, dateFrom).size() - 1;
+                    request.setAttribute("searchTrainMaxSize", maxSize);
+                } else {
+                    maxSize = (int) maxSizeAttr;
                 }
-                if (validTimeToStr) {
-                    dateTo = DateHelper.convertDatetime(dateToStr, timeToStr);
+                if (direction == Direction.PREVIOUS) {
+                    startNumber = (startNumber >= stepSize) ? startNumber - stepSize : 0;
+                } else if (direction == Direction.NEXT) {
+                    startNumber = (startNumber < maxSize) ? startNumber + stepSize : maxSize;
                 }
-                scheduleList = scheduleService.getSchedule(stationFromName, stationToName, dateFrom, dateTo);
+
+                scheduleList = scheduleService.getSchedule(stationFromName, stationToName, dateFrom,
+                        stepSize, startNumber);
+                if (scheduleList != null && !scheduleList.isEmpty()) {
+                    request.setAttribute("searchTrainStartNumber", startNumber);
+                    request.setAttribute("trainList", scheduleList);
+                } else {
+                    request.setAttribute("trainNotFoundError", true);
+                }
+
             } else {
-                scheduleList = scheduleService.getSchedule(stationFromName, stationToName, dateFrom);
-            }
-            session.setAttribute(TRAIN_SEARCHING_ERROR_ATTR, false);
-            if (scheduleList != null && !scheduleList.isEmpty()) {
-                session.setAttribute(TRAIN_LIST_ATTR, scheduleList);
-            } else {
-                session.setAttribute(TRAIN_NOT_FOUND_ATTR, true);
-                session.setAttribute(TRAIN_LIST_ATTR, new ArrayList<>());
+                LOG.log(Level.WARNING, "Stations with such names does not exist. stationFrom: " + stationFromName +
+                        " stationTo: " + stationToName);
+                if (!stationService.exist(stationFromName)) {
+                    request.setAttribute("stationDoesNotExist", stationFromName);
+                } else if (!stationService.exist(stationToName)) {
+                    request.setAttribute("stationDoesNotExist", stationToName);
+                }
+                request.setAttribute("stationWithSuchNameDoesNotExist", true);
             }
         } else {
-            LOG.log(Level.WARNING, "Incorrect minimum data. stationFrom: " + stationFromName + " stationTo: " +
+            LOG.log(Level.WARNING, "Invalid input data. stationFrom: " + stationFromName + " stationTo: " +
                     stationToName + " dateFrom: " + dateFromStr);
+            request.setAttribute("trainSearchingInvalidInput", true);
         }
-        return "index";
     }
+
 }

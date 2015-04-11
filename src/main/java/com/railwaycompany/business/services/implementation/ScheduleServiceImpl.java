@@ -99,22 +99,46 @@ public class ScheduleServiceImpl implements ScheduleService {
 
     @Override
     public List<ScheduleData> getSchedule(String stationFromName, String stationToName, Date dateFrom) {
+        List<ScheduleData> scheduleDataList = null;
         Station stationFrom = stationDao.getStation(stationFromName);
         Station stationTo = stationDao.getStation(stationToName);
         if (stationFrom != null && stationTo != null) {
-            return getSchedule(stationFrom, stationTo, dateFrom);
+            scheduleDataList = scheduleDao.getSchedules(stationFrom.getId(), stationTo.getId(), dateFrom);
         }
-        return null;
+        return scheduleDataList;
     }
 
     @Override
-    public List<ScheduleData> getSchedule(String stationFromName, String stationToName, Date dateFrom, Date dateTo) {
+    public List<ScheduleData> getSchedule(String stationFromName, String stationToName, Date dateFrom,
+                                          int stepSize, int startNumber) {
+        List<ScheduleData> scheduleDataList = null;
         Station stationFrom = stationDao.getStation(stationFromName);
         Station stationTo = stationDao.getStation(stationToName);
         if (stationFrom != null && stationTo != null) {
-            return getSchedule(stationFrom, stationTo, dateFrom, dateTo);
+            scheduleDataList = scheduleDao.getSchedules(stationFrom.getId(), stationTo.getId(), dateFrom);
+
+            Collections.sort(scheduleDataList, new Comparator<ScheduleData>() {
+                @Override
+                public int compare(ScheduleData o1, ScheduleData o2) {
+                    if (o1.getTimeDeparture().getTime() > o2.getTimeDeparture().getTime()) {
+                        return 1;
+                    } else if (o1.getTimeDeparture().getTime() < o2.getTimeDeparture().getTime()) {
+                        return -1;
+                    }
+                    return 0;
+                }
+            });
+
+            List<ScheduleData> tmp = new ArrayList<>();
+
+            for (int s = startNumber; s < startNumber + stepSize; s++) {
+                if (s < scheduleDataList.size()) {
+                    tmp.add(scheduleDataList.get(s));
+                }
+            }
+            scheduleDataList = tmp;
         }
-        return null;
+        return scheduleDataList;
     }
 
     @Override

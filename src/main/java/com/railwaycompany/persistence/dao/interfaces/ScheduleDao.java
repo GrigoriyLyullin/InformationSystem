@@ -1,5 +1,6 @@
 package com.railwaycompany.persistence.dao.interfaces;
 
+import com.railwaycompany.business.dto.ScheduleData;
 import com.railwaycompany.persistence.entities.Schedule;
 
 import java.util.Date;
@@ -22,10 +23,11 @@ public interface ScheduleDao extends GenericDAO<Schedule> {
 
     Date getDepartureDate(int trainId, int stationId);
 
-
     Integer getTrainId(int trainNumber, int stationId, Date departureDate);
 
     List<Schedule> getSchedules(int stationId, Date departureDateFrom, Date departureDateTo);
+
+    List<ScheduleData> getSchedules(int stationFromId, int stationToId, Date departureDate);
 
     Schedule getSchedule(int stationId, int trainId, Date arrivalDate, Date departureDate);
 

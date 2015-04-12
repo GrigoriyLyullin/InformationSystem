@@ -122,13 +122,22 @@
                 </c:if>
             </div>
         </c:when>
-        <c:when test="${empty requestScope.scheduleDataList}">
-            <c:if test="${requestScope.scheduleByStationNotFound}">
-                <div class="alert alert-error">
-                    <p>Station "${sessionScope.scheduleByStationName}" was not found.</p>
-                </div>
-            </c:if>
+    </c:choose>
+    <c:choose>
+        <c:when test="${requestScope.scheduleByStationInvalidStationName}">
+            <div class="alert alert-error">
+                <p>Invalid station name "${sessionScope.scheduleByStationName}".</p>
+            </div>
+        </c:when>
+        <c:when test="${requestScope.scheduleByStationNotFound}">
+            <div class="alert alert-error">
+                <p>Schedule by station "${sessionScope.scheduleByStationName}" was not found.</p>
+            </div>
+        </c:when>
+        <c:when test="${requestScope.scheduleByStationNotExistStationName}">
+            <div class="alert alert-error">
+                <p>Station with name "${sessionScope.scheduleByStationName}" does not exist.</p>
+            </div>
         </c:when>
     </c:choose>
-
 </div>

@@ -7,7 +7,6 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.Query;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 
 @Repository
 public class TrainHibernateDao extends HibernateDao<Train> implements TrainDao {
@@ -17,17 +16,11 @@ public class TrainHibernateDao extends HibernateDao<Train> implements TrainDao {
     private static final String SELECT_ALL_TRAINS = "SELECT t FROM Train t";
 
     /**
-     * Logger for StationHibernateDao class.
-     */
-    private static Logger log = Logger.getLogger(TrainHibernateDao.class.getName());
-
-    /**
      * HibernateDao constructor.
      */
     public TrainHibernateDao() {
         this.setEntityClass(Train.class);
     }
-
 
     @Override
     public List<Train> getAll() {

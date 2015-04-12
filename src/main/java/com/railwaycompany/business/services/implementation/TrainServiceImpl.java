@@ -14,22 +14,15 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
+
 @Service
 public class TrainServiceImpl implements TrainService {
 
-    /**
-     * Logger for TrainServiceImpl class.
-     */
-    private static Logger log = Logger.getLogger(TrainServiceImpl.class.getName());
-
     @Autowired
     private TrainDao trainDao;
+
     @Autowired
     private ScheduleDao scheduleDao;
-
-    public TrainServiceImpl() {
-    }
 
     @Override
     public List<TrainData> getAll() {

@@ -10,14 +10,13 @@ import com.railwaycompany.business.services.interfaces.TicketService;
 import com.railwaycompany.persistence.dao.interfaces.*;
 import com.railwaycompany.persistence.entities.*;
 import com.railwaycompany.utils.DateHelper;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import static com.railwaycompany.utils.ValidationHelper.isValidDateStr;
 import static com.railwaycompany.utils.ValidationHelper.isValidTimeStr;
@@ -103,26 +102,26 @@ public class TicketServiceImpl implements TicketService {
 
                         } else {
                             String message = "Departure date " + departureDate + " in less than 10 minutes.";
-                            LOG.warning(message);
+                            LOG.warn(message);
                             throw new SalesStopException(message);
                         }
 
                     } else {
                         String message = "Passenger: " + passengerData + " already registered on train with id: " + trainId;
-                        LOG.warning(message);
+                        LOG.warn(message);
                         throw new AlreadyRegisteredException(message);
                     }
 
                 } else {
                     String message = "Train with id: " + trainId + " has " + seats + " seats, " + countOfTickets + " " +
                             "tickets has been sold.";
-                    LOG.warning(message);
+                    LOG.warn(message);
                     throw new HasNoEmptySeatsException(message);
                 }
             } else {
                 String msg = "Train not found exception. trainNumber: " + trainNumber + " departureDate: " +
                         departureDate;
-                LOG.warning(msg);
+                LOG.warn(msg);
                 throw new InvalidInputDataException(msg);
             }
         } catch (NullPointerException e) {
@@ -143,7 +142,7 @@ public class TicketServiceImpl implements TicketService {
                 if (passengerData.getBirthdate() == null)
                     msg.append("passengerData: birthdate is null");
             }
-            LOG.log(Level.WARNING, msg.toString(), e);
+            LOG.warn(msg.toString(), e);
             throw new InvalidInputDataException(msg.toString(), e);
         }
     }
@@ -189,7 +188,7 @@ public class TicketServiceImpl implements TicketService {
                 msg.append("departureDate: null");
             if (dispatchStationName == null)
                 msg.append("stationFrom: null");
-            LOG.log(Level.WARNING, msg.toString(), e);
+            LOG.warn(msg.toString(), e);
             throw new InvalidInputDataException(msg.toString(), e);
         }
         return countOfTickets < seats;
@@ -217,7 +216,7 @@ public class TicketServiceImpl implements TicketService {
                 msg.append("departureDate: null");
             if (dispatchStationName == null)
                 msg.append("stationFrom: null");
-            LOG.log(Level.WARNING, msg.toString(), e);
+            LOG.warn(msg.toString(), e);
             throw new InvalidInputDataException(msg.toString(), e);
         }
     }

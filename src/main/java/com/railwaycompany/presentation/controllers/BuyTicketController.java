@@ -9,6 +9,7 @@ import com.railwaycompany.business.services.exceptions.SalesStopException;
 import com.railwaycompany.business.services.interfaces.TicketService;
 import com.railwaycompany.business.services.interfaces.UserService;
 import com.railwaycompany.utils.DateHelper;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -20,7 +21,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
 import java.util.Date;
-import java.util.logging.Logger;
 
 import static com.railwaycompany.utils.ValidationHelper.*;
 
@@ -28,26 +28,6 @@ import static com.railwaycompany.utils.ValidationHelper.*;
 @RequestMapping("buy_ticket")
 public class BuyTicketController {
 
-//    private static final String USER_DATA_ATTR = "userData";
-//    private static final String HAS_NO_EMPTY_SEATS_ATTR = "buyTicketHasNoEmptySeats";
-//    private static final String ALREADY_REGISTERED_ATTR = "buyTicketAlreadyRegistered";
-//    private static final String SALES_STOP_ATTR = "buyTicketSalesStop";
-//    private static final String INVALID_DATA_ATTR = "buyTicketInvalidData";
-//    private static final String TICKET_DATA_ATTR = "ticketData";
-//    private static final String INCORRECT_DATA_ATTR = "buyTicketIncorrectData";
-//    private static final String TRAIN_NUMBER_PARAM = "trainNumber";
-//    private static final String STATION_NAME_PARAM = "stationName";
-//    private static final String DEPARTURE_DATE_PARAM = "departureDate";
-//    private static final String PASSENGER_NAME_PARAM = "passengerName";
-//    private static final String PASSENGER_SURNAME_PARAM = "passengerSurname";
-//    private static final String PASSENGER_BIRTHDATE_PARAM = "passengerBirthdate";
-//    private static final String NOT_ADULT_PASSENGER_ATTR = "passengerIsNotAdult";
-//
-//    private final static int PASSENGER_MIN_AGE = 14;
-
-    /**
-     * Logger for BuyTicketServlet class.
-     */
     private static final Logger LOG = Logger.getLogger(BuyTicketController.class.getName());
 
     @Autowired
@@ -79,41 +59,48 @@ public class BuyTicketController {
 
         if (isValidTrainNumber(trainNumber) && isValidStationName(dispatchStation)
                 && isValidDateStr(departureDate) && isValidTimeStr(departureTime)) {
-
             Integer trainNumberInt = Integer.valueOf(trainNumber);
             Date date = DateHelper.convertDatetime(departureDate, departureTime);
-
             try {
                 boolean hasEmptySeats = ticketService.hasEmptySeats(trainNumberInt, dispatchStation, date);
                 boolean hasEnoughTime = ticketService.hasEnoughTimeBeforeDeparture(trainNumberInt,
                         dispatchStation, date);
-
                 if (hasEmptySeats) {
                     if (hasEnoughTime) {
                         modelAndView.addObject("step", 2);
                     } else {
                         modelAndView.addObject("step", 1);
                         modelAndView.addObject("hasNotEnoughTime", true);
+                        LOG.info("Train has not enough time before departure. Train number: " + trainNumber);
                     }
                 } else {
                     modelAndView.addObject("step", 1);
                     modelAndView.addObject("hasNotEmptySeats", true);
+                    LOG.info("Train has not empty seats. Train number: " + trainNumber);
                 }
-
             } catch (InvalidInputDataException e) {
                 modelAndView.addObject("step", 1);
                 modelAndView.addObject("invalidInputDataException", true);
+                StringBuilder msg = new StringBuilder();
+                msg.append("Invalid input data: {").append("train number: ").append(trainNumber).append(", ").
+                        append("dispatch station: ").append(dispatchStation).append(", ").
+                        append("departure date: ").append(departureDate).append(", ").
+                        append("departure time: ").append(departureTime).append("}");
+                LOG.warn(msg, e);
             }
         } else {
             modelAndView.addObject("step", 1);
             if (!isValidTrainNumber(trainNumber)) {
                 modelAndView.addObject("invalidTrainNumber", true);
+                LOG.warn("Invalid train number: " + trainNumber);
             }
             if (!isValidStationName(dispatchStation)) {
                 modelAndView.addObject("invalidDispatchStation", true);
+                LOG.warn("Invalid dispatch station: " + dispatchStation);
             }
             if (!isValidDateStr(departureDate) || !isValidTimeStr(departureTime)) {
                 modelAndView.addObject("invalidDepartureDate", true);
+                LOG.warn("Invalid departure date: " + departureDate);
             }
         }
         return modelAndView;
@@ -147,48 +134,62 @@ public class BuyTicketController {
                 Date birth = DateHelper.convertDate(birthdate);
 
                 try {
-                    boolean registered = ticketService.isRegistered(trainNumberInt, dispatchStation, date, firstName, lastName, birth);
-
+                    boolean registered = ticketService.isRegistered(trainNumberInt, dispatchStation, date,
+                            firstName, lastName, birth);
                     if (!registered) {
-
                         Float coast = ticketService.getTicketCost(trainNumberInt, dispatchStation, date);
                         if (coast != null) {
                             session.setAttribute("ticketCost", coast);
                         }
-
                         modelAndView.addObject("step", 3);
                     } else {
                         modelAndView.addObject("step", 2);
                         modelAndView.addObject("alreadyRegistered", true);
+                        StringBuilder msg = new StringBuilder();
+                        msg.append("Passenger already registered: {").append("train number: ").append(trainNumber).
+                                append(", ").append("passenger first name: ").append(firstName).append(", ").
+                                append("last name: ").append(lastName).append(", ").
+                                append("birthdate: ").append(birthdate).append("}");
+                        LOG.warn(msg);
                     }
-
                 } catch (InvalidInputDataException e) {
                     modelAndView.addObject("step", 2);
                     modelAndView.addObject("invalidInputDataException", true);
+                    StringBuilder msg = new StringBuilder();
+                    msg.append("Invalid input data: {").append("train number: ").append(trainNumber).append(", ").
+                            append("dispatch station: ").append(dispatchStation).append(", ").
+                            append("departure date: ").append(departureDate).append(", ").
+                            append("departure time: ").append(departureTime).append("}");
+                    LOG.warn(msg, e);
                 }
             } else {
                 modelAndView.addObject("step", 1);
                 if (!isValidTrainNumber(trainNumber)) {
                     modelAndView.addObject("invalidTrainNumber", true);
+                    LOG.warn("Invalid train number: " + trainNumber);
                 }
                 if (!isValidStationName(dispatchStation)) {
                     modelAndView.addObject("invalidDispatchStation", true);
+                    LOG.warn("Invalid dispatch station: " + dispatchStation);
                 }
                 if (!isValidDateStr(departureDate) || !isValidTimeStr(departureTime)) {
                     modelAndView.addObject("invalidDepartureDate", true);
+                    LOG.warn("Invalid departure datetime: " + departureDate + " " + departureTime);
                 }
             }
-
         } else {
             modelAndView.addObject("step", 2);
             if (!isValidPassengerNameOrSurname(firstName)) {
                 modelAndView.addObject("invalidFirstName", true);
+                LOG.warn("Invalid first name: " + firstName);
             }
             if (!isValidPassengerNameOrSurname(lastName)) {
                 modelAndView.addObject("invalidLastName", true);
+                LOG.warn("Invalid last name: " + lastName);
             }
             if (!isValidDateStr(birthdate)) {
                 modelAndView.addObject("invalidBirthdate", true);
+                LOG.warn("Invalid birthdate: " + birthdate);
             }
         }
         return modelAndView;
@@ -229,9 +230,11 @@ public class BuyTicketController {
 
             try {
 
-                UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+                UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().
+                        getPrincipal();
                 Integer userId = userService.getUserIdByUsername(userDetails.getUsername());
-                TicketData ticketData = ticketService.buyTicket(userId, trainNumberInt, date, dispatchStation, passengerData);
+                TicketData ticketData = ticketService.buyTicket(userId, trainNumberInt, date,
+                        dispatchStation, passengerData);
 
                 if (ticketData != null) {
 
@@ -257,37 +260,44 @@ public class BuyTicketController {
 
             } catch (ClassCastException | NullPointerException e) {
                 modelAndView = new ModelAndView("buy_ticket_error");
+                LOG.warn(e);
             } catch (HasNoEmptySeatsException e) {
                 modelAndView.addObject("step", 1);
                 modelAndView.addObject("hasNotEmptySeats", true);
+                LOG.warn(e);
             } catch (AlreadyRegisteredException e) {
                 modelAndView.addObject("step", 2);
                 modelAndView.addObject("alreadyRegistered", true);
+                LOG.warn(e);
             } catch (SalesStopException e) {
                 modelAndView.addObject("step", 1);
                 modelAndView.addObject("hasNotEnoughTime", true);
+                LOG.warn(e);
             } catch (InvalidInputDataException e) {
                 modelAndView.addObject("step", 3);
                 modelAndView.addObject("invalidInputDataException", true);
+                LOG.warn(e);
             }
-
         } else {
             modelAndView = new ModelAndView("buy_ticket");
             modelAndView.addObject("step", 3);
             if (!isValidCardNumber(cardNumber)) {
                 modelAndView.addObject("invalidCardNumber", true);
+                LOG.warn("Invalid card number: " + cardNumber);
             }
             if (!isValidCardHolder(cardHolder)) {
                 modelAndView.addObject("invalidCardHolder", true);
+                LOG.warn("Invalid card holder: " + cardHolder);
             }
             if (!isValidCardCVC(cardCVC)) {
                 modelAndView.addObject("invalidCardCVC", true);
+                LOG.warn("Invalid card cvc: " + cardCVC);
             }
             if (!isValidCardCVC(cardExpiresDate)) {
                 modelAndView.addObject("invalidCardExpiresDate", true);
+                LOG.warn("Invalid card expires date: " + cardExpiresDate);
             }
         }
         return modelAndView;
-
     }
 }

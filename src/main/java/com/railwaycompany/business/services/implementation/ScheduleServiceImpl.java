@@ -28,9 +28,7 @@ public class ScheduleServiceImpl implements ScheduleService {
 
     @Override
     public List<ScheduleData> getSchedule(Station station) {
-
         List<ScheduleData> scheduleDataList = null;
-
         if (station != null) {
             List<Schedule> schedulesByStationId = scheduleDao.getSchedulesByStationId(station.getId());
             if (schedulesByStationId != null) {
@@ -63,7 +61,6 @@ public class ScheduleServiceImpl implements ScheduleService {
 
         List<Schedule> schedulesFrom = scheduleDao.getSchedules(stationFrom.getId(), dateFrom);
         List<Schedule> schedulesTo = scheduleDao.getSchedules(dateTo, stationTo.getId());
-
         List<ScheduleData> scheduleDataList = null;
 
         if (schedulesFrom != null && schedulesTo != null && dateFrom != null && dateTo != null && !schedulesFrom

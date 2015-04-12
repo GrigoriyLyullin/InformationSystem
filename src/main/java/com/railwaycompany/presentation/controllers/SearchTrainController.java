@@ -5,6 +5,7 @@ import com.railwaycompany.business.services.interfaces.ScheduleService;
 import com.railwaycompany.business.services.interfaces.StationService;
 import com.railwaycompany.utils.DateHelper;
 import com.railwaycompany.utils.ValidationHelper;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,8 +16,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.Date;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 @Controller
 @RequestMapping("search_train")
@@ -113,7 +112,7 @@ public class SearchTrainController {
                 }
 
             } else {
-                LOG.log(Level.WARNING, "Stations with such names does not exist. stationFrom: " + stationFromName +
+                LOG.warn("Stations with such names does not exist. stationFrom: " + stationFromName +
                         " stationTo: " + stationToName);
                 if (!stationService.exist(stationFromName)) {
                     request.setAttribute("stationDoesNotExist", stationFromName);
@@ -123,10 +122,9 @@ public class SearchTrainController {
                 request.setAttribute("stationWithSuchNameDoesNotExist", true);
             }
         } else {
-            LOG.log(Level.WARNING, "Invalid input data. stationFrom: " + stationFromName + " stationTo: " +
+            LOG.warn("Invalid input data. stationFrom: " + stationFromName + " stationTo: " +
                     stationToName + " dateFrom: " + dateFromStr);
             request.setAttribute("trainSearchingInvalidInput", true);
         }
     }
-
 }

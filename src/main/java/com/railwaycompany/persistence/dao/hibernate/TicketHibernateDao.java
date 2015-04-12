@@ -2,17 +2,21 @@ package com.railwaycompany.persistence.dao.hibernate;
 
 import com.railwaycompany.persistence.dao.interfaces.TicketDao;
 import com.railwaycompany.persistence.entities.Ticket;
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 @Repository
 public class TicketHibernateDao extends HibernateDao<Ticket> implements TicketDao {
+
+    /**
+     * Logger for StationHibernateDao class.
+     */
+    private static final Logger LOG = Logger.getLogger(TicketHibernateDao.class.getName());
 
     private static final String TICKET_COUNT_BY_TRAIN_ID = "SELECT t FROM Ticket t WHERE t.train.id = :trainId";
 
@@ -22,11 +26,6 @@ public class TicketHibernateDao extends HibernateDao<Ticket> implements TicketDa
     private static final String TICKET_BY_TRAIN_ID = "SELECT t FROM Ticket t WHERE t.train.id = :trainId";
 
     private static final String GET_ALL_TICKETS = "SELECT t FROM Ticket t";
-
-    /**
-     * Logger for StationHibernateDao class.
-     */
-    private static Logger log = Logger.getLogger(TicketHibernateDao.class.getName());
 
     /**
      * HibernateDao constructor.
@@ -45,7 +44,7 @@ public class TicketHibernateDao extends HibernateDao<Ticket> implements TicketDa
         try {
             count = query.getResultList().size();
         } catch (NoResultException e) {
-            log.log(Level.INFO, "No tickets was found for trainId: \"" + trainId + "\"");
+            LOG.warn("No tickets was found for trainId: " + trainId);
         }
         return count;
     }
@@ -62,7 +61,7 @@ public class TicketHibernateDao extends HibernateDao<Ticket> implements TicketDa
             Ticket ticket = (Ticket) query.getSingleResult();
             registered = (ticket != null);
         } catch (NoResultException e) {
-            log.log(Level.INFO, "No tickets was found for trainId: \"" + trainId + "\"");
+            LOG.warn("No tickets was found for trainId: " + trainId);
         }
         return registered;
     }

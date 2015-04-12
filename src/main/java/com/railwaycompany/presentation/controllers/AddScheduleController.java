@@ -5,17 +5,15 @@ import com.railwaycompany.business.services.exceptions.SuchScheduleExistExceptio
 import com.railwaycompany.business.services.exceptions.TrainDoesNotExistException;
 import com.railwaycompany.business.services.interfaces.ScheduleService;
 import com.railwaycompany.utils.DateHelper;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.io.IOException;
 import java.util.Date;
-import java.util.logging.Logger;
 
 import static com.railwaycompany.utils.ValidationHelper.*;
 
@@ -23,28 +21,28 @@ import static com.railwaycompany.utils.ValidationHelper.*;
 @RequestMapping("add_schedule")
 public class AddScheduleController {
 
-    private static final Logger LOG = Logger.getLogger(AddScheduleController.class.getName());
+    private static final Logger LOG = Logger.getLogger(AddScheduleController.class);
 
     @Autowired
     private ScheduleService scheduleService;
 
     @RequestMapping(method = RequestMethod.GET)
-    public String doGet() {
+    public String get() {
         return "employee_page";
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    protected String doPost(HttpServletRequest req) throws ServletException, IOException {
-        String stationIdStr = req.getParameter("stationId");
-        String trainIdStr = req.getParameter("trainId");
-        String arrivalDateStr = req.getParameter("arrivalDate");
-        String arrivalTimeStr = req.getParameter("arrivalTime");
-        String departureDateStr = req.getParameter("departureDate");
-        String departureTimeStr = req.getParameter("departureTime");
+    protected String post(@RequestParam(value = "stationId") String stationIdStr,
+                          @RequestParam(value = "trainId") String trainIdStr,
+                          @RequestParam(value = "arrivalDate") String arrivalDateStr,
+                          @RequestParam(value = "arrivalTime") String arrivalTimeStr,
+                          @RequestParam(value = "departureDate") String departureDateStr,
+                          @RequestParam(value = "departureTime") String departureTimeStr,
+                          HttpSession session) {
 
-        HttpSession session = req.getSession();
-
-        if (checkInput(stationIdStr, trainIdStr, arrivalDateStr, arrivalTimeStr, departureDateStr, departureTimeStr)) {
+        if (isValidId(stationIdStr) && isValidId(trainIdStr) && isValidDateStr(arrivalDateStr)
+                && isValidTimeStr(arrivalTimeStr) && isValidDateStr(departureDateStr)
+                && isValidTimeStr(departureTimeStr)) {
 
             int stationId = Integer.valueOf(stationIdStr);
             int trainId = Integer.valueOf(trainIdStr);
@@ -60,35 +58,29 @@ public class AddScheduleController {
                     LOG.info("Schedule has been added." + info);
                     session.setAttribute("AddScheduleSuccess", true);
                 } catch (SuchScheduleExistException e) {
-                    LOG.warning("Such schedule exist. stationId: " + stationId + " trainId: " + trainId + " " +
+                    LOG.warn("Such schedule exist. stationId: " + stationId + " trainId: " + trainId + " " +
                             "arrivalDate: " + arrivalDate + " departureDate: " + departureDate);
                     session.setAttribute("AddScheduleSuchScheduleExistError", true);
                 } catch (StationDoesNotExistException e) {
-                    LOG.warning("Station with id:" + stationId + " does not exist.");
+                    LOG.warn("Station with id:" + stationId + " does not exist.");
                     session.setAttribute("AddScheduleStationWithIdDoesNotExistError", true);
                     session.setAttribute("doesNotExistStationId", stationId);
                 } catch (TrainDoesNotExistException e) {
-                    LOG.warning("Train with id:" + trainId + " does not exist.");
+                    LOG.warn("Train with id:" + trainId + " does not exist.");
                     session.setAttribute("AddScheduleTrainWithIdDoesNotExistError", true);
                     session.setAttribute("doesNotExistTrainId", trainId);
                 }
             } else {
-                LOG.warning("Arrival date cannot be greater than departure. arrival date: " + arrivalDate + " " +
+                LOG.warn("Arrival date cannot be greater than departure. arrival date: " + arrivalDate + " " +
                         "departureDate: " + departureDate);
                 session.setAttribute("invalidAddScheduleInputDataArrivalGtDepartureError", true);
             }
         } else {
-            LOG.warning("Invalid input data. stationId: " + stationIdStr + " trainId: " + trainIdStr + " " +
+            LOG.warn("Invalid input data. stationId: " + stationIdStr + " trainId: " + trainIdStr + " " +
                     "arrivalDate: " + arrivalDateStr + " arrivalTime: " + arrivalTimeStr + " departureDate: " +
                     departureDateStr + " departureTime: " + departureTimeStr);
             session.setAttribute("invalidAddScheduleInputDataError", true);
         }
         return "employee_page";
-    }
-
-    private boolean checkInput(String stationId, String trainId, String arrivalDate, String arrivalTime,
-                               String departureDate, String departureTime) {
-        return isValidId(stationId) && isValidId(trainId) && isValidDateStr(arrivalDate) && isValidTimeStr(arrivalTime)
-                && isValidDateStr(departureDate) && isValidTimeStr(departureTime);
     }
 }

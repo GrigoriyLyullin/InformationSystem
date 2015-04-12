@@ -6,8 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -21,13 +22,12 @@ public class ViewAllTrainsController {
     private TrainService trainService;
 
     @RequestMapping(method = RequestMethod.GET)
-    public String doGet(HttpServletRequest req) {
+    public String get(@RequestParam(value = VIEW_ALL_TRAIN_PARAM) boolean getAll, HttpSession session) {
         List<TrainData> viewAllTrainsList = null;
-        Boolean getAll = Boolean.valueOf(req.getParameter(VIEW_ALL_TRAIN_PARAM));
         if (getAll) {
             viewAllTrainsList = trainService.getAll();
         }
-        req.getSession().setAttribute(VIEW_ALL_TRAIN_LIST_ATTR, viewAllTrainsList);
+        session.setAttribute(VIEW_ALL_TRAIN_LIST_ATTR, viewAllTrainsList);
         return "employee_page";
     }
 }

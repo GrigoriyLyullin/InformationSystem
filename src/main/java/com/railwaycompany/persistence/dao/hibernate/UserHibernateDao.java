@@ -2,6 +2,7 @@ package com.railwaycompany.persistence.dao.hibernate;
 
 import com.railwaycompany.persistence.dao.interfaces.UserDao;
 import com.railwaycompany.persistence.entities.User;
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.Query;
@@ -13,6 +14,8 @@ import javax.transaction.Transactional;
 @Repository
 @Transactional
 public class UserHibernateDao extends HibernateDao<User> implements UserDao {
+
+    private static final Logger LOG = Logger.getLogger(UserHibernateDao.class.getName());
 
     private static final String FIND_USER_BY_LOGIN = "SELECT u FROM User u WHERE u.login = :login";
 
@@ -31,7 +34,7 @@ public class UserHibernateDao extends HibernateDao<User> implements UserDao {
         try {
             user = (User) queryFindUserStr.getSingleResult();
         } catch (Exception e) {
-
+            LOG.warn(e);
         }
         return user;
     }

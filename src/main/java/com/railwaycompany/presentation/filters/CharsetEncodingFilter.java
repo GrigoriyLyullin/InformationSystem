@@ -1,9 +1,13 @@
 package com.railwaycompany.presentation.filters;
 
+import org.apache.log4j.Logger;
+
 import javax.servlet.*;
 import java.io.IOException;
 
 public class CharsetEncodingFilter implements Filter {
+
+    private static final Logger LOG = Logger.getLogger(CharsetEncodingFilter.class.getName());
 
     private static final String UTF_8_ENCODING = "UTF-8";
 
@@ -11,7 +15,7 @@ public class CharsetEncodingFilter implements Filter {
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-
+        LOG.info("Charset encoding filter initializing...");
     }
 
     @Override
@@ -25,6 +29,6 @@ public class CharsetEncodingFilter implements Filter {
 
     @Override
     public void destroy() {
-
+        LOG.info("Charset encoding filter has been destroyed");
     }
 }

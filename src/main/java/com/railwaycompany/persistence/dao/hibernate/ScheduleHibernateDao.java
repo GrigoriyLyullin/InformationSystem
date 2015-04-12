@@ -5,6 +5,7 @@ import com.railwaycompany.persistence.dao.interfaces.ScheduleDao;
 import com.railwaycompany.persistence.entities.Schedule;
 import com.railwaycompany.persistence.entities.Train;
 import com.railwaycompany.utils.DateHelper;
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.NoResultException;
@@ -12,11 +13,14 @@ import javax.persistence.Query;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 @Repository
 public class ScheduleHibernateDao extends HibernateDao<Schedule> implements ScheduleDao {
+
+    /**
+     * Logger for ScheduleHibernateDao class.
+     */
+    private static final Logger LOG = Logger.getLogger(ScheduleHibernateDao.class.getName());
 
     private static final String SCHEDULES_WITH_STATION_ID = "SELECT s FROM Schedule s WHERE s.station.id = :stationId";
 
@@ -44,11 +48,6 @@ public class ScheduleHibernateDao extends HibernateDao<Schedule> implements Sche
             "s.timeDeparture >= :dateFrom AND s.timeArrival <= :dateTo";
 
     /**
-     * Logger for ScheduleHibernateDao class.
-     */
-    private static Logger log = Logger.getLogger(ScheduleHibernateDao.class.getName());
-
-    /**
      * HibernateDao constructor.
      */
     public ScheduleHibernateDao() {
@@ -62,17 +61,14 @@ public class ScheduleHibernateDao extends HibernateDao<Schedule> implements Sche
 
         List<Schedule> schedules = null;
         try {
-
             List resultList = query.getResultList();
             schedules = new ArrayList<>();
             for (Object s : resultList) {
                 schedules.add((Schedule) s);
             }
-
         } catch (NoResultException e) {
-            log.log(Level.INFO, "No schedule was found for stationId = \"" + stationId + "\"");
+            LOG.warn("No schedule was found for stationId: " + stationId);
         }
-
         return schedules;
     }
 
@@ -90,8 +86,7 @@ public class ScheduleHibernateDao extends HibernateDao<Schedule> implements Sche
                 schedules.add((Schedule) s);
             }
         } catch (NoResultException e) {
-            log.log(Level.INFO, "No schedule was found for stationId: \"" + stationId + "\", departure date: \"" +
-                    departureDate + "\"");
+            LOG.warn("No schedule was found for stationId: " + stationId + ", departure date: " + departureDate);
         }
         return schedules;
     }
@@ -114,8 +109,7 @@ public class ScheduleHibernateDao extends HibernateDao<Schedule> implements Sche
                 }
             }
         } catch (NoResultException e) {
-            log.log(Level.INFO, "No schedule was found for stationId: \"" + stationId + "\", arrival date: \"" +
-                    arrivalDate + "\"");
+            LOG.warn("No schedule was found for stationId: " + stationId + ", arrival date: " + arrivalDate);
         }
         return schedules;
     }
@@ -134,8 +128,7 @@ public class ScheduleHibernateDao extends HibernateDao<Schedule> implements Sche
                 schedules.add((Schedule) s);
             }
         } catch (NoResultException e) {
-            log.log(Level.INFO, "No schedule was found for stationId: \"" + stationId + "\", trainId: \"" +
-                    trainId + "\"");
+            LOG.warn("No schedule was found for stationId: " + stationId + ", trainId: " + trainId);
         }
         return schedules;
     }
@@ -188,8 +181,8 @@ public class ScheduleHibernateDao extends HibernateDao<Schedule> implements Sche
                 schedules.add((Schedule) s);
             }
         } catch (NoResultException e) {
-            log.log(Level.INFO, "No schedule was found for stationId: \"" + stationId + "\", departureDateFrom: \"" +
-                    departureDateFrom + "\" departureDateTo: " + departureDateTo);
+            LOG.warn("No schedule was found for stationId: " + stationId + ", departureDateFrom: " + departureDateFrom
+                    + " departureDateTo: " + departureDateTo);
         }
         return schedules;
     }
@@ -198,7 +191,6 @@ public class ScheduleHibernateDao extends HibernateDao<Schedule> implements Sche
     public List<ScheduleData> getSchedules(int stationFromId, int stationToId, Date departureDate) {
 
         List<ScheduleData> scheduleDataList = null;
-
         List<Schedule> schedulesFrom = getSchedules(stationFromId, departureDate);
         List<Schedule> schedulesTo = getSchedules(stationToId, departureDate);
 
@@ -225,7 +217,6 @@ public class ScheduleHibernateDao extends HibernateDao<Schedule> implements Sche
                 }
             }
         }
-
         return scheduleDataList;
     }
 
@@ -240,10 +231,8 @@ public class ScheduleHibernateDao extends HibernateDao<Schedule> implements Sche
         Schedule schedule = null;
         try {
             schedule = (Schedule) query.getSingleResult();
-        } catch (NoResultException e) {
-            log.warning("Schedule with stationId: " + stationId + " was not found.");
-        } catch (ClassCastException e) {
-            log.warning("Cast to Schedule exception.");
+        } catch (NoResultException | ClassCastException e) {
+            LOG.warn(e);
         }
         return schedule;
     }
@@ -257,17 +246,14 @@ public class ScheduleHibernateDao extends HibernateDao<Schedule> implements Sche
 
         List<Schedule> schedules = null;
         try {
-
             List resultList = query.getResultList();
             schedules = new ArrayList<>();
             for (Object s : resultList) {
                 schedules.add((Schedule) s);
             }
-
         } catch (NoResultException e) {
-
+            LOG.warn(e);
         }
-
         return schedules;
     }
 
@@ -280,10 +266,8 @@ public class ScheduleHibernateDao extends HibernateDao<Schedule> implements Sche
         Date date = null;
         try {
             date = (Date) query.getSingleResult();
-        } catch (NoResultException e) {
-            log.warning("Schedule with stationId: " + stationId + " was not found.");
-        } catch (ClassCastException e) {
-            log.warning("Cast to Schedule exception.");
+        } catch (NoResultException | ClassCastException e) {
+            LOG.warn(e);
         }
         return date;
     }

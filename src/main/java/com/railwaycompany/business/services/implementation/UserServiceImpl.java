@@ -24,8 +24,6 @@ public class UserServiceImpl implements UserService {
             userData = new UserData();
             userData.setId(user.getId());
             userData.setUsername(user.getLogin());
-            //TODO User role?
-//            userData.setEmployee(user.isEmployee());
         }
         return userData;
     }

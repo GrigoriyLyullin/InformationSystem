@@ -6,6 +6,7 @@ import com.railwaycompany.business.services.exceptions.InvalidLoginOrPasswordExc
 import com.railwaycompany.business.services.exceptions.UserDoesNotHaveAppropriateAccessRightsException;
 import com.railwaycompany.business.services.interfaces.TokenService;
 import com.railwaycompany.utils.ValidationHelper;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -17,6 +18,8 @@ import javax.servlet.http.HttpServletResponse;
 @RestController
 @RequestMapping("authenticate")
 public class RestAuthenticationController {
+
+    private static final Logger LOG = Logger.getLogger(RestAuthenticationController.class.getName());
 
     @Autowired
     private TokenService tokenService;
@@ -40,11 +43,14 @@ public class RestAuthenticationController {
             } catch (InvalidLoginOrPasswordException | IncorrectPasswordException |
                     UserDoesNotHaveAppropriateAccessRightsException e) {
                 response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+                LOG.warn(e);
             } catch (CouldNotPersistTokenException e) {
                 response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+                LOG.warn(e);
             }
         } else {
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            LOG.warn("Invalid login or password. Login: " + login);
         }
     }
 

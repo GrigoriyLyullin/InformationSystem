@@ -3,6 +3,7 @@ package com.railwaycompany.presentation.controllers;
 import com.railwaycompany.business.dto.ScheduleData;
 import com.railwaycompany.business.services.interfaces.ScheduleService;
 import com.railwaycompany.business.services.interfaces.StationService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -16,6 +17,8 @@ import java.util.List;
 @RestController
 @RequestMapping("schedule_by_station/rest")
 public class ScheduleByStationRestController {
+
+    private static final Logger LOG = Logger.getLogger(ScheduleByStationRestController.class.getName());
 
     private static final int STEP_SIZE = 3;
 
@@ -37,6 +40,7 @@ public class ScheduleByStationRestController {
                     getSchedule(stationName, new Date(), STEP_SIZE, startNumber);
         } else {
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            LOG.warn("Station does not exist. Station name: " + stationName);
         }
         return scheduleOfTrainsByStation;
     }

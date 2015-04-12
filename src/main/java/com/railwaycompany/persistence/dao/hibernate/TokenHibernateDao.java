@@ -3,6 +3,7 @@ package com.railwaycompany.persistence.dao.hibernate;
 
 import com.railwaycompany.persistence.dao.interfaces.TokenDao;
 import com.railwaycompany.persistence.entities.Token;
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.Query;
@@ -11,6 +12,8 @@ import javax.transaction.Transactional;
 @Repository
 @Transactional
 public class TokenHibernateDao extends HibernateDao<Token> implements TokenDao {
+
+    private static final Logger LOG = Logger.getLogger(TokenHibernateDao.class.getName());
 
     private static final String GET_TOKEN_BY_KEY = "SELECT t FROM Token t WHERE t.tokenKey = :tokenKey";
 
@@ -28,6 +31,7 @@ public class TokenHibernateDao extends HibernateDao<Token> implements TokenDao {
                 token = (Token) result;
             }
         } catch (Exception e) {
+            LOG.warn(e);
         }
         return token;
     }
@@ -44,6 +48,7 @@ public class TokenHibernateDao extends HibernateDao<Token> implements TokenDao {
                 token = (Token) result;
             }
         } catch (Exception e) {
+            LOG.warn(e);
         }
         return token;
     }

@@ -2,6 +2,8 @@ package com.railwaycompany.presentation.controllers;
 
 import com.railwaycompany.business.dto.ScheduleData;
 import com.railwaycompany.business.services.interfaces.ScheduleService;
+import com.railwaycompany.business.services.interfaces.StationService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,8 +14,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.Date;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import static com.railwaycompany.utils.ValidationHelper.isValidStationName;
 
@@ -28,11 +28,20 @@ public class ScheduleByStationController {
     @Autowired
     private ScheduleService scheduleService;
 
+    @Autowired
+    private StationService stationService;
+
     @RequestMapping(method = RequestMethod.GET)
     public String getScheduleByStationPage(@RequestParam(value = "schedule-by-station-name", required = false)
                                            String stationName, HttpServletRequest request, HttpSession session) {
         if (stationName != null) {
-            getSchedulesByStation(stationName, Integer.valueOf(STEP_SIZE), 0, Direction.NONE, request, session);
+            if (isValidStationName(stationName)) {
+                getSchedulesByStation(stationName, Integer.valueOf(STEP_SIZE), 0, Direction.NONE, request, session);
+            } else {
+                session.setAttribute("scheduleByStationName", stationName);
+                request.setAttribute("scheduleByStationInvalidStationName", true);
+                LOG.warn("Invalid station name: " + stationName);
+            }
         }
         return "index";
     }
@@ -61,33 +70,39 @@ public class ScheduleByStationController {
 
     private void getSchedulesByStation(String stationName, int stepSize, int startNumber, Direction direction,
                                        HttpServletRequest request, HttpSession session) {
+        session.setAttribute("scheduleByStationName", stationName);
         if (isValidStationName(stationName)) {
-            int maxSize;
-            Object maxSizeAttr = request.getAttribute("scheduleByStationMaxSize");
-            if (maxSizeAttr == null) {
-                maxSize = scheduleService.getSchedule(stationName, new Date()).size() - 1;
-                request.setAttribute("scheduleByStationMaxSize", maxSize);
+            if (stationService.exist(stationName)) {
+                int maxSize;
+                Object maxSizeAttr = request.getAttribute("scheduleByStationMaxSize");
+                if (maxSizeAttr == null) {
+                    maxSize = scheduleService.getSchedule(stationName, new Date()).size() - 1;
+                    request.setAttribute("scheduleByStationMaxSize", maxSize);
+                } else {
+                    maxSize = (int) maxSizeAttr;
+                }
+                if (direction == Direction.PREVIOUS) {
+                    startNumber = (startNumber >= stepSize) ? startNumber - stepSize : 0;
+                } else if (direction == Direction.NEXT) {
+                    startNumber = (startNumber < maxSize) ? startNumber + stepSize : maxSize;
+                }
+                List<ScheduleData> scheduleOfTrainsByStation = scheduleService.
+                        getSchedule(stationName, new Date(), stepSize, startNumber);
+                if (scheduleOfTrainsByStation != null && !scheduleOfTrainsByStation.isEmpty()) {
+                    request.setAttribute("scheduleByStationStartNumber", startNumber);
+                    request.setAttribute("scheduleByStationDataList", scheduleOfTrainsByStation);
+                } else {
+                    request.setAttribute("scheduleByStationDataList", null);
+                    request.setAttribute("scheduleByStationNotFound", true);
+                    LOG.info("Schedule by station not found. Station name: " + stationName);
+                }
             } else {
-                maxSize = (int) maxSizeAttr;
-            }
-            if (direction == Direction.PREVIOUS) {
-                startNumber = (startNumber >= stepSize) ? startNumber - stepSize : 0;
-            } else if (direction == Direction.NEXT) {
-                startNumber = (startNumber < maxSize) ? startNumber + stepSize : maxSize;
-            }
-            session.setAttribute("scheduleByStationName", stationName);
-            List<ScheduleData> scheduleOfTrainsByStation = scheduleService.
-                    getSchedule(stationName, new Date(), stepSize, startNumber);
-            if (scheduleOfTrainsByStation != null) {
-                request.setAttribute("scheduleByStationStartNumber", startNumber);
-                request.setAttribute("scheduleByStationDataList", scheduleOfTrainsByStation);
-                request.setAttribute("scheduleByStationNotFound", false);
-            } else {
-                request.setAttribute("scheduleByStationDataList", null);
-                request.setAttribute("scheduleByStationNotFound", true);
+                request.setAttribute("scheduleByStationNotExistStationName", true);
+                LOG.warn("Station with such name does not exist. Station name: " + stationName);
             }
         } else {
-            LOG.log(Level.WARNING, "Invalid station name: " + stationName);
+            request.setAttribute("scheduleByStationInvalidStationName", true);
+            LOG.warn("Invalid station name: " + stationName);
         }
     }
 }

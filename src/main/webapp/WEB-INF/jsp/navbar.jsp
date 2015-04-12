@@ -9,7 +9,12 @@
                     <li><a href="${pageContext.request.contextPath}/index#search_train">Search train</a></li>
                     <li><a href="${pageContext.request.contextPath}/index#schedule_by_station">Schedule by station</a>
                     </li>
-                    <li><a href="${pageContext.request.contextPath}/buy_ticket">Buy ticket</a></li>
+                    <sec:authorize access="isAnonymous()">
+                        <li><a href="${pageContext.request.contextPath}/login?msg=true">Buy ticket</a></li>
+                    </sec:authorize>
+                    <sec:authorize access="isAuthenticated()">
+                        <li><a href="${pageContext.request.contextPath}/buy_ticket">Buy ticket</a></li>
+                    </sec:authorize>
                     <li><a href="${pageContext.request.contextPath}/index#about">About us</a></li>
                     <li class="divider-vertical"></li>
                 </ul>

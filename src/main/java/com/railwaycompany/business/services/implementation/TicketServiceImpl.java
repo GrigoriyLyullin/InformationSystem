@@ -28,14 +28,19 @@ public class TicketServiceImpl implements TicketService {
 
     @Autowired
     private TrainDao trainDao;
+
     @Autowired
     private ScheduleDao scheduleDao;
+
     @Autowired
     private StationDao stationDao;
+
     @Autowired
     private TicketDao ticketDao;
+
     @Autowired
     private PassengerDao passengerDao;
+
     @Autowired
     private UserDao userDao;
 
@@ -49,26 +54,17 @@ public class TicketServiceImpl implements TicketService {
             throws HasNoEmptySeatsException, AlreadyRegisteredException, SalesStopException, InvalidInputDataException {
 
         try {
-
             String name = passengerData.getName();
             String surname = passengerData.getSurname();
             Date birthdate = passengerData.getBirthdate();
-
             Station station = stationDao.getStation(stationName);
-
             int stationId = station.getId();
-
             Integer trainId = scheduleDao.getTrainId(trainNumber, stationId, departureDate);
-
             if (trainId != null) {
-
                 Train train = trainDao.read(trainId);
-
                 int countOfTickets = ticketDao.countOfTickets(trainId);
                 int seats = train.getSeats();
-
                 if (countOfTickets < seats) {
-
                     Passenger passenger = passengerDao.getPassenger(name, surname, birthdate);
                     boolean newPassenger = false;
                     if (passenger == null) {
@@ -77,35 +73,29 @@ public class TicketServiceImpl implements TicketService {
                         passenger.setName(name);
                         passenger.setSurname(surname);
                         passenger.setBirthdate(birthdate);
-                        passenger.setUser(userDao.read(userId));
+                        User user = userDao.read(userId);
+                        List<Passenger> passengers = user.getPassengers();
+                        passengers.add(passenger);
+                        user.setPassengers(passengers);
                         passengerDao.create(passenger);
                     }
-
                     if (newPassenger || !ticketDao.hasBeenRegistered(trainId, passenger.getId())) {
-
                         if (DateHelper.hasMoreThanTenMinutes(departureDate)) {
-
-
                             Ticket ticket = new Ticket();
                             ticket.setTrain(train);
                             ticket.setPassenger(passenger);
-
                             ticketDao.create(ticket);
-
                             TicketData ticketData = new TicketData();
                             ticketData.setTrainNumber(trainNumber);
                             ticketData.setStationFrom(stationName);
                             ticketData.setDepartureDate(departureDate);
                             ticketData.setPassengerData(passengerData);
-
                             return ticketData;
-
                         } else {
                             String message = "Departure date " + departureDate + " in less than 10 minutes.";
                             LOG.warn(message);
                             throw new SalesStopException(message);
                         }
-
                     } else {
                         String message = "Passenger: " + passengerData + " already registered on train with id: " + trainId;
                         LOG.warn(message);
@@ -160,7 +150,18 @@ public class TicketServiceImpl implements TicketService {
                 for (Schedule schedule : schedules) {
                     List<Ticket> ticketsByTrainId = ticketDao.getTicketsByTrainId(schedule.getTrain().getId());
                     if (ticketsByTrainId != null && !ticketsByTrainId.isEmpty()) {
-                        ticketList.addAll(ticketsByTrainId);
+                        for (Ticket newTicket : ticketsByTrainId) {
+                            boolean contains = false;
+                            for (Ticket existTicket : ticketList) {
+                                if (newTicket.getId() == existTicket.getId()) {
+                                    contains = true;
+                                    break;
+                                }
+                            }
+                            if (!contains) {
+                                ticketList.add(newTicket);
+                            }
+                        }
                     }
                 }
             }

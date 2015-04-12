@@ -9,8 +9,8 @@
     <!-- Security configuration for REST services. -->
     <beans:bean class="com.railwaycompany.presentation.authentication.RestParameters">
         <beans:property name="tokenHeader" value="Rest-Token"/>
-        <beans:property name="role" value="ROLE_ADMIN"/>
-        <beans:property name="expirationTime" value="300000"/>
+        <beans:property name="role" value="ROLE_MANAGER"/>
+        <beans:property name="expirationTime" value="86400000"/>
     </beans:bean>
     <http pattern="/tickets/**"
           authentication-manager-ref="authenticationManager" entry-point-ref="restAuthenticationEntryPoint"
@@ -30,8 +30,7 @@
     <!-- Security configuration for html form-based authentication -->
     <http auto-config="true" use-expressions="true">
         <intercept-url pattern="/employee_page" access="hasRole('ROLE_ADMIN')"/>
-        <!--<intercept-url pattern="/buy_ticket" access="hasRole('ROLE_ADMIN')"/>-->
-        <!--<intercept-url pattern="/buy_ticket" access="hasRole('ROLE_USER')"/>-->
+        <intercept-url pattern="/buy_ticket" access="hasAnyRole('ROLE_ADMIN','ROLE_MANAGER','ROLE_USER')"/>
 
         <access-denied-handler error-page="/403"/>
         <form-login

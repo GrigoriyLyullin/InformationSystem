@@ -1,7 +1,5 @@
 package com.railwaycompany.business.dto;
 
-import com.railwaycompany.persistence.entities.Station;
-
 import java.util.Date;
 import java.util.List;
 
@@ -11,7 +9,7 @@ public class ScheduleData {
     private long trainNumber;
     private Date timeArrival;
     private Date timeDeparture;
-    private List<Station> stationList;
+    private List<StationData> stationList;
 
     public long getTrainNumber() {
         return trainNumber;
@@ -45,11 +43,11 @@ public class ScheduleData {
         this.trainId = trainId;
     }
 
-    public List<Station> getStationList() {
+    public List<StationData> getStationList() {
         return stationList;
     }
 
-    public void setStationList(List<Station> stationList) {
+    public void setStationList(List<StationData> stationList) {
         this.stationList = stationList;
     }
 }

@@ -60,7 +60,7 @@
                 <tr>
                     <th>Train number</th>
                     <th>Departure</th>
-                        <%--<th>Stations</th>--%>
+                    <th>Stations</th>
                     <th>Buy ticket</th>
                 </tr>
                 </thead>
@@ -71,9 +71,11 @@
                         <td>
                             <fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${scheduleData.timeDeparture}"/>
                         </td>
-                            <%--<td>--%>
-                            <%--TODO Вывести список станций, через которые следует поезд--%>
-                            <%--</td>--%>
+                            <td>
+                                <c:forEach items="${scheduleData.stationList}" var="station">
+                                    <p>${station.name}</p>
+                                </c:forEach>
+                            </td>
                         <td>
                             <sec:authorize access="isAnonymous()">
                                 <a href="${pageContext.request.contextPath}/login"

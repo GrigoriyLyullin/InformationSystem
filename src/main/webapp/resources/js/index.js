@@ -149,6 +149,15 @@ function init_index_page() {
                                     tableBody += '<td>' + trainNumber + '</td>';
                                     var departureDate = new Date(json[index].timeDeparture);
                                     tableBody += '<td>' + $.format.date(departureDate, 'yyyy-MM-dd HH:mm') + '</td>';
+                                    var stationList = json[index].stationList;
+                                    var stationListStr = '';
+                                    for (var i = 0; i < stationList.length; i++) {
+                                        stationListStr += stationList[i].name;
+                                        if (i < stationList.length - 1) {
+                                            stationListStr += ', ';
+                                        }
+                                    }
+                                    tableBody += '<td>' + stationListStr + '</td>';
                                     var btnBuyTicket;
                                     if (access === "authenticated") {
                                         btnBuyTicket = '<form action="' + context + '/buy_ticket/step_1" method="post">' +
@@ -168,7 +177,9 @@ function init_index_page() {
                                 });
                                 scheduleAjaxTable.html(
                                     '<table class="body-table table table-bordered">' +
-                                    '<thead><tr><th>Train number</th><th>Departure</th><th>Buy ticket</th></tr></thead>' +
+                                    '<thead><tr><th>Train number</th><th>Departure</th><th>Stations</th>' +
+                                    '<th>Buy ticket</th>' +
+                                    '</tr></thead>' +
                                     '<tbody>' + tableBody + '</tbody>' +
                                     '</table>'
                                 );

@@ -1,6 +1,7 @@
 package com.railwaycompany.business.services.implementation;
 
 import com.railwaycompany.business.dto.ScheduleData;
+import com.railwaycompany.business.dto.StationData;
 import com.railwaycompany.business.services.exceptions.StationDoesNotExistException;
 import com.railwaycompany.business.services.exceptions.SuchScheduleExistException;
 import com.railwaycompany.business.services.exceptions.TrainDoesNotExistException;
@@ -21,8 +22,10 @@ public class ScheduleServiceImpl implements ScheduleService {
 
     @Autowired
     private ScheduleDao scheduleDao;
+
     @Autowired
     private StationDao stationDao;
+
     @Autowired
     private TrainDao trainDao;
 
@@ -41,6 +44,16 @@ public class ScheduleServiceImpl implements ScheduleService {
                         scheduleData.setTrainNumber(train.getNumber());
                         scheduleData.setTimeArrival(s.getTimeArrival());
                         scheduleData.setTimeDeparture(s.getTimeDeparture());
+                        List<Schedule> schedulesByTrainId = scheduleDao.getSchedulesByTrainId(train.getId());
+                        List<StationData> stationList = new ArrayList<>();
+                        for (Schedule schedule : schedulesByTrainId) {
+                            StationData stationData = new StationData();
+                            stationData.setName(schedule.getStation().getName());
+                            stationData.setArrivalDate(schedule.getTimeArrival());
+                            stationData.setDepartureDate(schedule.getTimeDeparture());
+                            stationList.add(stationData);
+                        }
+                        scheduleData.setStationList(stationList);
                         scheduleDataList.add(scheduleData);
                     }
                 }

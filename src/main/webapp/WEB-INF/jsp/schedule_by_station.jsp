@@ -26,16 +26,6 @@
         </form>
     </div>
 
-    <sec:authorize access="isAnonymous()">
-        <c:set value="anonymous" var="authorizeAccess"/>
-    </sec:authorize>
-    <sec:authorize access="isAuthenticated()">
-        <c:set value="authenticated" var="authorizeAccess"/>
-    </sec:authorize>
-
-    <input type="hidden" name="authorize-access" value="${authorizeAccess}">
-    <input type="hidden" name="context-path" value="${pageContext.request.contextPath}">
-
     <div id="schedule-by-station-table-ajax-preloader">
         <img src="${pageContext.request.contextPath}/resources/img/preloader.gif"/>
     </div>

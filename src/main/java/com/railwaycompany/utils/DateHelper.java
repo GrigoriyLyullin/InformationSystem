@@ -1,10 +1,10 @@
 package com.railwaycompany.utils;
 
+import org.apache.log4j.Logger;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * Designed to convert strings into Date objects.
@@ -15,10 +15,6 @@ public class DateHelper {
      * Number of milliseconds in one day.
      */
     public static final long MILLIS_IN_DAY = 86_400_000;
-    /**
-     * Number of milliseconds in one year.
-     */
-    public static final long MILLIS_IN_YEAR = MILLIS_IN_DAY * 365;
     /**
      * Number of milliseconds in 10 minutes.
      */
@@ -43,14 +39,6 @@ public class DateHelper {
      * Date pattern for datetime string format.
      */
     private static final String DATETIME_PATTERN = "yyyy-MM-dd HH:mm";
-    /**
-     * Date formatter for date string.
-     */
-    private static final SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_PATTERN);
-    /**
-     * Date formatter for date and time string.
-     */
-    private static final SimpleDateFormat datetimeFormat = new SimpleDateFormat(DATETIME_PATTERN);
 
     /**
      * Converts string with date to Date object.
@@ -58,12 +46,17 @@ public class DateHelper {
      * @param dateStr - string with date
      * @return Date object or null if cannot convert this string to Date.
      */
-    public static Date convertDate(String dateStr) {
+    public static Date convertDate(final String dateStr) {
         Date date = null;
         try {
+            SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_PATTERN);
             date = dateFormat.parse(dateStr);
         } catch (ParseException e) {
-            LOG.log(Level.INFO, "Cannot parse date string \"" + dateStr + "\"", e);
+            LOG.warn("Cannot parse date string \"" + dateStr + "\"", e);
+        } catch (NumberFormatException e) {
+            LOG.warn("dateStr: " + dateStr, e);
+        } catch (Exception e) {
+            LOG.warn(e);
         }
         return date;
     }
@@ -77,9 +70,10 @@ public class DateHelper {
     public static Date convertDatetime(String datetimeStr) {
         Date datetime = null;
         try {
+            SimpleDateFormat datetimeFormat = new SimpleDateFormat(DATETIME_PATTERN);
             datetime = datetimeFormat.parse(datetimeStr);
         } catch (ParseException e) {
-            LOG.log(Level.INFO, "Cannot parse datetime string \"" + datetimeStr + "\"", e);
+            LOG.warn("Cannot parse datetime string \"" + datetimeStr + "\"", e);
         }
         return datetime;
     }
@@ -118,11 +112,5 @@ public class DateHelper {
      */
     public static Date convertDatetime(String date, String time) {
         return convertDatetime(date + " " + time);
-    }
-
-    public static boolean hasEnoughtYearsToNow(Date birthdate, long years) {
-        Date now = new Date();
-        long difference = now.getTime() - birthdate.getTime();
-        return difference > years;
     }
 }

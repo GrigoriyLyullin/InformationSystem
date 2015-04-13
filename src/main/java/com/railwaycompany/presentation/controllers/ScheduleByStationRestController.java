@@ -47,6 +47,9 @@ public class ScheduleByStationRestController {
 
     @RequestMapping(value = "maxSize", method = RequestMethod.GET)
     public int getSchedule(@RequestParam(value = "schedule-by-station-name") String stationName) {
-        return scheduleService.getSchedule(stationName, new Date()).size() - 1;
+        if (stationService.exist(stationName)) {
+            return scheduleService.getSchedule(stationName, new Date()).size() - 1;
+        }
+        return 0;
     }
 }

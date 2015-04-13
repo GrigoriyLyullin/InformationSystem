@@ -11,34 +11,53 @@
     <p>Enter the route and the date of the travel to choose the train: </p>
 
     <div id="inputFromSearchTrain">
-        <form class="form-inline" onsubmit="return checkSearchTrainForm(this)" method="get"
+        <form class="form-inline" id="search-train-form" onsubmit="return checkSearchTrainForm(this)" method="get"
               action="${pageContext.request.contextPath}/search_train">
 
             <div class="input-prepend">
 
                 <span class="add-on">From</span>
-                <input id="Station-From-Name" name="station-from-name" type="text" class="input-large"
+                <input id="search-train-station-from-name" name="station-from-name" type="text" class="input-large"
                        placeholder="Station name" value="<c:out value="${sessionScope.stationFromName}"/>"
                        autocomplete="off" data-provide="typeahead">
 
                 <span class="add-on">To</span>
-                <input id="Station-To-Name" name="station-to-name" type="text" class="input-large"
+                <input id="search-train-station-to-name" name="station-to-name" type="text" class="input-large"
                        placeholder="Station name" value="<c:out value="${sessionScope.stationToName}"/>"
                        autocomplete="off" data-provide="typeahead">
 
                 <span class="add-on">Departure date</span>
-                <input id="dateFrom" name="date-from" class="input-medium" data-format="yyyy-mm-dd" type="text"
+                <input id="search-train-date-from" name="date-from" class="input-medium"
+                       type="text"
                        autocomplete="off" value="<c:out value="${sessionScope.dateFrom}"/>" title="Date"
                        placeholder="yyyy-mm-dd">
             </div>
-            <button type="submit" class="btn btn-primary">
+            <button type="submit" class="btn btn-primary" id="btn-search-train">
                 <i class="icon-white icon-search"></i>
             </button>
+            <p class="hidden">Invalid input data</p>
         </form>
     </div>
 
     <div class="alert alert-error" id="searchTrainAlert">
         <p>Incorrect input data. Try again.</p>
+    </div>
+
+    <div id="search-train-table-ajax-preloader">
+        <img src="${pageContext.request.contextPath}/resources/img/preloader.gif"/>
+    </div>
+
+    <div>
+        <div id="search-train-table-ajax"></div>
+        <div id="search-train-table-ajax-empty" class="alert alert-error"></div>
+        <div class="centered-button">
+            <a href="#" class="btn centered-button-form" id="search-train-ajax-previous">
+                <i class="icon-arrow-left"></i>
+            </a>
+            <a href="#" class="btn centered-button-form" id="search-train-ajax-next">
+                <i class="icon-arrow-right"></i>
+            </a>
+        </div>
     </div>
 
     <c:choose>

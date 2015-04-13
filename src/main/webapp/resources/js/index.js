@@ -42,7 +42,7 @@ function checkSearchTrainForm() {
 
     var stationFromName = $('#Station-From-Name').val();
     var stationToName = $('#Station-To-Name').val();
-    var dateFrom = $('#dateFrom').val();
+    var dateFrom = $('#search-train-date-from').val();
 
     if (stationFromName === "" || stationToName === "" || dateFrom === "") {
         searchTrainAlert.show();
@@ -52,12 +52,17 @@ function checkSearchTrainForm() {
 }
 
 var stationNames = [];
-var scheduleByStationCurrentPosition = 0;
 var STEP_SIZE = 3;
-var scheduleByStationMaxSize = 0;
-function init_index_page() {
-    $(document).ready(function ($) {
 
+function init_index_page() {
+
+    var scheduleByStationCurrentPosition = 0;
+    var searchTrainCurrentPosition = 0;
+    var scheduleByStationMaxSize = 0;
+    var searchTrainMaxSize = 0;
+
+    $(document).ready(function ($) {
+        // schedule by station ajax logic
         var scheduleByStationForm = $('#schedule-by-station-form');
         var scheduleByStationName = $('#schedule-by-station-name');
         scheduleByStationName.click(function () {
@@ -79,9 +84,9 @@ function init_index_page() {
         });
 
         $(function () {
-            var stationName = $.session.get("scheduleByStationName");
-            if (stationName !== "" && stationName !== null && stationName !== undefined) {
-                scheduleByStationName.val(stationName);
+            var scheduleByStationName = $.session.get("scheduleByStationName");
+            if (scheduleByStationName !== "" && scheduleByStationName !== null && scheduleByStationName !== undefined) {
+                scheduleByStationName.val(scheduleByStationName);
             }
         });
 
@@ -197,6 +202,190 @@ function init_index_page() {
                 }
             }
         );
+        // search train ajax logic
+        var searchTrainForm = $('#search-train-form');
+        var searchTrainStationFromName = $('#search-train-station-from-name');
+        var searchTrainStationToName = $('#search-train-station-to-name');
+        var searchTrainDateFrom = $('#search-train-date-from');
+        searchTrainStationFromName.click(function () {
+            searchTrainForm.removeClass("input-field-error");
+        });
+        searchTrainStationFromName.keypress(function () {
+            searchTrainForm.removeClass("input-field-error");
+        });
+        searchTrainStationToName.click(function () {
+            searchTrainForm.removeClass("input-field-error");
+        });
+        searchTrainStationToName.keypress(function () {
+            searchTrainForm.removeClass("input-field-error");
+        });
+        searchTrainDateFrom.click(function () {
+            searchTrainForm.removeClass("input-field-error");
+        });
+        searchTrainDateFrom.keypress(function () {
+            searchTrainForm.removeClass("input-field-error");
+        });
+        var btnSearchTrain = $('#btn-search-train');
+        $('#search-train-ajax-previous').click(function (e) {
+            e.preventDefault();
+            searchTrainCurrentPosition -= STEP_SIZE;
+            console.log('searchTrainCurrentPosition: ' + searchTrainCurrentPosition);
+            btnSearchTrain.click();
+        });
+        $('#search-train-ajax-next').click(function (e) {
+            e.preventDefault();
+            searchTrainCurrentPosition += STEP_SIZE;
+            console.log('searchTrainCurrentPosition: ' + searchTrainCurrentPosition);
+            btnSearchTrain.click();
+        });
+
+        $(function () {
+            var stationFromName = $.session.get("stationFromName");
+            if (stationFromName !== "" && stationFromName !== null
+                && stationFromName !== undefined) {
+                searchTrainStationFromName.val(stationFromName);
+            }
+            var stationToName = $.session.get("stationToName");
+            if (stationToName !== "" && stationToName !== null
+                && stationToName !== undefined) {
+                searchTrainStationToName.val(stationToName);
+            }
+            var dateFrom = $.session.get("dateFrom");
+            if (dateFrom !== "" && dateFrom !== null
+                && dateFrom !== undefined) {
+                searchTrainDateFrom.val($.format.date(dateFrom, 'yyyy-MM-dd'));
+            }
+        });
+
+        btnSearchTrain.click(function (e) {
+                e.preventDefault();
+                var stationFromName = searchTrainStationFromName.val();
+                var stationToName = searchTrainStationToName.val();
+                var dateFrom = searchTrainDateFrom.val();
+                if (stationFromName === '' || stationToName === '' || dateFrom === '') {
+                    searchTrainForm.addClass("input-field-error");
+                } else {
+
+                    $.session.set("stationFromName", stationFromName);
+                    $.session.set("stationToName", stationToName);
+                    $.session.set("dateFrom", $.format.date(dateFrom, 'yyyy-MM-dd'));
+
+                    searchTrainForm.removeClass("input-field-error");
+
+                    var preloader = $('#search-train-table-ajax-preloader');
+                    var searchTrainAjaxTable = $('#search-train-table-ajax');
+                    var btnPrevious = $('#search-train-ajax-previous');
+                    var btnNext = $('#search-train-ajax-next');
+                    var empty = $('#search-train-table-ajax-empty');
+
+                    searchTrainAjaxTable.hide();
+                    btnPrevious.hide();
+                    btnNext.hide();
+                    empty.hide();
+                    preloader.show();
+
+                    if (searchTrainMaxSize == 0) {
+                        $.ajax({
+                            url: "search_train/rest/maxSize",
+                            data: {
+                                'search-train-from-name': stationFromName,
+                                'search-train-to-name': stationToName,
+                                'search-train-date-from': dateFrom
+                            },
+                            type: 'get',
+                            error: function () {
+                                searchTrainForm.addClass("input-field-error");
+                                preloader.hide();
+                            },
+                            success: function (data) {
+                                searchTrainMaxSize = data;
+                            }
+                        });
+                    }
+
+                    $.ajax({
+                        url: "search_train/rest",
+                        data: {
+                            'search-train-from-name': stationFromName,
+                            'search-train-to-name': stationToName,
+                            'search-train-date-from': dateFrom,
+                            'search-train-start-number': searchTrainCurrentPosition
+                        },
+                        type: 'get',
+                        error: function () {
+                            console.log('Error with: station from: ' + stationFromName + ', station to: ' + stationToName
+                            + ', date from: ' + dateFrom);
+                            searchTrainForm.addClass("input-field-error");
+                            preloader.hide();
+                        },
+                        success: function (data) {
+
+                            console.log(data);
+
+                            var access = $('input[name=authorize-access]').val();
+                            var context = $('input[name=context-path]').val();
+                            console.log("access = " + access);
+                            var json = JSON.parse(data);
+
+                            preloader.hide();
+
+                            if (json.length == 0) {
+                                empty.html(' <p>Schedule for station "' + stationFromName +
+                                '" to station "' + stationToName + 'on date ' + dateFrom + '"is empty</p>');
+                                empty.show();
+                            } else {
+
+                                var tableBody = '';
+                                $.each(json, function (index) {
+                                    var trainNumber = json[index].trainNumber;
+                                    tableBody += '<tr>';
+                                    tableBody += '<td>' + trainNumber + '</td>';
+                                    var departureDate = new Date(json[index].timeDeparture);
+                                    tableBody += '<td>' + $.format.date(departureDate, 'yyyy-MM-dd HH:mm') + '</td>';
+                                    var arrivalDate = new Date(json[index].timeArrival);
+                                    tableBody += '<td>' + $.format.date(arrivalDate, 'yyyy-MM-dd HH:mm') + '</td>';
+
+                                    var btnBuyTicket;
+                                    if (access === "authenticated") {
+                                        btnBuyTicket = '<form action="' + context + '/buy_ticket/step_1" method="post">' +
+                                        '<input type="hidden" name="trainNumber" value="' + trainNumber + '">' +
+                                        '<input type="hidden" name="dispatchStation" value="' + stationFromName + '">' +
+                                        '<input type="hidden" name="departureDate" value="' +
+                                        $.format.date(departureDate, 'yyyy-MM-dd') + '">' +
+                                        '<input type="hidden" name="departureTime" value="' +
+                                        $.format.date(departureDate, 'HH:mm') + '">' +
+                                        '<button type="submit" class="btn btn-block btn-success btn-buy">Buy</button></form>';
+                                    } else {
+                                        btnBuyTicket = '<a href="' + context +
+                                        '/login?msg=buy" class="btn disabled btn-block btn-buy btn-buy-disabled">Buy</a>';
+                                    }
+                                    tableBody += '<td>' + btnBuyTicket + '</td>';
+                                    tableBody += '</tr>';
+                                });
+                                searchTrainAjaxTable.html(
+                                    '<table class="body-table table table-bordered">' +
+                                    '<thead><tr><th>Train number</th>' +
+                                    '<th>' + stationFromName + ' departure time</th>' +
+                                    '<th>' + stationToName + ' arrival time</th>' +
+                                    '<th>Buy ticket</th>' +
+                                    '</tr></thead>' +
+                                    '<tbody>' + tableBody + '</tbody>' +
+                                    '</table>'
+                                );
+
+                                searchTrainAjaxTable.show();
+                                if (searchTrainCurrentPosition >= STEP_SIZE) {
+                                    btnPrevious.show();
+                                }
+                                if (searchTrainCurrentPosition < searchTrainMaxSize) {
+                                    btnNext.show();
+                                }
+                            }
+                        }
+                    });
+                }
+            }
+        );
         // load all station names
         $.get('stations', function (data) {
             stationNames = JSON.parse(data);
@@ -208,14 +397,14 @@ function init_index_page() {
             items: 5,
             minLength: 0
         });
-        $('#Station-From-Name').typeahead({
+        searchTrainStationFromName.typeahead({
             source: function () {
                 return stationNames;
             },
             items: 5,
             minLength: 0
         });
-        $('#Station-To-Name').typeahead({
+        searchTrainStationToName.typeahead({
             source: function () {
                 return stationNames;
             },
@@ -223,7 +412,7 @@ function init_index_page() {
             minLength: 0
         });
         $(function () {
-            $('#dateFrom').datepicker({
+            $('#search-train-date-from').datepicker({
                 startDate: new Date(),
                 todayHighlight: true,
                 format: "yyyy-mm-dd"

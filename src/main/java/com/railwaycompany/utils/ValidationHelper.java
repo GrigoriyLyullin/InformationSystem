@@ -70,7 +70,7 @@ public class ValidationHelper {
      * @return True if string contains valid date, otherwise - False.
      */
     public static boolean isValidDateStr(String date) {
-        return date != null && !date.isEmpty();//TODO Fix this part :  && datePattern.matcher(date).matches();
+        return date != null && !date.isEmpty() && datePattern.matcher(date).matches();
     }
 
     /**

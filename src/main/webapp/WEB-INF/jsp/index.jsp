@@ -17,6 +17,17 @@
 </head>
 <body onload="init_index_page();">
 <div class="container">
+
+    <sec:authorize access="isAnonymous()">
+        <c:set value="anonymous" var="authorizeAccess"/>
+    </sec:authorize>
+    <sec:authorize access="isAuthenticated()">
+        <c:set value="authenticated" var="authorizeAccess"/>
+    </sec:authorize>
+
+    <input type="hidden" name="authorize-access" value="${authorizeAccess}">
+    <input type="hidden" name="context-path" value="${pageContext.request.contextPath}">
+
     <h1>Railway Company</h1>
     <jsp:include page="/WEB-INF/jsp/navbar.jsp" flush="true"/>
     <div class="row">

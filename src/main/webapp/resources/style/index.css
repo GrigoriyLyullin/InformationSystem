@@ -104,11 +104,11 @@ h1 {
     width: 30%;
 }
 
-#Station-From-Name {
+#search-train-station-from-name {
     margin-right: 5px;
 }
 
-#Station-To-Name {
+#search-train-station-to-name {
     margin-right: 5px;
 }
 
@@ -361,7 +361,15 @@ h1 {
     display: none;
 }
 
+#search-train-ajax-previous {
+    display: none;
+}
+
 #schedule-by-station-ajax-next {
+    display: none;
+}
+
+#search-train-ajax-next {
     display: none;
 }
 
@@ -377,7 +385,15 @@ h1 {
     display: none;
 }
 
+#search-train-table-ajax {
+    display: none;
+}
+
 #schedule-by-station-table-ajax-empty {
+    display: none;
+}
+
+#search-train-table-ajax-empty {
     display: none;
 }
 
@@ -386,6 +402,13 @@ h1 {
 }
 
 #schedule-by-station-table-ajax-preloader {
+    display: none;
+    margin-right: auto;
+    margin-left: auto;
+    width: 32px;
+}
+
+#search-train-table-ajax-preloader {
     display: none;
     margin-right: auto;
     margin-left: auto;

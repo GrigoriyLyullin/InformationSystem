@@ -126,27 +126,28 @@ public class ScheduleServiceImpl implements ScheduleService {
         Station stationTo = stationDao.getStation(stationToName);
         if (stationFrom != null && stationTo != null) {
             scheduleDataList = scheduleDao.getSchedules(stationFrom.getId(), stationTo.getId(), dateFrom);
-
-            Collections.sort(scheduleDataList, new Comparator<ScheduleData>() {
-                @Override
-                public int compare(ScheduleData o1, ScheduleData o2) {
-                    if (o1.getTimeDeparture().getTime() > o2.getTimeDeparture().getTime()) {
-                        return 1;
-                    } else if (o1.getTimeDeparture().getTime() < o2.getTimeDeparture().getTime()) {
-                        return -1;
+            if (scheduleDataList != null) {
+                Collections.sort(scheduleDataList, new Comparator<ScheduleData>() {
+                    @Override
+                    public int compare(ScheduleData o1, ScheduleData o2) {
+                        if (o1.getTimeDeparture().getTime() > o2.getTimeDeparture().getTime()) {
+                            return 1;
+                        } else if (o1.getTimeDeparture().getTime() < o2.getTimeDeparture().getTime()) {
+                            return -1;
+                        }
+                        return 0;
                     }
-                    return 0;
-                }
-            });
+                });
 
-            List<ScheduleData> tmp = new ArrayList<>();
+                List<ScheduleData> tmp = new ArrayList<>();
 
-            for (int s = startNumber; s < startNumber + stepSize; s++) {
-                if (s < scheduleDataList.size()) {
-                    tmp.add(scheduleDataList.get(s));
+                for (int s = startNumber; s < startNumber + stepSize; s++) {
+                    if (s < scheduleDataList.size()) {
+                        tmp.add(scheduleDataList.get(s));
+                    }
                 }
+                scheduleDataList = tmp;
             }
-            scheduleDataList = tmp;
         }
         return scheduleDataList;
     }

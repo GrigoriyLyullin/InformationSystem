@@ -2,6 +2,7 @@ package com.railwaycompany.persistence.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 
 @Entity
 @Table(name = "ticket")
@@ -11,11 +12,11 @@ public class Ticket implements Serializable {
     @GeneratedValue( strategy = GenerationType.IDENTITY)
     @Column(name = "id_ticket")
     private int id;
-
+    @Column(name = "sale_time")
+    private Date saleTime;
     @ManyToOne
     @JoinColumn(name = "train_id")
     private Train train;
-
     @ManyToOne
     @JoinColumn(name = "passenger_id")
     private Passenger passenger;
@@ -42,5 +43,13 @@ public class Ticket implements Serializable {
 
     public void setPassenger(Passenger passenger) {
         this.passenger = passenger;
+    }
+
+    public Date getSaleTime() {
+        return saleTime;
+    }
+
+    public void setSaleTime(Date saleTime) {
+        this.saleTime = saleTime;
     }
 }

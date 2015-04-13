@@ -4,20 +4,15 @@ import java.util.Date;
 
 public class TicketData {
 
-    private int trainNumber;
+    private int ticketId;
+    private Date saleTime;
     private String stationFrom;
     private String stationTo;
     private Date departureDate;
     private Date arrivalDate;
+    private int trainNumber;
+    private TrainData trainData;
     private PassengerData passengerData;
-
-    public int getTrainNumber() {
-        return trainNumber;
-    }
-
-    public void setTrainNumber(int trainNumber) {
-        this.trainNumber = trainNumber;
-    }
 
     public String getStationFrom() {
         return stationFrom;
@@ -57,5 +52,37 @@ public class TicketData {
 
     public void setPassengerData(PassengerData passengerData) {
         this.passengerData = passengerData;
+    }
+
+    public int getTicketId() {
+        return ticketId;
+    }
+
+    public void setTicketId(int ticketId) {
+        this.ticketId = ticketId;
+    }
+
+    public TrainData getTrainData() {
+        return trainData;
+    }
+
+    public void setTrainData(TrainData trainData) {
+        this.trainData = trainData;
+    }
+
+    public int getTrainNumber() {
+        return trainNumber;
+    }
+
+    public void setTrainNumber(int trainNumber) {
+        this.trainNumber = trainNumber;
+    }
+
+    public Date getSaleTime() {
+        return saleTime;
+    }
+
+    public void setSaleTime(Date saleTime) {
+        this.saleTime = saleTime;
     }
 }

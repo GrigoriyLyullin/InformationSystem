@@ -2,6 +2,7 @@ package com.railwaycompany.business.services.implementation;
 
 import com.railwaycompany.business.dto.PassengerData;
 import com.railwaycompany.business.dto.TicketData;
+import com.railwaycompany.business.dto.TrainData;
 import com.railwaycompany.business.services.exceptions.AlreadyRegisteredException;
 import com.railwaycompany.business.services.exceptions.HasNoEmptySeatsException;
 import com.railwaycompany.business.services.exceptions.InvalidInputDataException;
@@ -14,9 +15,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 import static com.railwaycompany.utils.ValidationHelper.isValidDateStr;
 import static com.railwaycompany.utils.ValidationHelper.isValidTimeStr;
@@ -84,6 +83,7 @@ public class TicketServiceImpl implements TicketService {
                             Ticket ticket = new Ticket();
                             ticket.setTrain(train);
                             ticket.setPassenger(passenger);
+                            ticket.setSaleTime(new Date());
                             ticketDao.create(ticket);
                             TicketData ticketData = new TicketData();
                             ticketData.setTrainNumber(trainNumber);
@@ -138,15 +138,15 @@ public class TicketServiceImpl implements TicketService {
     }
 
     @Override
-    public List<Ticket> getTickets(String dateFromStr, String timeFromStr, String dateToStr, String timeToStr) {
-        List<Ticket> ticketList = null;
+    public List<TicketData> getTickets(String dateFromStr, String timeFromStr, String dateToStr, String timeToStr) {
+        List<TicketData> ticketDataList = null;
         if (isValidDateStr(dateFromStr) && isValidDateStr(dateToStr)
                 && isValidTimeStr(timeFromStr) && isValidTimeStr(timeToStr)) {
             Date dateFrom = DateHelper.convertDatetime(dateFromStr, timeFromStr);
             Date dateTo = DateHelper.convertDatetime(dateToStr, timeToStr);
             List<Schedule> schedules = scheduleDao.getSchedules(dateFrom, dateTo);
             if (schedules != null && !schedules.isEmpty()) {
-                ticketList = new ArrayList<>();
+                List<Ticket> ticketList = new ArrayList<>();
                 for (Schedule schedule : schedules) {
                     List<Ticket> ticketsByTrainId = ticketDao.getTicketsByTrainId(schedule.getTrain().getId());
                     if (ticketsByTrainId != null && !ticketsByTrainId.isEmpty()) {
@@ -164,9 +164,53 @@ public class TicketServiceImpl implements TicketService {
                         }
                     }
                 }
+                ticketDataList = new ArrayList<>();
+                for (Ticket t : ticketList) {
+                    if (t.getSaleTime().getTime() >= dateFrom.getTime()
+                            && t.getSaleTime().getTime() <= dateTo.getTime()) {
+                        TicketData ticketData = new TicketData();
+                        ticketData.setTicketId(t.getId());
+                        ticketData.setSaleTime(t.getSaleTime());
+
+                        TrainData trainData = new TrainData();
+                        Train train = t.getTrain();
+                        trainData.setId(train.getId());
+                        trainData.setNumber(train.getNumber());
+                        trainData.setSeats(train.getSeats());
+                        trainData.setTicketCost(train.getTicketCost());
+                        ticketData.setTrainData(trainData);
+                        ticketData.setTrainNumber(train.getNumber());
+
+                        PassengerData passengerData = new PassengerData();
+                        Passenger passenger = t.getPassenger();
+                        passengerData.setId(passenger.getId());
+                        passengerData.setName(passenger.getName());
+                        passengerData.setSurname(passenger.getSurname());
+                        passengerData.setBirthdate(passenger.getBirthdate());
+                        ticketData.setPassengerData(passengerData);
+
+                        List<Schedule> schedulesByTrainId = scheduleDao.getSchedulesByTrainId(train.getId());
+                        Collections.sort(schedulesByTrainId, new Comparator<Schedule>() {
+                            @Override
+                            public int compare(Schedule o1, Schedule o2) {
+                                if (o1.getTimeDeparture().getTime() < o2.getTimeDeparture().getTime()) {
+                                    return -1;
+                                } else if (o1.getTimeDeparture().getTime() > o2.getTimeDeparture().getTime()) {
+                                    return 1;
+                                }
+                                return 0;
+                            }
+                        });
+                        Station stationFrom = schedulesByTrainId.get(0).getStation();
+                        ticketData.setStationFrom(stationFrom.getName());
+                        ticketData.setDepartureDate(scheduleDao.getDepartureDate(train.getId(), stationFrom.getId()));
+
+                        ticketDataList.add(ticketData);
+                    }
+                }
             }
         }
-        return ticketList;
+        return ticketDataList;
     }
 
     @Override

@@ -7,6 +7,8 @@ public class TrainData {
     private int id;
     private int number;
     private int seats;
+    private float ticketCost;
+
     private List<StationData> stations;
 
     public int getId() {
@@ -39,5 +41,13 @@ public class TrainData {
 
     public void setStations(List<StationData> stations) {
         this.stations = stations;
+    }
+
+    public float getTicketCost() {
+        return ticketCost;
+    }
+
+    public void setTicketCost(float ticketCost) {
+        this.ticketCost = ticketCost;
     }
 }

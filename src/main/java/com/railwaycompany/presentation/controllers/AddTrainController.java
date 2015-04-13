@@ -50,7 +50,7 @@ public class AddTrainController {
     @RequestMapping(method = RequestMethod.POST)
     public String post(@RequestParam(value = TRAIN_NUMBER_PARAM) String trainNumberStr,
                        @RequestParam(value = TRAIN_SEATS_PARAM) String trainSeatsStr,
-                       @RequestParam(value = ADD_TRAIN_ANYWAY_PARAM) Boolean addTrainAnyway,
+                       @RequestParam(value = ADD_TRAIN_ANYWAY_PARAM, defaultValue = "false") Boolean addTrainAnyway,
                        HttpSession session) {
 
         boolean allTrainListExist = (session.getAttribute(ALL_TRAIN_LIST_ATTR) != null);

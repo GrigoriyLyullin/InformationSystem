@@ -73,7 +73,7 @@ public class TicketServiceImpl implements TicketService {
                         passenger.setSurname(surname);
                         passenger.setBirthdate(birthdate);
                         User user = userDao.read(userId);
-                        List<Passenger> passengers = user.getPassengers();
+                        List<Passenger> passengers = new ArrayList<>();
                         passengers.add(passenger);
                         user.setPassengers(passengers);
                         passengerDao.create(passenger);

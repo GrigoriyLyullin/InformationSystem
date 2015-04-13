@@ -45,7 +45,7 @@
                         already exist in the database. Click "Add anyway" to add this train into database.
                     </p>
 
-                    <form action="${pageContext.request.contextPath}add_train" method="post">
+                    <form action="${pageContext.request.contextPath}/add_train" method="post">
                         <input type="hidden" name="trainNumber" value="${sessionScope.existTrainNumber}">
                         <input type="hidden" name="trainSeats" value="${sessionScope.existTrainSeats}">
                         <input type="hidden" name="addTrainAnyway" value="true">

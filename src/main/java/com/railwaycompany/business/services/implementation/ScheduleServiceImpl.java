@@ -220,7 +220,7 @@ public class ScheduleServiceImpl implements ScheduleService {
             List<ScheduleData> tmp = new ArrayList<>();
 
             for (int s = startNumber; s < startNumber + stepSize; s++) {
-                if (s < scheduleDataList.size()) {
+                if (s >= 0 && s < scheduleDataList.size()) {
                     tmp.add(scheduleDataList.get(s));
                 }
             }

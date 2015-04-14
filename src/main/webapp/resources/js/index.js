@@ -86,12 +86,18 @@ function init_index_page() {
         $(function () {
             var scheduleByStationName = $.session.get("scheduleByStationName");
             if (scheduleByStationName !== "" && scheduleByStationName !== null && scheduleByStationName !== undefined) {
-                scheduleByStationName.val(scheduleByStationName);
+                scheduleByStationForm.val(scheduleByStationName);
             }
         });
 
         btnScheduleByStation.click(function (e) {
                 e.preventDefault();
+
+                console.log("------------------------------------");
+                console.log("scheduleByStationCurrentPosition: " + scheduleByStationCurrentPosition);
+                console.log("scheduleByStationMaxSize: " + scheduleByStationMaxSize);
+                console.log("------------------------------------");
+
                 var stationName = scheduleByStationName.val();
                 if (stationName === "") {
                     scheduleByStationForm.addClass("input-field-error");
@@ -107,8 +113,6 @@ function init_index_page() {
                     var empty = $('#schedule-by-station-table-ajax-empty');
 
                     scheduleAjaxTable.hide();
-                    btnPrevious.hide();
-                    btnNext.hide();
                     empty.hide();
                     preloader.show();
 
@@ -192,9 +196,13 @@ function init_index_page() {
                                 scheduleAjaxTable.show();
                                 if (scheduleByStationCurrentPosition >= STEP_SIZE) {
                                     btnPrevious.show();
+                                } else {
+                                    btnPrevious.hide();
                                 }
-                                if (scheduleByStationCurrentPosition < scheduleByStationMaxSize) {
+                                if (scheduleByStationCurrentPosition + STEP_SIZE < scheduleByStationMaxSize) {
                                     btnNext.show();
+                                } else {
+                                    btnNext.hide();
                                 }
                             }
                         }

@@ -43,9 +43,11 @@
         <http-basic/>
     </http>
 
+    <beans:bean id="encoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
+
     <authentication-manager alias="authenticationManager">
         <authentication-provider user-service-ref="authenticationServiceImpl">
-            <password-encoder hash="md5"/>
+            <password-encoder ref="encoder"/>
         </authentication-provider>
     </authentication-manager>
 

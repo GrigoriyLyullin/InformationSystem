@@ -12,6 +12,7 @@ import com.railwaycompany.persistence.entities.User;
 import com.railwaycompany.presentation.authentication.RestParameters;
 import com.railwaycompany.utils.HashHelper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -46,7 +47,7 @@ public class TokenServiceImpl implements TokenService {
         String tokenKey;
         User user = userDao.findUser(login);
         if (user != null) {
-            if (user.getPassword().equals(HashHelper.hash(password))) {
+            if (BCrypt.checkpw(password, user.getPassword())) {
                 if (user.getUserRole().getRole().equals(parameters.getRole())) {
                     Token tokenByUser = tokenDao.findTokenByUserId(user.getId());
                     Date now = new Date();

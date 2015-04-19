@@ -287,8 +287,6 @@ function init_index_page() {
                     var empty = $('#search-train-table-ajax-empty');
 
                     searchTrainAjaxTable.hide();
-                    btnPrevious.hide();
-                    btnNext.hide();
                     empty.hide();
                     preloader.show();
 
@@ -384,9 +382,13 @@ function init_index_page() {
                                 searchTrainAjaxTable.show();
                                 if (searchTrainCurrentPosition >= STEP_SIZE) {
                                     btnPrevious.show();
+                                } else {
+                                    btnPrevious.hide();
                                 }
-                                if (searchTrainCurrentPosition < searchTrainMaxSize) {
+                                if (searchTrainCurrentPosition + STEP_SIZE < searchTrainMaxSize) {
                                     btnNext.show();
+                                } else {
+                                    btnNext.hide();
                                 }
                             }
                         }

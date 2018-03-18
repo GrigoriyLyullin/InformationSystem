@@ -1,2 +1,4 @@
 /InformationSystem.iml
 /.idea
+*.class
+/target/*

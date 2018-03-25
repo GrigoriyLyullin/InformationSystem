@@ -1,5 +1,5 @@
 # Information System for abstract railway company.
-Java course in T-Systems.
+Java School course in T-Systems RUS.
 
 ## Getting Started
 
@@ -14,6 +14,7 @@ Prerequisites:
 3. Go to bin directory (e.g.  C:\wildfly-12.0.0.Final\bin)
 4. Add administrator user (with ManagementRealm group).    Execute add-user.bat and follow the instructions. E.g.:
 
+```
     What type of user do you wish to add?
      a) Management User (mgmt-users.properties)
      b) Application User (application-users.properties)
@@ -40,16 +41,17 @@ Prerequisites:
     e.g. for a slave host controller connecting to the master or for a Remoting connection for the server to server EJB calls.
     yes/no? no
     Press any key to continue . . .
+```
 
 5. Start WildFly via standalone.bat. E.g. C:\wildfly-12.0.0.Final\bin\standalone.bat
+
 ```
     INFO  [org.jboss.as] (Controller Boot Thread) WFLYSRV0060: Http management interface listening on http://127.0.0.1:9990/management
     INFO  [org.jboss.as] (Controller Boot Thread) WFLYSRV0051: Admin console listening on http://127.0.0.1:9990
     INFO  [org.jboss.as] (Controller Boot Thread) WFLYSRV0025: WildFly Full 12.0.0.Final (WildFly Core 4.0.0.Final) started in 6510ms - Started 292 of 513 services (308 services are lazy, passive or on-demand)
 ```
-6. Open http://127.0.0.1:9990 in browser, input username\password from step 4.
-WildFly administrator console should appear.
-Stop WildFly
+
+6. Open http://127.0.0.1:9990 in browser, input username\password from step 4. WildFly administrator console should appear. Stop WildFly.
 
 7. Install mysql driver.
 
@@ -57,7 +59,8 @@ Stop WildFly
     7.2. Visit the page [http://dev.mysql.com/downloads/connector/j/](http://dev.mysql.com/downloads/connector/j/) and download MySQL’s JDBC Driver;
     7.3. Unzip the downloaded file and copy the file mysql-connector-java-5.1.23-bin.jar to the new folder WILDFLY_HOME/modules/system/layers/base/com/mysql/main
     7.4. Create the file module.xml in the same folder with the following content:
-```
+
+    ```
         <?xml version="1.0" encoding="UTF-8"?>
         <module xmlns="urn:jboss:module:1.1" name="com.mysql">
             <resources>
@@ -68,19 +71,23 @@ Stop WildFly
                 <module name="javax.transaction.api"/>
             </dependencies>
         </module>
-```
+    ```
+
     7.5. Start WildFly via "standalone.bat". Execute "jboss-cli.bat --connect" to connect to WildFly via command-line interface.
     The prompt looks like [standalone@localhost:9990 /], indicating it is ready to accept admin commands.
     7.6. Execute "/subsystem=datasources/jdbc-driver=mysql:add(driver-name=mysql, driver-module-name=com.mysql, driver-class-name=com.mysql.jdbc.Driver)":
-```
+
+    ```
         [standalone@localhost:9990 /] /subsystem=datasources/jdbc-driver=mysql:add( driver-name=mysql, driver-module-name=com.mysql, driver-class-name=com.mysql.jdbc.Driver )
         {"outcome" => "success"}
-```
+    ```
+
     The command returns {"outcome" ⇒ "success"} in case of success.
     For more detailes see: http://wildfly.org/news/2014/02/06/GlassFish-to-WildFly-migration/
 
 8. Create a Datasource.
-```
+
+    ```
     /subsystem=datasources/data-source=RailwayInformationSystem:add(
           driver-name=mysql,
           user-name=<db_username>,
@@ -95,10 +102,12 @@ Stop WildFly
           valid-connection-checker-class-name=org.jboss.jca.adapters.jdbc.extensions.mysql.MySQLValidConnectionChecker,
           exception-sorter-class-name=org.jboss.jca.adapters.jdbc.extensions.mysql.MySQLExceptionSorter
     )
-```
+    ```
     The command returns {"outcome" ⇒ "success"} in case of success.
+
 9. Check standalone.xml (C:\wildfly-12.0.0.Final\standalone\configuration\standalone.xml").
-```
+
+    ```
     <datasource jta="true" jndi-name="java:/jdbc/mysql" pool-name="RailwayInformationSystem" enabled="true">
         <connection-url>jdbc:mysql://localhost:3306/RailwayInformationSystem?useSSL=false</connection-url>
                                                        
@@ -117,7 +126,8 @@ Stop WildFly
             <exception-sorter class-name="org.jboss.jca.adapters.jdbc.extensions.mysql.MySQLExceptionSorter"/>
         </validation>
     </datasource>
-``` 
+    ```
+
 9. Deploy application:
 [standalone@localhost:9990 /] deploy <path to the project directory>\InformationSystem\target\InformationSystem.war
 

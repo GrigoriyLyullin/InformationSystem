@@ -3,6 +3,16 @@ Java School course in T-Systems RUS.
 
 ## Getting Started
 
+### Build application
+
+Prerequisites:
+- Maven has been installed
+
+1. Go to pulled sorces directory
+2. Execute "mvn clean package"
+3. The command returns "BUILD SUCCESS". Resulting InformationSystem.war will be located in target diretory.
+
+
 ### Install WildFly, configure it and then application deploy
 
 Prerequisites:
@@ -12,7 +22,7 @@ Prerequisites:
 1. Download WildFly "Java EE7 Full & Web Distribution" here: http://wildfly.org/downloads/ (12.0.0.Final)
 2. Unpack it somewhere (e.g. C:\wildfly-12.0.0.Final)
 3. Go to bin directory (e.g.  C:\wildfly-12.0.0.Final\bin)
-4. Add administrator user (with ManagementRealm group).    Execute add-user.bat and follow the instructions. E.g.:
+4. Add administrator user (with ManagementRealm group). Execute add-user.bat and follow the instructions. E.g.:
 
 ```
     What type of user do you wish to add?
@@ -55,10 +65,10 @@ Prerequisites:
 
 7. Install mysql driver.
 
-    7.1. Go to WILDFLY_HOME/modules/system/layers/base/com and create the folder mysql/main;
-    7.2. Visit the page [http://dev.mysql.com/downloads/connector/j/](http://dev.mysql.com/downloads/connector/j/) and download MySQL’s JDBC Driver;
-    7.3. Unzip the downloaded file and copy the file mysql-connector-java-5.1.23-bin.jar to the new folder WILDFLY_HOME/modules/system/layers/base/com/mysql/main
-    7.4. Create the file module.xml in the same folder with the following content:
+7.1. Go to WILDFLY_HOME/modules/system/layers/base/com and create the folder mysql/main;
+7.2. Visit the page [http://dev.mysql.com/downloads/connector/j/](http://dev.mysql.com/downloads/connector/j/) and download MySQL’s JDBC Driver;
+7.3. Unzip the downloaded file and copy the file mysql-connector-java-5.1.23-bin.jar to the new folder WILDFLY_HOME/modules/system/layers/base/com/mysql/main
+7.4. Create the file module.xml in the same folder with the following content:
 
     ```
         <?xml version="1.0" encoding="UTF-8"?>
@@ -73,9 +83,9 @@ Prerequisites:
         </module>
     ```
 
-    7.5. Start WildFly via "standalone.bat". Execute "jboss-cli.bat --connect" to connect to WildFly via command-line interface.
-    The prompt looks like [standalone@localhost:9990 /], indicating it is ready to accept admin commands.
-    7.6. Execute "/subsystem=datasources/jdbc-driver=mysql:add(driver-name=mysql, driver-module-name=com.mysql, driver-class-name=com.mysql.jdbc.Driver)":
+7.5. Start WildFly via "standalone.bat". Execute "jboss-cli.bat --connect" to connect to WildFly via command-line interface.
+The prompt looks like [standalone@localhost:9990 /], indicating it is ready to accept admin commands.
+7.6. Execute "/subsystem=datasources/jdbc-driver=mysql:add(driver-name=mysql, driver-module-name=com.mysql, driver-class-name=com.mysql.jdbc.Driver)":
 
     ```
         [standalone@localhost:9990 /] /subsystem=datasources/jdbc-driver=mysql:add( driver-name=mysql, driver-module-name=com.mysql, driver-class-name=com.mysql.jdbc.Driver )

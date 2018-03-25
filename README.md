@@ -1,6 +1,9 @@
 # Information System for abstract railway company.
 Java School course in T-Systems RUS.
 
+## Technical documentation
+Technical documention for this project is located here: [Technical design](https://drive.google.com/file/d/0B3K7J83-Gyw2Njl3X1BSeTFfeEk/view?usp=sharing)
+
 ## Getting Started
 
 ### Build application

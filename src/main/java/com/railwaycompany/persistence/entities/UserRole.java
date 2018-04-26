@@ -7,12 +7,10 @@ import javax.persistence.*;
 public class UserRole {
 
     @Id
-    @GeneratedValue( strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_role")
     private int id;
-    @OneToOne
-    @JoinColumn(name = "user_id")
-    private User user;
+
     private String role;
 
     public int getId() {
@@ -29,13 +27,5 @@ public class UserRole {
 
     public void setRole(String role) {
         this.role = role;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 }

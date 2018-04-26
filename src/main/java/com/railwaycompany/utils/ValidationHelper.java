@@ -9,7 +9,7 @@ public class ValidationHelper {
     /**
      * String with pattern for date checks.
      */
-    private static final String DATE_PATTERN_STR = "^(19|20\\d\\d)-(0?[1-9]|1[012])-(0?[1-9]|[12][0-9]|3[01])$";
+    private static final String DATE_PATTERN_STR = "^(19|20)\\d\\d-(0?[1-9]|1[012])-(0?[1-9]|[12][0-9]|3[01])$";
     /**
      * String with pattern for time checks.
      */

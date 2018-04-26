@@ -79,7 +79,6 @@ public class AuthenticationServiceImplTest {
 
             UserRole userRole = new UserRole();
             userRole.setRole(USER_ROLE);
-            userRole.setUser(user);
 
             user.setUserRole(userRole);
 

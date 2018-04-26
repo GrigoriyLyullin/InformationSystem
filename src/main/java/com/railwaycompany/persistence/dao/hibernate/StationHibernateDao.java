@@ -49,11 +49,10 @@ public class StationHibernateDao extends HibernateDao<Station> implements Statio
 
         Query query = entityManager.createQuery(SELECT_ALL_STATIONS);
 
-        List<Station> stationList = null;
+        List<Station> stationList = new ArrayList<>();
         try {
             List resultList = query.getResultList();
             if (!resultList.isEmpty()) {
-                stationList = new ArrayList<>();
                 for (Object o : resultList) {
                     if (o instanceof Station) {
                         stationList.add((Station) o);
